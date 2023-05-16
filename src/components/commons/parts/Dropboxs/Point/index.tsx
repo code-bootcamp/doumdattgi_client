@@ -7,19 +7,21 @@ import UsePayment from "../../../hooks/custom/usePayment/Pay/index";
 
 export default function ChargeDropBox(): JSX.Element {
   const { items, amount } = UseDropBox();
-  const { clickIniCis, clickKakao, isSelect, SelectOption } = UsePayment();
-
-  console.log("fsdfdsfd");
-  console.log(isSelect);
+  const { clickIniCis, isSelect, SelectOption } = UsePayment();
 
   return (
     <>
       <Head>
         <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
       </Head>
-      <S.Body>
+      <S.Body className="ChargeBox">
         <S.Title>충전하실 금액을 선택해주세요!</S.Title>
-        <Dropdown menu={{ items }} trigger={["click"]}>
+        <Dropdown
+          // overlayStyle={{ border: "2px solid red" }}
+          overlayClassName="ChargeDrop"
+          menu={{ items }}
+          trigger={["click"]}
+        >
           <a
             onClick={e => {
               e.preventDefault();
@@ -37,7 +39,7 @@ export default function ChargeDropBox(): JSX.Element {
               onChange={SelectOption}
               type="radio"
               name="payMethod"
-              value="inicis"
+              value="html5_inicis"
             />
             <S.PayMethod>이니시스</S.PayMethod>
           </S.Option>
@@ -46,16 +48,16 @@ export default function ChargeDropBox(): JSX.Element {
               onChange={SelectOption}
               type="radio"
               name="payMethod"
-              value="kakao"
+              value="kakaopay"
             />
             <S.PayMethod>카카오</S.PayMethod>
           </S.Option>
         </S.OptionBox>
         <S.ChargeBtn
-          disabled={(amount === 0 || !isSelect) && true}
+          disabled={amount === 0 || (!isSelect && true)}
           amount={String(amount)}
           isSelect={isSelect}
-          onClick={clickIniCis(Number(amount))}
+          onClick={clickIniCis(Number(amount), isSelect)}
         >
           충전하기
         </S.ChargeBtn>

@@ -45,7 +45,7 @@ export const ChargeBtn = styled.button`
   font-weight: 500;
   font-size: 16px;
   background-color: ${(props: IProps) =>
-    props.amount !== "" && props.isSelect !== "" ? "black" : "#bdbdbd"};
+    Number(props.amount) !== 0 && props.isSelect !== "" ? "black" : "#bdbdbd"};
   color: white;
   border: none;
   border-radius: 10px;
