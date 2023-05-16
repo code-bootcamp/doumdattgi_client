@@ -7,17 +7,15 @@ import { RecoilRoot } from "recoil";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <>
-      <RecoilRoot>
-        <ApolloSetting>
-          <>
-            <Global styles={globalStyle} />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </>
-        </ApolloSetting>
-      </RecoilRoot>
-    </>
+    <RecoilRoot>
+      <ApolloSetting>
+        <>
+          <Global styles={globalStyle} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </>
+      </ApolloSetting>
+    </RecoilRoot>
   );
 }
