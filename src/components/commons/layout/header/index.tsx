@@ -2,11 +2,13 @@ import * as S from "./style";
 import { Avatar, Dropdown, Space } from "antd";
 import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { useUser } from "../../hooks/custom/useUser";
 
 export default function Header(): JSX.Element {
+  const { onClickLogout, data } = useUser()
   const items = [
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
-    { label: <Link href={"/mypage/profile"}>포인트</Link> },
+    { label: <Link href={"/mypage/point"}>포인트</Link> },
     {
       type: "divider"
     },
@@ -16,8 +18,11 @@ export default function Header(): JSX.Element {
     {
       type: "divider"
     },
-    { label: <Link href={"/mypage/profile"}>로그아웃</Link> }
-  ];
+    { label: <span onClick={onClickLogout}>로그아웃</span> }
+  ]
+
+  console.log(data)
+  
   return (
     <>
       <S.Wrapper>
@@ -53,7 +58,7 @@ export default function Header(): JSX.Element {
                   arrow={{ pointAtCenter: true }}
                 >
                   <Space>
-                    <Avatar size={44} style={{ cursor: "pointer", marginLeft: "14px" }} />
+                    <Avatar size={44} style={{ cursor: "pointer", marginLeft: "14px" }} icon={<UserOutlined/>} />
                   </Space>
                 </Dropdown>
               </S.UserBox>

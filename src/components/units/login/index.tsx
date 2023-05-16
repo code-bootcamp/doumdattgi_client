@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import * as S from "./login.styles";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaLogin } from "../../../commons/libraries/validation";
+import { schemaLogin } from "../../../commons/libraries/schema";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import InputHeight46px from "../../commons/inputs/InputHeight46px";
 import { useUser } from "../../commons/hooks/custom/useUser/index";
