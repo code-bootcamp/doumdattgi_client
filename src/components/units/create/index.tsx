@@ -9,6 +9,8 @@ const Editor = dynamic(() => import("../../commons/parts/Toasteditor/index"), {
 });
 
 export default function BoardWritePresenter() {
+  // 기능 구현
+
   return (
     <>
       <S.Wrapper>
