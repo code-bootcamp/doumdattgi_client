@@ -1,11 +1,20 @@
+import { useRecoilState } from "recoil";
+import { ModalCancelState } from "../../../../commons/stores";
 import UseModal from "../../../../components/commons/hooks/custom/useModal/index";
 import ChargeModal from "../../../commons/parts/Modals/Charge/index";
 import * as S from "./index.styles";
+import { useEffect } from "react";
+import PayList from "../../../commons/parts/Point/paylist";
 
 export default function PaymentPresenter(): JSX.Element {
   const { clickModal, openModal, setOpenModal } = UseModal();
+  const [isCance, setIsCancel] = useRecoilState(ModalCancelState);
 
-  console.log(openModal);
+  useEffect(() => {
+    if (isCance) {
+      setOpenModal(false);
+    }
+  }, [isCance]);
 
   return (
     <>
@@ -19,20 +28,7 @@ export default function PaymentPresenter(): JSX.Element {
             <S.ChargeBtn onClick={clickModal}>포인트 충전</S.ChargeBtn>
           </S.CurrentHold>
         </S.HoldingBox>
-        <S.TransferList>
-          {new Array(5).fill(1).map((_, idx) => (
-            <S.TransactionInfo key={idx}>
-              <S.PayInfo>
-                <S.Company>카카오페이</S.Company>
-                <S.Date>2023. 05. 12 12:08</S.Date>
-              </S.PayInfo>
-              <S.TransactInfo>
-                <S.Point>100,000 P</S.Point>
-                <S.Amount>100,000 원</S.Amount>
-              </S.TransactInfo>
-            </S.TransactionInfo>
-          ))}
-        </S.TransferList>
+        <PayList />
       </S.Wrapper>
     </>
   );
