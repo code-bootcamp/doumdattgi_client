@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   padding: 90px 120px;
   border-radius: 20px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  margin: 0px auto;
+  margin: 90px auto;
 `;
 
 export const Title = styled.div`
@@ -61,3 +61,19 @@ export const Error = styled.div`
   margin-top: 5px;
   color: red;
 `;
+
+export const InputBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`
+export const ButtonBox = styled.div`
+  width: 100px;
+  margin-left: 8px;
+`
+
+export const Timer = styled.span`
+  display: block;
+  color: #CF1322;
+  margin-left: 8px;
+`

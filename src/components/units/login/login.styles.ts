@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   padding: 80px 50px;
   border-radius: 20px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  margin: 0 auto;
+  margin: 90px auto;
 `;
 
 export const Title = styled.div`

@@ -34,7 +34,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   }, []);
 
   const uploadLink = createUploadLink({
-    uri: "https://backend-practice.codebootcamp.co.kr/graphql",
+    uri: "https://doumdattgi-server.com/graphql",
     headers: {
       Authorization: `Bearer ${accessToken}`
     },
@@ -62,7 +62,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   });
 
   const client = new ApolloClient({
-    uri: "https://backend-practice.codebootcamp.co.kr/graphql",
+    uri: "https://doumdattgi-server.com/graphql",
     cache: GLOBAL_STATE,
     link: ApolloLink.from([errorLink, uploadLink])
   });
