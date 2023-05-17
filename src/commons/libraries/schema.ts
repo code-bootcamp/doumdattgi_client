@@ -41,7 +41,6 @@ export const schemaSignUp = yup.object({
     .required(),
   nickName: yup
     .string()
-    .matches(/^[a-zA-Z0-9]{2,15}$/, "2 ~ 15자리의 별명을 입력해주세요.")
     .required("닉네임을 입력해주세요."),
   phoneNumber: yup
     .string()

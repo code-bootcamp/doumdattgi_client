@@ -7,13 +7,10 @@ interface IButtonProps {
 }
 
 export const Button = styled.button`
-  width: 50%;
+  width: 100%;
   height: 42px;
   border-radius: 6px;
   border: none;
-  color: white;
-  background-color: black;
-  margin-left: 10px;
   cursor: pointer;
   font-size: 14px;
 `;
@@ -22,9 +19,9 @@ export default function ButtonHeight42px(props: IButtonProps): JSX.Element {
   return (
     <Button
       onClick={props.onClick}
-      style={{
-        backgroundColor: props.isActive ? "steelblue" : ""
-      }}
+      type={props.type}
+      style={{background: props.isActive ? "#111" : "#ccc", color: props.isActive ? "#fff" : "#444"}}
+      disabled={props.isActive}
     >
       {props.title}
     </Button>
