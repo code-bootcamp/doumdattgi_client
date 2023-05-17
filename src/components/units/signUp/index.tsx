@@ -1,11 +1,11 @@
 import * as S from "./signup.style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaSignUp } from "../../../commons/libraries/validation";
-import Timer from "../../commons/parts/timer";
+import { schemaSignUp } from "../../../commons/libraries/schema";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import InputHeight42px from "../../commons/inputs/InputHeight42px";
 import { useUser } from "../../commons/hooks/custom/useUser";
+import ButtonHeight42px from "../../commons/buttons/ButtonHeight42px";
 
 interface IFormData {
   email: string;
@@ -17,7 +17,8 @@ interface IFormData {
 }
 
 export default function SignUp(): JSX.Element {
-  const { onClickSignUp } = useUser();
+  const { onClickSignUp, onClickValidation, isOn, isActive, sec } = useUser();
+
   const { register, handleSubmit, formState } = useForm<IFormData>({
     resolver: yupResolver(schemaSignUp),
     mode: "onChange"
@@ -29,8 +30,27 @@ export default function SignUp(): JSX.Element {
       <S.SubTitle>이메일</S.SubTitle>
       <form onSubmit={handleSubmit(onClickSignUp)}>
         <InputHeight42px placeholder="이메일" register={register("email")} />
-        {/* 3분 타이머 6자리 인증번호 */}
-        <Timer />
+        {!isOn && (
+          <S.AuthBtn type="button" onClick={onClickValidation}>
+            이메일 인증하기
+          </S.AuthBtn>
+        )}
+        {isOn && (
+          <>
+            <S.SubTitle>인증번호 입력</S.SubTitle>
+            <S.InputBox>
+              <InputHeight42px placeholder="인증번호 입력" />
+              <S.Timer>{sec}</S.Timer>
+              <S.ButtonBox>
+                <ButtonHeight42px
+                  title="인증하기"
+                  type="button"
+                  isActive={isActive}
+                />
+              </S.ButtonBox>
+            </S.InputBox>
+          </>
+        )}
         <S.SubTitle>비밀번호</S.SubTitle>
         <S.SubTitleDetail>
           영문, 숫자를 포함한 8~16자리의 비밀번호를 입력해주세요

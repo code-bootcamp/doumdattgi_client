@@ -18,27 +18,9 @@ export const globalStyle = css`
 
   @font-face {
     font-family: "Arita-dotum";
-    src: url("/arita-dotum(OTF)-Light.otf") format("otf");
-    font-weight: 300;
-  }
-  @font-face {
-    font-family: "Arita-dotum";
-    src: url("/arita-dotum(OTF)-Thin.otf") format("otf");
-    font-weight: 100;
-  }
-  @font-face {
-    font-family: "Arita-dotum";
-    src: url("/arita-dotum(OTF)-Medium.otf") format("otf");
-    font-weight: 500;
-  }
-  @font-face {
-    font-family: "Arita-dotum";
-    src: url("/arita-dotum(OTF)-SemiBold.otf") format("otf");
-    font-weight: 600;
-  }
-  @font-face {
-    font-family: "Arita-dotum";
-    src: url("/arita-dotum(OTF)-Bold.otf") format("otf");
-    font-weight: 700;
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
   }
 `;

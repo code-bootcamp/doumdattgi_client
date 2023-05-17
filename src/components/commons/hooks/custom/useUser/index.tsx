@@ -1,11 +1,11 @@
-import { useMutationCreateUser } from "../../mutations/useMutationCreateUser";
 import { useRouter } from "next/router";
-import { Modal } from "antd";
-// import { useMutationAuthEmail } from "../../mutations/useMutationAuthEmail";
-// import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../../commons/stores/index";
-import { useMutationLoginUser } from "../../mutations/useMutationLoginUser";
+import { LOGIN_USER } from "../../mutations/useMutationLoginUser";
+import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { CREATE_USER, LOGOUT } from "../../mutations/useMutationCreateUser";
+import { FETCH_USER_LOGGED_IN } from "../../queries";
 
 interface IFormData {
   email: string;
@@ -23,35 +23,67 @@ interface IFormLoginData {
 export const useUser = () => {
   const router = useRouter();
 
-  // const [email, setEmail] = useState("");
   const [, setAccessToken] = useRecoilState(accessTokenState);
+  const [createUser] = useMutation(CREATE_USER);
+  const [loginUser] = useMutation(LOGIN_USER);
+  const [logout] = useMutation(LOGOUT);
+  const { data } = useQuery(FETCH_USER_LOGGED_IN)
+  const [isOn, setIsOn] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [sec, setSec] = useState(0);
 
-  const [createUser] = useMutationCreateUser();
-  const [loginUser] = useMutationLoginUser();
-  // const [authEmail] = useMutationAuthEmail();
+  // =============== 타이머 ===============
+  useEffect(() => {
+    setIsActive(true);
+    const interval = setInterval(() => {
+      setSec(prev => prev - 1);
+      console.log(isActive);
+    }, 1000);
 
-  // 회원가입
-  const onClickSignUp = async (data: IFormData): Promise<void> => {
+    if (sec === 0) {
+      setIsActive(false);
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [sec]);
+
+  // =============== 인증번호 ===============
+  const onClickValidation = () => {
+    setIsOn(true);
+    setSec(6);
+  };
+
+  // =============== 회원가입 ===============
+  const onClickSignUp = async data => {
+    console.log(
+      data.email,
+      data.password,
+      data.nickName,
+      data.phoneNumber,
+      data.name
+    );
     try {
-      await createUser({
+      const result = await createUser({
         variables: {
           createUserInput: {
             email: data.email,
             password: data.password,
-            nickname: data.nickname,
-            phone: data.phone,
+            nickname: data.nickName,
+            phone: data.phoneNumber,
             name: data.name
           }
         }
       });
-      void router.push("/");
+      alert(`${data.name}님 환영합니다.`);
+      void router.push("/login/");
     } catch (error) {
-      if (error instanceof Error) Modal.error({ content: error.message });
+      alert(error.message);
     }
   };
 
-  // 로그인 기능
-  const onClickLogin = async (data: IFormLoginData): Promise<void> => {
+  // =============== 로그인 ===============
+  const onClickLogin = async data => {
     try {
       const result = await loginUser({
         variables: {
@@ -59,26 +91,48 @@ export const useUser = () => {
           password: data.password
         }
       });
-      const accessToken = result.data?.loginUser.accessToken;
-      console.log(accessToken);
+      alert("로그인에 성공하였습니다.");
+
+      // 받아온 액세스 토큰을 글로벌 스테이트에 저장하기
+      const accessToken = result.data?.login;
+      setAccessToken(accessToken);
+      localStorage.setItem("accessToken", accessToken);
 
       if (accessToken === undefined) {
-        alert("로그인에 실패하였습니다. 다시 시도해주세요");
+        alert("다시 시도해 주세요.");
         return;
       }
-      setAccessToken(accessToken);
 
-      void router.push("/");
-      localStorage.setItem("accessToken", accessToken);
+      // 로그인 성공 페이지로 이동하기
+      const storage = globalThis?.sessionStorage;
+      const link = storage.getItem("prevPath") || "/";
+      void router.push(link);
+      
     } catch (error) {
-      if (error instanceof Error) Modal.error({ content: error.message });
+      alert(error.message);
     }
   };
 
-  const onClickAuth = async (data: any): Promise<void> => {};
+  const onClickLogout = async () => {
+    try {
+      await logout();
+      localStorage.removeItem("accessToken");
+      alert("정상적으로 로그아웃 되었습니다.");
+      router.reload();
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+
   return {
+    onClickValidation,
     onClickSignUp,
-    onClickAuth,
-    onClickLogin
+    onClickLogin,
+    onClickLogout,
+    isOn,
+    sec,
+    isActive,
+    data
   };
 };
