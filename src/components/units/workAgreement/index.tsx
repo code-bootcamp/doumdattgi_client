@@ -25,7 +25,6 @@ export default function WorkAgreement(): JSX.Element {
         <S.ContentsDetail>신청 내용</S.ContentsDetail>
         <S.Contents>
           뚫고 지나가요 - Day6
-          <br></br>
           <br></br>축 처진 그 어깨에 슬프다 써져 있길래 조심스레 괜찮냐 물어도
           대답은 침묵뿐이에요 힘이 되고 싶어, 뭔 짓을 해 봐도 안 보이나 봐요,
           눈앞에 있는데도 서서히 금이 가 깨질 것 같지만 그래도 난 버티고 있었죠
