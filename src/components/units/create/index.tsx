@@ -85,7 +85,7 @@ export default function BoardWritePresenter() {
                   <S.Required>*</S.Required>
                 </S.Theme>
                 <S.EditorBox>
-                  <Editor onChangeContents={onChangeContents} />
+                  <Editor onChange={onChangeContents} />
                 </S.EditorBox>
               </S.BoardContent>
               <S.AvailableTime>
