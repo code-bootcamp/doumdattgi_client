@@ -36,9 +36,9 @@ export default function BoardWritePresenter() {
       mode: "onChange"
     });
 
-  const onChangeContents = (value: string): void => {
-    console.log(value);
-    setValue("contents", value === "<p><br></p>" ? "" : value);
+  const onChangeContents = (data: string): void => {
+    console.log(data);
+    setValue("contents", data === "<p><br></p>" ? "" : data);
     void trigger("contents");
   };
 
