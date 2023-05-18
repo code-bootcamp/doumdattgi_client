@@ -1,20 +1,22 @@
+import { getDate } from "../../../../../commons/libraries/getDate";
 import * as S from "./index.styles";
 
-export default function PayList() {
+export default function PayList(props) {
   return (
     <S.TransferList>
-      {new Array(5).fill(1).map((_, idx) => (
-        <S.TransactionInfo key={idx}>
-          <S.PayInfo>
-            <S.Company>카카오페이</S.Company>
-            <S.Date>2023. 05. 12 12:08</S.Date>
-          </S.PayInfo>
-          <S.TransactInfo>
-            <S.Point>100,000 P</S.Point>
-            <S.Amount>100,000 원</S.Amount>
-          </S.TransactInfo>
-        </S.TransactionInfo>
-      ))}
+      <S.TransactionInfo>
+        <S.PayInfo>
+          <S.Company>{props.el?.paymentType}</S.Company>
+          <S.Date>{getDate(props.el?.createdAt)}</S.Date>
+        </S.PayInfo>
+        <S.TransactInfo>
+          <S.Point>100,000 P</S.Point>
+          <S.Box>
+            <S.RefundBtn>환불요청</S.RefundBtn>
+            <S.Amount>{`${String(props.el?.amount)}원`}</S.Amount>
+          </S.Box>
+        </S.TransactInfo>
+      </S.TransactionInfo>
     </S.TransferList>
   );
 }

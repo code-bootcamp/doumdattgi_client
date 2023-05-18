@@ -17,7 +17,6 @@ export default function ChargeDropBox(): JSX.Element {
       <S.Body className="ChargeBox">
         <S.Title>충전하실 금액을 선택해주세요!</S.Title>
         <Dropdown
-          // overlayStyle={{ border: "2px solid red" }}
           overlayClassName="ChargeDrop"
           menu={{ items }}
           trigger={["click"]}

@@ -61,7 +61,7 @@ export const InputBox = styled.div`
 `;
 
 export const Theme = styled.span`
-  width: 170px;
+  width: 190px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;

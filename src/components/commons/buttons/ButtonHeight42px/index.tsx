@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 
 interface IButtonProps {
-  isActive: boolean;
+  isActive?: boolean;
   title: string;
-  onClick: () => void;
+  type?: "button";
+  onClick?: () => void;
 }
 
 export const Button = styled.button`
@@ -20,7 +21,10 @@ export default function ButtonHeight42px(props: IButtonProps): JSX.Element {
     <Button
       onClick={props.onClick}
       type={props.type}
-      style={{background: props.isActive ? "#111" : "#ccc", color: props.isActive ? "#fff" : "#444"}}
+      style={{
+        background: props.isActive ? "#111" : "#ccc",
+        color: props.isActive ? "#fff" : "#444"
+      }}
       disabled={props.isActive}
     >
       {props.title}

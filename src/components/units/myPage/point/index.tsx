@@ -5,6 +5,7 @@ import ChargeModal from "../../../commons/parts/Modals/Charge/index";
 import * as S from "./index.styles";
 import { useEffect } from "react";
 import PayList from "../../../commons/parts/Point/paylist";
+import { useQueryFetchUserPaymentInfo } from "../../../commons/hooks/queries/useQueryFetchUserPaymentInfo";
 
 export default function PaymentPresenter(): JSX.Element {
   const { clickModal, openModal, setOpenModal } = UseModal();
@@ -15,6 +16,8 @@ export default function PaymentPresenter(): JSX.Element {
       setOpenModal(false);
     }
   }, [isCance]);
+
+  const { data } = useQueryFetchUserPaymentInfo();
 
   return (
     <>
@@ -28,7 +31,12 @@ export default function PaymentPresenter(): JSX.Element {
             <S.ChargeBtn onClick={clickModal}>포인트 충전</S.ChargeBtn>
           </S.CurrentHold>
         </S.HoldingBox>
-        <PayList />
+        {data?.fetchUserPaymentInfo.map(el => (
+          <PayList el={el} key={el.impUid} />
+        ))}
+        {/* {new Array(5).fill(1).map(el => (
+          <PayList el={el} key={el.impUid} />
+        ))} */}
       </S.Wrapper>
     </>
   );
