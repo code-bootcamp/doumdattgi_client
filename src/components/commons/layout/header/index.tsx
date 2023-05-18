@@ -6,7 +6,7 @@ import { useUser } from "../../hooks/custom/useUser";
 
 export default function Header(): JSX.Element {
   const { onClickLogout, data } = useUser()
-  const items = [
+  const items: any = [
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
     { label: <Link href={"/mypage/point"}>포인트</Link> },
     {
@@ -36,7 +36,7 @@ export default function Header(): JSX.Element {
             <S.ShuffleBtn>
               <S.ShuffleIcon src="/shuffle.png" />
             </S.ShuffleBtn>
-            {false && (
+            {!data && (
               <S.LoginBox>
                 <Link href={"/login"}>
                   <S.LoginBtn>로그인</S.LoginBtn>
@@ -46,7 +46,7 @@ export default function Header(): JSX.Element {
                 </Link>
               </S.LoginBox>
             )}
-            {true && (
+            {data && (
               <S.UserBox>
                 <S.ShuffleBtn>
                   <S.ShuffleIcon src="/chat.png" />

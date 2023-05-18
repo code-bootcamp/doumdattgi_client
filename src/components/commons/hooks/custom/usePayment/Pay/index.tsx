@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ModalCancelState } from "../../../../../../commons/stores";
 import { useRecoilState } from "recoil";
+import axios from "axios";
 
 interface IResponseProps {
   success: boolean;
@@ -15,7 +16,7 @@ declare const window: typeof globalThis & {
 interface IUsePayment {
   clickIniCis: (amount: number, isSelect: string) => () => void;
   isSelect: string;
-  SelectOption: () => void;
+  SelectOption: (e: any) => void;
 }
 
 export default function UsePayment(): IUsePayment {
@@ -24,7 +25,7 @@ export default function UsePayment(): IUsePayment {
 
   //
 
-  const SelectOption = e => {
+  const SelectOption = (e: any) => {
     console.log(e.target);
     setIsSelect(e.target.value);
   };

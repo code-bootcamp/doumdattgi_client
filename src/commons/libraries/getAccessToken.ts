@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import { GraphQLClient } from "graphql-request";
-import { IMutation } from "../../../commons/types/generated/types";
+
 
 
 const RESTORE_ACCESS_TOKEN = gql`
@@ -15,13 +15,13 @@ export const getAccessToken = async (): Promise<string | undefined> => {
 			"https://doumdattgi-server.com/graphql",
 			{ credentials: "include" }
 		);
-		const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
+		const result: any = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
 		const newAccessToken = result.restoreAccessToken;
 
 		console.log(result, newAccessToken)
 
 		return newAccessToken;
-	} catch (error) {
+	} catch (error: any) {
 		console.log(error.message);
 	}
 };

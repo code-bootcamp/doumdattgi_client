@@ -8,7 +8,7 @@ export default function WorkingTimePicker() {
 
   dayjs.extend(customParseFormat);
 
-  const checkValue = e => {
+  const checkValue = (e: any) => {
     if (!e) return;
 
     const result = Math.abs(e[0]?.$H - e[1]?.$H);
