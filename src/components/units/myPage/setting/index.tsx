@@ -90,7 +90,7 @@ export default function Settings() {
               <S.SettingListTop>
                 <S.SettingList>
                   <S.Categoty>포트폴리오 주소</S.Categoty>
-                  <S.Contents data={data?.fetchLoginUser?.portfolio}>
+                  <S.Contents>
                     {data?.fetchLoginUser?.portfolio !== ""
                       ? data?.fetchLoginUser?.portfolio
                       : "포트폴리오 주소를 입력해주세요."}

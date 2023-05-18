@@ -15,7 +15,7 @@ interface IFormData {
 export const useBoard = () => {
   const router = useRouter();
 
-  const createBoardWrite = useMutation(CREATE_BOARD);
+  const [createBoardWrite] = useMutation(CREATE_BOARD);
 
   // =============== 글작성 ===============
   const onClickWrite = async (data: IFormData) => {

@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export const FETCH_USER_PAYMENT_INFO = gql`
   query {
@@ -13,7 +14,7 @@ export const FETCH_USER_PAYMENT_INFO = gql`
 `;
 
 export const useQueryFetchUserPaymentInfo = () => {
-  const Query = useQuery(FETCH_USER_PAYMENT_INFO);
+  const Query = useQuery<Pick<IQuery, "fetchUserPaymentInfo">>(FETCH_USER_PAYMENT_INFO);
 
   return Query;
 };
