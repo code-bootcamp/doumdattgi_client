@@ -6,18 +6,44 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { CREATE_USER, LOGOUT } from "../../mutations/useMutationCreateUser";
 import { FETCH_USER_LOGGED_IN } from "../../queries";
+import { IQuery } from "../../../../../commons/types/generated/types";
 
 interface IFormData {
   email: string;
   password: string;
-  nickname: string;
-  phone: number;
+  nickName: string;
+  phoneNumber: number;
   name: string;
 }
 
 interface IFormLoginData {
   email: string;
   password: string;
+}
+
+interface IUseUserReturn {
+  onClickValidation: () => void;
+  onClickSignUp: (data: IFormData) => void;
+  onClickLogin: (data: IFormLoginData) => void;
+  onClickLogout: () => void;
+  onClickEditAvatar: () => void;
+  isOn: boolean;
+  sec: number;
+  isActive: boolean;
+  data?: {
+    id?: string;
+    email?: string;
+    passsword?: string;
+    name?: string;
+    nickname?: string;
+    phone?: string;
+    profileImage?: string;
+    introduce?: string;
+    portfolio?: string;
+    workRate?: number;
+    point?: number;
+  };
+  isAvatarEdit: boolean;
 }
 
 export const useUser = () => {
@@ -27,11 +53,12 @@ export const useUser = () => {
   const [createUser] = useMutation(CREATE_USER);
   const [loginUser] = useMutation(LOGIN_USER);
   const [logout] = useMutation(LOGOUT);
-  const { data } = useQuery(FETCH_USER_LOGGED_IN)
+  const { data } =
+    useQuery<Pick<IQuery, "fetchLoginUser">>(FETCH_USER_LOGGED_IN);
   const [isOn, setIsOn] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [sec, setSec] = useState(0);
-  const [ isAvatarEdit, setIsAvatarEdit ] = useState(false)
+  const [isAvatarEdit, setIsAvatarEdit] = useState(false);
 
   // =============== 타이머 ===============
   useEffect(() => {
@@ -56,7 +83,7 @@ export const useUser = () => {
   };
 
   // =============== 회원가입 ===============
-  const onClickSignUp = async (data: any) => {
+  const onClickSignUp = async (data: IFormData) => {
     console.log(
       data.email,
       data.password,
@@ -78,13 +105,13 @@ export const useUser = () => {
       });
       alert(`${data.name}님 환영합니다.`);
       void router.push("/login/");
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
     }
   };
 
   // =============== 로그인 ===============
-  const onClickLogin = async (data: any) => {
+  const onClickLogin = async (data: IFormLoginData) => {
     try {
       const result = await loginUser({
         variables: {
@@ -108,9 +135,8 @@ export const useUser = () => {
       const storage = globalThis?.sessionStorage;
       const link = storage.getItem("prevPath") || "/";
       void router.push(link);
-      
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
     }
   };
 
@@ -121,15 +147,15 @@ export const useUser = () => {
       localStorage.removeItem("accessToken");
       alert("정상적으로 로그아웃 되었습니다.");
       router.reload();
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
     }
   };
 
   // 프로필 이미지
   const onClickEditAvatar = () => {
-    setIsAvatarEdit(prev => !prev)
-  }
+    setIsAvatarEdit(prev => !prev);
+  };
 
   return {
     onClickValidation,

@@ -5,21 +5,21 @@ import { ArrowStyle, ArrowStyle2, contentStyle } from "./carousel.styles";
 export default function MainCarousel() {
   const carouselRef = useRef(null);
 
-  const handlePrevClick = () => {
-    carouselRef.current?.prev();
-  };
+  // const handlePrevClick = () => {
+  //   carouselRef.current?.prev();
+  // };
 
-  const handleNextClick = () => {
-    carouselRef.current?.next();
-  };
+  // const handleNextClick = () => {
+  //   carouselRef.current?.next();
+  // };
 
   const PrevArrow = () => (
-    <div onClick={handlePrevClick} style={ArrowStyle}>
+    <div style={ArrowStyle}>
       {"<"}
     </div>
   );
   const NextArrow = () => (
-    <div onClick={handleNextClick} style={ArrowStyle2}>
+    <div  style={ArrowStyle2}>
       {">"}
     </div>
   );

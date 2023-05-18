@@ -1,7 +1,16 @@
 import { getDate } from "../../../../../commons/libraries/getDate";
 import * as S from "./index.styles";
 
-export default function PayList(props) {
+interface IPropsfetchUserPaymentInfo {
+  el: {
+    paymentType: string,
+    createdAt: string,
+    amount: number
+
+  }
+}
+
+export default function PayList(props: IPropsfetchUserPaymentInfo) {
   return (
     <S.TransferList>
       <S.TransactionInfo>

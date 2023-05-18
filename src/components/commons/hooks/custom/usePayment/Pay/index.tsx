@@ -26,7 +26,6 @@ export default function UsePayment(): IUsePayment {
   const [createPointTransaction] = useMutationcreatePointTransaction();
 
   const SelectOption = (e: ChangeEvent<HTMLInputElement>) => {
-
     console.log(e.target);
     setIsSelect(e.target.value);
   };
@@ -111,7 +110,7 @@ export default function UsePayment(): IUsePayment {
             variables: {
               impUid: rsp.imp_uid,
               amount: amount,
-              paymetType: String(isSelect)
+              paymentType: String(isSelect)
             }
           });
           console.log(result);

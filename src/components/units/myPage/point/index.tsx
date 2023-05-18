@@ -6,6 +6,7 @@ import * as S from "./index.styles";
 import { useEffect } from "react";
 import PayList from "../../../commons/parts/Point/paylist";
 import { useQueryFetchUserPaymentInfo } from "../../../commons/hooks/queries/useQueryFetchUserPaymentInfo";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export default function PaymentPresenter(): JSX.Element {
   const { clickModal, openModal, setOpenModal } = UseModal();
