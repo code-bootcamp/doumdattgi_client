@@ -44,6 +44,10 @@ export const globalStyle = css`
     border-bottom: 1px solid rgba(5, 5, 5, 0.1);
   }
 
+  /* 환불 모달 창 */
+  .RefundModal {
+  }
+
   /* TimePicker */
   .setTimeBtn .ant-space {
     width: 80px;
@@ -100,5 +104,10 @@ export const globalStyle = css`
       format("woff");
     font-weight: normal;
     font-style: normal;
+  }
+
+  // Toast UI 툴팁 색상
+  .toastui-editor-tooltip .text {
+    color: white;
   }
 `;

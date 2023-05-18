@@ -17,3 +17,8 @@ export const ModalCancelState = atom({
   key: "ModalCancel",
   default: false
 });
+
+export const refetchAtom = atom<() => void>({
+  key: "refetchAtom",
+  default: () => {}
+});

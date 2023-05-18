@@ -18,6 +18,7 @@ export default function UseModal(): IUseModalProps {
   const [openModal, setOpenModal] = useState(false);
   const [isCance, setIsCancel] = useRecoilState(ModalCancelState);
 
+  // 포인트 충전 기능
   const clickModal = (): void => {
     setOpenModal(true);
     console.log("hi");
