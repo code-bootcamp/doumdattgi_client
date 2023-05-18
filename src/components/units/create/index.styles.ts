@@ -28,6 +28,8 @@ export const Employee = styled.div`
   line-height: 1.7;
   border-radius: 6px 0px 0px 6px;
   border: 2px solid #333333;
+  border-right: none;
+  cursor: pointer;
 `;
 
 export const Employer = styled.div`
@@ -37,6 +39,12 @@ export const Employer = styled.div`
   line-height: 1.7;
   border-radius: 0px 6px 6px 0px;
   border: 2px solid #333333;
+  border-left: none;
+  cursor: pointer;
+`;
+
+export const DivideLine = styled.div`
+  border-left: 2px solid #333333;
 `;
 
 export const Title = styled.span`
@@ -53,7 +61,7 @@ export const Body_Top = styled.div`
 
 export const InputBox = styled.div`
   height: 60px;
-  margin: 50px 0px;
+  margin: 30px 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -61,7 +69,7 @@ export const InputBox = styled.div`
 `;
 
 export const Theme = styled.span`
-  width: 170px;
+  width: 280px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -76,7 +84,7 @@ export const Required = styled.span`
 
 export const Input01 = styled.input`
   width: 920px;
-  height: 60px;
+  height: 38px;
   border-radius: 6px;
   border: 1px solid #cccccc;
 `;
@@ -139,16 +147,15 @@ export const SearchBox = styled.div`
   height: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
+  padding-top: 120px;
 `;
 
 export const ZipcodeBox = styled.div`
   width: 278px;
-  height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 10px;
 `;
 
 export const InputZipcode = styled.input`
@@ -160,11 +167,12 @@ export const InputZipcode = styled.input`
 
 export const SearchBtn = styled.button`
   background-color: black;
-  width: 138px;
-  height: 60px;
+  width: 250px;
+  height: 38px;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 14px;
   color: #ffffff;
+  margin-left: 10px;
 `;
 
 export const InputAddress = styled.input`
@@ -184,18 +192,6 @@ export const BtnBox = styled.div`
   justify-content: space-between;
 `;
 
-export const CancelBtn = styled.button`
-  width: 590px;
-  height: 70px;
-  background-color: #ffffff;
-  color: #888888;
-  border-radius: 10px;
-`;
-
-export const CreateBtn = styled.button`
-  width: 590px;
-  height: 70px;
-  background-color: #111111;
-  color: #ffffff;
-  border-radius: 10px;
+export const Between = styled.div`
+  width: 10px;
 `;

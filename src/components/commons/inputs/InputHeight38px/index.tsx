@@ -9,13 +9,14 @@ interface IInputProps {
 
 export const Input = styled.input`
   width: 100%;
-  height: 50px;
-  border-radius: 5px;
+  height: 38px;
+  border-radius: 10px;
   border: 1px solid #dbdbdb;
   padding-left: 10px;
+  font-size: 14px;
 `;
 
-export default function InputHeight50px(props: IInputProps): JSX.Element {
+export default function InputHeight38px(props: IInputProps): JSX.Element {
   return (
     <Input
       type={props.type ?? "text"}
