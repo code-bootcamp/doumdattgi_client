@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 
 interface IButtonProps {
-  isActive: boolean;
-  title: string;
-  onClick: () => void;
+  isActive?: boolean;
+  title?: string;
+  onClick?: () => void;
+  type?: any
 }
 
 export const Button = styled.button`

@@ -47,7 +47,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
         if (err.extensions.code === "UNAUTHENTICATED") {
           return fromPromise(
             getAccessToken().then(newAccessToken => {
-              setAccessToken(newAccessToken);
+              setAccessToken(newAccessToken ?? "");
               operation.setContext({
                 headers: {
                   ...operation.getContext().headers,

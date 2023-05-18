@@ -59,7 +59,7 @@ export const ProfileNickname = styled.h2`
   font-weight: 700;
 `;
 export const ProfileIntroduce = styled.p`
-  color: #888888;
+  color: #888;
   margin-top: 20px;
 `;
 export const ProfileEdit = styled.span`
@@ -102,18 +102,19 @@ export const SettingList = styled.div`
 `;
 export const Categoty = styled.span`
   display: block;
-  font-size: 24px;
-  line-height: 24px;
+  font-size: 20px;
+  line-height: 20px;
   font-weight: 600;
 `;
 export const Contents = styled.p`
-  font-size: 20px;
-  line-height: 20px;
+  line-height: 18px;
   width: 570px;
+  font-size: ${(props: any) => props.data !== "" ? "18px" : "16px"};
+  color: ${(props: any) => props.data !== "" ? "#111" : "#aaa"};;
 `;
 export const PasswordEdit = styled.span`
   display: inline-block;
-  border-bottom: 2px solid #111;
+  border-bottom: 1px solid #111;
   cursor: pointer;
 `;
 export const SettingListBtm = styled.p`

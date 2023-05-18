@@ -31,6 +31,7 @@ export const useUser = () => {
   const [isOn, setIsOn] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [sec, setSec] = useState(0);
+  const [ isAvatarEdit, setIsAvatarEdit ] = useState(false)
 
   // =============== 타이머 ===============
   useEffect(() => {
@@ -55,7 +56,7 @@ export const useUser = () => {
   };
 
   // =============== 회원가입 ===============
-  const onClickSignUp = async data => {
+  const onClickSignUp = async (data: any) => {
     console.log(
       data.email,
       data.password,
@@ -77,13 +78,13 @@ export const useUser = () => {
       });
       alert(`${data.name}님 환영합니다.`);
       void router.push("/login/");
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   };
 
   // =============== 로그인 ===============
-  const onClickLogin = async data => {
+  const onClickLogin = async (data: any) => {
     try {
       const result = await loginUser({
         variables: {
@@ -108,31 +109,38 @@ export const useUser = () => {
       const link = storage.getItem("prevPath") || "/";
       void router.push(link);
       
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   };
 
+  // 로그아웃
   const onClickLogout = async () => {
     try {
       await logout();
       localStorage.removeItem("accessToken");
       alert("정상적으로 로그아웃 되었습니다.");
       router.reload();
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   };
 
+  // 프로필 이미지
+  const onClickEditAvatar = () => {
+    setIsAvatarEdit(prev => !prev)
+  }
 
   return {
     onClickValidation,
     onClickSignUp,
     onClickLogin,
     onClickLogout,
+    onClickEditAvatar,
     isOn,
     sec,
     isActive,
-    data
+    data,
+    isAvatarEdit
   };
 };
