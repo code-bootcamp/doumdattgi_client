@@ -25,9 +25,8 @@ export default function UsePayment(): IUsePayment {
 
   const [createPointTransaction] = useMutationcreatePointTransaction();
 
-  //
-
   const SelectOption = (e: ChangeEvent<HTMLInputElement>) => {
+
     console.log(e.target);
     setIsSelect(e.target.value);
   };
