@@ -9,6 +9,11 @@ import CategorySelect from "../../commons/parts/categorySelect/index";
 import InputHeight38px from "../../commons/inputs/InputHeight38px";
 import ButtonHeight40px from "../../commons/buttons/ButtonHeight40px";
 import { useBoard } from "../../commons/hooks/custom/useCreateBoard/index";
+import ImageUpload from "../../commons/parts/imageUpload";
+import { useState } from "react";
+import Map from "../../commons/parts/map";
+import { Modal } from "antd";
+import DaumPostcodeEmbed from "react-daum-postcode";
 
 const Editor = dynamic(
   async () => await import("../../commons/parts/Toasteditor/index"),
@@ -24,10 +29,20 @@ interface IFormData {
   contents: string;
   address: string;
   addressDetail: string;
-  zipcode: string;
+  zonecode: string;
 }
 
-export default function BoardWritePresenter() {
+interface Address {
+  address: string;
+  zonecode: string;
+}
+
+export default function BoardWritePresenter(props: any) {
+  const [fileList, setFileList] = useState([]);
+  const [address, setAddress] = useState("");
+  const [zonecode, setZonecode] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
   const { onClickWrite } = useBoard();
 
   const { register, handleSubmit, formState, setValue, trigger } =
@@ -42,8 +57,31 @@ export default function BoardWritePresenter() {
     void trigger("contents");
   };
 
+  const onClickAddressSearch = (): void => {
+    setIsOpen(prev => !prev);
+  };
+
+  const handleOk = () => {
+    setIsOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsOpen(false);
+  };
+
+  const onCompleteAddressSearch = (data: Address): void => {
+    setAddress(data.address);
+    setZonecode(data.zonecode);
+    setIsOpen(prev => !prev);
+  };
+
   return (
     <>
+      {isOpen && (
+        <Modal open={isOpen} onOk={handleOk} onCancel={handleCancel}>
+          <DaumPostcodeEmbed onComplete={onCompleteAddressSearch} />
+        </Modal>
+      )}
       <form onSubmit={handleSubmit(onClickWrite)}>
         <S.Wrapper>
           <S.Head>
@@ -100,27 +138,35 @@ export default function BoardWritePresenter() {
               </S.AvailableTime>
               <S.AttachedImg>
                 <S.Theme>
-                  이미지 첨부 이제 수정해야해
+                  이미지 첨부
                   <S.Required>*</S.Required>
                 </S.Theme>
-                <img
-                  style={{ width: "150px", height: "150px" }}
-                  src="/IU.jpeg"
-                />
+                <S.Image>
+                  <ImageUpload fileList={fileList} setFileList={setFileList} />
+                </S.Image>
               </S.AttachedImg>
               <S.BoardAddress>
                 <S.Theme>주소 입력</S.Theme>
                 <S.AddressBox>
-                  <img
-                    style={{ width: "440px", height: "300px" }}
-                    src="/IU.jpeg"
-                  />
+                  <S.MapBox>
+                    <Map />
+                  </S.MapBox>
                   <S.SearchBox>
                     <S.ZipcodeBox>
-                      <InputHeight38px />
-                      <S.SearchBtn>우편번호 검색</S.SearchBtn>
+                      <InputHeight38px
+                        register={register("zonecode")}
+                        value={zonecode}
+                        disabled
+                      />
+                      <S.SearchBtn onClick={onClickAddressSearch}>
+                        우편번호 검색
+                      </S.SearchBtn>
                     </S.ZipcodeBox>
-                    <InputHeight38px />
+                    <InputHeight38px
+                      register={register("address")}
+                      value={address}
+                      disabled
+                    />
                     <InputHeight38px register={register("addressDetail")} />
                   </S.SearchBox>
                 </S.AddressBox>

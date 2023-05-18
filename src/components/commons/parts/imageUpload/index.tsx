@@ -57,7 +57,7 @@ function ImageUpload(props: any): JSX.Element {
         onPreview={handlePreview}
         fileList={props.fileList}
       >
-        {props.fileList.length >= 8 ? null : uploadButton}
+        {props.fileList?.length >= 8 ? null : uploadButton}
       </Upload>
       <Modal
         open={previewOpen}

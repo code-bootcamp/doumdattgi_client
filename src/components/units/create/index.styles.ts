@@ -128,6 +128,16 @@ export const AttachedImg = styled.div`
   margin-top: 50px;
 `;
 
+export const Image = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+export const MapBox = styled.div`
+  width: 440px;
+  height: 300px;
+`;
+
 export const BoardAddress = styled.div`
   height: 354px;
   margin-top: 50px;
@@ -170,6 +180,7 @@ export const SearchBtn = styled.button`
   width: 250px;
   height: 38px;
   border-radius: 6px;
+  border: none;
   font-size: 14px;
   color: #ffffff;
   margin-left: 10px;

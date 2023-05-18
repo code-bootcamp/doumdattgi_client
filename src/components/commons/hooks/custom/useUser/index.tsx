@@ -30,19 +30,19 @@ interface IUseUserReturn {
   isOn: boolean;
   sec: number;
   isActive: boolean;
-  data?: {
-    id?: string;
-    email?: string;
-    passsword?: string;
-    name?: string;
-    nickname?: string;
-    phone?: string;
-    profileImage?: string;
-    introduce?: string;
-    portfolio?: string;
-    workRate?: number;
-    point?: number;
-  };
+  // data?: {
+  //   id?: string;
+  //   email?: string;
+  //   passsword?: string;
+  //   name?: string;
+  //   nickname?: string;
+  //   phone?: string;
+  //   profileImage?: string;
+  //   introduce?: string;
+  //   portfolio?: string;
+  //   workRate?: number;
+  //   point?: number;
+  // };
   isAvatarEdit: boolean;
 }
 

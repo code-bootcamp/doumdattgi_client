@@ -17,7 +17,7 @@ const options = [
       { label: "공간・건축", value: "공간・건축" },
       { label: "패션", value: "패션" },
       { label: "그래픽 디자인", value: "그래픽 디자인" },
-      { label: "기타", value: "기타1" }
+      { label: "기타", value: "기타" }
     ]
   },
   {
@@ -30,7 +30,7 @@ const options = [
       { label: "프로그램", value: "프로그램" },
       { label: "트렌드", value: "트렌드" },
       { label: "데이터", value: "데이터" },
-      { label: "기타", value: "기타2" }
+      { label: "기타", value: "기타" }
     ]
   },
   {
@@ -38,7 +38,7 @@ const options = [
     options: [
       { label: "번역", value: "번역" },
       { label: "통역", value: "통역" },
-      { label: "기타", value: "기타5" }
+      { label: "기타", value: "기타" }
     ]
   },
   {
@@ -47,7 +47,7 @@ const options = [
       { label: "영상", value: "영상" },
       { label: "음향", value: "음향" },
       { label: "방송", value: "방송" },
-      { label: "기타", value: "기타6" }
+      { label: "기타", value: "기타" }
     ]
   },
   {
@@ -63,7 +63,7 @@ const options = [
       { label: "분석・전략", value: "분석・전략" },
       { label: "AI 마케팅", value: "AI 마케팅" },
       { label: "옥외・인쇄・방송 광고", value: "옥외・인쇄・방송 광고" },
-      { label: "기타", value: "기타3" }
+      { label: "기타", value: "기타" }
     ]
   },
 
@@ -76,7 +76,7 @@ const options = [
       { label: "AI 글쓰기", value: "AI 글쓰기" },
       { label: "스토리텔링", value: "스토리텔링" },
       { label: "타이핑・첨삭", value: "타이핑・첨삭" },
-      { label: "기타", value: "기타4" }
+      { label: "기타", value: "기타" }
     ]
   }
 ];
@@ -89,17 +89,19 @@ const CategorySelect: React.FC = () => {
   >();
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
+  // 카테고리 변경 기능
   const handleChangeCategory = (value: string) => {
     setSelectedCategory(value);
     setSelectedOptions([]);
   };
 
+  // 카테고리별 옵션 변경 기능
   const handleChangeOptions = (value: string[]) => {
     setSelectedOptions(value);
   };
 
+  // 선택한 카테고리에 해당하는 options 필터링
   const getCategoryOptions = () => {
-    // 선택한 카테고리에 해당하는 options 필터링
     if (selectedCategory) {
       const selectedCategoryOptions = options.find(
         category => category.label === selectedCategory
@@ -108,7 +110,6 @@ const CategorySelect: React.FC = () => {
     }
     return [];
   };
-
   return (
     <div
       style={{
