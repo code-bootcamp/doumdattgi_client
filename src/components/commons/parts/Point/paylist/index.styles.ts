@@ -12,7 +12,7 @@ export const TransactionInfo = styled.div`
 `;
 
 export const PayInfo = styled.div`
-  height: 70px;
+  height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -34,7 +34,25 @@ export const TransactInfo = styled.div`
   height: 50px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+`;
+
+export const Box = styled.div`
+  width: 240px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const RefundBtn = styled.button`
+  width: 70px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  background-color: #ff6b6b;
+  color: white;
 `;
 
 export const Point = styled.span`

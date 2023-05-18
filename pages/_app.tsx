@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
 
   useEffect(() => storePathValues, [router.asPath]);
+
   function storePathValues() {
     const storage = globalThis?.sessionStorage;
     if (!storage) return;

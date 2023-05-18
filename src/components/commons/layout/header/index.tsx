@@ -1,12 +1,14 @@
 import * as S from "./style";
-import { Avatar, Dropdown, Space } from "antd";
+import { Avatar, Dropdown, Space, MenuProps } from "antd";
 import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useUser } from "../../hooks/custom/useUser";
+import { ItemType } from "antd/es/menu/hooks/useItems";
 
 export default function Header(): JSX.Element {
-  const { onClickLogout, data } = useUser()
-  const items: any = [
+  const { onClickLogout, data } = useUser();
+  const items: MenuProps["items"] = [
+
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
     { label: <Link href={"/mypage/point"}>포인트</Link> },
     {
@@ -18,11 +20,11 @@ export default function Header(): JSX.Element {
     {
       type: "divider"
     },
-    { label: <span onClick={onClickLogout}>로그아웃</span> }
-  ]
+    { label: <span onClick={onClickLogout}>로그아웃</span>, type: "group" }
+  ] as ItemType[];
 
-  console.log(data)
-  
+  console.log(data);
+
   return (
     <>
       <S.Wrapper>
@@ -58,7 +60,11 @@ export default function Header(): JSX.Element {
                   arrow={{ pointAtCenter: true }}
                 >
                   <Space>
-                    <Avatar size={44} style={{ cursor: "pointer", marginLeft: "14px" }} icon={<UserOutlined/>} />
+                    <Avatar
+                      size={44}
+                      style={{ cursor: "pointer", marginLeft: "14px" }}
+                      icon={<UserOutlined />}
+                    />
                   </Space>
                 </Dropdown>
               </S.UserBox>
