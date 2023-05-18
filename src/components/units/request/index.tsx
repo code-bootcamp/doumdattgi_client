@@ -1,7 +1,14 @@
+import dynamic from "next/dynamic";
 import ButtonHeight70px from "../../commons/buttons/ButtonHeight70px";
 import InputHeight50px from "../../commons/inputs/InputHeight50px";
-import ToastEditor from "../../commons/parts/Toasteditor";
 import * as S from "./styles";
+
+const Editor = dynamic(
+  async () => await import("../../commons/parts/Toasteditor/index"),
+  {
+    ssr: false
+  }
+);
 
 export default function Request(): JSX.Element {
   return (
@@ -13,7 +20,7 @@ export default function Request(): JSX.Element {
           의뢰 내용
           <S.SubTitle2> *</S.SubTitle2>
         </S.SubTitle>
-        <ToastEditor />
+        <Editor />
       </S.ContentsBox>
       <S.SubTitle>
         작업 요청 시간
@@ -32,7 +39,7 @@ export default function Request(): JSX.Element {
       </S.PaymentBox>
       <S.BtnBox>
         <ButtonHeight70px title="취소하기" />
-        <S.Between/>
+        <S.Between />
         <ButtonHeight70px title="신청하기" />
       </S.BtnBox>
     </S.Wrapper>
