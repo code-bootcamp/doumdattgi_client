@@ -100,7 +100,7 @@ export default function BoardWritePresenter() {
               </S.AvailableTime>
               <S.AttachedImg>
                 <S.Theme>
-                  이미지 첨부
+                  이미지 첨부 이제 수정해야해
                   <S.Required>*</S.Required>
                 </S.Theme>
                 <img
