@@ -16,11 +16,8 @@ export default function Layout(props: any) {
           <Nav />
         </>
       )}
-
-      {props.children}
-      <>
-        <LayoutFooter />
-      </>
+      <div>{props.children}</div>
+      <LayoutFooter />
     </>
   );
 }

@@ -43,6 +43,7 @@ interface IUseUserReturn {
   //   workRate?: number;
   //   point?: number;
   // };
+  //
   isAvatarEdit: boolean;
 }
 

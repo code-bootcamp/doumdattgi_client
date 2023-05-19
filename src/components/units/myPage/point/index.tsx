@@ -3,7 +3,7 @@ import { ModalCancelState, refetchAtom } from "../../../../commons/stores";
 import UseModal from "../../../../components/commons/hooks/custom/useModal/index";
 import ChargeModal from "../../../commons/parts/Modals/Charge/index";
 import * as S from "./index.styles";
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import PayList from "../../../commons/parts/Point/paylist";
 import { useQueryFetchUserPaymentInfo } from "../../../commons/hooks/queries/useQueryFetchUserPaymentInfo";
 import RefundPoint from "../../../commons/parts/Modals/Refund";
@@ -39,6 +39,7 @@ export default function PaymentPresenter(): JSX.Element {
 
     Info[0] = value.impUid;
     Info[1] = value.paymentType;
+    console.log("hi");
 
     setIsRefund(true);
     setRefundInfo(Info);

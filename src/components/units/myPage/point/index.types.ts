@@ -15,7 +15,7 @@ export interface IValueArgs {
 }
 
 export interface IPropsfetchUserPaymentInfo {
-  clickRefund: (value: IValueArgs) => void;
+  clickRefund: (value: IValueArgs) => () => void;
   dataArr: IPointTransaction[];
   el: {
     impUid: string;
