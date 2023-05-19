@@ -9,7 +9,7 @@ interface IFormData {
   contents: string;
   address: string;
   addressDetail: string;
-  zipcode: string;
+  zonecode: string;
 }
 
 export const useBoard = () => {
@@ -26,11 +26,9 @@ export const useBoard = () => {
           tags: data.tags,
           remarks: data.remarks,
           contents: data.contents,
-          AddressInput: {
-            address: data.address,
-            addressDetail: data.addressDetail,
-            zipcode: data.zipcode
-          }
+          address: data.address,
+          addressDetail: data.addressDetail,
+          zonecode: data.zonecode
         }
       });
       alert("게시글 등록이 완료되었습니다.");

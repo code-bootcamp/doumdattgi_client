@@ -52,7 +52,7 @@ export const schemaSignUp = yup.object({
 
 export const schemaCreate = yup.object({
   title: yup.string().required("게시글 제목을 작성해주세요."),
-  category: yup.string().required("최소 1개의 카테고리를 선택해주세요."),
+  // category: yup.string().required("최소 1개의 카테고리를 선택해주세요."),
   remarks: yup.string().required("게시글 요약을 작성해주세요."),
   contents: yup.string().required("게시글 내용을 작성해주세요.")
 });

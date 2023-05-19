@@ -5,6 +5,8 @@ interface IInputProps {
   type?: "text" | "password";
   register?: UseFormRegisterReturn;
   placeholder?: string;
+  value?: string;
+  disabled?: boolean;
 }
 
 export const Input = styled.input`
@@ -22,6 +24,8 @@ export default function InputHeight38px(props: IInputProps): JSX.Element {
       type={props.type ?? "text"}
       placeholder={props.placeholder}
       {...props.register}
+      value={props.value}
+      disabled={props.disabled}
     />
   );
 }
