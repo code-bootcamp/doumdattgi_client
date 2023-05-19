@@ -57,6 +57,7 @@ export default function BoardWritePresenter(props: any) {
     void trigger("contents");
   };
 
+  // 리팩토링 할 예정
   const onClickAddressSearch = (): void => {
     setIsOpen(prev => !prev);
   };
