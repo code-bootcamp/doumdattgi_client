@@ -1,16 +1,26 @@
-import { useRecoilState } from "recoil";
-import { ModalCancelState } from "../../../../commons/stores";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { ModalCancelState, refetchAtom } from "../../../../commons/stores";
 import UseModal from "../../../../components/commons/hooks/custom/useModal/index";
 import ChargeModal from "../../../commons/parts/Modals/Charge/index";
 import * as S from "./index.styles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PayList from "../../../commons/parts/Point/paylist";
 import { useQueryFetchUserPaymentInfo } from "../../../commons/hooks/queries/useQueryFetchUserPaymentInfo";
-import { IQuery } from "../../../../commons/types/generated/types";
+import RefundPoint from "../../../commons/parts/Modals/Refund";
+import { IValueArgs } from "./index.types";
 
 export default function PaymentPresenter(): JSX.Element {
   const { clickModal, openModal, setOpenModal } = UseModal();
+
   const [isCance, setIsCancel] = useRecoilState(ModalCancelState);
+  const setRefetch = useSetRecoilState(refetchAtom);
+
+  const [isRefund, setIsRefund] = useState(false);
+  const [refundInfo, setRefundInfo] = useState(["", ""]);
+
+  const { data, refetch } = useQueryFetchUserPaymentInfo();
+  const fetchPayment = data?.fetchUserPaymentInfo.map(el => el).reverse();
+  const dataArr = data?.fetchUserPaymentInfo ?? [];
 
   useEffect(() => {
     if (isCance) {
@@ -18,10 +28,29 @@ export default function PaymentPresenter(): JSX.Element {
     }
   }, [isCance]);
 
-  const { data } = useQueryFetchUserPaymentInfo();
+  // 결제내역 refetch
+  useEffect(() => {
+    setRefetch(() => refetch);
+  }, [refetch, setRefetch]);
+
+  // 환불요청
+  const clickRefund = (value: IValueArgs) => () => {
+    const Info = [...refundInfo];
+
+    Info[0] = value.impUid;
+    Info[1] = value.paymentType;
+
+    setIsRefund(true);
+    setRefundInfo(Info);
+  };
 
   return (
     <>
+      <RefundPoint
+        refundInfo={refundInfo}
+        setIsRefund={setIsRefund}
+        isRefund={isRefund}
+      />
       <ChargeModal openModal={openModal} setOpenModal={setOpenModal} />
       <S.Wrapper>
         <S.Title>포인트</S.Title>
@@ -32,12 +61,14 @@ export default function PaymentPresenter(): JSX.Element {
             <S.ChargeBtn onClick={clickModal}>포인트 충전</S.ChargeBtn>
           </S.CurrentHold>
         </S.HoldingBox>
-        {data?.fetchUserPaymentInfo.map(el => (
-          <PayList el={el} key={el.impUid} />
+        {fetchPayment?.map(el => (
+          <PayList
+            dataArr={dataArr}
+            clickRefund={clickRefund}
+            el={el}
+            key={el.id}
+          />
         ))}
-        {/* {new Array(5).fill(1).map(el => (
-          <PayList el={el} key={el.impUid} />
-        ))} */}
       </S.Wrapper>
     </>
   );

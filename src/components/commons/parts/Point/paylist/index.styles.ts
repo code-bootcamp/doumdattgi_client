@@ -39,11 +39,11 @@ export const TransactInfo = styled.div`
 `;
 
 export const Box = styled.div`
-  width: 240px;
+  width: 350px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 export const RefundBtn = styled.button`
@@ -55,6 +55,39 @@ export const RefundBtn = styled.button`
   color: white;
 `;
 
+export const RefundBox = styled.div`
+  width: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const ChargeDone = styled.div`
+  width: 70px;
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: none;
+  background-color: #389e0d;
+  color: white;
+`;
+
+export const RefundDone = styled.div`
+  width: 70px;
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  border: none;
+  background-color: black;
+  color: white;
+`;
+
 export const Point = styled.span`
   font-family: "Arita-dotum4.0";
   font-size: 30px;
@@ -62,5 +95,11 @@ export const Point = styled.span`
 
 export const Amount = styled.span`
   font-family: "Arita-dotum4.0";
+  width: 140px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
   font-size: 30px;
+  margin-left: 30px;
 `;

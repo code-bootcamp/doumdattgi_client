@@ -8,7 +8,7 @@ export default function WorkingTimePicker() {
   const [time, setTime] = useState("");
   dayjs.extend(customParseFormat);
 
-  // 작업 시작시간, 종료 시간 연산
+  // 작업 시작시간, 종료시간 연산
   const checkValue = (
     e: RangeValue<dayjs.Dayjs>,
     timeString: [string, string]
