@@ -55,3 +55,9 @@ export const schemaCreate = yup.object({
   remarks: yup.string().required("게시글 요약을 작성해주세요."),
   contents: yup.string().required("게시글 내용을 작성해주세요.")
 });
+
+export const schemaCreateRequest = yup.object({
+  title: yup.string().required("의뢰 제안서 제목을 작성해주세요."),
+  contents: yup.string().required("의뢰 내용을 작성해주세요."),
+  wage: yup.string().required("작업 예상 소요 시간을 입력해주세요")
+});

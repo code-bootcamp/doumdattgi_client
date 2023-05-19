@@ -37,7 +37,9 @@ export const useBoard = () => {
           }
         }
       });
-      console.log(result)
+      alert("게시글 등록이 완료되었습니다.");
+      console.log(data);
+      // void router.push(`/${result.data?.createBoard._id as string}`);
     } catch (error) {
       alert(error.message);
     }

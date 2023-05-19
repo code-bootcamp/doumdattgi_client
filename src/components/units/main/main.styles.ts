@@ -98,29 +98,29 @@ export const NewPreviewImg = styled.img`
   height: 260px;
 `;
 
-export const Bottom = styled.div`
-  /* width: 1920px; */
-  position: relative;
-  width: 100%;
-  height: 340px;
-  padding: 0px 360px;
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid #bdbdbd;
-`;
+// export const Bottom = styled.div`
+//   /* width: 1920px; */
+//   position: relative;
+//   width: 100%;
+//   height: 340px;
+//   padding: 0px 360px;
+//   display: flex;
+//   justify-content: center;
+//   border-top: 1px solid #bdbdbd;
+// `;
 
-export const BottomInfo = styled.div`
-  width: 1200px;
-  height: 340px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 60px;
-`;
+// export const BottomInfo = styled.div`
+//   width: 1200px;
+//   height: 340px;
+//   display: flex;
+//   flex-direction: column;
+//   margin-top: 60px;
+// `;
 
-export const CompanyInfo = styled.div`
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 80px;
-`;
+// export const CompanyInfo = styled.div`
+//   height: 100px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   margin-bottom: 80px;
+// `;
