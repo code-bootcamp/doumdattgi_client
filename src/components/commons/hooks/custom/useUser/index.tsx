@@ -59,6 +59,7 @@ export const useUser = () => {
   const [isActive, setIsActive] = useState(false);
   const [sec, setSec] = useState(0);
   const [isAvatarEdit, setIsAvatarEdit] = useState(false);
+  const [isProfileEdit, setIsProfileEdit] = useState(false);
 
   // =============== 타이머 ===============
   useEffect(() => {
@@ -140,7 +141,7 @@ export const useUser = () => {
     }
   };
 
-  // 로그아웃
+  // =============== 로그아웃 ===============
   const onClickLogout = async () => {
     try {
       await logout();
@@ -152,10 +153,14 @@ export const useUser = () => {
     }
   };
 
-  // 프로필 이미지
+  // =============== 프로필 이미지 ===============
   const onClickEditAvatar = () => {
     setIsAvatarEdit(prev => !prev);
   };
+
+  const onClickEditProfile = () => {
+    setIsProfileEdit(prev => !prev)
+  }
 
   return {
     onClickValidation,
@@ -163,10 +168,12 @@ export const useUser = () => {
     onClickLogin,
     onClickLogout,
     onClickEditAvatar,
+    onClickEditProfile,
     isOn,
     sec,
     isActive,
     data,
-    isAvatarEdit
+    isAvatarEdit,
+    isProfileEdit
   };
 };
