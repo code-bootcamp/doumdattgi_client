@@ -110,6 +110,7 @@ const CategorySelect: React.FC = () => {
     }
     return [];
   };
+
   return (
     <div
       style={{
