@@ -35,6 +35,7 @@ export default function Settings() {
     //   alert(error.message);
     // }
   };
+  
 
   return (
     <S.Wrapper>
