@@ -24,5 +24,16 @@ export const Button = styled.button`
 `;
 
 export default function ButtonHeight70px(props: IButtonProps): JSX.Element {
-  return <Button onClick={props.onClick}>{props.title}</Button>;
+  return (
+    <Button
+      onClick={props.onClick}
+      style={{
+        background: props.isActive ? "black" : "white",
+        color: props.isActive ? "#fff" : "#444",
+        border: props.isActive ? "none" : "1px solid #888888"
+      }}
+    >
+      {props.title}
+    </Button>
+  );
 }

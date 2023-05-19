@@ -59,7 +59,7 @@ export default function MainPresenter() {
           </S.PreviewBox>
         </S.NewUserBoards>
       </S.Body>
-      <S.Bottom>
+      {/* <S.Bottom>
         <S.BottomInfo>
           <S.CompanyInfo>
             <span>도움닫기</span>
@@ -68,7 +68,7 @@ export default function MainPresenter() {
           </S.CompanyInfo>
           <span>이용약관 | 개인정보처리방침</span>
         </S.BottomInfo>
-      </S.Bottom>
+      </S.Bottom> */}
     </S.Wrapper>
   );
 }

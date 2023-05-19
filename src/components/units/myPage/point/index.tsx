@@ -12,7 +12,7 @@ import { IValueArgs } from "./index.types";
 export default function PaymentPresenter(): JSX.Element {
   const { clickModal, openModal, setOpenModal } = UseModal();
 
-  const [isCance, setIsCancel] = useRecoilState(ModalCancelState);
+  const [isCancel, setIsCancel] = useRecoilState(ModalCancelState);
   const setRefetch = useSetRecoilState(refetchAtom);
 
   const [isRefund, setIsRefund] = useState(false);
@@ -23,10 +23,10 @@ export default function PaymentPresenter(): JSX.Element {
   const dataArr = data?.fetchUserPaymentInfo ?? [];
 
   useEffect(() => {
-    if (isCance) {
+    if (isCancel) {
       setOpenModal(false);
     }
-  }, [isCance]);
+  }, [isCancel]);
 
   // 결제내역 refetch
   useEffect(() => {
