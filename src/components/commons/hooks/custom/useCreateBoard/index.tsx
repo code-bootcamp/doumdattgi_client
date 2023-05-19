@@ -1,44 +1,53 @@
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD } from "../../mutations/useMutationCreateBoard";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useMutationCreateProduct } from "../../mutations/useMutationCreateProduct";
 
 interface IFormData {
-  title: string;
-  tags: string;
-  remarks: string;
-  contents: string;
-  address: string;
-  addressDetail: string;
-  zonecode: string;
+  title?: string;
+  remarks?: string;
+  contents?: string;
 }
 
 export const useBoard = () => {
   const router = useRouter();
 
-  const [createBoardWrite] = useMutation(CREATE_BOARD);
+  const [createProduct] = useMutationCreateProduct()
+
+  const [selectedCategory, setSelectedCategory] = useState<
+    string | undefined
+  >();
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  console.log(selectedCategory, selectedOptions);
 
   // =============== 글작성 ===============
-  const onClickWrite = async (data: IFormData) => {
+  const onClickWrite = async (data: IFormData): Promise<void> => {
     try {
-      const result = await createBoardWrite({
+      const result = await createProduct({
         variables: {
-          title: data.title,
-          tags: data.tags,
-          remarks: data.remarks,
-          contents: data.contents,
-          address: data.address,
-          addressDetail: data.addressDetail,
-          zonecode: data.zonecode
+          createProductInput: {
+            title: data.title,
+            category: selectedCategory,
+            sub_category: selectedOptions,
+            summary: data.remarks,
+            main_text: data.contents,
+            sellOrBuy: true
+          }
         }
       });
-      alert("게시글 등록이 완료되었습니다.");
-      void router.push(`/${result.data?.createBoard._id as string}`);
+      console.log(result)
     } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
-      }
+      alert(error.message);
     }
   };
 
-  return { onClickWrite };
+  return {
+    onClickWrite,
+    selectedCategory,
+    setSelectedCategory,
+    selectedOptions,
+    setSelectedOptions
+  };
 };
