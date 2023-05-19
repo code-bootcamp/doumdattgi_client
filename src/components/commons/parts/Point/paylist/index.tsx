@@ -22,9 +22,12 @@ export default function PayList(props: IPropsfetchUserPaymentInfo) {
             ) : arr.filter(el => el === props.el?.impUid).length > 0 ? (
               <S.ChargeDone>충전완료</S.ChargeDone>
             ) : (
-              <S.RefundBtn onClick={() => props.clickRefund(props.el)}>
-                환불요청
-              </S.RefundBtn>
+              <S.ChargedRefund>
+                <S.RefundBtn onClick={props.clickRefund(props.el)}>
+                  환불요청
+                </S.RefundBtn>
+                <S.ChargeDone>충전완료</S.ChargeDone>
+              </S.ChargedRefund>
             )}
             <S.Amount>{`${String(props.el?.amount)} 원`}</S.Amount>
           </S.Box>

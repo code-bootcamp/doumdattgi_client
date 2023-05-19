@@ -46,6 +46,14 @@ export const Box = styled.div`
   justify-content: flex-end;
 `;
 
+export const ChargedRefund = styled.div`
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const RefundBtn = styled.button`
   width: 70px;
   height: 36px;

@@ -1,14 +1,24 @@
 import styled from "@emotion/styled";
 
+export const FlexBox = styled.div`
+  width: 35vw;
+  height: calc(100vh - 122px);
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 3px solid green;
+`;
+
 export const Wrapper = styled.div`
-  width: 620px;
-  height: 950px;
-  margin: 0px auto;
+  width: 35vw;
+  height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #d9d9d9;
   border-radius: 6px;
+  background-color: white;
 `;
 
 export const WrapperHeader = styled.div`
@@ -83,4 +93,18 @@ export const SendingBtn = styled.button`
   color: white;
   border-radius: 6px;
   margin-left: 14px;
+`;
+
+export const Arrow = styled.div`
+  width: 70px;
+  height: 150px;
+  border-radius: 0px 15px 15px 0px;
+  font-size: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+  color: #e6e6e6;
+  background-color: #bdbdbd;
+  border: none;
 `;

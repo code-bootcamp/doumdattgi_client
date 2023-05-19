@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+export const CommentBoxWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const Wrapper = styled.div`
   width: 1200px;
   display: flex;
@@ -19,8 +24,62 @@ export const Title = styled.div`
 
 export const ProcessBox = styled.div`
   height: 100px;
-  border: 1px solid black;
   margin: 50px 0px;
+  display: flex;
+`;
+
+export const StatusBox = styled.div`
+  width: 98px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Check = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 180px;
+  background-color: #c3b5fd;
+  border: none;
+`;
+
+export const Theme = styled.div``;
+
+export const Date = styled.div`
+  font-size: 14px;
+  color: #888888;
+`;
+
+export const Line = styled.div`
+  width: 450px;
+  height: 3px;
+  border: 2px solid #c9e2fe;
+  margin-top: 15px;
+`;
+
+export const Line2 = styled.div`
+  width: 450px;
+  height: 3px;
+  border: 2px solid #98d6a0;
+  margin-top: 15px;
+`;
+
+export const SendWork = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 180px;
+  background-color: #c9e2fe;
+  border: none;
+`;
+
+export const Compelete = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 180px;
+  background-color: #98d6a0;
+  border: none;
 `;
 
 export const ContentsDetail = styled.div`

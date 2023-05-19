@@ -12,11 +12,10 @@ export default function Layout(props: any) {
       {!isActive && (
         <>
           <Header />
-          <Nav/>
+          <Nav />
         </>
       )}
-
-      {props.children}
+      <div>{props.children}</div>
     </>
   );
 }
