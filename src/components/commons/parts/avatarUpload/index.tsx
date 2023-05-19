@@ -61,7 +61,7 @@ function AvatarUpload (props: any): JSX.Element {
 				onPreview={handlePreview}
         		fileList={props.fileList}
 			>
-				{props.fileList.length >= 8 ? null : uploadButton}
+				{props.fileList.length === 1 ? null : uploadButton}
 			</Upload>
 			<Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
 				<img alt="example" style={{ width: '100%' }} src={previewImage} />

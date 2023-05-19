@@ -7,8 +7,11 @@ import * as S from "./styles";
 import { faBookmark, faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Detail() {
+  const router = useRouter();
   return (
     <S.Wrapper>
       <S.Container>
@@ -36,7 +39,9 @@ export default function Detail() {
           </S.DetailBox>
           <S.DetailBox>
             <S.Button>
-              <ButtonHeight50px title="신청하기" />
+              <Link href={`/${router.query.id}/request`}>
+                <ButtonHeight50px title="신청하기" />
+              </Link>
               <S.SlotBox>
                 <S.SlotText>현재 가능 슬롯 3개</S.SlotText>
                 <S.SlotBg />
