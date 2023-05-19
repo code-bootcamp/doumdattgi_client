@@ -2,6 +2,8 @@ import dynamic from "next/dynamic";
 import ButtonHeight70px from "../../commons/buttons/ButtonHeight70px";
 import InputHeight50px from "../../commons/inputs/InputHeight50px";
 import * as S from "./styles";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Editor = dynamic(
   async () => await import("../../commons/parts/Toasteditor/index"),
@@ -11,6 +13,11 @@ const Editor = dynamic(
 );
 
 export default function Request(): JSX.Element {
+  const router = useRouter();
+
+  const storage = globalThis?.sessionStorage;
+  const link = storage.getItem("prevPath") || "/";
+
   return (
     <S.Wrapper>
       <S.Title>의뢰서 작성하기</S.Title>
@@ -38,7 +45,9 @@ export default function Request(): JSX.Element {
         <S.PaymentIndex1>38,480</S.PaymentIndex1>
       </S.PaymentBox>
       <S.BtnBox>
-        <ButtonHeight70px title="취소하기" />
+        <Link href={link}>
+          <ButtonHeight70px title="취소하기" />
+        </Link>
         <S.Between />
         <ButtonHeight70px title="신청하기" />
       </S.BtnBox>
