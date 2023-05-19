@@ -15,7 +15,7 @@ const getBase64 = (file: RcFile): Promise<string> =>
 	});
 
 const uploadButton = (
-	<div>
+	<div className="avatarUpload">
 		<PlusOutlined />
 		<div style={{ marginTop: 8 }}>Upload</div>
 	</div>

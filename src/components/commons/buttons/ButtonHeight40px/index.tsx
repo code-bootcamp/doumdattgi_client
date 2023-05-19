@@ -23,7 +23,7 @@ export default function ButtonHeight40px(props: IButtonProps): JSX.Element {
         color: props.isActive ? "#fff" : "#444",
         border: props.isActive ? "none" : "1px solid #888888"
       }}
-      disabled={props.isActive}
+      // disabled={props.isActive}
     >
       {props.title}
     </Button>

@@ -2,29 +2,24 @@ import styled from "@emotion/styled";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface IInputProps {
-  type?: "text" | "password" | "number";
+  type?: "text" | "password";
   register?: UseFormRegisterReturn;
   placeholder?: string;
-  value?: string | number;
-  onChange?: any;
-  min?: any;
 }
 
-export const Input = styled.input`
+export const Text = styled.textarea`
   width: 100%;
-  height: 50px;
+  height: 100%;
   border-radius: 5px;
   border: 1px solid #dbdbdb;
   padding-left: 10px;
+  resize: none;
 `;
 
-export default function InputHeight50px(props: IInputProps): JSX.Element {
+export default function TextArea (props: IInputProps): JSX.Element {
   return (
-    <Input
-      type={props.type ?? "text"}
+    <TextArea
       placeholder={props.placeholder}
-      onChange={props.onChange}
-      min={props.min}
       {...props.register}
     />
   );

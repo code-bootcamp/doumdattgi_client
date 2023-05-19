@@ -8,7 +8,6 @@ import { ItemType } from "antd/es/menu/hooks/useItems";
 export default function Header(): JSX.Element {
   const { onClickLogout, data } = useUser();
   const items: MenuProps["items"] = [
-
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
     { label: <Link href={"/mypage/point"}>포인트</Link> },
     {
@@ -20,7 +19,7 @@ export default function Header(): JSX.Element {
     {
       type: "divider"
     },
-    { label: <span onClick={onClickLogout}>로그아웃</span>, type: "group" }
+    { label: <span onClick={onClickLogout}>로그아웃</span> }
   ] as ItemType[];
 
   console.log(data);
@@ -29,7 +28,9 @@ export default function Header(): JSX.Element {
     <>
       <S.Wrapper>
         <S.Container>
-          <S.Logo>LOGO</S.Logo>
+          <Link href={"/"}>
+            <S.Logo>LOGO</S.Logo>
+          </Link>
           <S.HeaderBox>
             <S.SearchBox>
               <S.SearchIcon />
@@ -58,6 +59,7 @@ export default function Header(): JSX.Element {
                   trigger={["click"]}
                   placement="bottomRight"
                   arrow={{ pointAtCenter: true }}
+                  overlayClassName={"header"}
                 >
                   <Space>
                     <Avatar

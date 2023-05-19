@@ -10,17 +10,15 @@ import InputHeight38px from "../../commons/inputs/InputHeight38px";
 import ButtonHeight40px from "../../commons/buttons/ButtonHeight40px";
 import { useBoard } from "../../commons/hooks/custom/useCreateBoard/index";
 import ImageUpload from "../../commons/parts/imageUpload";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Map from "../../commons/parts/map";
 import { Modal } from "antd";
 import DaumPostcodeEmbed from "react-daum-postcode";
+import { wrapFormAsync } from "../../../commons/libraries/asyncFunc";
 
-const Editor = dynamic(
-  async () => await import("../../commons/parts/Toasteditor/index"),
-  {
-    ssr: false
-  }
-);
+const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
+  ssr: false
+});
 
 interface IFormData {
   title: string;
@@ -45,15 +43,20 @@ export default function BoardWritePresenter(props: any) {
 
   const { onClickWrite } = useBoard();
 
-  const { register, handleSubmit, formState, setValue, trigger } =
-    useForm<IFormData>({
-      resolver: yupResolver(schemaCreate),
-      mode: "onChange"
-    });
+  const editorRef = useRef();
 
-  const onChangeContents = (data: string): void => {
-    console.log(data);
-    setValue("contents", data === "<p><br></p>" ? "" : data);
+  const { register, setValue, trigger, handleSubmit, formState } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schemaCreate)
+  });
+  const onChangeContents = (): void => {
+    const value = editorRef.current?.getInstance().getHTML();
+    console.log(value);
+
+    // register로 등록하지 않고 강제로 값을 넣을 수 있다.
+    setValue("contents", value === "<p><br></p>" ? "" : value);
+
+    // setValue로 넣은 값을 검증 요청 하는 법.
     void trigger("contents");
   };
 
@@ -74,6 +77,7 @@ export default function BoardWritePresenter(props: any) {
     setZonecode(data.zonecode);
     setIsOpen(prev => !prev);
   };
+  
 
   return (
     <>
@@ -82,8 +86,8 @@ export default function BoardWritePresenter(props: any) {
           <DaumPostcodeEmbed onComplete={onCompleteAddressSearch} />
         </Modal>
       )}
-      <form onSubmit={handleSubmit(onClickWrite)}>
         <S.Wrapper>
+          <form onSubmit={wrapFormAsync(handleSubmit(onClickWrite))}>
           <S.Head>
             <S.Title>게시글 작성하기</S.Title>
             <S.SelectToggle>
@@ -123,7 +127,10 @@ export default function BoardWritePresenter(props: any) {
                   <S.Required>*</S.Required>
                 </S.Theme>
                 <S.EditorBox>
-                  <Editor onChange={onChangeContents} />
+                  <Editor
+                    onChangeValue={onChangeContents}
+                    editorRef={editorRef}
+                  />
                 </S.EditorBox>
               </S.BoardContent>
               <S.AvailableTime>
@@ -153,21 +160,13 @@ export default function BoardWritePresenter(props: any) {
                   </S.MapBox>
                   <S.SearchBox>
                     <S.ZipcodeBox>
-                      <InputHeight38px
-                        register={register("zonecode")}
-                        value={zonecode}
-                        disabled
-                      />
+                      <InputHeight38px value={zonecode} disabled />
                       <S.SearchBtn onClick={onClickAddressSearch}>
                         우편번호 검색
                       </S.SearchBtn>
                     </S.ZipcodeBox>
-                    <InputHeight38px
-                      register={register("address")}
-                      value={address}
-                      disabled
-                    />
-                    <InputHeight38px register={register("addressDetail")} />
+                    <InputHeight38px value={address} disabled />
+                    <InputHeight38px/>
                   </S.SearchBox>
                 </S.AddressBox>
               </S.BoardAddress>
@@ -180,9 +179,8 @@ export default function BoardWritePresenter(props: any) {
               </S.BtnBox>
             </S.Body_Bottom>
           </S.Body>
+          </form>
         </S.Wrapper>
-      </form>
-      <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     </>
   );
 }

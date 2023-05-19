@@ -56,46 +56,24 @@ export const globalStyle = css`
     justify-content: space-between;
   }
 
-  .ant-dropdown-menu-item {
+  /* 헤더 드롭다운 */
+  .header {
     width: 120px;
   }
-  .ant-upload .ant-upload-select {
-    width: 130px;
-    height: 130px;
-  }
+
+  /* 아바타 업로드 */
   &:where(
       .css-dev-only-do-not-override-15rg2km
-    ).ant-upload-wrapper.ant-upload-picture-card-wrapper
+    ).ant-upload-wrapper.ant-upload-picture-circle-wrapper
     .ant-upload.ant-upload-select,
-  :where(
-      .css-dev-only-do-not-override-15rg2km
-    ).ant-upload-wrapper.ant-upload-picture-circle-wrapper
-    .ant-upload.ant-upload-select {
-    width: 130px;
-    height: 130px;
-  }
   &:where(
-      .css-dev-only-do-not-override-15rg2km
-    ).ant-upload-wrapper.ant-upload-picture-card-wrapper
-    .ant-upload-list.ant-upload-list-picture-card
-    .ant-upload-list-item-container,
-  :where(
-      .css-dev-only-do-not-override-15rg2km
-    ).ant-upload-wrapper.ant-upload-picture-circle-wrapper
-    .ant-upload-list.ant-upload-list-picture-card
-    .ant-upload-list-item-container,
-  :where(
-      .css-dev-only-do-not-override-15rg2km
-    ).ant-upload-wrapper.ant-upload-picture-card-wrapper
-    .ant-upload-list.ant-upload-list-picture-circle
-    .ant-upload-list-item-container,
-  :where(
       .css-dev-only-do-not-override-15rg2km
     ).ant-upload-wrapper.ant-upload-picture-circle-wrapper
     .ant-upload-list.ant-upload-list-picture-circle
     .ant-upload-list-item-container {
-    width: 130px;
     height: 130px;
+    width: 130px;
+    margin: 0;
   }
 
   @font-face {

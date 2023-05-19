@@ -23,6 +23,7 @@ export const Logo = styled.h1`
     font-size: 30px;
     line-height: 30px;
     font-weight: 700;
+    cursor: pointer;
 `
 export const HeaderBox = styled.div`
     display: flex;
