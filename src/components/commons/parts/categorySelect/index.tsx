@@ -1,40 +1,32 @@
 import { Select } from "antd";
-import { useCategory } from "../../hooks/custom/useCategory";
 import { options } from "../../../../commons/libraries/category";
+import { useState } from "react";
 
-
-export default function CategorySelect() {
-
-  const { handleChangeCategory, selectedOptions, handleChangeOptions, getCategoryOptions, selectedCategory } = useCategory()
-  const { Option } = Select;
-
-const CategorySelect: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<
-    string | undefined
-  >();
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
+export default function CategorySelect(props) {
+  
   // 카테고리 변경 기능
   const handleChangeCategory = (value: string) => {
-    setSelectedCategory(value);
-    setSelectedOptions([]);
+    props.setSelectedCategory(value);
+    props.setSelectedOptions([]);
   };
 
   // 카테고리별 옵션 변경 기능
   const handleChangeOptions = (value: string[]) => {
-    setSelectedOptions(value);
+    props.setSelectedOptions(value);
   };
 
   // 선택한 카테고리에 해당하는 options 필터링
   const getCategoryOptions = () => {
-    if (selectedCategory) {
+    if (props.selectedCategory) {
       const selectedCategoryOptions = options.find(
-        category => category.label === selectedCategory
+        category => category.label === props.selectedCategory
       );
       return selectedCategoryOptions ? selectedCategoryOptions.options : [];
     }
     return [];
   };
+
+  const { Option } = Select;
 
   return (
     <div
@@ -59,7 +51,7 @@ const CategorySelect: React.FC = () => {
       <Select
         style={{ width: "100%" }}
         placeholder="옵션을 선택해주세요."
-        value={selectedOptions}
+        value={props.selectedOptions}
         onChange={handleChangeOptions}
         size={"large"}
       >

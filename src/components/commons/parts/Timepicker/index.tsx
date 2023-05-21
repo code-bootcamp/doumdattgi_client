@@ -3,9 +3,10 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { RangeValue } from "../../../../../node_modules/rc-picker/lib/interface";
 import { useState } from "react";
+import { useCreateProduct } from "../../hooks/custom/useCreateProduct";
 
-export default function WorkingTimePicker() {
-  const [time, setTime] = useState("");
+export default function WorkingTimePicker(props) {
+
   dayjs.extend(customParseFormat);
 
   // 작업 시작시간, 종료시간 연산
@@ -20,10 +21,8 @@ export default function WorkingTimePicker() {
 
     const result = String(Math.abs(startTime - FinishTime));
 
-    setTime(String(result));
+    props.setSelectedWorkTime(String(result));
   };
-
-  console.log(time);
 
   return (
     <Space direction="vertical">

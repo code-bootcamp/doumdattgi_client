@@ -12,15 +12,12 @@ export const schemaLogin = yup.object({
     .required("비밀번호를 입력해주세요."),
   email: yup
     .string()
-    .matches(/^[^@\s]+@[^@\s]+\.[^@\s]+$/, "이메일 주소를 확인해주세요.")
     .required("이메일을 입력해주세요.")
+    .email("올바른 이메일을 입력해주세요.")
 });
 
 export const schemaSignUp = yup.object({
-  email: yup
-    .string()
-    .matches(/^[^@\s]+@[^@\s]+\.[^@\s]+$/, "이메일 아이디를 입력해주세요.")
-    .required("이메일을 입력해주세요."),
+  email: yup.string().required("이메일을 입력해주세요.").email("올바른 이메일을 입력해주세요."),
   password: yup
     .string()
     .min(8, "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요.")
@@ -39,8 +36,8 @@ export const schemaSignUp = yup.object({
       "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요."
     )
     .required(),
-  nickName: yup.string().required("닉네임을 입력해주세요."),
-  phoneNumber: yup
+  nickname: yup.string().required("닉네임을 입력해주세요."),
+  phone: yup
     .string()
     .required("휴대폰 번호를 입력해주세요.")
     .matches(
@@ -52,7 +49,7 @@ export const schemaSignUp = yup.object({
 
 export const schemaCreate = yup.object({
   title: yup.string().required("게시글 제목을 작성해주세요."),
-  remarks: yup.string().required("게시글 요약을 작성해주세요."),
+  summary: yup.string().required("게시글에 대해 간략하게 설명해주세요."),
   contents: yup.string().required("게시글 내용을 작성해주세요.")
 });
 

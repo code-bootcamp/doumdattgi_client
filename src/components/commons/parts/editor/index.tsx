@@ -25,6 +25,7 @@ function ToastEditor(props: any) {
       autofocus={false}
       language="ko-KR"
       initialValue={props.data}
+      hideModeSwitch={true}
       hooks={{
         addImageBlobHook: async (blob, callback) => {
           const result = await uploadFile({ variables: { files: blob } });

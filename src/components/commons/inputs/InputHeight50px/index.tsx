@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { UseFormRegisterReturn } from "react-hook-form";
+import { Maybe } from "../../../../commons/types/generated/types";
 
 interface IInputProps {
   type?: "text" | "password" | "number";
@@ -8,6 +9,7 @@ interface IInputProps {
   value?: string | number;
   onChange?: any;
   min?: any;
+  defaultValue?: any
 }
 
 export const Input = styled.input`
@@ -25,6 +27,7 @@ export default function InputHeight50px(props: IInputProps): JSX.Element {
       placeholder={props.placeholder}
       onChange={props.onChange}
       min={props.min}
+      defaultValue={props.defaultValue}
       {...props.register}
     />
   );

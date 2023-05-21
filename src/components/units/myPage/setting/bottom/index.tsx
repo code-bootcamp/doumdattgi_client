@@ -1,8 +1,9 @@
 import { useUser } from "../../../../commons/hooks/custom/useUser";
+import { useQueryFetchLoginUser } from "../../../../commons/hooks/queries/useQueryFetchLoginUser";
 import * as S from "./styles";
 
 export default function SettingsBottom() {
-  const { data, onClickEditAvatar, isAvatarEdit } = useUser();
+  const {data} = useQueryFetchLoginUser()
 
   return (
     <S.Wrapper>
@@ -13,7 +14,7 @@ export default function SettingsBottom() {
               <S.SettingListTop>
                 <S.SettingList>
                   <S.Categoty>이름</S.Categoty>
-                  <S.Contents>{data?.fetchLoginUser?.name}</S.Contents>
+                  <S.Contents>{data?.fetchLoginUser?.user_name}</S.Contents>
                 </S.SettingList>
               </S.SettingListTop>
               <S.SettingListBtm>
@@ -24,7 +25,7 @@ export default function SettingsBottom() {
               <S.SettingListTop>
                 <S.SettingList>
                   <S.Categoty>이메일 주소</S.Categoty>
-                  <S.Contents>{data?.fetchLoginUser?.email}</S.Contents>
+                  <S.Contents>{data?.fetchLoginUser?.user_email}</S.Contents>
                 </S.SettingList>
               </S.SettingListTop>
               <S.SettingListBtm>
@@ -36,8 +37,8 @@ export default function SettingsBottom() {
                 <S.SettingList>
                   <S.Categoty>포트폴리오 주소</S.Categoty>
                   <S.Contents>
-                    {data?.fetchLoginUser?.portfolio !== ""
-                      ? data?.fetchLoginUser?.portfolio
+                    {data?.fetchLoginUser?.user_portfolio !== ""
+                      ? data?.fetchLoginUser?.user_portfolio
                       : "포트폴리오 주소를 입력해주세요."}
                   </S.Contents>
                 </S.SettingList>

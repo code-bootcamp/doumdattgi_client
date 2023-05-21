@@ -8,7 +8,7 @@ import { schemaCreate } from "../../../commons/libraries/schema";
 import CategorySelect from "../../commons/parts/categorySelect/index";
 import InputHeight38px from "../../commons/inputs/InputHeight38px";
 import ButtonHeight40px from "../../commons/buttons/ButtonHeight40px";
-import { useBoard } from "../../commons/hooks/custom/useCreateBoard/index";
+import { useCreateProduct } from "../../commons/hooks/custom/useCreateProduct";
 import ImageUpload from "../../commons/parts/imageUpload";
 import { useRef, useState } from "react";
 import Map from "../../commons/parts/map";
@@ -35,22 +35,36 @@ interface Address {
   zonecode: string;
 }
 
+interface IEditor {
+  getInstance: any;
+}
+
 export default function BoardWritePresenter(props: any) {
   const [fileList, setFileList] = useState([]);
   const [address, setAddress] = useState("");
   const [zonecode, setZonecode] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const { onClickWrite } = useBoard();
+  const {
+    onClickWrite,
+    selectedCategory,
+    selectedOptions,
+    setSelectedCategory,
+    setSelectedOptions,
+    selectedWorkDay,
+    setSelectedWorkDay,
+    selectedWorkTime,
+    setSelectedWorkTime
+  } = useCreateProduct();
 
-  const editorRef = useRef();
+  const editorRef = useRef<IEditor>(null);
 
   const { register, setValue, trigger, handleSubmit, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schemaCreate)
   });
   const onChangeContents = (): void => {
-    const value = editorRef.current?.getInstance().getHTML();
+    const value = editorRef.current?.getInstance().getHTML() || "";
     console.log(value);
 
     // register로 등록하지 않고 강제로 값을 넣을 수 있다.
@@ -77,7 +91,6 @@ export default function BoardWritePresenter(props: any) {
     setZonecode(data.zonecode);
     setIsOpen(prev => !prev);
   };
-  
 
   return (
     <>
@@ -86,8 +99,8 @@ export default function BoardWritePresenter(props: any) {
           <DaumPostcodeEmbed onComplete={onCompleteAddressSearch} />
         </Modal>
       )}
-        <S.Wrapper>
-          <form onSubmit={wrapFormAsync(handleSubmit(onClickWrite))}>
+      <S.Wrapper>
+        <form onSubmit={handleSubmit(onClickWrite)}>
           <S.Head>
             <S.Title>게시글 작성하기</S.Title>
             <S.SelectToggle>
@@ -110,14 +123,19 @@ export default function BoardWritePresenter(props: any) {
                   카테고리 및 태그
                   <S.Required>*</S.Required>
                 </S.Theme>
-                <CategorySelect />
+                <CategorySelect
+                  selectedCategory={selectedCategory}
+                  selectedOptions={selectedOptions}
+                  setSelectedCategory={setSelectedCategory}
+                  setSelectedOptions={setSelectedOptions}
+                />
               </S.InputBox>
               <S.InputBox>
                 <S.Theme>
                   게시글 요약
                   <S.Required>*</S.Required>
                 </S.Theme>
-                <InputHeight38px register={register("remarks")} />
+                <InputHeight38px register={register("summary")} />
               </S.InputBox>
             </S.Body_Top>
             <S.Body_Middle>
@@ -139,8 +157,14 @@ export default function BoardWritePresenter(props: any) {
                   <S.Required>*</S.Required>
                 </S.Theme>
                 <S.SetTimeBox>
-                  <WorkTimeDropBox />
-                  <WorkingTimePicker />
+                  <WorkTimeDropBox 
+                    selectedWorkDay={selectedWorkDay}
+                    setSelectedWorkDay={setSelectedWorkDay}
+                  />
+                  <WorkingTimePicker
+                    selectedWorkTime={selectedWorkTime}
+                    setSelectedWorkTime={setSelectedWorkTime}
+                  />
                 </S.SetTimeBox>
               </S.AvailableTime>
               <S.AttachedImg>
@@ -156,7 +180,7 @@ export default function BoardWritePresenter(props: any) {
                 <S.Theme>주소 입력</S.Theme>
                 <S.AddressBox>
                   <S.MapBox>
-                    <Map />
+                    <Map address={address} />
                   </S.MapBox>
                   <S.SearchBox>
                     <S.ZipcodeBox>
@@ -166,7 +190,7 @@ export default function BoardWritePresenter(props: any) {
                       </S.SearchBtn>
                     </S.ZipcodeBox>
                     <InputHeight38px value={address} disabled />
-                    <InputHeight38px/>
+                    <InputHeight38px />
                   </S.SearchBox>
                 </S.AddressBox>
               </S.BoardAddress>
@@ -179,8 +203,8 @@ export default function BoardWritePresenter(props: any) {
               </S.BtnBox>
             </S.Body_Bottom>
           </S.Body>
-          </form>
-        </S.Wrapper>
+        </form>
+      </S.Wrapper>
     </>
   );
 }
