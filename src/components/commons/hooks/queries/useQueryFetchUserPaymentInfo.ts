@@ -4,12 +4,12 @@ import { IQuery } from "../../../../commons/types/generated/types";
 export const FETCH_USER_PAYMENT_INFO = gql`
   query {
     fetchUserPaymentInfo {
-      id
-      impUid
-      amount
-      status
-      paymentType
-      createdAt
+      payment_id
+      payment_impUid
+      payment_amount
+      payment_status
+      payment_type
+      payment_createdAt
     }
   }
 `;

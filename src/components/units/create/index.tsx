@@ -15,6 +15,7 @@ import Map from "../../commons/parts/map";
 import { Modal } from "antd";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { wrapFormAsync } from "../../../commons/libraries/asyncFunc";
+import { EditorInstance, EditorInstance2 } from "./index.types";
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false
@@ -57,14 +58,17 @@ export default function BoardWritePresenter(props: any) {
     setSelectedWorkTime
   } = useCreateProduct();
 
-  const editorRef = useRef<IEditor>(null);
+  const editorRef = useRef<EditorInstance>(null);
+
 
   const { register, setValue, trigger, handleSubmit, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schemaCreate)
   });
   const onChangeContents = (): void => {
-    const value = editorRef.current?.getInstance().getHTML() || "";
+    const editorInstance = editorRef.current?.getInstance() as EditorInstance2;
+    const value = editorInstance?.getHTML();
+
     console.log(value);
 
     // register로 등록하지 않고 강제로 값을 넣을 수 있다.
@@ -100,7 +104,7 @@ export default function BoardWritePresenter(props: any) {
         </Modal>
       )}
       <S.Wrapper>
-        <form onSubmit={handleSubmit(onClickWrite)}>
+        <form onSubmit={wrapFormAsync(handleSubmit(onClickWrite))}>
           <S.Head>
             <S.Title>게시글 작성하기</S.Title>
             <S.SelectToggle>

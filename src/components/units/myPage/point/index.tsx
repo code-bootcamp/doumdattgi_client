@@ -37,8 +37,8 @@ export default function PaymentPresenter(): JSX.Element {
   const clickRefund = (value: IValueArgs) => () => {
     const Info = [...refundInfo];
 
-    Info[0] = value.impUid;
-    Info[1] = value.paymentType;
+    Info[0] = value.payment_impUid;
+    Info[1] = value.payment_type;
     console.log("hi");
 
     setIsRefund(true);
@@ -67,7 +67,7 @@ export default function PaymentPresenter(): JSX.Element {
             dataArr={dataArr}
             clickRefund={clickRefund}
             el={el}
-            key={el.id}
+            key={el.payment_id}
           />
         ))}
       </S.Wrapper>
