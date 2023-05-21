@@ -17,7 +17,10 @@ export const schemaLogin = yup.object({
 });
 
 export const schemaSignUp = yup.object({
-  email: yup.string().required("이메일을 입력해주세요.").email("올바른 이메일을 입력해주세요."),
+  email: yup
+    .string()
+    .required("이메일을 입력해주세요.")
+    .email("올바른 이메일을 입력해주세요."),
   password: yup
     .string()
     .min(8, "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요.")
@@ -54,7 +57,7 @@ export const schemaCreate = yup.object({
 });
 
 export const schemaCreateRequest = yup.object({
-  title: yup.string().required("의뢰 제안서 제목을 작성해주세요."),
-  contents: yup.string().required("의뢰 내용을 작성해주세요."),
-  wage: yup.string().required("작업 예상 소요 시간을 입력해주세요")
+  request_title: yup.string().required("의뢰 제안서 제목을 작성해주세요."),
+  request_content: yup.string().required("의뢰 내용을 작성해주세요."),
+  request_price: yup.string().required("작업 예상 소요 시간을 입력해주세요")
 });

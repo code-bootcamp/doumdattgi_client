@@ -1,12 +1,13 @@
 import { useMutation } from "@apollo/client";
-import { CREATE_REQUEST } from "../../mutations/useMutationCreateRequest";
+import { SEND_REQUEST } from "../../mutations/useMutationSendRequest";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 interface IFormData {
-  title: string;
-  contents: string;
-  isTime: number;
+  product_id: string;
+  request_title: string;
+  request_content: string;
+  request_price: number;
 }
 
 export const useRequest = () => {
@@ -14,16 +15,17 @@ export const useRequest = () => {
 
   const [isTime, setIsTime] = useState("");
 
-  const [createRequest] = useMutation(CREATE_REQUEST);
+  const [createRequest] = useMutation(SEND_REQUEST);
 
   // =============== 의뢰서 작성 기능 ===============
   const onClickWriteRequest = async (data: IFormData) => {
     try {
       const result = await createRequest({
         variables: {
-          title: data.title,
-          contents: data.contents,
-          wage: isTime
+          product_id: router.query.product_id,
+          request_title: data.request_title,
+          request_content: data.request_content,
+          request_price: isTime
         }
       });
       alert("의뢰서 작성이 완료되었습니다.");
