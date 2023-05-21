@@ -4,9 +4,11 @@ import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useUser } from "../../hooks/custom/useUser";
 import { ItemType } from "antd/es/menu/hooks/useItems";
+import { useQueryFetchLoginUser } from "../../hooks/queries/useQueryFetchLoginUser";
 
 export default function Header(): JSX.Element {
-  const { onClickLogout, data } = useUser();
+  const { onClickLogout } = useUser();
+  const { data } = useQueryFetchLoginUser();
   const items: MenuProps["items"] = [
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
     { label: <Link href={"/mypage/point"}>포인트</Link> },
@@ -64,6 +66,7 @@ export default function Header(): JSX.Element {
                       size={44}
                       style={{ cursor: "pointer", marginLeft: "14px" }}
                       icon={<UserOutlined />}
+                      src={data?.fetchLoginUser?.user_profileImage}
                     />
                   </Space>
                 </Dropdown>

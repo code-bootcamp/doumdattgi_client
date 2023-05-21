@@ -7,7 +7,7 @@ export const UPLOAD_FILE = gql`
 `;
 
 export const useMutationUploadFile = () => {
-    const mutation = useMutation(UPLOAD_FILE);
-  
-    return mutation;
-  };
+  const mutation = useMutation(UPLOAD_FILE);
+
+  return mutation;
+};
