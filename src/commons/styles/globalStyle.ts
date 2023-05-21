@@ -14,7 +14,7 @@ export const globalStyle = css`
   }
 
   /* 결제 모달창 CSS */
-  .ChargeModal .ant-space {
+  / .ChargeModal .ant-space {
     width: 384px;
     height: 34px;
     border: none;
@@ -47,6 +47,7 @@ export const globalStyle = css`
   /* 환불 모달 창 */
   .RefundModal {
   }
+  //
 
   /* TimePicker */
   .setTimeBtn .ant-space {
