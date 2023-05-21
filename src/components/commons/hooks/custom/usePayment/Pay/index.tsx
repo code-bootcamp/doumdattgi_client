@@ -4,8 +4,7 @@ import {
   refetchAtom
 } from "../../../../../../commons/stores";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { useMutationcreatePointTransaction } from "../../../mutations/useMutationCreatePointTransaction";
-import { useQueryFetchUserPaymentInfo } from "../../../queries/useQueryFetchUserPaymentInfo";
+import { useMutationcreatePayment } from "../../../mutations/useMutationCreatePointTransaction";
 
 interface IResponseProps {
   success: boolean;
@@ -29,7 +28,7 @@ export default function UsePayment(): IUsePayment {
   const [, setIsCancel] = useRecoilState(ModalCancelState);
   const refetch = useRecoilValue(refetchAtom);
 
-  const [createPointTransaction] = useMutationcreatePointTransaction();
+  const [createPayment] = useMutationcreatePayment();
 
   const SelectOption = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target);
@@ -70,11 +69,11 @@ export default function UsePayment(): IUsePayment {
           // 결제 성공
           console.log(rsp);
 
-          const result = await createPointTransaction({
+          const result = await createPayment({
             variables: {
-              impUid: rsp.imp_uid,
-              amount: amount,
-              paymentType: String(isSelect)
+              payment_impUid: rsp.imp_uid,
+              payment_amount: amount,
+              payment_type: String(isSelect)
             }
           });
           alert("결제 성공!");

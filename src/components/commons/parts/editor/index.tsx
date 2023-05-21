@@ -6,7 +6,6 @@ import fontSize from "tui-editor-plugin-font-size";
 import "tui-editor-plugin-font-size/dist/tui-editor-plugin-font-size.css";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "@toast-ui/editor/dist/i18n/ko-kr";
-import { memo } from "react";
 import { useMutationUploadFile } from "../../hooks/mutations/useMutationUploadFile";
 
 function ToastEditor(props: any) {

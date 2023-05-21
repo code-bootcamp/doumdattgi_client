@@ -15,6 +15,7 @@ import Map from "../../commons/parts/map";
 import { Modal } from "antd";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { wrapFormAsync } from "../../../commons/libraries/asyncFunc";
+import { EditorInstance, EditorInstance2 } from "./index.types";
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false
@@ -43,14 +44,16 @@ export default function BoardWritePresenter(props: any) {
 
   const { onClickWrite } = useBoard();
 
-  const editorRef = useRef();
+  const editorRef = useRef<EditorInstance>(null);
 
   const { register, setValue, trigger, handleSubmit, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schemaCreate)
   });
   const onChangeContents = (): void => {
-    const value = editorRef.current?.getInstance().getHTML();
+    const editorInstance = editorRef.current?.getInstance() as EditorInstance2;
+    const value = editorInstance?.getHTML();
+
     console.log(value);
 
     // register로 등록하지 않고 강제로 값을 넣을 수 있다.
@@ -77,7 +80,6 @@ export default function BoardWritePresenter(props: any) {
     setZonecode(data.zonecode);
     setIsOpen(prev => !prev);
   };
-  
 
   return (
     <>
@@ -86,8 +88,8 @@ export default function BoardWritePresenter(props: any) {
           <DaumPostcodeEmbed onComplete={onCompleteAddressSearch} />
         </Modal>
       )}
-        <S.Wrapper>
-          <form onSubmit={wrapFormAsync(handleSubmit(onClickWrite))}>
+      <S.Wrapper>
+        <form onSubmit={wrapFormAsync(handleSubmit(onClickWrite))}>
           <S.Head>
             <S.Title>게시글 작성하기</S.Title>
             <S.SelectToggle>
@@ -166,7 +168,7 @@ export default function BoardWritePresenter(props: any) {
                       </S.SearchBtn>
                     </S.ZipcodeBox>
                     <InputHeight38px value={address} disabled />
-                    <InputHeight38px/>
+                    <InputHeight38px />
                   </S.SearchBox>
                 </S.AddressBox>
               </S.BoardAddress>
@@ -179,8 +181,8 @@ export default function BoardWritePresenter(props: any) {
               </S.BtnBox>
             </S.Body_Bottom>
           </S.Body>
-          </form>
-        </S.Wrapper>
+        </form>
+      </S.Wrapper>
     </>
   );
 }
