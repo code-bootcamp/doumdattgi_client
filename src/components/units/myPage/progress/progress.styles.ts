@@ -109,9 +109,7 @@ export const UserBox = styled.div`
 export const UserIcon = styled.img`
   width: 26px;
   height: 26px;
-  background-color: #d9d9d9;
-  border-radius: 50%;
-  border: none;
+  border-radius: 15px;
   margin-right: 6px;
 `;
 

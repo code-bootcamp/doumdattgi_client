@@ -1,6 +1,6 @@
 import { Modal } from "antd";
 import * as S from "./refund.styles";
-import { useMutationCancelPointTransaction } from "../../../hooks/mutations/useMutationCancelPointTransaction";
+import { useMutationCancelPayment } from "../../../hooks/mutations/useMutationCancelPointTransaction";
 import { refetchAtom } from "../../../../../commons/stores";
 import { useRecoilValue } from "recoil";
 import { IPropsRefund } from "./refund.types";
@@ -10,7 +10,7 @@ export default function RefundPoint(props: IPropsRefund) {
 
   console.log(props);
 
-  const [cancelPointTransaction] = useMutationCancelPointTransaction();
+  const [CancelPayment] = useMutationCancelPayment();
 
   const cancelRefund = () => {
     props.setIsRefund(false);
@@ -18,10 +18,10 @@ export default function RefundPoint(props: IPropsRefund) {
 
   const GotoRefund = async () => {
     try {
-      const result = await cancelPointTransaction({
+      const result = await CancelPayment({
         variables: {
-          impUid: props.refundInfo[0],
-          paymentType: props.refundInfo[1]
+          payment_impUid: props.refundInfo[0],
+          payment_type: props.refundInfo[1]
         }
       });
       alert("환불성공");

@@ -7,6 +7,7 @@ interface IEditorProps {
 }
 
 export default function ToastEditor(props: IEditorProps) {
+  console.log(props);
   return (
     <Editor height="504px" onChange={props.onChange}>
       {props.value}

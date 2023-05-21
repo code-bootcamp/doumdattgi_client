@@ -12,8 +12,8 @@ export default function MainPresenter() {
         <S.ShowBoards>
           <S.Theme>✨숨은 보석같은 게시글들</S.Theme>
           <S.PreviewBox>
-            {new Array(4).fill(1).map(el => (
-              <S.Preview>
+            {new Array(4).fill(1).map((_, idx) => (
+              <S.Preview key={idx}>
                 <S.PreviewImg src="/IU.jpeg" />
                 <PreviewContents />
               </S.Preview>
@@ -26,8 +26,8 @@ export default function MainPresenter() {
         <S.RecentBoards>
           <S.Theme>✨최신 게시글</S.Theme>
           <S.PreviewBox>
-            {new Array(8).fill(1).map(el => (
-              <S.Preview>
+            {new Array(8).fill(1).map((_, idx) => (
+              <S.Preview key={idx}>
                 <S.PreviewImg src="/IU.jpeg" />
                 <PreviewContents />
               </S.Preview>
@@ -37,8 +37,8 @@ export default function MainPresenter() {
         <S.JobOfferBox>
           <S.Theme>지금 구하고 있는 구인글이에요</S.Theme>
           <S.PreviewBox>
-            {new Array(4).fill(1).map(el => (
-              <S.OfferPreview>
+            {new Array(4).fill(1).map((_, idx) => (
+              <S.OfferPreview key={idx}>
                 <PreviewContents />
               </S.OfferPreview>
             ))}
@@ -50,8 +50,8 @@ export default function MainPresenter() {
         <S.NewUserBoards>
           <S.Theme>🌱신규 @@님의 첫 게시글</S.Theme>
           <S.PreviewBox>
-            {new Array(3).fill(1).map(el => (
-              <S.NewPreview>
+            {new Array(3).fill(1).map((_, idx) => (
+              <S.NewPreview key={idx}>
                 <S.NewPreviewImg src="/IU.jpeg" />
                 <PreviewContents />
               </S.NewPreview>
@@ -59,16 +59,6 @@ export default function MainPresenter() {
           </S.PreviewBox>
         </S.NewUserBoards>
       </S.Body>
-      {/* <S.Bottom>
-        <S.BottomInfo>
-          <S.CompanyInfo>
-            <span>도움닫기</span>
-            <span>© 2023 Project Doumdattgi Corp. Copy</span>
-            <span>서울특별시 구로구 디지털로 300 지밸리플라자 13층</span>
-          </S.CompanyInfo>
-          <span>이용약관 | 개인정보처리방침</span>
-        </S.BottomInfo>
-      </S.Bottom> */}
     </S.Wrapper>
   );
 }

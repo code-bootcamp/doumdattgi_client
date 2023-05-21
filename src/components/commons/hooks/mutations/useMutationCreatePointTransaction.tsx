@@ -1,26 +1,26 @@
 import { gql, useMutation } from "@apollo/client";
 
-export const CREATE_POINT_TRANSACTION = gql`
-  mutation createPointTransaction(
-    $impUid: String!
-    $amount: Int!
-    $paymentType: String!
+export const CREATE_PAYMENT = gql`
+  mutation createPayment(
+    $payment_impUid: String!
+    $payment_amount: Int!
+    $payment_type: String!
   ) {
     createPointTransaction(
-      impUid: $impUid
-      amount: $amount
-      paymentType: $paymentType
+      payment_impUid: $payment_impUid
+      payment_amount: $payment_amount
+      payment_type: $payment_type
     ) {
-      id
-      amount
-      paymentType
-      createdAt
+      payment_id
+      payment_amount
+      payment_type
+      payment_createdAt
     }
   }
 `;
 
-export const useMutationcreatePointTransaction = () => {
-  const Mutation = useMutation(CREATE_POINT_TRANSACTION);
+export const useMutationcreatePayment = () => {
+  const Mutation = useMutation(CREATE_PAYMENT);
 
   return Mutation;
 };

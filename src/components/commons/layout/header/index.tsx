@@ -22,8 +22,6 @@ export default function Header(): JSX.Element {
     { label: <span onClick={onClickLogout}>로그아웃</span> }
   ] as ItemType[];
 
-  console.log(data);
-
   return (
     <>
       <S.Wrapper>
