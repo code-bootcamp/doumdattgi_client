@@ -1,15 +1,14 @@
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
-import { useState } from "react";
 import * as S from "./index.styles";
+import { useCreateProduct } from "../../../hooks/custom/useCreateProduct";
 
-export default function WorkTimeDropBox() {
-  const [select, setSelect] = useState("");
-
+export default function WorkTimeDropBox (props) {
+  
   const handleMenuClick: MenuProps["onClick"] = e => {
     console.log("click", e.key);
-    setSelect(e.key);
+    props.setSelectedWorkDay(e.key);
   };
 
   const items: MenuProps["items"] = [
@@ -37,8 +36,8 @@ export default function WorkTimeDropBox() {
       <Dropdown trigger={["click"]} menu={menuProps}>
         <S.StyledButton className="setTimeBtn">
           <Space>
-            {select !== "" ? (
-              <S.Selected>{select}</S.Selected>
+            {props.selectedWorkDay !== "" ? (
+              <S.Selected>{props.selectedWorkDay}</S.Selected>
             ) : (
               <S.Default>선택</S.Default>
             )}

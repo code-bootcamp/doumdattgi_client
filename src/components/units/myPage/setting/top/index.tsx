@@ -7,25 +7,21 @@ import { UserOutlined } from "@ant-design/icons";
 import { useMutationUploadFile } from "../../../../commons/hooks/mutations/useMutationUploadFile";
 import InputHeight50px from "../../../../commons/inputs/InputHeight50px";
 import TextArea from "../../../../commons/inputs/TextArea";
+import { useQueryFetchLoginUser } from "../../../../commons/hooks/queries/useQueryFetchLoginUser";
+import { useSettings } from "../../../../commons/hooks/custom/useSettings";
 
 export default function SettingsTop() {
+  const { data } = useQueryFetchLoginUser();
   const {
-    data,
-    onClickEditAvatar,
     isAvatarEdit,
     isProfileEdit,
-    onClickEditProfile
-  } = useUser();
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
-  const [uploadFile] = useMutationUploadFile();
-  console.log(data);
-  const onClickUpload = async () => {
-    const urlResult = await Promise.all(
-      fileList.map(
-        async el => await uploadFile({ variables: { files: el.originFileObj } })
-      )
-    );
-  };
+    onClickEditAvatar,
+    onClickEditProfile,
+    fileList,
+    setFileList,
+    onClickSubmitAvatar,
+    onClickDeleteAvatar
+  } = useSettings();
 
   return (
     <S.Wrapper>
@@ -39,15 +35,17 @@ export default function SettingsTop() {
               <Avatar
                 size={130}
                 icon={<UserOutlined />}
-                src={data?.fetchLoginUser?.profileImage}
+                src={data?.fetchLoginUser?.user_profileImage}
               />
             )}
             <S.AvatarEdit
-              onClick={isAvatarEdit ? onClickUpload : onClickEditAvatar}
+              onClick={isAvatarEdit ? onClickSubmitAvatar : onClickEditAvatar}
             >
               {isAvatarEdit ? "수정 완료하기" : "이미지 수정"}
             </S.AvatarEdit>
-            <S.AvatarRemove onClick={isAvatarEdit ? onClickEditAvatar : null}>
+            <S.AvatarRemove
+              onClick={isAvatarEdit ? onClickEditAvatar : onClickDeleteAvatar}
+            >
               {isAvatarEdit ? "취소하기" : "이미지 제거"}
             </S.AvatarRemove>
           </S.AvatarWrap>
@@ -55,8 +53,18 @@ export default function SettingsTop() {
             {isProfileEdit ? (
               <S.Form>
                 <S.ProfileBox>
-                  <InputHeight50px placeholder="닉네임을 입력해주세요." />
-                  <S.Text placeholder="자기소개를 입력해주세요."></S.Text>
+                  <InputHeight50px
+                    placeholder="닉네임을 입력해주세요."
+                    defaultValue={data?.fetchLoginUser?.user_nickname}
+                  />
+                  <S.Text
+                    placeholder="자기소개를 입력해주세요."
+                    defaultValue={
+                      data?.fetchLoginUser?.user_introduce !== ""
+                        ? data?.fetchLoginUser?.user_introduce
+                        : "자기소개를 입력해주세요."
+                    }
+                  ></S.Text>
                 </S.ProfileBox>
                 <S.ProfileEditBtn>
                   <S.ProfileEdit onClick={onClickEditProfile}>
@@ -68,11 +76,11 @@ export default function SettingsTop() {
               <>
                 <S.ProfileBox>
                   <S.ProfileNickname>
-                    {data?.fetchLoginUser?.nickname ?? "유저 닉네임"}
+                    {data?.fetchLoginUser?.user_nickname ?? "유저 닉네임"}
                   </S.ProfileNickname>
                   <S.ProfileIntroduce>
-                    {data?.fetchLoginUser?.introduce !== ""
-                      ? data?.fetchLoginUser?.introduce
+                    {data?.fetchLoginUser?.user_introduce !== ""
+                      ? data?.fetchLoginUser?.user_introduce
                       : "자기소개를 입력해주세요."}
                   </S.ProfileIntroduce>
                 </S.ProfileBox>

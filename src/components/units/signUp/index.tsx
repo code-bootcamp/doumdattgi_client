@@ -11,8 +11,8 @@ interface IFormData {
   email: string;
   password: string;
   passwordCheck: string;
-  nickName: string;
-  phoneNumber: number;
+  nickname: string;
+  phone: string;
   name: string;
 }
 
@@ -70,12 +70,12 @@ export default function SignUp(): JSX.Element {
         <S.SubTitleDetail>닉네임을 입력해주세요. (2~15자)</S.SubTitleDetail>
         <InputHeight42px
           placeholder="별명 (2~15자)"
-          register={register("nickName")}
+          register={register("nickname")}
         />
         <S.SubTitle>휴대폰 번호</S.SubTitle>
         <InputHeight42px
           placeholder="휴대폰 번호"
-          register={register("phoneNumber")}
+          register={register("phone")}
         />
         <S.SubTitle>이름</S.SubTitle>
         <InputHeight42px
