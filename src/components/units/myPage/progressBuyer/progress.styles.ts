@@ -42,7 +42,7 @@ export const List = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
-
+  cursor: pointer;
   /* // 거절
   background-color: #f8f8f8; */
 `;

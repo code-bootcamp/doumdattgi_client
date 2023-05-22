@@ -241,4 +241,26 @@ export const Subtitle = styled.div`
   line-height: 20px;
   margin-top: 50px;
 `;
-export const CardBoxWrap = styled.div``;
+export const CardBoxWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+export const Preview = styled.div`
+  width: 285px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #bec3c7;
+  overflow: hidden;
+  cursor: pointer;
+`;
+
+export const PreviewImg = styled.img`
+  width: 285px;
+  height: 200px;
+`;

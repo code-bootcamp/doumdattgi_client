@@ -5,11 +5,14 @@ import { Image } from "antd";
 import { fallback } from "../../../../commons/libraries/fallback";
 import * as S from "./styles";
 
-const Slide = styled.div``;
-
-const arr = ["/집가고싶다.jpg", "/그거이번주까지야.jpg", "/하루종일 폰만.jpg"];
+// const arr = ["/집가고싶다.jpg", "/그거이번주까지야.jpg", "/하루종일 폰만.jpg"];
 
 export default function SliderComponent(props: any) {
+  const Slide = styled.div``;
+
+  // fetch 로 가져온 이미지 배열
+  const arr = props.ImgArr;
+
   const settings = {
     customPaging: function (i: any) {
       const imgsrc = arr[i];
@@ -35,7 +38,7 @@ export default function SliderComponent(props: any) {
   return (
     <>
       <S.Wrapper {...settings}>
-        {arr.map(el => (
+        {arr?.map(el => (
           <Slide key={el}>
             <Image
               src={el}

@@ -21,30 +21,31 @@ const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false
 });
 
-interface IFormData {
-  title: string;
-  tags: string;
-  remarks: string;
-  contents: string;
-  address: string;
-  addressDetail: string;
-  zonecode: string;
-}
+// interface IFormData {
+//   title: string;
+//   tags: string;
+//   remarks: string;
+//   contents: string;
+//   address: string;
+//   addressDetail: string;
+//   zonecode: string;
+// }
 
 interface Address {
   address: string;
   zonecode: string;
 }
 
-interface IEditor {
-  getInstance: any;
-}
+// interface IEditor {
+//   getInstance: any;
+// }
 
 export default function BoardWritePresenter(props: any) {
   const [fileList, setFileList] = useState([]);
   const [address, setAddress] = useState("");
   const [zonecode, setZonecode] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isToggle, setIsToggle] = useState(true);
 
   const {
     onClickWrite,
@@ -59,7 +60,6 @@ export default function BoardWritePresenter(props: any) {
   } = useCreateProduct();
 
   const editorRef = useRef<EditorInstance>(null);
-
 
   const { register, setValue, trigger, handleSubmit, formState } = useForm({
     mode: "onChange",
@@ -96,6 +96,16 @@ export default function BoardWritePresenter(props: any) {
     setIsOpen(prev => !prev);
   };
 
+  const clickEmployee = () => {
+    setIsToggle(true);
+    setValue("product_sellOrBuy", true);
+  };
+
+  const clickEmployer = () => {
+    setIsToggle(false);
+    setValue("product_sellOrBuy", false);
+  };
+
   return (
     <>
       {isOpen && (
@@ -108,9 +118,13 @@ export default function BoardWritePresenter(props: any) {
           <S.Head>
             <S.Title>게시글 작성하기</S.Title>
             <S.SelectToggle>
-              <S.Employee>일을 구해요</S.Employee>
+              <S.Employee onClick={clickEmployee} isToggle={isToggle}>
+                일을 구해요
+              </S.Employee>
               <S.DivideLine />
-              <S.Employer>사람을 구해요</S.Employer>
+              <S.Employer onClick={clickEmployer} isToggle={isToggle}>
+                사람을 구해요
+              </S.Employer>
             </S.SelectToggle>
           </S.Head>
           <S.Body>
@@ -161,7 +175,7 @@ export default function BoardWritePresenter(props: any) {
                   <S.Required>*</S.Required>
                 </S.Theme>
                 <S.SetTimeBox>
-                  <WorkTimeDropBox 
+                  <WorkTimeDropBox
                     selectedWorkDay={selectedWorkDay}
                     setSelectedWorkDay={setSelectedWorkDay}
                   />
@@ -212,4 +226,3 @@ export default function BoardWritePresenter(props: any) {
     </>
   );
 }
-
