@@ -17,19 +17,21 @@ export const useCreateProduct = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedWorkDay, setSelectedWorkDay] = useState("")
-  const [selectedWorkTime, setSelectedWorkTime] = useState("")
-
+  const [selectedWorkDay, setSelectedWorkDay] = useState("");
+  const [selectedWorkTime, setSelectedWorkTime] = useState("");
 
   // =============== 글작성 ===============
   const onClickWrite = async (data: IFormData): Promise<void> => {
+    const selectedCategory2 = selectedCategory.split("&");
+    const selectedCategory3 = selectedCategory2[1];
+    console.log(selectedCategory3);
     try {
       const result = await createProduct({
         variables: {
           createProductInput: {
             product_sellOrBuy: true,
             product_title: data.title,
-            product_category: "DESIGN",
+            product_category: selectedCategory3,
             product_sub_category: selectedOptions,
             product_summary: data.summary,
             product_main_text: data.contents,
@@ -46,12 +48,17 @@ export const useCreateProduct = () => {
         }
       });
       alert("게시글 등록이 완료되었습니다.");
-      console.log(data);
+      console.log(result);
       // void router.push(`/${result.data?.createBoard._id as string}`);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }
-    console.log(selectedCategory, selectedOptions, selectedWorkDay, selectedWorkTime)
+    console.log(
+      selectedCategory3,
+      selectedOptions,
+      selectedWorkDay,
+      selectedWorkTime
+    );
   };
 
   return {

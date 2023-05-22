@@ -21,7 +21,8 @@
     "**/*.tsx",
     "src/components/commons/buttons/ButtonHeight60px",
     "src/components/commons/buttons/ButtonHeight50px",
-    "src/components/commons/hooks/custom/useUser"
+    "src/components/commons/hooks/custom/useUser",
+    "src/components/commons/hooks/queries/useQueryFetchSellerWorkts"
   ],
   "exclude": ["node_modules"]
 }

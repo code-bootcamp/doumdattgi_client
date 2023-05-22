@@ -4,11 +4,12 @@ import InputHeight50px from "../../commons/inputs/InputHeight50px";
 import * as S from "./styles";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useRequest } from "../../commons/hooks/custom/useCreateRequest/index";
-import { useForm, UseFormRegisterReturn } from "react-hook-form";
+import { useRequest } from "../../commons/hooks/custom/useSendRequest/index";
+import { useForm } from "react-hook-form";
 import { schemaCreateRequest } from "../../../commons/libraries/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import type { ChangeEvent } from "react";
+import { ChangeEvent, useRef } from "react";
+import { EditorInstance, EditorInstance2 } from "./index.types";
 
 const CountUp = dynamic(
   async () => await import("../../commons/parts/countUp/intex"),
@@ -17,27 +18,30 @@ const CountUp = dynamic(
   }
 );
 
-const Editor = dynamic(
-  async () => await import("../../commons/parts/Toasteditor/index"),
-  {
-    ssr: false
-  }
-);
+const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
+  ssr: false
+});
 
 interface IFormData {
-  title: string;
-  contents: string;
-  isTime: number;
-  wage: string;
+  product_id: string;
+  request_title: string;
+  request_content: string;
+  request_price: number;
 }
 
-export default function Request(): JSX.Element {
+interface IEditor {
+  getInstance: any;
+}
+
+export default function Request(props: any): JSX.Element {
   const router = useRouter();
+  const editorRef = useRef<EditorInstance>(null);
 
   const storage = globalThis?.sessionStorage;
   const link = storage?.getItem("prevPath") || "/";
 
   const { onClickWriteRequest, isTime, setIsTime } = useRequest();
+
   const minimumWage = 9620;
 
   // =============== 의뢰서 작성 ===============
@@ -47,10 +51,13 @@ export default function Request(): JSX.Element {
       mode: "onChange"
     });
 
-  const onChangeContents = (data: string): void => {
-    console.log(data);
-    setValue("contents", data === "<p><br></p>" ? "" : data);
-    void trigger("contents");
+  const onChangeContents = (data: IEditor): void => {
+    const EditorInstance = editorRef.current?.getInstance() as EditorInstance2;
+    const value = EditorInstance?.getHTML();
+
+    console.log(value);
+    setValue("request_content", value === "<p><br></p>" ? "" : value);
+    void trigger("request_content");
   };
 
   // =============== 시간을 입력하면 지불 금액 계산 ===============
@@ -58,10 +65,11 @@ export default function Request(): JSX.Element {
   const onChangeTime = (event: ChangeEvent<HTMLInputElement>): void => {
     const time = Number(event?.target.value);
     setIsTime(String(time * minimumWage));
-    setValue("wage", String(time * minimumWage));
-    trigger("wage");
+    setValue("request_price", Number(time * minimumWage));
+    trigger("request_price");
   };
 
+  console.log(router.query.product_id);
   return (
     <form onSubmit={handleSubmit(onClickWriteRequest)}>
       <S.Wrapper>
@@ -71,12 +79,12 @@ export default function Request(): JSX.Element {
           <S.SubTitle>
             의뢰 제안서<S.SubTitle2> *</S.SubTitle2>
           </S.SubTitle>
-          <InputHeight50px register={register("title")} />
+          <InputHeight50px register={register("request_title")} />
           <S.SubTitle>
             의뢰 내용
             <S.SubTitle2> *</S.SubTitle2>
           </S.SubTitle>
-          <Editor onChange={onChangeContents} />
+          <Editor onChangeValue={onChangeContents} editorRef={editorRef} />
         </S.ContentsBox>
         <S.SubTitle>
           작업 요청 시간
@@ -91,7 +99,7 @@ export default function Request(): JSX.Element {
           <S.PaymentIndex2>시간</S.PaymentIndex2>
           <S.PaymentIndex1>=</S.PaymentIndex1>
           <S.PaymentIndex2>₩</S.PaymentIndex2>
-          <CountUp isTime={isTime} />
+          <CountUp isTime={isTime} setIsTime={setIsTime} />
         </S.PaymentBox>
         <S.BtnBox>
           <Link href={link}>

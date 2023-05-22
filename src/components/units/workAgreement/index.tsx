@@ -4,10 +4,13 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
 import CommentDrawer from "../../commons/parts/commentDrawer";
+import { useQueryFetchOneRequest } from "../../commons/hooks/queries/useQueryFetchOneRequest";
 
 export default function WorkAgreement(): JSX.Element {
   const [isAccept, setIsAccept] = useState(false);
   const [isReject, setIsReject] = useState(false);
+
+  const { data } = useQueryFetchOneRequest();
 
   const onClickAccept = (): void => {
     setIsAccept(true);
@@ -17,13 +20,15 @@ export default function WorkAgreement(): JSX.Element {
     setIsReject(true);
   };
 
+  // const time = Number(data.request_price) / 9620;
+
   return (
     <>
       <S.CommentBoxWrapper>
         <CommentDrawer />
         <S.Wrapper>
-          <S.Category>디자인</S.Category>
-          <S.Title>게시글 제목</S.Title>
+          <S.Category>{/* data.isAccept */}</S.Category>
+          <S.Title>{/* data.request_title */}</S.Title>
           <S.ProcessBox>
             <S.StatusBox>
               <S.Check></S.Check>
@@ -32,46 +37,32 @@ export default function WorkAgreement(): JSX.Element {
             </S.StatusBox>
             <S.Line />
             <S.StatusBox>
+              <S.StartWork></S.StartWork>
+              <S.Theme>작업 시작</S.Theme>
+              <S.Date>2023.05.XX 완료</S.Date>
+            </S.StatusBox>
+            <S.Line1 />
+            <S.StatusBox>
               <S.SendWork></S.SendWork>
               <S.Theme>작업물 전달</S.Theme>
               <S.Date>2023.05.XX 완료</S.Date>
             </S.StatusBox>
             <S.Line2 />
             <S.StatusBox>
-              <S.Compelete></S.Compelete>
+              <S.Complete></S.Complete>
               <S.Theme>완료</S.Theme>
               <S.Date>2023.05.XX 완료</S.Date>
             </S.StatusBox>
           </S.ProcessBox>
           <S.ContentsDetail>신청 내용</S.ContentsDetail>
-          <S.Contents>
-            예뻤어도 들어주세요 뚫고 지나가요 - Day6 축 처진 그 어깨에 슬프다
-            써져 있길래 조심스레 괜찮냐 물어도 대답은 침묵뿐이에요 힘이 되고
-            싶어, 뭔 짓을 해 봐도 안 보이나 봐요, 눈앞에 있는데도 서서히 금이 가
-            깨질 것 같지만 그래도 난 버티고 있었죠 이번만큼은 예상이 빗나가길
-            그리도 간절히 원했는데 왜? 그냥 가라는 말 그대의 한마디가 나를 뚫고
-            지나가요 더 이상은 걷잡을 수 없이 널 향한 맘 작은 조각들로 부서지고
-            흩어져요 여기가 내 사랑의 끝이네요 So I guess now I've got to go
-            이렇게 떠나도 그대는 달라질 거 하나 없죠 Oh, so I guess now there's
-            no more us 그대가 필요한 건 내가 아닌 거니까 그대가 미워, 떠나려 해
-            봐도 안되더라고요 눈앞에 있으니까 서서히 금이 가 깨질 걸 알아도
-            그래도 난 버티고 있었죠 이번만큼은 예상이 빗나가길 그리도 간절히
-            원했는데 왜? 그냥 가라는 말 그대의 한마디가 나를 뚫고 지나가요 더
-            이상은 걷잡을 수 없이 널 향한 맘 작은 조각들로 부서지고 흩어져요
-            여기가 내 사랑의 끝이네요 난 무너져 내리고 있는 이 순간에도 No, it's
-            not easy to leave for good 그냥 가라는 말 그대의 한마디가 나를 뚫고
-            지나가요 더 이상은 걷잡을 수 없이 널 향한 맘 작은 조각들로 부서지고
-            흩어져요 여기가 내 사랑의 끝이네요 So I guess now I've got to go
-            이렇게 떠나도 그대는 달라질 거 하나 없죠 Oh, so I guess now theres
-            no more us 그대가 필요한 건 내가 아닌 거니까
-          </S.Contents>
+          <S.Contents>{/* data.request_content */}</S.Contents>
           <S.PaymentBox>
             <S.Price>9620</S.Price>
             <S.SpecialCharacter> x </S.SpecialCharacter>
-            <S.Price>4</S.Price>
+            <S.Price>{/* time */}</S.Price>
             <S.SpecialCharacter> = </S.SpecialCharacter>
             <S.SpecialCharacter> ₩ </S.SpecialCharacter>
-            <S.Price>38,480</S.Price>
+            <S.Price>{/* data.request_price */}</S.Price>
           </S.PaymentBox>
           {/* 작업자인지 신청자인지에 따라 분기 예정 */}
           <S.Box>
@@ -112,8 +103,8 @@ export default function WorkAgreement(): JSX.Element {
             <S.UserBox>
               <S.User>신청자</S.User>
               <S.UserPic src="/Ellipse 8.png" />
-              <S.User>신청자 닉네임</S.User>
-              <S.UserEmail>email@email.com</S.UserEmail>
+              <S.User>{/* data.seller_nickname */}</S.User>
+              <S.UserEmail>{/* data.seller_id */}</S.UserEmail>
             </S.UserBox>
             <S.Between>
               <S.Arrow src="/Vector 3.png" />
@@ -122,8 +113,8 @@ export default function WorkAgreement(): JSX.Element {
             <S.UserBox>
               <S.User>작업자</S.User>
               <S.UserPic src="/Ellipse 8 (1).png" />
-              <S.User>작업자 닉네임</S.User>
-              <S.UserEmail>email@email.com</S.UserEmail>
+              <S.User>{/* data.buyer_nickname */}</S.User>
+              <S.UserEmail>{/* data.buyer_id */}</S.UserEmail>
             </S.UserBox>
           </S.Box>
         </S.Wrapper>
