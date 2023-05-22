@@ -14,7 +14,6 @@ export const useCreateProduct = () => {
   const router = useRouter();
 
   const [createProduct] = useMutationCreateProduct();
-
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedWorkDay, setSelectedWorkDay] = useState("");
