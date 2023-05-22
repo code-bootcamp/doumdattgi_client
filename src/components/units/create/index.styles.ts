@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+interface IIsToggle {
+  isToggle: boolean;
+}
+
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 0 auto;
@@ -29,6 +33,9 @@ export const Employee = styled.div`
   border-radius: 6px 0px 0px 6px;
   border: 2px solid #333333;
   border-right: none;
+  background-color: ${(props: IIsToggle) =>
+    props.isToggle ? "black" : "white"};
+  color: ${props => (props.isToggle ? "white" : "black")};
   cursor: pointer;
 `;
 
@@ -40,6 +47,9 @@ export const Employer = styled.div`
   border-radius: 0px 6px 6px 0px;
   border: 2px solid #333333;
   border-left: none;
+  background-color: ${(props: IIsToggle) =>
+    props.isToggle ? "white" : "black"};
+  color: ${props => (props.isToggle ? "black" : "white")};
   cursor: pointer;
 `;
 

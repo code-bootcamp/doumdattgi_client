@@ -18,7 +18,6 @@ export type ICreateProductInput = {
   product_category: Scalars['String'];
   product_detailAddress: Scalars['String'];
   product_endTime: Scalars['Int'];
-  product_isMain: Array<Scalars['Boolean']>;
   product_main_text: Scalars['String'];
   product_postNum: Scalars['String'];
   product_roadAddress: Scalars['String'];
@@ -26,7 +25,7 @@ export type ICreateProductInput = {
   product_startTime: Scalars['Int'];
   product_sub_category: Scalars['String'];
   product_summary: Scalars['String'];
-  product_thumbnailImage: Array<Scalars['String']>;
+  product_thumbnailImage: Array<IThumbnail>;
   product_title: Scalars['String'];
   product_workDay: Scalars['String'];
   product_workTime: Scalars['Int'];
@@ -52,16 +51,27 @@ export type IFetchProductOutput = {
   i_image_url: Scalars['String'];
   product_product_category: Scalars['String'];
   product_product_id: Scalars['String'];
+  product_product_sellOrBuy: Scalars['Boolean'];
   product_product_title: Scalars['String'];
   product_product_workDay: Scalars['String'];
   u_user_nickname: Scalars['String'];
-  u_user_url: Scalars['String'];
+  u_user_profileImage?: Maybe<Scalars['String']>;
+};
+
+export type IImage = {
+  __typename?: 'Image';
+  image_id: Scalars['String'];
+  image_isMain: Scalars['Boolean'];
+  image_url: Scalars['String'];
+  product: IProduct;
 };
 
 export type IMutation = {
   __typename?: 'Mutation';
   cancelPayment: IPayment;
-  checkValidToken: Scalars['Boolean'];
+  checkValidTokenEMAIL: Scalars['Boolean'];
+  checkValidTokenFindEmailBySMS: Scalars['String'];
+  checkValidTokenFindPwdBySMS: Scalars['Boolean'];
   createPayment: IPayment;
   createProduct: IProduct;
   createUser: IUser;
@@ -69,9 +79,12 @@ export type IMutation = {
   deleteUser: Scalars['Boolean'];
   login: Scalars['String'];
   logout: Scalars['String'];
+  requestAcceptRefuse: IRequest;
+  requestStart: Scalars['Boolean'];
   restoreAccessToken: Scalars['String'];
   sendRequest: IRequest;
   sendTokenEmail: Scalars['String'];
+  sendTokenSMS: Scalars['String'];
   updateNicknameIntroduce: IUser;
   updateProduct: Scalars['Boolean'];
   updateProfileImage: IUser;
@@ -86,8 +99,20 @@ export type IMutationCancelPaymentArgs = {
 };
 
 
-export type IMutationCheckValidTokenArgs = {
+export type IMutationCheckValidTokenEmailArgs = {
   user_email: Scalars['String'];
+  user_token: Scalars['String'];
+};
+
+
+export type IMutationCheckValidTokenFindEmailBySmsArgs = {
+  user_phone: Scalars['String'];
+  user_token: Scalars['String'];
+};
+
+
+export type IMutationCheckValidTokenFindPwdBySmsArgs = {
+  user_phone: Scalars['String'];
   user_token: Scalars['String'];
 };
 
@@ -120,6 +145,18 @@ export type IMutationLoginArgs = {
 };
 
 
+export type IMutationRequestAcceptRefuseArgs = {
+  acceptRefuse: Scalars['String'];
+  request_id: Scalars['String'];
+};
+
+
+export type IMutationRequestStartArgs = {
+  process: Scalars['String'];
+  request_id: Scalars['String'];
+};
+
+
 export type IMutationSendRequestArgs = {
   createRequestInput: ICreateRequestInput;
 };
@@ -127,6 +164,11 @@ export type IMutationSendRequestArgs = {
 
 export type IMutationSendTokenEmailArgs = {
   user_email: Scalars['String'];
+};
+
+
+export type IMutationSendTokenSmsArgs = {
+  user_phone: Scalars['String'];
 };
 
 
@@ -182,8 +224,9 @@ export type IPayment = {
 
 export type IProduct = {
   __typename?: 'Product';
+  images: Array<IImage>;
   product_category: IProduct_Category_Enum;
-  product_deletedAt: Scalars['DateTime'];
+  product_deletedAt?: Maybe<Scalars['DateTime']>;
   product_detailAddress: Scalars['String'];
   product_endTime: Scalars['Int'];
   product_id: Scalars['String'];
@@ -194,7 +237,6 @@ export type IProduct = {
   product_startTime: Scalars['Int'];
   product_sub_category: Scalars['String'];
   product_summary: Scalars['String'];
-  product_thumbnailImage: Array<Scalars['String']>;
   product_title: Scalars['String'];
   product_workDay: IWorkday_Status_Enum;
   product_workTime: Scalars['Int'];
@@ -203,15 +245,20 @@ export type IProduct = {
 
 export type IQuery = {
   __typename?: 'Query';
+  fetchAllProducts: Array<IFetchProductOutput>;
+  fetchBuyerRequest: Array<IRequest>;
   fetchCategoryProduct: Array<IFetchProductOutput>;
+  fetchDetailProduct: IProduct;
   fetchLoginUser: IUser;
   fetchNewbieProduct: Array<IFetchProductOutput>;
+  fetchOneRequest: IRequest;
   fetchPayments: Array<IPayment>;
   fetchProducts: Array<IFetchProductOutput>;
   fetchRandomProduct: Array<IFetchProductOutput>;
-  fetchRequest: Array<IRequest>;
+  fetchSellCategoryProducts: Array<IFetchProductOutput>;
+  fetchSellProduct: Array<IFetchProductOutput>;
+  fetchSellerWork: Array<IRequest>;
   fetchUserPaymentInfo: Array<IPayment>;
-  fetchWork: Array<IRequest>;
 };
 
 
@@ -219,6 +266,16 @@ export type IQueryFetchCategoryProductArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
   product_category: Scalars['String'];
+};
+
+
+export type IQueryFetchDetailProductArgs = {
+  product_id: Scalars['String'];
+};
+
+
+export type IQueryFetchOneRequestArgs = {
+  request_id: Scalars['String'];
 };
 
 
@@ -232,6 +289,12 @@ export type IQueryFetchProductsArgs = {
   pageSize: Scalars['Float'];
 };
 
+
+export type IQueryFetchSellCategoryProductsArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+};
+
 export enum IRequest_Isaccept_Enum {
   Accept = 'ACCEPT',
   Finish = 'FINISH',
@@ -241,16 +304,27 @@ export enum IRequest_Isaccept_Enum {
 
 export type IRequest = {
   __typename?: 'Request';
+  buyer_id: Scalars['String'];
+  buyer_nickname: Scalars['String'];
+  buyer_profileImage: Scalars['String'];
   product: IProduct;
-  request_completedAt: Scalars['DateTime'];
+  request_completedAt?: Maybe<Scalars['DateTime']>;
   request_content: Scalars['String'];
   request_createAt: Scalars['DateTime'];
   request_id: Scalars['String'];
   request_isAccept: IRequest_Isaccept_Enum;
   request_price: Scalars['Int'];
-  request_sentAt: Scalars['DateTime'];
+  request_sendAt?: Maybe<Scalars['DateTime']>;
+  request_startAt?: Maybe<Scalars['DateTime']>;
   request_title: Scalars['String'];
-  user: IUser;
+  seller_id: Scalars['String'];
+  seller_nickname: Scalars['String'];
+  seller_profileImage: Scalars['String'];
+};
+
+export type IThumbnail = {
+  isMain: Scalars['Boolean'];
+  thumbnailImage: Scalars['String'];
 };
 
 export type IUpdateNicknameIntroduceInput = {
@@ -262,7 +336,6 @@ export type IUpdateProductInput = {
   product_category?: InputMaybe<Scalars['String']>;
   product_detailAddress?: InputMaybe<Scalars['String']>;
   product_endTime?: InputMaybe<Scalars['Int']>;
-  product_isMain?: InputMaybe<Array<Scalars['Boolean']>>;
   product_main_text?: InputMaybe<Scalars['String']>;
   product_postNum?: InputMaybe<Scalars['String']>;
   product_roadAddress?: InputMaybe<Scalars['String']>;
@@ -270,7 +343,7 @@ export type IUpdateProductInput = {
   product_startTime?: InputMaybe<Scalars['Int']>;
   product_sub_category?: InputMaybe<Scalars['String']>;
   product_summary?: InputMaybe<Scalars['String']>;
-  product_thumbnailImage?: InputMaybe<Array<Scalars['String']>>;
+  product_thumbnailImage?: InputMaybe<Array<IThumbnail>>;
   product_title?: InputMaybe<Scalars['String']>;
   product_workDay?: InputMaybe<Scalars['String']>;
   product_workTime?: InputMaybe<Scalars['Int']>;

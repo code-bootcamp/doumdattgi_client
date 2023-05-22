@@ -9,6 +9,7 @@ export const FETCH_PRODUCTS = gql`
       product_product_category
       product_product_workDay
       u_user_nickname
+      u_user_profileImage
       i_image_url
     }
   }
