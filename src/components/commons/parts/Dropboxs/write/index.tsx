@@ -2,12 +2,10 @@ import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 import * as S from "./index.styles";
-import { useCreateProduct } from "../../../hooks/custom/useCreateProduct";
 
-export default function WorkTimeDropBox (props) {
-  
+export default function WorkTimeDropBox(props) {
   const handleMenuClick: MenuProps["onClick"] = e => {
-    console.log("click", e.key);
+    // console.log("click", e.key);
     props.setSelectedWorkDay(e.key);
   };
 

@@ -41,7 +41,6 @@ interface Address {
 // }
 
 export default function BoardWritePresenter(props: any) {
-  const [fileList, setFileList] = useState([]);
   const [address, setAddress] = useState("");
   const [zonecode, setZonecode] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +55,9 @@ export default function BoardWritePresenter(props: any) {
     selectedWorkDay,
     setSelectedWorkDay,
     selectedWorkTime,
-    setSelectedWorkTime
+    setSelectedWorkTime,
+    fileList,
+    setFileList
   } = useCreateProduct();
 
   const editorRef = useRef<EditorInstance>(null);

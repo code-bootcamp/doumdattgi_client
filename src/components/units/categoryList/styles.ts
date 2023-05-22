@@ -34,6 +34,10 @@ export const WrapperRight = styled.div`
   width: 100%;
 `;
 
+export const CategoryTag = styled.span`
+  margin-right: 5px;
+`;
+
 export const RightHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -42,7 +46,8 @@ export const RightHeader = styled.div`
 
 export const ContentsBox = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 `;
 
 export const Contents = styled.div`
@@ -50,6 +55,9 @@ export const Contents = styled.div`
   height: 300px;
   border: 1px solid #bec3c7;
   border-radius: 6px;
+  margin-bottom: 50px;
+  margin-left: 17px;
+
   cursor: pointer;
 `;
 

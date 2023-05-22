@@ -23,12 +23,12 @@ export const Pv_Footer = styled.div`
 `;
 
 export const Tag = styled.div`
-  width: 76px;
   height: 26px;
   text-align: center;
   line-height: 1.7;
   border-radius: 12px;
   border: 1px solid #929aa0;
+  padding: 0px 5px;
   font-size: 14px;
   color: #929aa0;
 `;

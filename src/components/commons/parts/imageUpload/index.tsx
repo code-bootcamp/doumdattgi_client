@@ -23,6 +23,7 @@ function ImageUpload(props: any): JSX.Element {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
 
+  // 이미지 수정부분
   useEffect(() => {
     if (props.data !== undefined) {
       let arr: any[] = [];
@@ -40,6 +41,7 @@ function ImageUpload(props: any): JSX.Element {
 
   const handlePreview = async (file: UploadFile) => {
     file.preview = await getBase64(file.originFileObj as RcFile);
+
     setPreviewImage(file.url || (file.preview as string));
     setPreviewOpen(true);
     setPreviewTitle(
