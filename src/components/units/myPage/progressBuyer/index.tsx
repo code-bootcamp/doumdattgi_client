@@ -1,8 +1,11 @@
+import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchBuyerRequest } from "../../../commons/hooks/queries/useQueryFetchBuyerRequest";
 import * as S from "./progress.styles";
 
-export default function Progress(): JSX.Element {
+export default function ProgressBuyer(): JSX.Element {
   const { data } = useQueryFetchBuyerRequest();
+
+  const { onClickMoveToPage } = useMoveToPage();
 
   return (
     <S.Wrapper>
@@ -14,9 +17,20 @@ export default function Progress(): JSX.Element {
         <S.PageTab>종료</S.PageTab>
       </S.TabBox>
       {data?.fetchBuyerRequest.map((el: any) => (
-        <S.List key={el._id}>
+        <S.List
+          key={el.request_id}
+          onClick={onClickMoveToPage(`/${el.request_id}/workAgreement`)}
+        >
           <S.ListLeft>
-            <S.ListStatus>종료</S.ListStatus>
+            <S.ListStatus>
+              {el.request_isAccept === "WAITING"
+                ? "대기중"
+                : el.request_isAccept === "ACCEPTED"
+                ? "진행중"
+                : el.request_isAccept === "REFUSE"
+                ? "거절됨"
+                : "종료"}
+            </S.ListStatus>
             <S.ListTitle>{el.request_title}</S.ListTitle>
           </S.ListLeft>
           <S.ListRight>
