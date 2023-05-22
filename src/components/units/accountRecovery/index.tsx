@@ -61,3 +61,4 @@ export default function AccountRecovery(props: IFinding): JSX.Element {
     </>
   );
 }
+
