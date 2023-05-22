@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 export const Title = styled.div`
   width: 100%;
   font-size: 36px;
+
   margin-bottom: 30px;
 `;
 
@@ -66,14 +67,14 @@ export const InputBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-`
+`;
 export const ButtonBox = styled.div`
   width: 100px;
   margin-left: 8px;
-`
+`;
 
 export const Timer = styled.span`
   display: block;
-  color: #CF1322;
+  color: #cf1322;
   margin-left: 8px;
-`
+`;
