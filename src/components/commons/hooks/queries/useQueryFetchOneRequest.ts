@@ -1,30 +1,24 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const FETCH_ONE_REQUEST = gql`
-  query {
-    fetchOneRequest {
-      request_id
-      product
-      seller_id
-      seller_nickname
-      seller_profileImage
-      buyer_id
-      buyer_nickname
-      buyer_profileImage
+  query fetchOneRequest($request_id: String!) {
+    fetchOneRequest(request_id: $request_id) {
       request_isAccept
-      request_price
-      request_createAt
-      request_startAt
-      request_sendAt
-      request_completedAt
       request_title
       request_content
+      request_price
+      seller_nickname
+      seller_id
+      buyer_nickname
+      buyer_id
     }
   }
 `;
 
-export const useQueryFetchOneRequest = () => {
-  const Query = useQuery(FETCH_ONE_REQUEST);
+export const useQueryFetchOneRequest = (id: string) => {
+  const Query = useQuery(FETCH_ONE_REQUEST, {
+    variables: { request_id: id }
+  });
 
   return Query;
 };
