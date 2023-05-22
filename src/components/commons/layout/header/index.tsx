@@ -5,10 +5,17 @@ import Link from "next/link";
 import { useUser } from "../../hooks/custom/useUser";
 import { ItemType } from "antd/es/menu/hooks/useItems";
 import { useQueryFetchLoginUser } from "../../hooks/queries/useQueryFetchLoginUser";
+import { useQueryFetchRandomProduct } from "../../hooks/queries/useQueryFetchRandomProduct";
+import { request, gql } from "graphql-request";
+import { IQuery } from "../../../../commons/types/generated/types";
+import { useRouter } from "next/router";
 
 export default function Header(): JSX.Element {
   const { onClickLogout } = useUser();
   const { data } = useQueryFetchLoginUser();
+
+  const router = useRouter();
+
   const items: MenuProps["items"] = [
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
     { label: <Link href={"/mypage/point"}>포인트</Link> },
@@ -24,6 +31,35 @@ export default function Header(): JSX.Element {
     { label: <span onClick={onClickLogout}>로그아웃</span> }
   ] as ItemType[];
 
+  const clickRandomBoard = async () => {
+    const query = gql`
+      query {
+        fetchRandomProduct {
+          product_product_id
+          product_product_title
+          product_product_category
+          u_user_nickname
+          i_image_url
+        }
+      }
+    `;
+
+    try {
+      const data = await request<Pick<IQuery, "fetchRandomProduct">>(
+        "https://doumdattgi-server.com/graphql",
+        query
+      );
+      console.log(data?.fetchRandomProduct);
+
+      const num = Math.floor(Math.random() * data?.fetchRandomProduct.length);
+      const MovePage = data?.fetchRandomProduct[num].product_product_id;
+
+      router.push(`/${MovePage}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <S.Wrapper>
@@ -36,7 +72,7 @@ export default function Header(): JSX.Element {
               <S.SearchIcon />
               <S.SearchInput />
             </S.SearchBox>
-            <S.ShuffleBtn>
+            <S.ShuffleBtn onClick={clickRandomBoard}>
               <S.ShuffleIcon src="/shuffle.png" />
             </S.ShuffleBtn>
             {!data && (

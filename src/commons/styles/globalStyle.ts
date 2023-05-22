@@ -27,6 +27,13 @@ export const globalStyle = css`
   }
 
   /* 결제 드랍박스 CSS */
+
+  .ChargeBox .ant-space {
+    width: 384px;
+    display: flex;
+    justify-content: space-between;
+  }
+
   .ChargeBox .ant-space-item {
     color: #828282;
   }

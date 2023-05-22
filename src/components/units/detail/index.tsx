@@ -40,7 +40,9 @@ export default function Detail() {
           <S.DetailBox>
             <S.Button>
               <Link href={`/${router.query.id}/request`}>
-                <ButtonHeight50px title="신청하기" />
+                <a>
+                  <ButtonHeight50px title="신청하기" />
+                </a>
               </Link>
               <S.SlotBox>
                 <S.SlotText>현재 가능 슬롯 3개</S.SlotText>
