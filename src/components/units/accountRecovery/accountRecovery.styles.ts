@@ -48,3 +48,7 @@ export const AuthBody = styled.div`
   flex-direction: row;
   align-items: center;
 `;
+export const Button = styled.div`
+  width: 35%;
+  margin-left: 14px;
+`

@@ -1,4 +1,4 @@
-import RecoveryResult from "../../src/components/units/recoveryResult/index";
+import RecoveryResult from "../../../src/components/units/recoveryResult/index";
 
 interface IRecoveryResult {
   isEmail: boolean;
@@ -7,5 +7,5 @@ interface IRecoveryResult {
 export default function RecoveryResultPage(
   props: IRecoveryResult
 ): JSX.Element {
-  return <RecoveryResult isEmail={true} />;
+  return <RecoveryResult isEmail={false} />;
 }

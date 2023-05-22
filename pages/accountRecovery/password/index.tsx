@@ -1,4 +1,4 @@
-import AccountRecovery from "../../src/components/units/accountRecovery/index";
+import AccountRecovery from "../../../src/components/units/accountRecovery/index";
 
 interface IAccountRecoveryProps {
   isEmail: boolean;
