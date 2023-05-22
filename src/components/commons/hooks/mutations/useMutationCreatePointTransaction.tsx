@@ -6,7 +6,7 @@ export const CREATE_PAYMENT = gql`
     $payment_amount: Int!
     $payment_type: String!
   ) {
-    createPointTransaction(
+    createPayment(
       payment_impUid: $payment_impUid
       payment_amount: $payment_amount
       payment_type: $payment_type

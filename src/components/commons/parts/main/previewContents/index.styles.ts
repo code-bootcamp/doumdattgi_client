@@ -34,16 +34,17 @@ export const Tag = styled.div`
 `;
 
 export const UserInfo = styled.div`
-  width: 69px;
+  width: 89px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 export const ProfileImg = styled.img`
   width: 25px;
   height: 25px;
+  margin-right: 10px;
 `;
 
 export const NickName = styled.div`
