@@ -66,7 +66,7 @@ export const useUser = () => {
 
   // =============== 회원가입 ===============
   const onClickSignUp = async (data: IFormData) => {
-    console.log(data)
+    console.log(data);
     try {
       const result = await createUser({
         variables: {
@@ -111,11 +111,11 @@ export const useUser = () => {
       const storage = globalThis?.sessionStorage;
       const link = storage.getItem("prevPath") || "/";
 
-      if(link === "/signup/"){
+      if (link === "/signup/") {
         void router.push("/");
+      } else {
+        void router.push(link);
       }
-      
-      void router.push(link);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

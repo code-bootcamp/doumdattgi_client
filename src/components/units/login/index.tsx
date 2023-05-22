@@ -5,6 +5,7 @@ import { schemaLogin } from "../../../commons/libraries/schema";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import InputHeight46px from "../../commons/inputs/InputHeight46px";
 import { useUser } from "../../commons/hooks/custom/useUser/index";
+import Link from "next/link";
 
 interface IFormData {
   email: string;
@@ -47,9 +48,15 @@ export default function Login(): JSX.Element {
       </S.FindingBox>
       <S.SocialLogin>
         <div>SNS로 간편하게 시작하기</div>
-        <S.SocialLoginButton src="/카카오톡 버튼.png" />
-        <S.SocialLoginButton src="/구글 버튼.png" />
-        <S.SocialLoginButton src="/네이버 버튼.png" />
+        <Link href={"https://doumdattgi-server.com/login/kakao/"}>
+          <S.SocialLoginButton src="/카카오톡 버튼.png" />
+        </Link>
+        <Link href={"https://doumdattgi-server.com/login/google/"}>
+          <S.SocialLoginButton src="/구글 버튼.png" />
+        </Link>
+        <Link href={"https://doumdattgi-server.com/login/naver/"}>
+          <S.SocialLoginButton src="/네이버 버튼.png" />
+        </Link>
       </S.SocialLogin>
       <div>
         아직 도움닫기 회원이아니세요?

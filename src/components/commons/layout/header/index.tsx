@@ -5,16 +5,21 @@ import Link from "next/link";
 import { useUser } from "../../hooks/custom/useUser";
 import { ItemType } from "antd/es/menu/hooks/useItems";
 import { useQueryFetchLoginUser } from "../../hooks/queries/useQueryFetchLoginUser";
+import { useMoveToPage } from "../../hooks/custom/useMoveToPage";
 import { useQueryFetchRandomProduct } from "../../hooks/queries/useQueryFetchRandomProduct";
 import { request, gql } from "graphql-request";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { useRouter } from "next/router";
 
+
 export default function Header(): JSX.Element {
   const { onClickLogout } = useUser();
   const { data } = useQueryFetchLoginUser();
 
+  const { onClickMoveToPage } = useMoveToPage()
+
   const router = useRouter();
+
 
   const items: MenuProps["items"] = [
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
@@ -77,9 +82,9 @@ export default function Header(): JSX.Element {
             </S.ShuffleBtn>
             {!data && (
               <S.LoginBox>
-                <Link href={"/login"}>
-                  <S.LoginBtn>로그인</S.LoginBtn>
-                </Link>
+
+                  <S.LoginBtn onClick={onClickMoveToPage("/login")}>로그인</S.LoginBtn>
+
                 <Link href={"/signup"}>
                   <S.SignUpBtn>회원가입</S.SignUpBtn>
                 </Link>
