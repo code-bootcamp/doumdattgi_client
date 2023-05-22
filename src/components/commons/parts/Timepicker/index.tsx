@@ -5,7 +5,7 @@ import { RangeValue } from "../../../../../node_modules/rc-picker/lib/interface"
 import { useState } from "react";
 import { useCreateProduct } from "../../hooks/custom/useCreateProduct";
 
-export default function WorkingTimePicker(props) {
+export default function WorkingTimePicker (props) {
 
   dayjs.extend(customParseFormat);
 
