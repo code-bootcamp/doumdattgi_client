@@ -1,9 +1,7 @@
 import { Select } from "antd";
 import { options } from "../../../../commons/libraries/category";
-import { useState } from "react";
 
-export default function CategorySelect(props) {
-  
+export default function CategorySelect(props: any) {
   // 카테고리 변경 기능
   const handleChangeCategory = (value: string) => {
     props.setSelectedCategory(value);
@@ -44,7 +42,7 @@ export default function CategorySelect(props) {
       >
         {options.map(category => (
           <Option key={category.label} value={category.label}>
-            {category.label}
+            {category.label.split("&")[0]}
           </Option>
         ))}
       </Select>

@@ -26,15 +26,22 @@ export const ProcessBox = styled.div`
   height: 100px;
   margin: 50px 0px;
   display: flex;
+  justify-content: space-between;
 `;
 
 export const StatusBox = styled.div`
-  width: 98px;
-  height: 96px;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const Theme = styled.div``;
+
+export const Date = styled.div`
+  font-size: 14px;
+  color: #888888;
 `;
 
 export const Check = styled.div`
@@ -45,22 +52,23 @@ export const Check = styled.div`
   border: none;
 `;
 
-export const Theme = styled.div``;
-
-export const Date = styled.div`
-  font-size: 14px;
-  color: #888888;
-`;
-
 export const Line = styled.div`
-  width: 450px;
+  width: 100%;
   height: 3px;
   border: 2px solid #c9e2fe;
   margin-top: 15px;
 `;
 
-export const Line2 = styled.div`
-  width: 450px;
+export const StartWork = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 180px;
+  background-color: #c9e2fe;
+  border: none;
+`;
+
+export const Line1 = styled.div`
+  width: 100%;
   height: 3px;
   border: 2px solid #98d6a0;
   margin-top: 15px;
@@ -70,15 +78,22 @@ export const SendWork = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 180px;
-  background-color: #c9e2fe;
+  background-color: #98d6a0;
   border: none;
 `;
 
-export const Compelete = styled.div`
+export const Line2 = styled.div`
+  width: 100%;
+  height: 3px;
+  border: 2px solid #80d6cc;
+  margin-top: 15px;
+`;
+
+export const Complete = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 180px;
-  background-color: #98d6a0;
+  background-color: #80d6cc;
   border: none;
 `;
 

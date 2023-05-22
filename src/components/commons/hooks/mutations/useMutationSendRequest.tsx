@@ -1,9 +1,15 @@
-import { gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 export const SEND_REQUEST = gql`
-  mutation createRequest($createRequestInput: CreateRequestInput!) {
-    createRequest(createRequestInput: $createRequestInput) {
-      _id
+  mutation sendRequest($createRequestInput: CreateRequestInput!) {
+    sendRequest(createRequestInput: $createRequestInput) {
+      request_id
     }
   }
 `;
+
+export const useMutationSendRequest = () => {
+  const Mutation = useMutation(SEND_REQUEST);
+
+  return Mutation;
+};

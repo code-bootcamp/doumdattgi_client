@@ -93,6 +93,7 @@ export const SendingBtn = styled.button`
   color: white;
   border-radius: 6px;
   margin-left: 14px;
+  cursor: pointer;
 `;
 
 export const Arrow = styled.div`
