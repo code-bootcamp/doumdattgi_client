@@ -1,8 +1,16 @@
+import Link from "next/link";
+import { useQueryFetchNewbieProduct } from "../../commons/hooks/queries/useQueryFetchNewbieProduct";
+import { useQueryFetchProducts } from "../../commons/hooks/queries/useQueryFetchProducts";
+import { useQueryFetchRandomProduct } from "../../commons/hooks/queries/useQueryFetchRandomProduct";
 import MainCarousel from "../../commons/parts/main/carousel";
 import PreviewContents from "../../commons/parts/main/previewContents";
 import * as S from "./main.styles";
 
 export default function MainPresenter() {
+  const { data } = useQueryFetchRandomProduct();
+  const { data: Products } = useQueryFetchProducts(1, 8);
+  const { data: Newbie } = useQueryFetchNewbieProduct();
+
   return (
     <S.Wrapper>
       <S.CarouselBox>
@@ -11,12 +19,26 @@ export default function MainPresenter() {
       <S.Body>
         <S.ShowBoards>
           <S.Theme>✨숨은 보석같은 게시글들</S.Theme>
+
           <S.PreviewBox>
-            {new Array(4).fill(1).map((_, idx) => (
-              <S.Preview key={idx}>
-                <S.PreviewImg src="/IU.jpeg" />
-                <PreviewContents />
-              </S.Preview>
+            {data?.fetchRandomProduct.slice(0, 4).map(el => (
+              <Link
+                key={el.product_product_id}
+                href={`/${el.product_product_id}`}
+              >
+                <a>
+                  <S.Preview>
+                    <S.PreviewImg
+                      src={el.i_image_url}
+                      onError={e => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/noimage.png";
+                      }}
+                    />
+                    <PreviewContents el={el} />
+                  </S.Preview>
+                </a>
+              </Link>
             ))}
           </S.PreviewBox>
         </S.ShowBoards>
@@ -26,11 +48,24 @@ export default function MainPresenter() {
         <S.RecentBoards>
           <S.Theme>✨최신 게시글</S.Theme>
           <S.PreviewBox>
-            {new Array(8).fill(1).map((_, idx) => (
-              <S.Preview key={idx}>
-                <S.PreviewImg src="/IU.jpeg" />
-                <PreviewContents />
-              </S.Preview>
+            {Products?.fetchProducts.map(el => (
+              <Link
+                key={el.product_product_id}
+                href={`/${el.product_product_id}`}
+              >
+                <a>
+                  <S.Preview>
+                    <S.PreviewImg
+                      src={el.i_image_url}
+                      onError={e => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/noimage.png";
+                      }}
+                    />
+                    <PreviewContents el={el} />
+                  </S.Preview>
+                </a>
+              </Link>
             ))}
           </S.PreviewBox>
         </S.RecentBoards>
@@ -50,11 +85,24 @@ export default function MainPresenter() {
         <S.NewUserBoards>
           <S.Theme>🌱신규 @@님의 첫 게시글</S.Theme>
           <S.PreviewBox>
-            {new Array(3).fill(1).map((_, idx) => (
-              <S.NewPreview key={idx}>
-                <S.NewPreviewImg src="/IU.jpeg" />
-                <PreviewContents />
-              </S.NewPreview>
+            {Newbie?.fetchNewbieProduct.map(el => (
+              <Link
+                key={el.product_product_id}
+                href={`/${el.product_product_id}`}
+              >
+                <a>
+                  <S.NewPreview>
+                    <S.NewPreviewImg
+                      src={el.i_image_url}
+                      onError={e => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/noimage.png";
+                      }}
+                    />
+                    <PreviewContents el={el} />
+                  </S.NewPreview>
+                </a>
+              </Link>
             ))}
           </S.PreviewBox>
         </S.NewUserBoards>

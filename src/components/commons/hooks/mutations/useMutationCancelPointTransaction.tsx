@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 
 export const CANCEL_PAYMENT = gql`
   mutation cancelPayment($payment_impUid: String!, $payment_type: String!) {
-    cancelPointTransaction(
+    cancelPayment(
       payment_impUid: $payment_impUid
       payment_type: $payment_type
     ) {
