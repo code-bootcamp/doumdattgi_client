@@ -43,8 +43,8 @@ export default function Login(): JSX.Element {
         ></ButtonHeight50px>
       </form>
       <S.FindingBox>
-        <S.Finding href="/accountRecovery">이메일 찾기 {">"} </S.Finding>
-        <S.Finding href="/accountRecovery">비밀번호 찾기 {">"} </S.Finding>
+        <S.Finding href="/accountRecovery/email">이메일 찾기 {">"} </S.Finding>
+        <S.Finding href="/accountRecovery/password">비밀번호 찾기 {">"} </S.Finding>
       </S.FindingBox>
       <S.SocialLogin>
         <div>SNS로 간편하게 시작하기</div>

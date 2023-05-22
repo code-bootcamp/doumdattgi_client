@@ -61,3 +61,45 @@ export const schemaCreateRequest = yup.object({
   request_content: yup.string().required("의뢰 내용을 작성해주세요."),
   request_price: yup.string().required("작업 예상 소요 시간을 입력해주세요")
 });
+
+export const schemaPhone = yup.object({
+  user_phone: yup
+    .string()
+    .required("휴대폰 번호를 입력해주세요.")
+    .matches(
+      /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/,
+      "올바른 휴대폰 번호를 입력해주세요."
+    )
+});
+
+export const schemaPasswordRecover = yup.object({
+  user_phone: yup
+    .string()
+    .required("휴대폰 번호를 입력해주세요.")
+    .matches(
+      /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/,
+      "올바른 휴대폰 번호를 입력해주세요."
+    ),
+  user_token: yup.string().required("인증번호를 입력해주세요.")
+});
+
+export const schemaPasswordReset = yup.object({
+  password: yup
+    .string()
+    .min(8, "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요.")
+    .max(16, "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요.")
+    .matches(
+      /^[a-zA-Z0-9]{8,16}$/,
+      "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요."
+    )
+    .required("비밀번호를 입력해주세요."),
+  passwordCheck: yup
+    .string()
+    .required("비밀번호를 입력해주세요.")
+    .oneOf([yup.ref("password")])
+    .matches(
+      /^[a-zA-Z0-9]{8,16}$/,
+      "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요."
+    )
+    .required()
+});

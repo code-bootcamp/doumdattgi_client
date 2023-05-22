@@ -189,7 +189,7 @@ export default function BoardWritePresenter(props: any) {
                   <S.SearchBox>
                     <S.ZipcodeBox>
                       <InputHeight38px value={zonecode} disabled />
-                      <S.SearchBtn onClick={onClickAddressSearch}>
+                      <S.SearchBtn onClick={onClickAddressSearch} type="button">
                         우편번호 검색
                       </S.SearchBtn>
                     </S.ZipcodeBox>
