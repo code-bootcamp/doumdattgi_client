@@ -44,6 +44,7 @@ export const Preview = styled.div`
   border-radius: 6px;
   border: 1px solid #bec3c7;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const PreviewImg = styled.img`
@@ -91,6 +92,7 @@ export const NewPreview = styled.div`
   overflow: hidden;
   border-radius: 6px;
   border: 1px solid #d5d7d7;
+  cursor: pointer;
 `;
 
 export const NewPreviewImg = styled.img`

@@ -9,6 +9,7 @@ export const FETCH_RANDOM_PRODUCT = gql`
       product_product_workDay
       product_product_category
       u_user_nickname
+      u_user_profileImage
       i_image_url
     }
   }

@@ -22,16 +22,16 @@ export const useCreateProduct = () => {
 
   // =============== 글작성 ===============
   const onClickWrite = async (data: IFormData): Promise<void> => {
-    const selectedCategory2 = selectedCategory.split("&");
-    const selectedCategory3 = selectedCategory2[1];
-    console.log(selectedCategory3);
+    console.log(data);
+    console.log(selectedCategory);
+
     try {
       const result = await createProduct({
         variables: {
           createProductInput: {
             product_sellOrBuy: true,
             product_title: data.title,
-            product_category: selectedCategory3,
+            product_category: "DESIGN",
             product_sub_category: selectedOptions,
             product_summary: data.summary,
             product_main_text: data.contents,
@@ -53,12 +53,7 @@ export const useCreateProduct = () => {
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }
-    console.log(
-      selectedCategory3,
-      selectedOptions,
-      selectedWorkDay,
-      selectedWorkTime
-    );
+    console.log(selectedOptions, selectedWorkDay, selectedWorkTime);
   };
 
   return {

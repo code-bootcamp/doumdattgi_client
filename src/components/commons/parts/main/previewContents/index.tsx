@@ -8,7 +8,13 @@ export default function PreviewContents(props) {
       <S.Pv_Footer>
         <S.Tag>{props.el?.product_product_workDay}</S.Tag>
         <S.UserInfo>
-          <S.ProfileImg src="/Profile.png" />
+          <S.ProfileImg
+            src={props.el?.u_user_profileImage}
+            onError={e => {
+              const target = e.target as HTMLImageElement;
+              target.src = "/Profile.png";
+            }}
+          />
           <S.NickName>{props.el?.u_user_nickname}</S.NickName>
         </S.UserInfo>
       </S.Pv_Footer>
