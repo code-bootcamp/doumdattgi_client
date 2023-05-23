@@ -8,8 +8,6 @@ import { IPropsRefund } from "./refund.types";
 export default function RefundPoint(props: IPropsRefund) {
   const refetch = useRecoilValue(refetchAtom);
 
-  console.log(props);
-
   const [CancelPayment] = useMutationCancelPayment();
 
   const cancelRefund = () => {

@@ -44,6 +44,7 @@ export const UserInfo = styled.div`
 export const ProfileImg = styled.img`
   width: 25px;
   height: 25px;
+  border-radius: 50%;
   margin-right: 10px;
 `;
 

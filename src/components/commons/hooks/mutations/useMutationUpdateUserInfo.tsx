@@ -1,0 +1,18 @@
+import { gql, useMutation } from "@apollo/client";
+
+export const UPDATE_USER_INFO = gql`
+  mutation updateUserInfo($updateUserInfoInput: UpdateUserInfoInput!) {
+    updateUserInfo(updateUserInfoInput: $updateUserInfoInput) {
+      user_id
+      user_email
+      user_name
+      user_portfolio
+    }
+  }
+`;
+
+export const useMutationUpdateUserInfo = () => {
+  const Mutation = useMutation(UPDATE_USER_INFO);
+
+  return Mutation;
+};

@@ -36,7 +36,6 @@ export const WrapperRight = styled.div`
 
 export const CategoryTag = styled.span`
   margin-right: 5px;
-  cursor: pointer;
 `;
 
 export const RightHeader = styled.div`

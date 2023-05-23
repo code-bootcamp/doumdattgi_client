@@ -14,6 +14,16 @@ export type Scalars = {
   Upload: any;
 };
 
+export type ICancelPaymentOutput = {
+  __typename?: 'CancelPaymentOutput';
+  payment_amount: Scalars['Int'];
+  payment_createdAt: Scalars['DateTime'];
+  payment_id: Scalars['String'];
+  payment_impUid: Scalars['String'];
+  payment_status: Scalars['String'];
+  payment_type: Scalars['String'];
+};
+
 export type ICreateProductInput = {
   product_category: Scalars['String'];
   product_detailAddress: Scalars['String'];
@@ -46,12 +56,53 @@ export type ICreateUserInput = {
   user_phone: Scalars['String'];
 };
 
+export type IFetchMyProductOutput = {
+  __typename?: 'FetchMyProductOutput';
+  i_image_url: Scalars['String'];
+  product_product_category: Scalars['String'];
+  product_product_id: Scalars['String'];
+  product_product_sellOrBuy: Scalars['Boolean'];
+  product_product_title: Scalars['String'];
+  product_product_workDay: Scalars['String'];
+  u_user_id: Scalars['String'];
+  u_user_nickname: Scalars['String'];
+  u_user_profileImage?: Maybe<Scalars['String']>;
+};
+
+export type IFetchPaymentOutput = {
+  __typename?: 'FetchPaymentOutput';
+  payment_payment_amount: Scalars['Int'];
+  payment_payment_createdAt: Scalars['DateTime'];
+  payment_payment_id: Scalars['String'];
+  payment_payment_impUid: Scalars['String'];
+  payment_payment_status: Scalars['String'];
+  payment_payment_type: Scalars['String'];
+  u_user_email: Scalars['String'];
+  u_user_id: Scalars['String'];
+  u_user_name: Scalars['String'];
+  u_user_nickname: Scalars['String'];
+  u_user_phone: Scalars['String'];
+};
+
 export type IFetchProductOutput = {
   __typename?: 'FetchProductOutput';
   i_image_url: Scalars['String'];
   product_product_category: Scalars['String'];
   product_product_id: Scalars['String'];
   product_product_sellOrBuy: Scalars['Boolean'];
+  product_product_title: Scalars['String'];
+  product_product_workDay: Scalars['String'];
+  u_user_nickname: Scalars['String'];
+  u_user_profileImage?: Maybe<Scalars['String']>;
+};
+
+export type IFetchSubCategoryOutput = {
+  __typename?: 'FetchSubCategoryOutput';
+  i_image_url: Scalars['String'];
+  product_product_category: Scalars['String'];
+  product_product_id: Scalars['String'];
+  product_product_sellOrBuy: Scalars['Boolean'];
+  product_product_sub_category: Scalars['String'];
   product_product_title: Scalars['String'];
   product_product_workDay: Scalars['String'];
   u_user_nickname: Scalars['String'];
@@ -68,11 +119,12 @@ export type IImage = {
 
 export type IMutation = {
   __typename?: 'Mutation';
-  cancelPayment: IPayment;
+  cancelPayment: ICancelPaymentOutput;
   checkValidTokenEMAIL: Scalars['Boolean'];
   checkValidTokenFindEmailBySMS: Scalars['String'];
   checkValidTokenFindPwdBySMS: Scalars['Boolean'];
   createPayment: IPayment;
+  createPick: Scalars['String'];
   createProduct: IProduct;
   createUser: IUser;
   deleteLoginProduct: Scalars['Boolean'];
@@ -80,7 +132,9 @@ export type IMutation = {
   login: Scalars['String'];
   logout: Scalars['String'];
   requestAcceptRefuse: IRequest;
-  requestStart: Scalars['Boolean'];
+  requestProcess: Scalars['Boolean'];
+  resetPassword: Scalars['Boolean'];
+  resetPasswordSettingPage: Scalars['Boolean'];
   restoreAccessToken: Scalars['String'];
   sendRequest: IRequest;
   sendTokenEmail: Scalars['String'];
@@ -124,6 +178,11 @@ export type IMutationCreatePaymentArgs = {
 };
 
 
+export type IMutationCreatePickArgs = {
+  product_id: Scalars['String'];
+};
+
+
 export type IMutationCreateProductArgs = {
   createProductInput: ICreateProductInput;
 };
@@ -151,9 +210,20 @@ export type IMutationRequestAcceptRefuseArgs = {
 };
 
 
-export type IMutationRequestStartArgs = {
+export type IMutationRequestProcessArgs = {
   process: Scalars['String'];
   request_id: Scalars['String'];
+};
+
+
+export type IMutationResetPasswordArgs = {
+  new_password: Scalars['String'];
+  user_phone: Scalars['String'];
+};
+
+
+export type IMutationResetPasswordSettingPageArgs = {
+  new_password: Scalars['String'];
 };
 
 
@@ -199,7 +269,10 @@ export type IMutationUploadFileArgs = {
 
 export enum IPayment_Status_Enum {
   Cancel = 'CANCEL',
-  Payment = 'PAYMENT'
+  Payment = 'PAYMENT',
+  Refund = 'REFUND',
+  Request = 'REQUEST',
+  Sell = 'SELL'
 }
 
 export enum IProduct_Category_Enum {
@@ -250,15 +323,17 @@ export type IQuery = {
   fetchCategoryProduct: Array<IFetchProductOutput>;
   fetchDetailProduct: IProduct;
   fetchLoginUser: IUser;
+  fetchMyProduct: Array<IFetchMyProductOutput>;
   fetchNewbieProduct: Array<IFetchProductOutput>;
   fetchOneRequest: IRequest;
-  fetchPayments: Array<IPayment>;
+  fetchPayments: Array<IFetchPaymentOutput>;
   fetchProducts: Array<IFetchProductOutput>;
   fetchRandomProduct: Array<IFetchProductOutput>;
+  fetchSearchProduct: Array<IFetchProductOutput>;
   fetchSellCategoryProducts: Array<IFetchProductOutput>;
   fetchSellProduct: Array<IFetchProductOutput>;
   fetchSellerWork: Array<IRequest>;
-  fetchUserPaymentInfo: Array<IPayment>;
+  fetchSubCategoryProduct: Array<IFetchSubCategoryOutput>;
 };
 
 
@@ -274,13 +349,20 @@ export type IQueryFetchDetailProductArgs = {
 };
 
 
+export type IQueryFetchMyProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+};
+
+
 export type IQueryFetchOneRequestArgs = {
   request_id: Scalars['String'];
 };
 
 
 export type IQueryFetchPaymentsArgs = {
-  payment_impUid: Scalars['String'];
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
 };
 
 
@@ -290,9 +372,24 @@ export type IQueryFetchProductsArgs = {
 };
 
 
+export type IQueryFetchSearchProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+  product_title: Scalars['String'];
+};
+
+
 export type IQueryFetchSellCategoryProductsArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
+};
+
+
+export type IQueryFetchSubCategoryProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+  product_category: Scalars['String'];
+  product_sub_category: Scalars['String'];
 };
 
 export enum IRequest_Isaccept_Enum {
@@ -304,6 +401,7 @@ export enum IRequest_Isaccept_Enum {
 
 export type IRequest = {
   __typename?: 'Request';
+  buyer_email: Scalars['String'];
   buyer_id: Scalars['String'];
   buyer_nickname: Scalars['String'];
   buyer_profileImage: Scalars['String'];
@@ -317,6 +415,7 @@ export type IRequest = {
   request_sendAt?: Maybe<Scalars['DateTime']>;
   request_startAt?: Maybe<Scalars['DateTime']>;
   request_title: Scalars['String'];
+  seller_email: Scalars['String'];
   seller_id: Scalars['String'];
   seller_nickname: Scalars['String'];
   seller_profileImage: Scalars['String'];
@@ -357,6 +456,8 @@ export type IUpdateUserInfoInput = {
 
 export type IUser = {
   __typename?: 'User';
+  payment: Array<IPayment>;
+  product: Array<IProduct>;
   user_email: Scalars['String'];
   user_id: Scalars['String'];
   user_introduce?: Maybe<Scalars['String']>;
