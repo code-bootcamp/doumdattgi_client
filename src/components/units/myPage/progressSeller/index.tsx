@@ -37,7 +37,7 @@ export default function ProgressSeller(): JSX.Element {
             <S.ListDate>{el.request_createAt}</S.ListDate>
             <S.UserBox>
               <S.UserIcon src="/Profile.png" />
-              <S.UserName>{el.seller_nickname}</S.UserName>
+              <S.UserName>{el.buyer_nickname}</S.UserName>
             </S.UserBox>
           </S.ListRight>
         </S.List>
