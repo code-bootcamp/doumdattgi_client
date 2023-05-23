@@ -10,6 +10,7 @@ export const FETCH_SELLER_WORK = gql`
       seller_id
       seller_nickname
       seller_profileImage
+      buyer_nickname
     }
   }
 `;

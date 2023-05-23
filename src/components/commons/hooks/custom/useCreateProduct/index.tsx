@@ -39,8 +39,12 @@ export const useCreateProduct = () => {
             product_workTime: Number(selectedWorkTime),
             product_startTime: 1,
             product_endTime: 1,
-            product_thumbnailImage: [],
-            product_isMain: [],
+            product_thumbnailImage: [
+              {
+                thumbnailImage: "asdf",
+                isMain: true
+              }
+            ],
             product_postNum: "",
             product_roadAddress: "",
             product_detailAddress: ""

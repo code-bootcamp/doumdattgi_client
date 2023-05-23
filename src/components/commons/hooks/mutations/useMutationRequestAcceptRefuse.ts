@@ -4,6 +4,8 @@ export const REQUEST_ACCEPT_REFUSE = gql`
   mutation RequestAcceptRefuse($acceptRefuse: String!, $request_id: String!) {
     requestAcceptRefuse(acceptRefuse: $acceptRefuse, request_id: $request_id) {
       request_id
+      buyer_id
+      seller_id
     }
   }
 `;
