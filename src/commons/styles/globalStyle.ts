@@ -92,7 +92,7 @@ export const globalStyle = css`
     font-style: normal;
   }
 
-  // Toast UI 툴팁 색상
+  // .Toast UI 툴팁 색상
   .toastui-editor-tooltip .text {
     color: white;
   }
