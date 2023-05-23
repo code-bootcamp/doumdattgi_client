@@ -22,15 +22,28 @@ export default function ProgressBuyer(): JSX.Element {
           onClick={onClickMoveToPage(`/${el.request_id}/workAgreement`)}
         >
           <S.ListLeft>
-            <S.ListStatus>
-              {el.request_isAccept === "WAITING"
-                ? "대기중"
-                : el.request_isAccept === "ACCEPTED"
-                ? "진행중"
-                : el.request_isAccept === "REFUSE"
-                ? "거절됨"
-                : "종료"}
-            </S.ListStatus>
+            {el.request_isAccept === "WAITING" ? (
+              <S.ListStatusWaiting>대기중</S.ListStatusWaiting>
+            ) : (
+              <></>
+            )}
+            {el.request_isAccept === "ACCEPTED" ? (
+              <S.ListStatusAccept>진행중</S.ListStatusAccept>
+            ) : (
+              <></>
+            )}
+            {el.request_isAccept === "REFUSE" ? (
+              <S.ListStatusRefuse>거절됨</S.ListStatusRefuse>
+            ) : (
+              <></>
+            )}
+            {el.request_isAccept !== "WAITING" &&
+            el.request_isAccept !== "ACCEPTED" &&
+            el.request_isAccept !== "REFUSE" ? (
+              <S.ListStatusFinish>종료</S.ListStatusFinish>
+            ) : (
+              <></>
+            )}
             <S.ListTitle>{el.request_title}</S.ListTitle>
           </S.ListLeft>
           <S.ListRight>

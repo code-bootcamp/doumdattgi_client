@@ -5,8 +5,7 @@ import { RangeValue } from "../../../../../node_modules/rc-picker/lib/interface"
 import { useState } from "react";
 import { useCreateProduct } from "../../hooks/custom/useCreateProduct";
 
-export default function WorkingTimePicker (props) {
-
+export default function WorkingTimePicker(props) {
   dayjs.extend(customParseFormat);
 
   // 작업 시작시간, 종료시간 연산
@@ -19,9 +18,9 @@ export default function WorkingTimePicker (props) {
     const startTime = Number(timeString[0].slice(0, 2));
     const FinishTime = Number(timeString[1].slice(0, 2));
 
-    const result = String(Math.abs(startTime - FinishTime));
+    // const result = String(Math.abs(startTime - FinishTime));
 
-    props.setSelectedWorkTime(String(result));
+    props.setSelectedWorkTime([String(startTime), String(FinishTime)]);
   };
 
   return (

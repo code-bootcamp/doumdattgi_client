@@ -12,9 +12,13 @@ import { useRouter } from "next/router";
 import { useQueryFetchDetailProduct } from "../../commons/hooks/queries/useQueryFetchDetailProduct";
 import PreviewContents from "../../commons/parts/main/previewContents";
 import { useQueryFetchRandomProduct } from "../../commons/hooks/queries/useQueryFetchRandomProduct";
+import DOMPurify from "dompurify";
+import { Obj, CategoryObj } from "../../../commons/libraries/translate";
+import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 
 export default function Detail() {
   const router = useRouter();
+  const { onClickMoveToPage } = useMoveToPage();
 
   const id = String(router.query.id);
   const { data } = useQueryFetchDetailProduct(id);
@@ -23,16 +27,9 @@ export default function Detail() {
   // fetch 한 이미지들을 담은 배열
   const ImgArr = data?.fetchDetailProduct.images.map(el => el.image_url);
 
-  //fetch 한 작업가능 일자(enum 타입)를 한글로 변환하기 위한 로직
-  const Obj = {
-    WEEKDAY: "주중",
-    WEEKEND: "주말",
-    NEGOTIATION: "협의가능"
-  };
-
   const workDay = data?.fetchDetailProduct.product_workDay;
   const Day = workDay && Obj[workDay];
-
+  console.log(data);
   return (
     <S.Wrapper>
       <S.Container>
@@ -41,7 +38,13 @@ export default function Detail() {
         </S.SliderBox>
         <S.DetailWrap>
           <S.DetailBox>
-            <S.Category>{data?.fetchDetailProduct.product_category}</S.Category>
+            <S.Category>
+              {
+                CategoryObj[
+                  data?.fetchDetailProduct?.product_category ?? "DESIGN"
+                ]
+              }
+            </S.Category>
             <S.TitleWrap>
               <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
               <S.IconBox>
@@ -51,7 +54,7 @@ export default function Detail() {
             </S.TitleWrap>
             <S.TagWrap>
               <S.Tag>{data?.fetchDetailProduct.product_sub_category}</S.Tag>
-              <S.Tag>{data?.fetchDetailProduct.product_workDay}</S.Tag>
+              <S.Tag>{Day}</S.Tag>
             </S.TagWrap>
             <S.Remarks>{data?.fetchDetailProduct.product_summary}</S.Remarks>
           </S.DetailBox>
@@ -74,9 +77,15 @@ export default function Detail() {
       <S.Container className="bottom">
         <S.DetailContentsWrap>
           <S.DetailTitle>상세 내용</S.DetailTitle>
-          <S.DetailContents>
-            {data?.fetchDetailProduct.product_main_text}
-          </S.DetailContents>
+          {typeof window !== "undefined" && (
+            <S.DetailContents
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(
+                  String(data?.fetchDetailProduct.product_main_text) ?? ""
+                )
+              }}
+            ></S.DetailContents>
+          )}
         </S.DetailContentsWrap>
         <S.DetailUserWrap>
           <S.UserName>{data?.fetchDetailProduct.user.user_nickname}</S.UserName>
@@ -127,7 +136,10 @@ export default function Detail() {
       <S.Subtitle>이런 게시글은 어떠세요?</S.Subtitle>
       <S.CardBoxWrap>
         {random?.fetchRandomProduct.map(el => (
-          <S.Preview key={el.product_product_id}>
+          <S.Preview
+            onClick={onClickMoveToPage(`/${el.product_product_id}`)}
+            key={el.product_product_id}
+          >
             <S.PreviewImg
               src={el.i_image_url}
               onError={e => {

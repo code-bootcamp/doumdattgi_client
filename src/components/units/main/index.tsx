@@ -9,7 +9,7 @@ import { useQueryFetchSellProduct } from "../../commons/hooks/queries/useQueryFe
 
 export default function MainPresenter() {
   const { data } = useQueryFetchRandomProduct();
-  const { data: Products } = useQueryFetchProducts(1, 8);
+  const { data: Products } = useQueryFetchProducts();
   const { data: Newbie } = useQueryFetchNewbieProduct();
   const { data: Sellers } = useQueryFetchSellProduct();
 
@@ -48,7 +48,7 @@ export default function MainPresenter() {
         <S.RecentBoards>
           <S.Theme>✨최신 게시글</S.Theme>
           <S.PreviewBox>
-            {Products?.fetchProducts.map(el => (
+            {Products?.fetchAllProducts.map(el => (
               <S.Preview
                 onClick={onClickMoveToPage(`/${el.product_product_id}`)}
                 key={el.product_product_id}

@@ -7,26 +7,24 @@ import CommentDrawer from "../../commons/parts/commentDrawer";
 import { useQueryFetchOneRequest } from "../../commons/hooks/queries/useQueryFetchOneRequest";
 import { useRouter } from "next/router";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
+import { useRequestAcceptRefuse } from "../../commons/hooks/custom/useRequestAcceptRefuse/index";
 
 export default function WorkAgreement(): JSX.Element {
-  const [isAccept, setIsAccept] = useState(false);
-  const [isReject, setIsReject] = useState(false);
-
   const router = useRouter();
 
-  const { data } = useQueryFetchOneRequest(router.query.id as string);
+  const { data, refetch } = useQueryFetchOneRequest(router.query.id as string);
   const { data: login } = useQueryFetchLoginUser();
 
-  const onClickAccept = (): void => {
-    setIsAccept(true);
-  };
-
-  const onClickReject = (): void => {
-    setIsReject(true);
-  };
+  const {
+    onClickRequestAccept,
+    isAccept,
+    isRefuse,
+    isDone,
+    onClickRequestRefuse,
+    onClickRequestDone
+  } = useRequestAcceptRefuse();
 
   const ID = login?.fetchLoginUser?.user_id;
-
   const time = Number(data?.fetchOneRequest.request_price) / 9620;
 
   return (
@@ -35,13 +33,11 @@ export default function WorkAgreement(): JSX.Element {
         <CommentDrawer />
         <S.Wrapper>
           <S.Category>
-            {data?.fetchOneRequest.request_isAccept === "WAITING"
-              ? "대기중"
-              : data?.fetchOneRequest.request_isAccept === "ACCEPTED"
-              ? "진행중"
-              : data?.fetchOneRequest.request_isAccept === "REFUSE"
-              ? "거절됨"
-              : "종료"}
+            {data.fetchOneRequest.request_isAccept === "WAITING" ? (
+              "대기중"
+            ) : (
+              <></>
+            )}
           </S.Category>
           <S.Title>{data?.fetchOneRequest?.request_title}</S.Title>
           <S.ProcessBox>
@@ -79,17 +75,27 @@ export default function WorkAgreement(): JSX.Element {
             <S.SpecialCharacter> ₩ </S.SpecialCharacter>
             <S.Price>{data?.fetchOneRequest?.request_price}</S.Price>
           </S.PaymentBox>
-          {/* 작업자인지 신청자인지에 따라 분기 예정 */}
           {ID === data?.fetchOneRequest?.buyer_id ? (
             <S.Box>
-              <S.AcceptBox>
-                <FontAwesomeIcon
-                  icon={faSpinner}
-                  spin
-                  style={{ fontSize: "60px", marginRight: "10px" }}
-                />
-                수락 대기중
-              </S.AcceptBox>
+              {!isAccept ? (
+                <>
+                  <S.AcceptBox>
+                    <FontAwesomeIcon
+                      icon={faSpinner}
+                      spin
+                      style={{ fontSize: "60px", marginRight: "10px" }}
+                    />
+                    수락 대기중
+                  </S.AcceptBox>
+                </>
+              ) : (
+                <>
+                  <S.AcceptBox>
+                    <S.Icon src="/reject.png" />
+                    의뢰 거절
+                  </S.AcceptBox>
+                </>
+              )}
             </S.Box>
           ) : (
             <S.Box>
@@ -100,7 +106,7 @@ export default function WorkAgreement(): JSX.Element {
                     의뢰 수락
                   </S.AcceptBox>
                 </>
-              ) : isReject ? (
+              ) : isRefuse ? (
                 <>
                   <S.AcceptBox>
                     <S.Icon src="/reject.png" />
@@ -109,15 +115,31 @@ export default function WorkAgreement(): JSX.Element {
                 </>
               ) : (
                 <>
-                  <ButtonHeight70px title="거절하기" onClick={onClickReject} />
+                  <S.Btn onClick={onClickRequestRefuse}>거절하기</S.Btn>
                   <S.Between></S.Between>
-                  <ButtonHeight70px title="수락하기" onClick={onClickAccept} />
+                  <S.Btn onClick={onClickRequestAccept}>수락하기</S.Btn>
                 </>
               )}
             </S.Box>
           )}
-
-          {/* 이 사이에서 분기가 이루어져야함!!!*/}
+          {isAccept ? (
+            <>
+              <S.Contents>
+                작업 완료 전, 꼭 확인해주세요.
+                <S.ContentsIndex>
+                  • 작업물 전달은 이메일로 이루어집니다. 상대방의 이메일로
+                  올바르게 전송하였는지 확인해주세요.
+                </S.ContentsIndex>
+                <S.Box>
+                  • 판매자와 신청자가 상호 협의한 경우 이미 시작한 작업을 취소할
+                  수 있어요. 이 경우 환불 금액은 상호 협의한 금액에 따라요.
+                </S.Box>
+              </S.Contents>
+              <S.Btn2 onClick={onClickRequestDone}>작업 완료하기</S.Btn2>
+            </>
+          ) : (
+            <></>
+          )}
 
           <S.Box>
             <S.UserBox>
