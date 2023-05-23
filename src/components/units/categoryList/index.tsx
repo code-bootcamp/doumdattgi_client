@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
 import { CategoryObj, Obj } from "../../../commons/libraries/translate";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
+import { useState } from "react";
 
 export default function CategoryList(): JSX.Element {
   const router = useRouter();
@@ -44,6 +45,8 @@ export default function CategoryList(): JSX.Element {
     });
   };
 
+  const clickGotoAllList = () => {};
+
   return (
     <S.Wrapper>
       <S.WrapperLeft>
@@ -53,7 +56,7 @@ export default function CategoryList(): JSX.Element {
         <S.LeftList>리스트 목록</S.LeftList>
       </S.WrapperLeft>
       <S.WrapperRight>
-        <S.CategoryTag>홈</S.CategoryTag>
+        <S.CategoryTag onClick={clickGotoAllList}>홈</S.CategoryTag>
         <S.CategoryTag>{`>`}</S.CategoryTag>
         <S.CategoryTag>{CategoryObj[CategoryTitle ?? category]}</S.CategoryTag>
         <S.RightHeader>

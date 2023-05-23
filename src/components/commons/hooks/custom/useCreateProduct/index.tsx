@@ -16,11 +16,8 @@ export const useCreateProduct = () => {
   const router = useRouter();
 
   const [createProduct] = useMutationCreateProduct();
-<<<<<<< HEAD
-=======
   const [uploadFile] = useMutationUploadFile();
 
->>>>>>> 137f8fcf694ecddf7ed22a716d37de8ec1830870
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedWorkDay, setSelectedWorkDay] = useState("");
