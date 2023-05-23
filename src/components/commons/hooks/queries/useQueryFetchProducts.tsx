@@ -1,9 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 import { IQuery } from "../../../../commons/types/generated/types";
 
-export const FETCH_PRODUCTS = gql`
-  query fetchProducts($page: Float!, $pageSize: Float!) {
-    fetchProducts(page: $page, pageSize: $pageSize) {
+export const FETCH_ALL_PRODUCTS = gql`
+  query fetchAllProducts {
+    fetchAllProducts {
       product_product_id
       product_product_title
       product_product_category
@@ -15,13 +15,11 @@ export const FETCH_PRODUCTS = gql`
   }
 `;
 
-export const useQueryFetchProducts = (page: number, pageSize: number) => {
-  const Query = useQuery<Pick<IQuery, "fetchProducts">>(FETCH_PRODUCTS, {
-    variables: {
-      page: page,
-      pageSize: pageSize
-    }
-  });
+export const useQueryFetchProducts = () => {
+  const Query = useQuery<Pick<IQuery, "fetchAllProducts">>(
+    FETCH_ALL_PRODUCTS,
+    {}
+  );
 
   return Query;
 };
