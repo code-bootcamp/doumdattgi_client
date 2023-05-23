@@ -29,7 +29,7 @@ export default function Detail() {
 
   const workDay = data?.fetchDetailProduct.product_workDay;
   const Day = workDay && Obj[workDay];
-
+  console.log(data);
   return (
     <S.Wrapper>
       <S.Container>

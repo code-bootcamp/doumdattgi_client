@@ -33,13 +33,11 @@ export default function WorkAgreement(): JSX.Element {
         <CommentDrawer />
         <S.Wrapper>
           <S.Category>
-            {data?.fetchOneRequest.request_isAccept === "WAITING"
-              ? "대기중"
-              : data?.fetchOneRequest.request_isAccept === "ACCEPTED"
-              ? "진행중"
-              : data?.fetchOneRequest.request_isAccept === "REFUSE"
-              ? "거절됨"
-              : "종료"}
+            {data.fetchOneRequest.request_isAccept === "WAITING" ? (
+              "대기중"
+            ) : (
+              <></>
+            )}
           </S.Category>
           <S.Title>{data?.fetchOneRequest?.request_title}</S.Title>
           <S.ProcessBox>
