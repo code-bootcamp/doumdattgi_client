@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     const prevPath: string | null = storage.getItem("currentPath");
     storage.setItem("prevPath", prevPath ?? "");
 
-    // 현재 페이지 세션 스토리지에 저장
+    //  .현재 페이지 세션 스토리지에 저장
     storage.setItem("currentPath", globalThis.location.pathname);
   }
 
