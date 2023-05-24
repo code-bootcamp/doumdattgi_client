@@ -92,11 +92,13 @@ export const Required = styled.span`
   color: #ffc56d;
 `;
 
-export const Input01 = styled.input`
-  width: 920px;
+export const Input = styled.input`
+  width: 100%;
   height: 38px;
-  border-radius: 6px;
-  border: 1px solid #cccccc;
+  border-radius: 10px;
+  border: 1px solid #dbdbdb;
+  padding-left: 10px;
+  font-size: 14px;
 `;
 
 export const Body_Middle = styled.div`

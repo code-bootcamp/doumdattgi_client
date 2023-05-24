@@ -16,13 +16,22 @@ export default function AccountRecovery(props: IFinding): JSX.Element {
     register,
     formState,
     handleSubmit,
-    onClickValidate
+    onClickValidatePW,
+    onClickValidateEmail
   } = useAccountRecovery();
 
   return (
     <>
       <S.Wrapper>
-        <form onSubmit={isValidateOpen ? handleSubmit(onClickValidate) : handleSubmit(onClickAuthPhone)}>
+        <form
+          onSubmit={
+            isValidateOpen
+              ? handleSubmit(
+                  props.isEmail ? onClickValidateEmail : onClickValidatePW
+                )
+              : handleSubmit(onClickAuthPhone)
+          }
+        >
           <S.Title>{props?.isEmail ? "이메일 " : "비밀번호 "}찾기</S.Title>
           <S.SubTitle>
             가입 시 등록했던 휴대폰 번호를 입력해주세요.
@@ -40,7 +49,10 @@ export default function AccountRecovery(props: IFinding): JSX.Element {
               <S.AuthWrapper>
                 <S.IndexTitle>인증번호 입력</S.IndexTitle>
                 <S.AuthBody>
-                  <InputHeight42px placeholder="인증번호 입력" register={register("user_token")}/>
+                  <InputHeight42px
+                    placeholder="인증번호 입력"
+                    register={register("user_token")}
+                  />
                   <S.Button>
                     <ButtonHeight42px title="인증하기" />
                   </S.Button>
@@ -49,7 +61,7 @@ export default function AccountRecovery(props: IFinding): JSX.Element {
             </>
           ) : (
             <>
-              <ButtonHeight50px title="전송하기"/>
+              <ButtonHeight50px title="전송하기" />
             </>
           )}
         </form>
@@ -61,4 +73,3 @@ export default function AccountRecovery(props: IFinding): JSX.Element {
     </>
   );
 }
-

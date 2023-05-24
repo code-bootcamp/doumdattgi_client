@@ -22,7 +22,13 @@ export const refetchAtom = atom<() => void>({
   key: "refetchAtom",
   default: () => {}
 });
+
 export const userPhoneState = atom({
   key: "userPhoneState",
+  default: ""
+});
+
+export const userEmailState = atom({
+  key: "userEmailState",
   default: ""
 });

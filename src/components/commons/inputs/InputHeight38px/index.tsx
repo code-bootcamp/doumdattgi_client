@@ -7,6 +7,7 @@ interface IInputProps {
   placeholder?: string;
   value?: string;
   disabled?: boolean;
+  defaultValue?: string;
 }
 
 export const Input = styled.input`
@@ -25,6 +26,7 @@ export default function InputHeight38px(props: IInputProps): JSX.Element {
       placeholder={props.placeholder}
       {...props.register}
       value={props.value}
+      defaultValue={props.defaultValue}
       disabled={props.disabled}
     />
   );

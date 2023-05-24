@@ -44,17 +44,19 @@ export default function Login(): JSX.Element {
       </form>
       <S.FindingBox>
         <S.Finding href="/accountRecovery/email">이메일 찾기 {">"} </S.Finding>
-        <S.Finding href="/accountRecovery/password">비밀번호 찾기 {">"} </S.Finding>
+        <S.Finding href="/accountRecovery/password">
+          비밀번호 찾기 {">"}{" "}
+        </S.Finding>
       </S.FindingBox>
       <S.SocialLogin>
         <div>SNS로 간편하게 시작하기</div>
-        <Link href={"https://doumdattgi-server.com/login/kakao/"}>
+        <Link href={"https://doumdattgi-server.com/login/kakao"}>
           <S.SocialLoginButton src="/카카오톡 버튼.png" />
         </Link>
-        <Link href={"https://doumdattgi-server.com/login/google/"}>
+        <Link href={"https://doumdattgi-server.com/login/google"}>
           <S.SocialLoginButton src="/구글 버튼.png" />
         </Link>
-        <Link href={"https://doumdattgi-server.com/login/naver/"}>
+        <Link href={"https://doumdattgi-server.com/login/naver"}>
           <S.SocialLoginButton src="/네이버 버튼.png" />
         </Link>
       </S.SocialLogin>

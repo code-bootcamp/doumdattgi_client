@@ -2,49 +2,22 @@ import dynamic from "next/dynamic";
 import * as S from "./index.styles";
 import WorkingTimePicker from "../../commons/parts/Timepicker";
 import WorkTimeDropBox from "../../commons/parts/Dropboxs/write";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaCreate } from "../../../commons/libraries/schema";
 import CategorySelect from "../../commons/parts/categorySelect/index";
 import InputHeight38px from "../../commons/inputs/InputHeight38px";
 import ButtonHeight40px from "../../commons/buttons/ButtonHeight40px";
 import { useCreateProduct } from "../../commons/hooks/custom/useCreateProduct";
 import ImageUpload from "../../commons/parts/imageUpload";
-import { useRef, useState } from "react";
 import Map from "../../commons/parts/map";
-import { Modal } from "antd";
-import DaumPostcodeEmbed from "react-daum-postcode";
 import { wrapFormAsync } from "../../../commons/libraries/asyncFunc";
-import { EditorInstance, EditorInstance2 } from "./index.types";
+import AddressModal from "../../commons/hooks/custom/useAddress";
+import { useQueryFetchDetailProduct } from "../../commons/hooks/queries/useQueryFetchDetailProduct";
+import { useRouter } from "next/router";
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false
 });
 
-// interface IFormData {
-//   title: string;
-//   tags: string;
-//   remarks: string;
-//   contents: string;
-//   address: string;
-//   addressDetail: string;
-//   zonecode: string;
-// }
-
-interface Address {
-  address: string;
-  zonecode: string;
-}
-
-// interface IEditor {
-//   getInstance: any;
-// }
-
 export default function BoardWritePresenter(props: any) {
-  const [address, setAddress] = useState("");
-  const [zonecode, setZonecode] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [isToggle, setIsToggle] = useState(true);
 
   const {
     onClickWrite,
@@ -57,68 +30,35 @@ export default function BoardWritePresenter(props: any) {
     selectedWorkTime,
     setSelectedWorkTime,
     fileList,
-    setFileList
+    setFileList,
+    register,
+    handleSubmit,
+    editorRef,
+    onChangeContents,
+    isModalOpen,
+    setIsModalOpen,
+    address,
+    setAddress,
+    zipcode,
+    setZipcode,
+    formState,
+    clickEmployee,
+    clickEmployer,
+    isToggle,
+    onClickAddressSearch,
   } = useCreateProduct();
 
-  const editorRef = useRef<EditorInstance>(null);
-
-  const { register, setValue, trigger, handleSubmit, formState } = useForm({
-    mode: "onChange",
-    resolver: yupResolver(schemaCreate)
-  });
-  const onChangeContents = (): void => {
-    const editorInstance = editorRef.current?.getInstance() as EditorInstance2;
-    const value = editorInstance?.getHTML();
-
-    // register로 등록하지 않고 강제로 값을 넣을 수 있다.
-    setValue("contents", value === "<p><br></p>" ? "" : value);
-
-    // setValue로 넣은 값을 검증 요청 하는 법.
-    void trigger("contents");
-  };
-
-  const onClickAddressSearch = (): void => {
-    setIsOpen(prev => !prev);
-  };
-
-  const handleOk = () => {
-    setIsOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsOpen(false);
-  };
-
-  const onCompleteAddressSearch = (data: Address): void => {
-    setAddress(data.address);
-    setZonecode(data.zonecode);
-    setValue("product_roadAddress", data.address);
-    setValue("product_postNum", data.zonecode);
-
-    setIsOpen(prev => !prev);
-  };
-
-  const clickEmployee = () => {
-    setIsToggle(true);
-    setValue("product_sellOrBuy", true);
-  };
-
-  const clickEmployer = () => {
-    setIsToggle(false);
-    setValue("product_sellOrBuy", false);
-  };
+  const router = useRouter()
+  const { data } = useQueryFetchDetailProduct(String(router.query.id));
+  console.log(data?.fetchDetailProduct)
 
   return (
     <>
-      {isOpen && (
-        <Modal open={isOpen} onOk={handleOk} onCancel={handleCancel}>
-          <DaumPostcodeEmbed onComplete={onCompleteAddressSearch} />
-        </Modal>
-      )}
+    <AddressModal setAddress={setAddress} setZipcode={setZipcode} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
       <S.Wrapper>
         <form onSubmit={wrapFormAsync(handleSubmit(onClickWrite))}>
           <S.Head>
-            <S.Title>게시글 작성하기</S.Title>
+            <S.Title>{props.isEdit ? "게시글 수정하기" : "게시글 작성하기"}</S.Title>
             <S.SelectToggle>
               <S.Employee onClick={clickEmployee} isToggle={isToggle}>
                 일을 구해요
@@ -136,7 +76,7 @@ export default function BoardWritePresenter(props: any) {
                   게시글 제목
                   <S.Required>*</S.Required>
                 </S.Theme>
-                <InputHeight38px register={register("title")} />
+                <S.Input {...register("title")} defaultValue={data?.fetchDetailProduct?.product_title}/>
               </S.InputBox>
               <S.InputBox>
                 <S.Theme>
@@ -148,6 +88,7 @@ export default function BoardWritePresenter(props: any) {
                   selectedOptions={selectedOptions}
                   setSelectedCategory={setSelectedCategory}
                   setSelectedOptions={setSelectedOptions}
+                  data={data}
                 />
               </S.InputBox>
               <S.InputBox>
@@ -155,7 +96,7 @@ export default function BoardWritePresenter(props: any) {
                   게시글 요약
                   <S.Required>*</S.Required>
                 </S.Theme>
-                <InputHeight38px register={register("summary")} />
+                <S.Input {...register("summary")} defaultValue={data?.fetchDetailProduct?.product_summary}/>
               </S.InputBox>
             </S.Body_Top>
             <S.Body_Middle>
@@ -168,6 +109,7 @@ export default function BoardWritePresenter(props: any) {
                   <Editor
                     onChangeValue={onChangeContents}
                     editorRef={editorRef}
+                    data={data?.fetchDetailProduct?.product_main_text}
                   />
                 </S.EditorBox>
               </S.BoardContent>
@@ -193,26 +135,24 @@ export default function BoardWritePresenter(props: any) {
                   <S.Required>*</S.Required>
                 </S.Theme>
                 <S.Image>
-                  <ImageUpload fileList={fileList} setFileList={setFileList} />
+                  <ImageUpload fileList={fileList} setFileList={setFileList} data={data?.fetchDetailProduct?.images}/>
                 </S.Image>
               </S.AttachedImg>
               <S.BoardAddress>
                 <S.Theme>주소 입력</S.Theme>
                 <S.AddressBox>
                   <S.MapBox>
-                    <Map address={address} />
+                    <Map address={address !== "" ? address : data?.fetchDetailProduct?.product_roadAddress} />
                   </S.MapBox>
                   <S.SearchBox>
                     <S.ZipcodeBox>
-                      <InputHeight38px value={zonecode} disabled />
+                      <InputHeight38px value={zipcode !== "" ? zipcode : data?.fetchDetailProduct?.product_postNum} disabled />
                       <S.SearchBtn onClick={onClickAddressSearch} type="button">
                         우편번호 검색
                       </S.SearchBtn>
                     </S.ZipcodeBox>
-                    <InputHeight38px value={address} disabled />
-                    <InputHeight38px
-                      register={register("product_detailAddress")}
-                    />
+                    <InputHeight38px value={address !== "" ? address : data?.fetchDetailProduct?.product_roadAddress} disabled />
+                    <S.Input {...register("product_detailAddress")} defaultValue={data?.fetchDetailProduct?.product_detailAddress}/>
                   </S.SearchBox>
                 </S.AddressBox>
               </S.BoardAddress>
@@ -230,3 +170,4 @@ export default function BoardWritePresenter(props: any) {
     </>
   );
 }
+

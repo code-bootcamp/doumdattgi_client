@@ -2,28 +2,33 @@ import { ChangeEvent, useState } from "react";
 import { useMutationSendTokenSMS } from "../../mutations/useMutationSentTokenSMS";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaPasswordRecover, schemaPhone } from "../../../../../commons/libraries/schema";
+import {
+  schemaPasswordRecover,
+  schemaPhone
+} from "../../../../../commons/libraries/schema";
 import { useMutationCheckValidTokenFindPwdBySMS } from "../../mutations/useMutationCheckValidTokenFindPwdBySMS";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { userPhoneState } from "../../../../../commons/stores";
+import { userEmailState, userPhoneState } from "../../../../../commons/stores";
 import { useMutationResetPassword } from "../../mutations/useMutationResetPassword";
+import { useMutationCheckValidTokenFindEmailBySMS } from "../../mutations/useMutationCheckValidTokenFindEmailBySMS";
 
 export const useAccountRecovery = () => {
   const [isValidateOpen, setIsValidateOpen] = useState(false);
 
   const [sendTokenSMS] = useMutationSendTokenSMS();
   const [findPwdBySMS] = useMutationCheckValidTokenFindPwdBySMS();
+  const [findEmailBySMS] = useMutationCheckValidTokenFindEmailBySMS();
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const [userPhone, setUserPhone] = useRecoilState(userPhoneState)
+  const [userPhone, setUserPhone] = useRecoilState(userPhoneState);
+  const [userEmail, setUserEmail] = useRecoilState(userEmailState);
 
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(isValidateOpen ? schemaPasswordRecover : schemaPhone)
   });
-
 
   const onClickAuthPhone = async data => {
     try {
@@ -39,7 +44,7 @@ export const useAccountRecovery = () => {
     }
   };
 
-  const onClickValidate = async data => {
+  const onClickValidatePW = async data => {
     try {
       const result = await findPwdBySMS({
         variables: {
@@ -47,16 +52,30 @@ export const useAccountRecovery = () => {
           user_token: data.user_token
         }
       });
-      setUserPhone(data.user_phone)
-      if(result?.data?.checkValidTokenFindPwdBySMS){
-        void router.push("/recoveryResult/password")
+      setUserPhone(data.user_phone);
+      if (result?.data?.checkValidTokenFindPwdBySMS) {
+        void router.push("/recoveryResult/password");
       }
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
   };
 
-
+  const onClickValidateEmail = async data => {
+    try {
+      const result = await findEmailBySMS({
+        variables: {
+          user_phone: data.user_phone,
+          user_token: data.user_token
+        }
+      });
+      console.log(result?.data)
+      setUserEmail(result?.data?.checkValidTokenFindEmailBySMS)
+      router.push("/recoveryResult/email")
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
 
   return {
     onClickAuthPhone,
@@ -64,6 +83,7 @@ export const useAccountRecovery = () => {
     register,
     handleSubmit,
     formState,
-    onClickValidate
+    onClickValidatePW,
+    onClickValidateEmail
   };
 };
