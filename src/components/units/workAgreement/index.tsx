@@ -276,7 +276,7 @@ export default function WorkAgreement(): JSX.Element {
           <S.Box>
             <S.UserBox>
               <S.User>작업자</S.User>
-              <S.UserPic src="/Ellipse 8" />
+              <S.UserPic src="/Ellipse 8.png" />
               <S.User>{data?.fetchOneRequest?.seller_nickname}</S.User>
               <S.UserEmail>{data?.fetchOneRequest?.seller_email}</S.UserEmail>
             </S.UserBox>
