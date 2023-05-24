@@ -7,9 +7,10 @@ export const FETCH_BUYER_REQUEST = gql`
       request_isAccept
       request_createAt
       request_title
-      seller_id
+      buyer_id
+      buyer_nickname
+      buyer_profileImage
       seller_nickname
-      seller_profileImage
     }
   }
 `;

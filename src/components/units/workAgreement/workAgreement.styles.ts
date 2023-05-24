@@ -44,12 +44,38 @@ export const Date = styled.div`
   color: #888888;
 `;
 
+export const NoneCheck = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 180px;
+  background-color: #cccccc;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Check = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 180px;
   background-color: #c3b5fd;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CheckImage = styled.img`
+  width: 18px;
+  height: 20px;
+`;
+
+export const NoneLine = styled.div`
+  width: 100%;
+  height: 3px;
+  border: 2px solid #cccccc;
+  margin-top: 15px;
 `;
 
 export const Line = styled.div`
@@ -65,6 +91,9 @@ export const StartWork = styled.div`
   border-radius: 180px;
   background-color: #c9e2fe;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Line1 = styled.div`
@@ -80,6 +109,9 @@ export const SendWork = styled.div`
   border-radius: 180px;
   background-color: #98d6a0;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Line2 = styled.div`
@@ -95,6 +127,9 @@ export const Complete = styled.div`
   border-radius: 180px;
   background-color: #80d6cc;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ContentsDetail = styled.div`
