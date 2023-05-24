@@ -75,7 +75,9 @@ export default function SettingsTop() {
               <>
                 <S.ProfileBox>
                   <S.ProfileNickname>
-                    {data?.fetchLoginUser?.user_nickname ?? "유저 닉네임"}
+                    {data?.fetchLoginUser?.user_nickname !== ""
+                      ? data?.fetchLoginUser?.user_nickname
+                      : "닉네임을 입력해주세요."}
                   </S.ProfileNickname>
                   <S.ProfileIntroduce>
                     {data?.fetchLoginUser?.user_introduce !== ""

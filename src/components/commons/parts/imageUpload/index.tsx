@@ -1,7 +1,9 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload, UploadFile } from "antd";
 import { RcFile, UploadProps } from "antd/es/upload";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useQueryFetchDetailProduct } from "../../hooks/queries/useQueryFetchDetailProduct";
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -25,15 +27,16 @@ function ImageUpload(props: any): JSX.Element {
 
   // 이미지 수정부분
   useEffect(() => {
-    if (props.data !== undefined) {
+    const array = props.data?.map((el) => el.image_url)
+    if (array !== undefined) {
       let arr: any[] = [];
-      props.data.map((el: any) => {
-        let obj = { url: `https://storage.googleapis.com/${el}` };
+      array.map((el: any) => {
+        let obj = { url: `${el}` };
         arr.push(obj);
       });
       props.setFileList(arr);
     }
-  }, []);
+  }, [props.data]);
 
   const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
     props.setFileList(newFileList);

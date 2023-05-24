@@ -53,7 +53,8 @@ export const schemaSignUp = yup.object({
 export const schemaCreate = yup.object({
   title: yup.string().required("게시글 제목을 작성해주세요."),
   summary: yup.string().required("게시글에 대해 간략하게 설명해주세요."),
-  contents: yup.string().required("게시글 내용을 작성해주세요.")
+  contents: yup.string().required("게시글 내용을 작성해주세요."),
+  product_detailAddress: yup.string()
 });
 
 export const schemaCreateRequest = yup.object({

@@ -26,11 +26,14 @@ export const useResetAccount = () => {
             }
         })
         console.log(data)
-        alert("비밀번호 변경")
+        alert("정상적으로 비밀번호가 변경되었습니다.")
+        router.push("/login")
     } catch (error) {
         if (error instanceof Error) alert(error.message)
     }
   }
+
+  
 
   return {
     onClickEditPassword,

@@ -125,10 +125,15 @@ export const DetailContents = styled.p`
   line-height: 24px;
   word-break: keep-all;
   margin-top: 30px;
+
+  img {
+    max-width: 100%;
+  }
 `;
 export const DetailUserWrap = styled.div`
   width: 460px;
   border: 1px solid #e0e1ea;
+  height: 100%;
 `;
 export const UserName = styled.span`
   display: block;

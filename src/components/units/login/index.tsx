@@ -50,10 +50,10 @@ export default function Login(): JSX.Element {
       </S.FindingBox>
       <S.SocialLogin>
         <div>SNS로 간편하게 시작하기</div>
-        <Link href={"https://doumdattgi-server.com/login/kakao/"}>
+        <Link href={"https://doumdattgi-server.com/login/kakao"}>
           <S.SocialLoginButton src="/카카오톡 버튼.png" />
         </Link>
-        <Link href={"https://doumdattgi-server.com/login/google/"}>
+        <Link href={"https://doumdattgi-server.com/login/google"}>
           <S.SocialLoginButton src="/구글 버튼.png" />
         </Link>
         <Link href={"https://doumdattgi-server.com/login/naver"}>
