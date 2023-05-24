@@ -69,7 +69,6 @@ export default function Request(props: any): JSX.Element {
     trigger("request_price");
   };
 
-  console.log(router.query.product_id);
   return (
     <form onSubmit={handleSubmit(onClickWriteRequest)}>
       <S.Wrapper>

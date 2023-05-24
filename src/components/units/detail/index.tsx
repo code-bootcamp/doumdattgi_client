@@ -5,7 +5,6 @@ import {
 import Slider from "../../commons/parts/slider";
 import * as S from "./styles";
 import { faBookmark, faClock } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -15,6 +14,7 @@ import { useQueryFetchRandomProduct } from "../../commons/hooks/queries/useQuery
 import DOMPurify from "dompurify";
 import { Obj, CategoryObj } from "../../../commons/libraries/translate";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
+import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
 
 export default function Detail() {
   const router = useRouter();
@@ -22,6 +22,7 @@ export default function Detail() {
 
   const id = String(router.query.id);
   const { data } = useQueryFetchDetailProduct(id);
+  const { data: loginData } = useQueryFetchLoginUser();
   const { data: random } = useQueryFetchRandomProduct();
 
   // fetch 한 이미지들을 담은 배열
@@ -29,7 +30,11 @@ export default function Detail() {
 
   const workDay = data?.fetchDetailProduct.product_workDay;
   const Day = workDay && Obj[workDay];
-  console.log(data);
+
+  // 작성 글 ID와 로그인 유저 ID
+  const writer = data?.fetchDetailProduct.user.user_id;
+  const LoginUser = loginData?.fetchLoginUser.user_id;
+
   return (
     <S.Wrapper>
       <S.Container>
@@ -60,11 +65,19 @@ export default function Detail() {
           </S.DetailBox>
           <S.DetailBox>
             <S.Button>
-              <Link href={`/${router.query.id}/request`}>
-                <a>
-                  <ButtonHeight50px title="신청하기" />
-                </a>
-              </Link>
+              {writer !== LoginUser || !writer || !LoginUser ? (
+                <Link href={`/${router.query.id}/request`}>
+                  <a>
+                    <ButtonHeight50px title="신청하기" />
+                  </a>
+                </Link>
+              ) : (
+                <Link href={`/${router.query.id}/edit`}>
+                  <a>
+                    <ButtonHeight50px title="수정하기" isYou={true} />
+                  </a>
+                </Link>
+              )}
               <S.SlotBox>
                 <S.SlotText>현재 가능 슬롯 3개</S.SlotText>
                 <S.SlotBg />

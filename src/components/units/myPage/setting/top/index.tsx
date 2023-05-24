@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { useUser } from "../../../../commons/hooks/custom/useUser";
 import AvatarUpload from "../../../../commons/parts/avatarUpload";
 import * as S from "./styles";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import InputHeight50px from "../../../../commons/inputs/InputHeight50px";
-import TextArea from "../../../../commons/inputs/TextArea";
 import { useQueryFetchLoginUser } from "../../../../commons/hooks/queries/useQueryFetchLoginUser";
-import { useSettings } from "../../../../commons/hooks/custom/useSettings";
+import {
+  IPropsData,
+  useSettings
+} from "../../../../commons/hooks/custom/useSettings";
+import { useForm } from "react-hook-form";
 
 export default function SettingsTop() {
   const { data } = useQueryFetchLoginUser();
@@ -15,12 +16,19 @@ export default function SettingsTop() {
     isAvatarEdit,
     isProfileEdit,
     onClickEditAvatar,
-    onClickEditProfile,
     fileList,
     setFileList,
     onClickSubmitAvatar,
-    onClickDeleteAvatar
+    onClickDeleteAvatar,
+    onClickEditProfile,
+    clickEditIntroduce
   } = useSettings();
+
+  const { register, handleSubmit } = useForm<IPropsData>({
+    mode: "onChange"
+  });
+
+  console.log(data);
 
   return (
     <S.Wrapper>
@@ -50,13 +58,15 @@ export default function SettingsTop() {
           </S.AvatarWrap>
           <S.ProfileWrap>
             {isProfileEdit ? (
-              <S.Form>
+              <S.Form onSubmit={handleSubmit(clickEditIntroduce)}>
                 <S.ProfileBox>
                   <InputHeight50px
+                    register={register("user_nickname")}
                     placeholder="닉네임을 입력해주세요."
                     defaultValue={data?.fetchLoginUser?.user_nickname}
                   />
                   <S.Text
+                    {...register("user_introduce")}
                     placeholder="자기소개를 입력해주세요."
                     defaultValue={
                       data?.fetchLoginUser?.user_introduce !== ""
@@ -66,9 +76,7 @@ export default function SettingsTop() {
                   ></S.Text>
                 </S.ProfileBox>
                 <S.ProfileEditBtn>
-                  <S.ProfileEdit onClick={onClickEditProfile}>
-                    수정 완료하기
-                  </S.ProfileEdit>
+                  <S.ProfileEdit>수정 완료하기</S.ProfileEdit>
                 </S.ProfileEditBtn>
               </S.Form>
             ) : (

@@ -19,6 +19,8 @@ interface IFormData {
   summary?: string;
   contents?: string;
   product_sellOrBuy?: boolean;
+  product_postNum?: string;
+  product_roadAddress?: string;
   product_detailAddress?: string;
 }
 
@@ -79,6 +81,7 @@ export const useCreateProduct = () => {
     const product_thumbnailImage = results.map(el => {
       return { thumbnailImage: el.data.uploadFile[0], isMain: false };
     });
+
     product_thumbnailImage[0].isMain = true;
 
     const product_startTime = selectedWorkTime[0];
@@ -104,8 +107,8 @@ export const useCreateProduct = () => {
             product_startTime: Number(product_startTime),
             product_endTime: Number(product_endTime),
             product_thumbnailImage: product_thumbnailImage,
-            product_postNum: zipcode,
-            product_roadAddress: address,
+            product_postNum: data.product_postNum,
+            product_roadAddress: data.product_roadAddress,
             product_detailAddress: data.product_detailAddress
           }
         }

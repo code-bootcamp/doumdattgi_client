@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+interface IPropsSelect {
+  isSelect: boolean;
+}
+
 export const Wrapper = styled.div`
   width: 800px;
   margin: 0 auto;
@@ -14,6 +18,24 @@ export const Title = styled.h1`
   width: 800px;
   font-size: 36px;
   margin-bottom: 30px;
+`;
+
+export const SelectBar = styled.nav`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const selectOption = styled.div`
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: ${(props: IPropsSelect) => (props.isSelect ? "black" : "#AAAAAA")};
+  border-bottom: 2px solid ${props => (props.isSelect ? "black" : "white")};
+  cursor: pointer;
 `;
 
 export const HoldingBox = styled.div`

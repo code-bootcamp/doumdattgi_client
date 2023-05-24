@@ -1,27 +1,15 @@
-import * as S from "./styles";
-import { useQueryFetchCategoryProduct } from "../../commons/hooks/queries/useQueryFetchCategoryProduct";
-import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
-import { CategoryObj, Obj } from "../../../commons/libraries/translate";
-import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
-import { useState } from "react";
-import Link from "next/link";
+import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
+import * as S from "./styles";
+import { CategoryObj, Obj } from "../../../../commons/libraries/translate";
+import InfiniteScroll from "react-infinite-scroller";
+import { useQueryFetchAllProducts } from "../../../commons/hooks/queries/useQueryFetchAllProducts";
 
-export default function CategoryList(): JSX.Element {
+export default function AllList() {
   const router = useRouter();
+
+  const { data, fetchMore } = useQueryFetchAllProducts();
   const { onClickMoveToPage } = useMoveToPage();
-
-  // router 들어가는 값 타입지정 (타입이 배열일 가능성)
-  const category = Array.isArray(router.query.data)
-    ? router.query.data[0]
-    : router.query.data || "";
-
-  const { data, fetchMore } = useQueryFetchCategoryProduct(category);
-
-  // 조회용 카테고리 Key값
-  const CategoryTitle =
-    data?.fetchCategoryProduct?.[0]?.product_product_category;
-  console.log(data);
 
   // 무한 스크롤 로직
   const onLoadMore = () => {
@@ -29,19 +17,19 @@ export default function CategoryList(): JSX.Element {
 
     fetchMore({
       variables: {
-        page: Math.ceil((data?.fetchCategoryProduct?.length ?? 10) / 10) + 1
+        page: Math.ceil((data?.fetchProducts?.length ?? 10) / 10) + 1
       },
       updateQuery: (prev, { fetchMoreResult }) => {
-        if (fetchMoreResult.fetchCategoryProduct === undefined) {
+        if (fetchMoreResult.fetchProducts === undefined) {
           return {
-            fetchCategoryProduct: [...prev.fetchCategoryProduct]
+            fetchProducts: [...prev.fetchProducts]
           };
         }
 
         return {
-          fetchCategoryProduct: [
-            ...prev.fetchCategoryProduct,
-            ...fetchMoreResult.fetchCategoryProduct
+          fetchProducts: [
+            ...prev.fetchProducts,
+            ...fetchMoreResult.fetchProducts
           ]
         };
       }
@@ -49,6 +37,8 @@ export default function CategoryList(): JSX.Element {
   };
 
   console.log(data);
+
+  const GotoAllList = () => {};
 
   return (
     <S.Wrapper>
@@ -59,21 +49,17 @@ export default function CategoryList(): JSX.Element {
         <S.LeftList>리스트 목록</S.LeftList>
       </S.WrapperLeft>
       <S.WrapperRight>
-        <Link href="/categoryList/all">
-          <S.CategoryTag>홈</S.CategoryTag>
-        </Link>
-        <S.CategoryTag>{`>`}</S.CategoryTag>
-        <S.CategoryTag>{CategoryObj[CategoryTitle ?? category]}</S.CategoryTag>
+        <S.CategoryTag onClick={GotoAllList}>홈</S.CategoryTag>
         <S.RightHeader>
           <div>
-            {data?.fetchCategoryProduct?.length}
+            {data?.fetchProducts?.length}
             개의 서비스
           </div>
           <div>최신순</div>
         </S.RightHeader>
         <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
           <S.ContentsBox>
-            {data?.fetchCategoryProduct.map(el => (
+            {data?.fetchProducts.map(el => (
               <S.Contents
                 onClick={onClickMoveToPage(`/${el.product_product_id}`)}
                 key={el.product_product_id}
