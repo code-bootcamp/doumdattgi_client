@@ -70,8 +70,6 @@ export default function BoardWritePresenter(props: any) {
     const editorInstance = editorRef.current?.getInstance() as EditorInstance2;
     const value = editorInstance?.getHTML();
 
-    console.log(value);
-
     // register로 등록하지 않고 강제로 값을 넣을 수 있다.
     setValue("contents", value === "<p><br></p>" ? "" : value);
 
@@ -94,6 +92,9 @@ export default function BoardWritePresenter(props: any) {
   const onCompleteAddressSearch = (data: Address): void => {
     setAddress(data.address);
     setZonecode(data.zonecode);
+    setValue("product_roadAddress", data.address);
+    setValue("product_postNum", data.zonecode);
+
     setIsOpen(prev => !prev);
   };
 
@@ -209,7 +210,9 @@ export default function BoardWritePresenter(props: any) {
                       </S.SearchBtn>
                     </S.ZipcodeBox>
                     <InputHeight38px value={address} disabled />
-                    <InputHeight38px />
+                    <InputHeight38px
+                      register={register("product_detailAddress")}
+                    />
                   </S.SearchBox>
                 </S.AddressBox>
               </S.BoardAddress>

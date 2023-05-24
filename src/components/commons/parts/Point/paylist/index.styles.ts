@@ -46,54 +46,11 @@ export const Box = styled.div`
   justify-content: flex-end;
 `;
 
-export const ChargedRefund = styled.div`
-  width: 150px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const RefundBtn = styled.button`
-  width: 70px;
-  height: 36px;
-  border-radius: 6px;
-  border: none;
-  background-color: #ff6b6b;
-  color: white;
-`;
-
 export const RefundBox = styled.div`
   width: 160px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-export const ChargeDone = styled.div`
-  width: 70px;
-  height: 36px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  border: none;
-  background-color: #389e0d;
-  color: white;
-`;
-
-export const RefundDone = styled.div`
-  width: 70px;
-  height: 36px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-  border: none;
-  background-color: black;
-  color: white;
 `;
 
 export const Point = styled.span`

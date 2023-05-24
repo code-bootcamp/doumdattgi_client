@@ -99,6 +99,7 @@ export const SettingList = styled.div`
   .semiBold {
     font-weight: 600;
   }
+  height: 35px;
 `;
 export const Categoty = styled.span`
   display: block;
@@ -109,9 +110,20 @@ export const Categoty = styled.span`
 export const Contents = styled.p`
   line-height: 18px;
   width: 570px;
-  font-size: ${(props: any) => props.data !== "" ? "18px" : "16px"};
-  color: ${(props: any) => props.data !== "" ? "#111" : "#aaa"};;
+  font-size: ${(props: any) => (props.data !== "" ? "18px" : "16px")};
+  color: ${(props: any) => (props.data !== "" ? "#111" : "#aaa")};
 `;
+
+export const EditDetail = styled.input`
+  width: 570px;
+  height: 35px;
+  padding-left: 5px;
+  font-size: 18px;
+  line-height: 18px;
+  border: 2px solid #dbdbdb;
+  border-radius: 6px;
+`;
+
 export const PasswordEdit = styled.span`
   display: inline-block;
   border-bottom: 1px solid #111;
@@ -146,5 +158,30 @@ export const EditBtn = styled.button`
   font-size: 24px;
   line-height: 24px;
   font-weight: 600;
+  padding: 13px 0;
+`;
+
+export const SaveBtn = styled.button`
+  width: 165px;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  background-color: green;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 600;
+  padding: 13px 0;
+`;
+
+export const CancelBtn = styled.button`
+  width: 165px;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  background-color: lightgray;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-right: 14px;
   padding: 13px 0;
 `;

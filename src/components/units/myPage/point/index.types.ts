@@ -1,19 +1,19 @@
-import { IPayment } from "../../../../commons/types/generated/types";
+import { IFetchPaymentOutput } from "../../../../commons/types/generated/types";
 
 export interface IValueArgs {
-  payment_impUid: string;
-  payment_type: string;
-  payment_createdAt: string;
-  payment_amount: number;
+  payment_payment_impUid: string;
+  payment_payment_type: string;
+  payment_payment_createdAt: string;
+  payment_payment_amount: number;
 }
 
 export interface IPropsfetchUserPaymentInfo {
   clickRefund: (value: IValueArgs) => () => void;
-  dataArr: IPayment[];
+  dataArr: IFetchPaymentOutput[];
   el: {
-    payment_impUid: string;
-    payment_type: string;
-    payment_createdAt: string;
-    payment_amount: number;
+    payment_payment_impUid: string;
+    payment_payment_type: string;
+    payment_payment_createdAt: string;
+    payment_payment_amount: number;
   };
 }
