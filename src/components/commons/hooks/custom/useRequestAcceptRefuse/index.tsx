@@ -5,15 +5,10 @@ import { useState } from "react";
 
 interface IMutationData {
   request_id: string;
-  seller_id: string;
-  buyer_id: string;
 }
 
 export const useRequestAcceptRefuse = () => {
   const router = useRouter();
-  const [isAccept, setIsAccept] = useState(false);
-  const [isRefuse, setIsRefuse] = useState(false);
-  const [isDone, setIsDone] = useState(false);
 
   const [RequestAcceptRefuse] = useMutation(REQUEST_ACCEPT_REFUSE);
 
@@ -27,7 +22,6 @@ export const useRequestAcceptRefuse = () => {
         }
       });
       alert("의뢰가 수락되었습니다.");
-      setIsAccept(true);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
@@ -45,7 +39,6 @@ export const useRequestAcceptRefuse = () => {
         }
       });
       alert("의뢰가 거절되었습니다.");
-      setIsRefuse(true);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
@@ -63,7 +56,6 @@ export const useRequestAcceptRefuse = () => {
         }
       });
       alert("의뢰가 완료되었습니다.");
-      setIsDone(true);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
@@ -73,9 +65,6 @@ export const useRequestAcceptRefuse = () => {
 
   return {
     onClickRequestAccept,
-    isAccept,
-    isRefuse,
-    isDone,
     onClickRequestRefuse,
     onClickRequestDone
   };
