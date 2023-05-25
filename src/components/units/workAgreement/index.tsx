@@ -54,7 +54,9 @@ export default function WorkAgreement(): JSX.Element {
               completed === "1970-1-1" &&
               isDone === false)
               ? "진행중"
-              : isAccept === "WAITING" && completed === "1970-1-1"
+              : isAccept === "WAITING" &&
+                completed === "1970-1-1" &&
+                isRefuse === false
               ? "대기중"
               : ""}
             {isDone === true ? (
