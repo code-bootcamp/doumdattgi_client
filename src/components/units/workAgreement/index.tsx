@@ -9,7 +9,6 @@ import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetc
 import { useRequestAcceptRefuse } from "../../commons/hooks/custom/useRequestAcceptRefuse/index";
 import { getDate, getDateTime } from "../../../commons/libraries/getDate";
 import { useRequestProcess } from "../../commons/hooks/custom/useRequestProcess/index";
-import { request } from "graphql-request";
 
 export default function WorkAgreement(): JSX.Element {
   const router = useRouter();
