@@ -3,11 +3,13 @@ import { gql, useQuery } from "@apollo/client";
 export const FETCH_COMMENTS = gql`
   query fetchComments($request_id: String!) {
     fetchComments(request_id: $request_id) {
-      comment_comment_id
-      r_request_id
-      comment_comment_text
-      comment_comment_sellerOrBuyer
-      comment_comment_createdAt
+      comment_text
+      sender_id
+      user {
+        user_nickname
+        user_profileImage
+      }
+      comment_createdAt
     }
   }
 `;

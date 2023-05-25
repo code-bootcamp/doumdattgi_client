@@ -16,7 +16,6 @@ const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
 });
 
 export default function CreateProduct(props) {
-  const [test, setTest] = useState(true);
 
   const {
     data,
@@ -260,7 +259,7 @@ export default function CreateProduct(props) {
             </S.Body_Middle>
             <S.Body_Bottom>
               <S.BtnBox>
-                <ButtonHeight40px title="취소하기" />
+                <ButtonHeight40px title="취소하기" type={"button"}/>
                 <ButtonHeight40px title="만들기" isActive={formState.isValid} />
               </S.BtnBox>
             </S.Body_Bottom>

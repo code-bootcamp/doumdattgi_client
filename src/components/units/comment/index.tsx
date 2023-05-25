@@ -11,6 +11,7 @@ import {
 } from "../../commons/hooks/queries/useQueryFetchComments";
 import { useRouter } from "next/router";
 import { getDate } from "../../../commons/libraries/getDate";
+import { fallback } from "../../../commons/libraries/fallback";
 
 export default function Comment(props): JSX.Element {
   const router = useRouter();
@@ -20,10 +21,11 @@ export default function Comment(props): JSX.Element {
   const { data: comment } = useQueryFetchComments(router.query.id);
 
   console.log(comment?.fetchComments);
-  const { register, setValue, trigger, handleSubmit, formState, resetField } = useForm({
-    mode: "onChange",
-    resolver: yupResolver(schemaCreateComment)
-  });
+  const { register, setValue, trigger, handleSubmit, formState, resetField } =
+    useForm({
+      mode: "onChange",
+      resolver: yupResolver(schemaCreateComment)
+    });
 
   console.log(props.data);
   const onClickCreateComment = async data => {
@@ -49,7 +51,7 @@ export default function Comment(props): JSX.Element {
           }
         ]
       });
-      resetField("text")
+      resetField("text");
       console.log(result);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
@@ -60,22 +62,24 @@ export default function Comment(props): JSX.Element {
     <>
       <S.Wrapper>
         <S.WrapperBody>
-          {comment?.fetchComments?.map(el => (
+          {/* {comment?.fetchComments?.map(el => (
             <>
               <S.ReceivingBox>
-                <S.Date>{getDate(el.comment_comment_createdAt)}</S.Date>
-                <S.ChatBox>{el.comment_comment_text}</S.ChatBox>
+                <S.Date>{getDate(el.comment_createdAt)}</S.Date>
+                <S.ChatBox>{el.comment_text}</S.ChatBox>
               </S.ReceivingBox>
             </>
+          ))} */}
+          {comment?.fetchComments?.map(el => (
+            <S.SendingBox>
+              <S.SenderIcon src={el?.user?.user_profileImage !== "" ? el?.user?.user_profileImage : fallback } />
+              <div>
+                <S.Sender>{el?.user?.user_nickname}</S.Sender>
+                <S.ChatBox>{el.comment_text}</S.ChatBox>
+              </div>
+              <S.Date>{getDate(el.comment_createdAt)}</S.Date>
+            </S.SendingBox>
           ))}
-          <S.SendingBox>
-            <S.SenderIcon src="/IU.jpeg" />
-            <div>
-              <S.Sender>아이유</S.Sender>
-              <S.ChatBox>안녕</S.ChatBox>
-            </div>
-            <S.Date>23.05.10</S.Date>
-          </S.SendingBox>
         </S.WrapperBody>
         <form onSubmit={handleSubmit(onClickCreateComment)}>
           <S.WrapperFooter>

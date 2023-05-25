@@ -71,6 +71,8 @@ export const useCreateProduct2 = isEdit => {
     const editorInstance = editorRef.current?.getInstance() as EditorInstance2;
     const value = editorInstance?.getHTML();
 
+    console.log(value)
+
     // register로 등록하지 않고 강제로 값을 넣을 수 있다.
     setValue("product_main_text", value === "<p><br></p>" ? "" : value);
 

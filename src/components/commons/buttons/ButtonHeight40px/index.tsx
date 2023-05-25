@@ -4,6 +4,7 @@ interface IButtonProps {
   isActive?: boolean;
   title?: string;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset" | undefined
 }
 
 export const Button = styled.button`
@@ -23,6 +24,7 @@ export default function ButtonHeight40px(props: IButtonProps): JSX.Element {
         color: props.isActive ? "#fff" : "#444",
         border: props.isActive ? "none" : "1px solid #888888"
       }}
+      type={props.type}
       // disabled={props.isActive}
     >
       {props.title}
