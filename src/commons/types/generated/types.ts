@@ -138,7 +138,7 @@ export type IMutation = {
   checkValidTokenEMAIL: Scalars['Boolean'];
   checkValidTokenFindEmailBySMS: Scalars['String'];
   checkValidTokenFindPwdBySMS: Scalars['Boolean'];
-  createComment: Scalars['Boolean'];
+  createComment: IComment;
   createPayment: IPayment;
   createPick: Scalars['String'];
   createProduct: IProduct;
