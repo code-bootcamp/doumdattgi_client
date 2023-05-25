@@ -71,7 +71,7 @@ export const useCreateProduct2 = isEdit => {
     const editorInstance = editorRef.current?.getInstance() as EditorInstance2;
     const value = editorInstance?.getHTML();
 
-    console.log(value)
+    console.log(value);
 
     // register로 등록하지 않고 강제로 값을 넣을 수 있다.
     setValue("product_main_text", value === "<p><br></p>" ? "" : value);
@@ -91,23 +91,25 @@ export const useCreateProduct2 = isEdit => {
     setIsModalOpen(prev => !prev);
   };
 
-  useEffect(() => {
-    setValue("product_postNum", data?.fetchDetailProduct?.product_postNum);
-    void trigger("product_postNum");
-    setValue(
-      "product_roadAddress",
-      data?.fetchDetailProduct?.product_roadAddress
-    );
-    void trigger("product_roadAddress");
+  if (isEdit) {
+    useEffect(() => {
+      setValue("product_postNum", data?.fetchDetailProduct?.product_postNum);
+      void trigger("product_postNum");
+      setValue(
+        "product_roadAddress",
+        data?.fetchDetailProduct?.product_roadAddress
+      );
+      void trigger("product_roadAddress");
 
-    setValue(
-      "product_main_text",
-      data?.fetchDetailProduct?.product_main_text === "<p><br></p>"
-        ? ""
-        : data?.fetchDetailProduct?.product_main_text
-    );
-    void trigger("product_main_text");
-  }, [data]);
+      setValue(
+        "product_main_text",
+        data?.fetchDetailProduct?.product_main_text === "<p><br></p>"
+          ? ""
+          : data?.fetchDetailProduct?.product_main_text
+      );
+      void trigger("product_main_text");
+    }, [data]);
+  }
 
   const onClickAddressSearch = (): void => {
     setIsModalOpen(prev => !prev);
@@ -157,7 +159,7 @@ export const useCreateProduct2 = isEdit => {
 
   // =============== 게시글 수정 ===============
   const onClickEditProduct = async data => {
-    console.log(fileList)
+    console.log(fileList);
     try {
       const result = await updateProduct({
         variables: {
