@@ -28,8 +28,6 @@ export default function SettingsTop() {
     mode: "onChange"
   });
 
-  console.log(data);
-
   return (
     <S.Wrapper>
       <S.SettingTop>

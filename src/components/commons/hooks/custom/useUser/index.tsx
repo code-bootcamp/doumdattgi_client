@@ -5,6 +5,7 @@ import { useMutationLogin } from "../../mutations/useMutationLoginUser";
 import { useEffect, useState } from "react";
 import { useMutationCreateUser } from "../../mutations/useMutationCreateUser";
 import { useMutationLogout } from "../../mutations/useMutationLogout";
+import { useQueryFetchLoginUser } from "../../queries/useQueryFetchLoginUser";
 
 interface IFormData {
   email: string;
@@ -41,6 +42,7 @@ export const useUser = () => {
   const [isOn, setIsOn] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [sec, setSec] = useState(0);
+  const { data: fetchUser } = useQueryFetchLoginUser();
 
   // =============== 타이머 ===============
   useEffect(() => {
@@ -133,6 +135,37 @@ export const useUser = () => {
     }
   };
 
+  // =============== 티어 이미지===============
+  const tier = () => {
+    const rate = fetchUser?.fetchLoginUser?.user_workRate;
+    if (rate <= 5) {
+      return "/seeds.png";
+    } else if (rate > 5 && rate <= 10) {
+      return "/sprout.png";
+    } else if (rate > 10 && rate <= 20) {
+      return "/plant.png";
+    } else {
+      return "tree.png";
+    }
+  };
+  const imageSrc = tier();
+
+  // =============== 등급명 ===============
+  const tierTitle = () => {
+    const rate = fetchUser?.fetchLoginUser?.user_workRate;
+    if (rate <= 5) {
+      return "씨앗 주니어";
+    } else if (rate > 5 && rate <= 10) {
+      return "새싹 울트라";
+    } else if (rate > 10 && rate <= 20) {
+      return "묘목 하이퍼";
+    } else {
+      return "나무 얼티밋";
+    }
+  };
+
+  const userTitle = tierTitle();
+
   return {
     onClickValidation,
     onClickSignUp,
@@ -140,6 +173,8 @@ export const useUser = () => {
     onClickLogout,
     isOn,
     sec,
-    isActive
+    isActive,
+    imageSrc,
+    userTitle
   };
 };

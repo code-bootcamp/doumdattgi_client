@@ -42,6 +42,7 @@ export const Theme = styled.div``;
 export const Date = styled.div`
   font-size: 14px;
   color: #888888;
+  text-align: center;
 `;
 
 export const NoneCheck = styled.div`
@@ -195,6 +196,7 @@ export const UserPic = styled.img`
   width: 160px;
   height: 160px;
   margin: 20px 0px;
+  border-radius: 50%;
 `;
 
 export const UserEmail = styled.div`

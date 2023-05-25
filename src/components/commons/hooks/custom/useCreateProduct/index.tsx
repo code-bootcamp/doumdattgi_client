@@ -107,8 +107,8 @@ export const useCreateProduct = () => {
             product_startTime: Number(product_startTime),
             product_endTime: Number(product_endTime),
             product_thumbnailImage: product_thumbnailImage,
-            product_postNum: data.product_postNum,
-            product_roadAddress: data.product_roadAddress,
+            product_postNum: "data.product_postNum",
+            product_roadAddress: "data.product_roadAddress",
             product_detailAddress: data.product_detailAddress
           }
         }
@@ -147,6 +147,6 @@ export const useCreateProduct = () => {
     clickEmployee,
     clickEmployer,
     isToggle,
-    onClickAddressSearch,
+    onClickAddressSearch
   };
 };

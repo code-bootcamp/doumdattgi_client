@@ -4,7 +4,7 @@ export default function countUp(props: any): JSX.Element {
   return (
     <CountUp
       end={props.isTime}
-      duration={1}
+      duration={0.3}
       style={{ fontSize: " 60px", marginRight: "20px" }}
     />
   );

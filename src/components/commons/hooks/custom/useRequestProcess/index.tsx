@@ -17,7 +17,7 @@ export const useRequestProcess = () => {
   const request_id = data?.fetchOneRequest.request_id;
 
   // ===============신청자 작업 완료 여부 기능 ===============
-  const onClickRequestProcessBuyer = async (data: IMutationData) => {
+  const onClickRequestProcessBuyer = async () => {
     try {
       const result = await requestProcess({
         variables: {
@@ -34,7 +34,7 @@ export const useRequestProcess = () => {
   };
 
   // ===============작업자 작업 완료 여부 기능 ===============
-  const onClickRequestProcessSeller = async (data: IMutationData) => {
+  const onClickRequestProcessSeller = async () => {
     try {
       const result = await requestProcess({
         variables: {
@@ -48,6 +48,7 @@ export const useRequestProcess = () => {
         alert(error.message);
       }
     }
+    router.reload();
   };
   return { onClickRequestProcessBuyer, onClickRequestProcessSeller };
 };

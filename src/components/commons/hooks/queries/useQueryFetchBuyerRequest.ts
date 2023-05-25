@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export const FETCH_BUYER_REQUEST = gql`
   query {
@@ -11,12 +12,14 @@ export const FETCH_BUYER_REQUEST = gql`
       buyer_nickname
       buyer_profileImage
       seller_nickname
+      seller_profileImage
     }
   }
 `;
 
 export const useQueryFetchBuyerRequest = () => {
-  const Query = useQuery(FETCH_BUYER_REQUEST);
+  const Query =
+    useQuery<Pick<IQuery, "fetchBuyerRequest">>(FETCH_BUYER_REQUEST);
 
   return Query;
 };
