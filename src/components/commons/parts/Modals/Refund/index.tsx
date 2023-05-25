@@ -6,7 +6,7 @@ import { useRecoilValue } from "recoil";
 import { IPropsRefund } from "./refund.types";
 
 export default function RefundPoint(props: IPropsRefund) {
-  const refetch = useRecoilValue(refetchAtom);
+  const refetches = useRecoilValue(refetchAtom);
 
   const [CancelPayment] = useMutationCancelPayment();
 
@@ -24,7 +24,8 @@ export default function RefundPoint(props: IPropsRefund) {
       });
       alert("환불성공");
       props.setIsRefund(false);
-      refetch();
+      refetches.payment();
+      refetches.login();
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }

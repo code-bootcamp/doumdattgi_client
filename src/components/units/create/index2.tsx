@@ -10,12 +10,13 @@ import TimePick from "../../commons/parts/Timepicker/index2";
 import { useCreateProduct2 } from "../../commons/hooks/custom/useCreateProduct/index2";
 import AddressModal from "../../commons/hooks/custom/useAddress";
 import { useState } from "react";
+import { IProps } from "./index.types";
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false
 });
 
-export default function CreateProduct(props) {
+export default function CreateProduct(props: IProps) {
   const [test, setTest] = useState(true);
 
   const {
@@ -67,7 +68,13 @@ export default function CreateProduct(props) {
         onCompleteAddressSearch={onCompleteAddressSearch}
       />
       <S.Wrapper>
-        <form onSubmit={props.isEdit ? handleSubmit(onClickEditProduct) : handleSubmit(onClickCreateProduct)}>
+        <form
+          onSubmit={
+            props.isEdit
+              ? handleSubmit(onClickEditProduct)
+              : handleSubmit(onClickCreateProduct)
+          }
+        >
           <S.Head>
             <S.Title>
               {props.isEdit ? "게시글 수정하기" : "게시글 작성하기"}
@@ -232,7 +239,7 @@ export default function CreateProduct(props) {
                         value={
                           zipcode !== ""
                             ? zipcode
-                            : data?.fetchDetailProduct?.product_postNum
+                            : data?.fetchDetailProduct?.product_postNum ?? ""
                         }
                         disabled
                       />
@@ -244,14 +251,14 @@ export default function CreateProduct(props) {
                       value={
                         address !== ""
                           ? address
-                          : data?.fetchDetailProduct?.product_roadAddress
+                          : data?.fetchDetailProduct?.product_roadAddress ?? ""
                       }
                       disabled
                     />
                     <S.Input
                       {...register("product_detailAddress")}
                       defaultValue={
-                        data?.fetchDetailProduct?.product_detailAddress
+                        data?.fetchDetailProduct?.product_detailAddress ?? ""
                       }
                     />
                   </S.SearchBox>
@@ -270,4 +277,3 @@ export default function CreateProduct(props) {
     </>
   );
 }
-

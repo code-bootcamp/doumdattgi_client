@@ -17,3 +17,7 @@ export interface IFormData {
   product_roadAddress?: string;
   product_detailAddress?: string;
 }
+
+export interface IProps {
+  isEdit: boolean;
+}

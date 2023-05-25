@@ -86,35 +86,6 @@ export type IFetchMyPickOutput = {
   u_user_profileImage?: Maybe<Scalars['String']>;
 };
 
-export type IFetchMyProductOutput = {
-  __typename?: 'FetchMyProductOutput';
-  i_image_url: Scalars['String'];
-  product_product_category: Scalars['String'];
-  product_product_id: Scalars['String'];
-  product_product_sellOrBuy: Scalars['Boolean'];
-  product_product_summary: Scalars['String'];
-  product_product_title: Scalars['String'];
-  product_product_workDay: Scalars['String'];
-  u_user_id: Scalars['String'];
-  u_user_nickname: Scalars['String'];
-  u_user_profileImage?: Maybe<Scalars['String']>;
-};
-
-export type IFetchPaymentOutput = {
-  __typename?: 'FetchPaymentOutput';
-  payment_payment_amount: Scalars['Int'];
-  payment_payment_createdAt: Scalars['DateTime'];
-  payment_payment_id: Scalars['String'];
-  payment_payment_impUid: Scalars['String'];
-  payment_payment_status: Scalars['String'];
-  payment_payment_type: Scalars['String'];
-  u_user_email: Scalars['String'];
-  u_user_id: Scalars['String'];
-  u_user_name: Scalars['String'];
-  u_user_nickname: Scalars['String'];
-  u_user_phone: Scalars['String'];
-};
-
 export type IFetchProductOutput = {
   __typename?: 'FetchProductOutput';
   i_image_url: Scalars['String'];
@@ -345,9 +316,17 @@ export type IPayment = {
   user: IUser;
 };
 
+export type IPick = {
+  __typename?: 'Pick';
+  pick_id?: Maybe<Scalars['String']>;
+  product: IProduct;
+  user: IUser;
+};
+
 export type IProduct = {
   __typename?: 'Product';
   images: Array<IImage>;
+  pick: Array<IPick>;
   product_category: IProduct_Category_Enum;
   product_deletedAt?: Maybe<Scalars['DateTime']>;
   product_detailAddress?: Maybe<Scalars['String']>;
@@ -374,10 +353,10 @@ export type IQuery = {
   fetchComments: Array<IComment>;
   fetchDetailProduct: IProduct;
   fetchLoginUser: IUser;
-  fetchMyProduct: Array<IFetchMyProductOutput>;
+  fetchMyProduct: Array<IProduct>;
   fetchNewbieProduct: Array<IFetchProductOutput>;
   fetchOneRequest: IRequest;
-  fetchPayments: Array<IFetchPaymentOutput>;
+  fetchPayments: Array<IPayment>;
   fetchPickUserProduct: Array<IFetchMyPickOutput>;
   fetchProducts: Array<IFetchProductOutput>;
   fetchRandomProduct: Array<IFetchProductOutput>;
