@@ -5,6 +5,7 @@ import { UploadFile } from "antd";
 import { FETCH_LOGIN_USER } from "../../queries/useQueryFetchLoginUser";
 import { useMutationUpdateNicknameIntroduce } from "../../mutations/useMutationUpdateNicknameIntroduce";
 import { useMutationUpdateUserInfo } from "../../mutations/useMutationUpdateUserInfo";
+import { useQueryFetchLoginUser } from "../../queries/useQueryFetchLoginUser";
 
 export interface IPropsIntroduceData {
   user_nickname: string;
@@ -25,6 +26,8 @@ export const useSettings = () => {
   const [isProfileEdit, setIsProfileEdit] = useState(false);
   const [isDetailEdit, setIsDetailEdit] = useState(false);
 
+  const { data: loginData } = useQueryFetchLoginUser();
+
   // =============== 프로필 이미지 ===============
   const onClickEditAvatar = () => {
     setIsAvatarEdit(prev => !prev);
@@ -38,14 +41,28 @@ export const useSettings = () => {
   const clickEditIntroduce = async (data: IPropsIntroduceData) => {
     setIsProfileEdit(prev => !prev);
 
+    const NewVariables = {
+      updateNicknameIntroduceInput: {} as {
+        user_introduce?: string;
+        user_nickname?: string;
+      }
+    };
+
+    // 자기소개 부분을 수정했을 시 데이터 추가
+    if (data.user_introduce !== loginData?.fetchLoginUser.user_introduce) {
+      NewVariables.updateNicknameIntroduceInput.user_introduce =
+        data.user_introduce;
+    }
+
+    // 닉네임 부분을 수정했을 시 데이터 추가
+    if (data.user_nickname !== loginData?.fetchLoginUser.user_nickname) {
+      NewVariables.updateNicknameIntroduceInput.user_nickname =
+        data.user_nickname;
+    }
+
     try {
       const result = await updateNicknameIntroduce({
-        variables: {
-          updateNicknameIntroduceInput: {
-            user_nickname: data.user_nickname,
-            user_introduce: data.user_introduce
-          }
-        },
+        variables: NewVariables,
         refetchQueries: [{ query: FETCH_LOGIN_USER }]
       });
 

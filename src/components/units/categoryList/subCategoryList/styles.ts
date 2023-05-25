@@ -11,7 +11,6 @@ export const WrapperLeft = styled.div`
   width: 220px;
   font-size: 22px;
   margin-right: 50px;
-  border: 2px solid blue;
 `;
 
 export const DivideLine = styled.div`
@@ -29,6 +28,20 @@ export const Ad = styled.div`
 export const LeftList = styled.div`
   font-size: 14px;
   margin-bottom: 24px;
+`;
+
+export const SubCategoryBox = styled.div`
+  height: 200px;
+  border: 2px solid red;
+`;
+
+export const SubCategory = styled.div`
+  height: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  border: 2px solid blue;
 `;
 
 export const WrapperRight = styled.div`

@@ -5,7 +5,7 @@ import { UserOutlined } from "@ant-design/icons";
 import InputHeight50px from "../../../../commons/inputs/InputHeight50px";
 import { useQueryFetchLoginUser } from "../../../../commons/hooks/queries/useQueryFetchLoginUser";
 import {
-  IPropsData,
+  IPropsIntroduceData,
   useSettings
 } from "../../../../commons/hooks/custom/useSettings";
 import { useForm } from "react-hook-form";
@@ -24,7 +24,7 @@ export default function SettingsTop() {
     clickEditIntroduce
   } = useSettings();
 
-  const { register, handleSubmit } = useForm<IPropsData>({
+  const { register, handleSubmit } = useForm<IPropsIntroduceData>({
     mode: "onChange"
   });
 
@@ -76,7 +76,10 @@ export default function SettingsTop() {
                   ></S.Text>
                 </S.ProfileBox>
                 <S.ProfileEditBtn>
-                  <S.ProfileEdit>수정 완료하기</S.ProfileEdit>
+                  <S.ProfileEdit onClick={onClickEditProfile}>
+                    취소하기
+                  </S.ProfileEdit>
+                  <S.ProfileEdit>저장하기</S.ProfileEdit>
                 </S.ProfileEditBtn>
               </S.Form>
             ) : (

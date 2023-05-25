@@ -26,7 +26,8 @@ export default function UsePayment(): IUsePayment {
   const [isSelect, setIsSelect] = useState("");
 
   const [, setIsCancel] = useRecoilState(ModalCancelState);
-  const refetch = useRecoilValue(refetchAtom);
+
+  const refetches = useRecoilValue(refetchAtom);
 
   const [createPayment] = useMutationcreatePayment();
 
@@ -78,7 +79,8 @@ export default function UsePayment(): IUsePayment {
           });
           alert("결제 성공!");
           setIsCancel(false);
-          refetch();
+          refetches.payment();
+          refetches.login();
         } else {
           // 결제 실패
           alert("결제 실패");
