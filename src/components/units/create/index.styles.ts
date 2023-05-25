@@ -76,6 +76,7 @@ export const InputBox = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 `;
 
 export const Theme = styled.span`
@@ -116,6 +117,7 @@ export const BoardContent = styled.div`
 export const EditorBox = styled.div`
   margin-top: 20px;
   height: 514px;
+  position: relative;
 `;
 
 export const AvailableTime = styled.div`
@@ -218,3 +220,12 @@ export const BtnBox = styled.div`
 export const Between = styled.div`
   width: 10px;
 `;
+
+export const Error = styled.span`
+    position: absolute;
+    top: 100%;
+    left: 230px;
+    display: block;
+    color: red;
+    font-size: 16px;
+`

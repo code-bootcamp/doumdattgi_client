@@ -47,7 +47,9 @@ export default function WorkAgreement(): JSX.Element {
   return (
     <>
       <S.CommentBoxWrapper>
-        <CommentDrawer />
+        <CommentDrawer 
+          data={data}
+        />
         <S.Wrapper>
           <S.Category>
             {isRefuse === true || isAccept === "REFUSE" ? "거절됨" : <></>}
