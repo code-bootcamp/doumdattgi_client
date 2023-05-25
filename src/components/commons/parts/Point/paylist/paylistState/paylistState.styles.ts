@@ -59,3 +59,21 @@ export const SoldBtn = styled.button`
   background-color: skyblue;
   color: white;
 `;
+
+export const Request_BuyBtn = styled.button`
+  width: 85px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  background-color: #ac58fa;
+  color: white;
+`;
+
+export const Request_RefundBtn = styled.button`
+  width: 85px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  background-color: #ff8000;
+  color: white;
+`;

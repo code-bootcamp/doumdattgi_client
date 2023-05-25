@@ -1,6 +1,6 @@
 import * as S from "./style";
 import { Avatar, Dropdown, Space, MenuProps } from "antd";
-import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useUser } from "../../hooks/custom/useUser";
 import { ItemType } from "antd/es/menu/hooks/useItems";
@@ -10,14 +10,17 @@ import { useQueryFetchRandomProduct } from "../../hooks/queries/useQueryFetchRan
 import { request, gql } from "graphql-request";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { useRouter } from "next/router";
+import { debounce, set } from "lodash";
+import { ChangeEvent, useEffect, useState } from "react";
 
 export default function Header(): JSX.Element {
-  const { onClickLogout } = useUser();
-  const { data } = useQueryFetchLoginUser();
+  const router = useRouter();
+  const [value, setValue] = useState("");
 
+  const { onClickLogout } = useUser();
   const { onClickMoveToPage } = useMoveToPage();
 
-  const router = useRouter();
+  const { data } = useQueryFetchLoginUser();
 
   const items: MenuProps["items"] = [
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
@@ -33,6 +36,12 @@ export default function Header(): JSX.Element {
     },
     { label: <span onClick={onClickLogout}>로그아웃</span> }
   ] as ItemType[];
+
+  const getDebounce = debounce(e => {
+    router.push({
+      pathname: `/searchList/${e}`
+    });
+  }, 1000);
 
   const clickRandomBoard = async () => {
     const query = gql`
@@ -63,6 +72,14 @@ export default function Header(): JSX.Element {
     }
   };
 
+  const SearchingKeyword = (e: ChangeEvent<HTMLInputElement>) => {
+    const keyWord = e.target.value;
+
+    getDebounce(keyWord);
+  };
+
+  console.log(router.asPath);
+
   return (
     <>
       <S.Wrapper>
@@ -73,7 +90,7 @@ export default function Header(): JSX.Element {
           <S.HeaderBox>
             <S.SearchBox>
               <S.SearchIcon />
-              <S.SearchInput />
+              <S.SearchInput onChange={SearchingKeyword} />
             </S.SearchBox>
             <S.ShuffleBtn onClick={clickRandomBoard}>
               <S.ShuffleIcon src="/shuffle.png" />
@@ -83,7 +100,6 @@ export default function Header(): JSX.Element {
                 <S.LoginBtn onClick={onClickMoveToPage("/login")}>
                   로그인
                 </S.LoginBtn>
-
                 <Link href={"/signup"}>
                   <S.SignUpBtn>회원가입</S.SignUpBtn>
                 </Link>

@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   function storePathValues() {
     const storage = globalThis?.sessionStorage;
     if (!storage) return;
-    // 이전 페이지 세션 스토리지에 저장
+    // .이전 페이지 세션 스토리지에 저장
     const prevPath: string | null = storage.getItem("currentPath");
     storage.setItem("prevPath", prevPath ?? "");
 

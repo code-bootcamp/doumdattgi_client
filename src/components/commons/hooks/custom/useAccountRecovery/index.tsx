@@ -10,7 +10,6 @@ import { useMutationCheckValidTokenFindPwdBySMS } from "../../mutations/useMutat
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { userEmailState, userPhoneState } from "../../../../../commons/stores";
-import { useMutationResetPassword } from "../../mutations/useMutationResetPassword";
 import { useMutationCheckValidTokenFindEmailBySMS } from "../../mutations/useMutationCheckValidTokenFindEmailBySMS";
 
 export const useAccountRecovery = () => {
@@ -31,6 +30,10 @@ export const useAccountRecovery = () => {
   });
 
   const onClickAuthPhone = async data => {
+    console.log("ehehe");
+    console.log(data);
+    console.log("ehehe");
+
     try {
       await sendTokenSMS({
         variables: {
@@ -69,9 +72,9 @@ export const useAccountRecovery = () => {
           user_token: data.user_token
         }
       });
-      console.log(result?.data)
-      setUserEmail(result?.data?.checkValidTokenFindEmailBySMS)
-      router.push("/recoveryResult/email")
+      console.log(result?.data);
+      setUserEmail(result?.data?.checkValidTokenFindEmailBySMS);
+      router.push("/recoveryResult/email");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

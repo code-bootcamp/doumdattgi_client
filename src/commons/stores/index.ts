@@ -18,9 +18,9 @@ export const ModalCancelState = atom({
   default: false
 });
 
-export const refetchAtom = atom<() => void>({
+export const refetchAtom = atom<{ login: () => void; payment: () => void }>({
   key: "refetchAtom",
-  default: () => {}
+  default: { login: () => {}, payment: () => {} }
 });
 
 export const userPhoneState = atom({

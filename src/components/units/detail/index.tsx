@@ -1,6 +1,7 @@
 import {
   faEllipsisVertical,
-  faSeedling
+  faSeedling,
+  faBookmark as Bookmark2
 } from "@fortawesome/free-solid-svg-icons";
 import Slider from "../../commons/parts/slider";
 import * as S from "./styles";
@@ -17,6 +18,8 @@ import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
 import { useQueryFetchUserSlot } from "../../commons/hooks/queries/useQueryfetchUserSlot";
 import { useUser } from "../../commons/hooks/custom/useUser/index";
+import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutationCreatePick";
+
 
 export default function Detail() {
   const router = useRouter();
@@ -28,6 +31,7 @@ export default function Detail() {
   const { data: random } = useQueryFetchRandomProduct();
   const { data: slotData } = useQueryFetchUserSlot();
   const { imageSrc, userTitle } = useUser();
+  const [createPick] = useMutationcreatePick();
 
   // fetch 한 이미지들을 담은 배열
   const ImgArr = data?.fetchDetailProduct.images.map(el => el.image_url);
@@ -42,6 +46,10 @@ export default function Detail() {
   const slot1 = slotData?.fetchUserSlot.slot_first;
   const slot2 = slotData?.fetchUserSlot.slot_second;
   const slot3 = slotData?.fetchUserSlot.slot_third;
+
+  const clickPick = () => {
+    createPick({ variables: { product_id: router.query.id } });
+  };
 
   return (
     <S.Wrapper>
@@ -61,7 +69,7 @@ export default function Detail() {
             <S.TitleWrap>
               <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
               <S.IconBox>
-                <S.Icon icon={faBookmark} />
+                <S.Icon onClick={clickPick} icon={faBookmark} />
                 <S.Icon icon={faEllipsisVertical} />
               </S.IconBox>
             </S.TitleWrap>
