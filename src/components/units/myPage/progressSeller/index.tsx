@@ -1,89 +1,51 @@
-import { useQueryFetchSellerWork } from "../../../commons/hooks/queries/useQueryFetchSellerWork";
 import * as S from "./progress.styles";
-import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage/index";
-import { getDate } from "../../../../commons/libraries/getDate";
+import { useEffect, useState } from "react";
+import ProgressBuyerAll from "./all/index";
+import ProgressBuyerDone from "./done/index";
+import ProgressBuyerProgressing from "./progress/index";
+import ProgressBuyerWaiting from "./waiting/index";
+import ProgressBuyerRefuse from "./refuse/index";
 
 export default function ProgressSeller(): JSX.Element {
-  const { data } = useQueryFetchSellerWork();
+  const [isList, setIsList] = useState(0);
 
-  const { onClickMoveToPage } = useMoveToPage();
+  const onClickList = (index: number) => {
+    setIsList(index);
+    localStorage.setItem("selectedTab", index.toString());
+  };
+
+  useEffect(() => {
+    const storedTab = localStorage.getItem("selectedTab");
+    if (storedTab) {
+      setIsList(parseInt(storedTab));
+    }
+  }, []);
+
+  const renderPage = () => {
+    if (isList === 0) {
+      return <ProgressBuyerAll />;
+    } else if (isList === 1) {
+      return <ProgressBuyerWaiting />;
+    } else if (isList === 2) {
+      return <ProgressBuyerProgressing />;
+    } else if (isList === 3) {
+      return <ProgressBuyerDone />;
+    } else if (isList === 4) {
+      return <ProgressBuyerRefuse />;
+    }
+  };
 
   return (
     <S.Wrapper>
-      <S.PageTitle>작업 진행 내역</S.PageTitle>
+      <S.PageTitle>신청 진행 내역</S.PageTitle>
       <S.TabBox>
-        <S.PageTab>전체</S.PageTab>
-        <S.PageTab>대기중</S.PageTab>
-        <S.PageTab>진행중</S.PageTab>
-        <S.PageTab>종료</S.PageTab>
+        <S.PageTab onClick={() => onClickList(0)}>전체</S.PageTab>
+        <S.PageTab onClick={() => onClickList(1)}>대기중</S.PageTab>
+        <S.PageTab onClick={() => onClickList(2)}>진행중</S.PageTab>
+        <S.PageTab onClick={() => onClickList(3)}>종료</S.PageTab>
+        <S.PageTab onClick={() => onClickList(4)}>거절</S.PageTab>
       </S.TabBox>
-      {data?.fetchSellerWork.map(el => (
-        <div
-          key={el.request_id}
-          onClick={onClickMoveToPage(`/${el.request_id}/workAgreement`)}
-        >
-          {el.request_isAccept === "REFUSE" ? (
-            <S.ListRefuse>
-              <S.ListLeft>
-                <S.ListStatusRefuse>거절됨</S.ListStatusRefuse>
-                <S.ListTitleRefuse>{el.request_title}</S.ListTitleRefuse>
-              </S.ListLeft>
-              <S.ListRight>
-                <S.ListDate>{getDate(el.request_createAt)}</S.ListDate>
-                <S.UserBox>
-                  <S.UserIcon
-                    onError={e => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "/noimage.png";
-                    }}
-                    src={el.buyer_profileImage}
-                  />
-                  <S.UserName>{el.buyer_nickname}</S.UserName>
-                </S.UserBox>
-              </S.ListRight>
-            </S.ListRefuse>
-          ) : (
-            <S.List>
-              <S.ListLeft>
-                {el.request_isAccept === "WAITING" ? (
-                  <S.ListStatusWaiting>대기중</S.ListStatusWaiting>
-                ) : (
-                  <></>
-                )}
-                {el.request_isAccept === "ACCEPT" ? (
-                  <S.ListStatusAccept>진행중</S.ListStatusAccept>
-                ) : (
-                  <></>
-                )}
-                {el.request_isAccept === "REFUSE" ? (
-                  <S.ListStatusRefuse>거절됨</S.ListStatusRefuse>
-                ) : (
-                  <></>
-                )}
-                {el.request_isAccept === "FINISH" ? (
-                  <S.ListStatusFinish>종료</S.ListStatusFinish>
-                ) : (
-                  <></>
-                )}
-                <S.ListTitle>{el.request_title}</S.ListTitle>
-              </S.ListLeft>
-              <S.ListRight>
-                <S.ListDate>{getDate(el.request_createAt)}</S.ListDate>
-                <S.UserBox>
-                  <S.UserIcon
-                    onError={e => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "/noimage.png";
-                    }}
-                    src={el.buyer_profileImage}
-                  />
-                  <S.UserName>{el.buyer_nickname}</S.UserName>
-                </S.UserBox>
-              </S.ListRight>
-            </S.List>
-          )}
-        </div>
-      ))}
+      {renderPage()}
     </S.Wrapper>
   );
 }
