@@ -53,9 +53,7 @@ export default function CommentDrawer(props) {
         open={open}
         key={placement}
       >
-        <Comment 
-          data={props.data}
-        />
+        <Comment data={props.data} />
       </Drawer>
     </>
   );

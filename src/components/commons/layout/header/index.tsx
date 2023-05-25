@@ -6,16 +6,16 @@ import { useUser } from "../../hooks/custom/useUser";
 import { ItemType } from "antd/es/menu/hooks/useItems";
 import { useQueryFetchLoginUser } from "../../hooks/queries/useQueryFetchLoginUser";
 import { useMoveToPage } from "../../hooks/custom/useMoveToPage";
-import { useQueryFetchRandomProduct } from "../../hooks/queries/useQueryFetchRandomProduct";
 import { request, gql } from "graphql-request";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { useRouter } from "next/router";
-import { debounce, set } from "lodash";
-import { ChangeEvent, useEffect, useState } from "react";
+import { debounce } from "lodash";
+import { useForm } from "react-hook-form";
+import { IData } from "./index.types";
 
 export default function Header(): JSX.Element {
   const router = useRouter();
-  const [value, setValue] = useState("");
+  const { register, handleSubmit, setValue } = useForm<IData>();
 
   const { onClickLogout } = useUser();
   const { onClickMoveToPage } = useMoveToPage();
@@ -36,12 +36,6 @@ export default function Header(): JSX.Element {
     },
     { label: <span onClick={onClickLogout}>로그아웃</span> }
   ] as ItemType[];
-
-  const getDebounce = debounce(e => {
-    router.push({
-      pathname: `/searchList/${e}`
-    });
-  }, 1000);
 
   const clickRandomBoard = async () => {
     const query = gql`
@@ -72,13 +66,19 @@ export default function Header(): JSX.Element {
     }
   };
 
-  const SearchingKeyword = (e: ChangeEvent<HTMLInputElement>) => {
-    const keyWord = e.target.value;
+  const getDebounce = debounce(e => {
+    console.log(e);
 
-    getDebounce(keyWord);
+    router.push({
+      pathname: `/categoryList/all/${e}`
+    });
+    setValue("keyword", "");
+  }, 1000);
+
+  const searchKeyword = (data: IData) => {
+    console.log(data);
+    getDebounce(data.keyword);
   };
-
-  console.log(router.asPath);
 
   return (
     <>
@@ -88,10 +88,13 @@ export default function Header(): JSX.Element {
             <S.Logo>LOGO</S.Logo>
           </Link>
           <S.HeaderBox>
-            <S.SearchBox>
-              <S.SearchIcon />
-              <S.SearchInput onChange={SearchingKeyword} />
-            </S.SearchBox>
+            <form onSubmit={handleSubmit(searchKeyword)}>
+              <S.SearchBox>
+                <S.SearchIcon />
+                <S.SearchInput {...register("keyword")} />
+                <S.SearchBtn type="submit"></S.SearchBtn>
+              </S.SearchBox>
+            </form>
             <S.ShuffleBtn onClick={clickRandomBoard}>
               <S.ShuffleIcon src="/shuffle.png" />
             </S.ShuffleBtn>

@@ -37,7 +37,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
     uri: "https://doumdattgi-server.com/graphql",
     headers: {
       Authorization: `Bearer ${accessToken}`,
-      "X-Apollo-Operation-Name": true
+      "X-Apollo-Operation-Name": "true"
     },
     credentials: "include"
   });

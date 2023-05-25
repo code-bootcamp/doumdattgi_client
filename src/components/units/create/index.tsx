@@ -18,7 +18,6 @@ const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
 });
 
 export default function BoardWritePresenter(props: any) {
-
   const {
     onClickWrite,
     selectedCategory,
@@ -45,20 +44,27 @@ export default function BoardWritePresenter(props: any) {
     clickEmployee,
     clickEmployer,
     isToggle,
-    onClickAddressSearch,
+    onClickAddressSearch
   } = useCreateProduct();
 
-  const router = useRouter()
+  const router = useRouter();
   const { data } = useQueryFetchDetailProduct(String(router.query.id));
-  console.log(data?.fetchDetailProduct)
+  console.log(data?.fetchDetailProduct);
 
   return (
     <>
-    <AddressModal setAddress={setAddress} setZipcode={setZipcode} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+      <AddressModal
+        setAddress={setAddress}
+        setZipcode={setZipcode}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
       <S.Wrapper>
         <form onSubmit={wrapFormAsync(handleSubmit(onClickWrite))}>
           <S.Head>
-            <S.Title>{props.isEdit ? "게시글 수정하기" : "게시글 작성하기"}</S.Title>
+            <S.Title>
+              {props.isEdit ? "게시글 수정하기" : "게시글 작성하기"}
+            </S.Title>
             <S.SelectToggle>
               <S.Employee onClick={clickEmployee} isToggle={isToggle}>
                 일을 구해요
@@ -76,7 +82,10 @@ export default function BoardWritePresenter(props: any) {
                   게시글 제목
                   <S.Required>*</S.Required>
                 </S.Theme>
-                <S.Input {...register("title")} defaultValue={data?.fetchDetailProduct?.product_title}/>
+                <S.Input
+                  {...register("title")}
+                  defaultValue={data?.fetchDetailProduct?.product_title}
+                />
               </S.InputBox>
               <S.InputBox>
                 <S.Theme>
@@ -96,7 +105,10 @@ export default function BoardWritePresenter(props: any) {
                   게시글 요약
                   <S.Required>*</S.Required>
                 </S.Theme>
-                <S.Input {...register("summary")} defaultValue={data?.fetchDetailProduct?.product_summary}/>
+                <S.Input
+                  {...register("summary")}
+                  defaultValue={data?.fetchDetailProduct?.product_summary}
+                />
               </S.InputBox>
             </S.Body_Top>
             <S.Body_Middle>
@@ -135,24 +147,53 @@ export default function BoardWritePresenter(props: any) {
                   <S.Required>*</S.Required>
                 </S.Theme>
                 <S.Image>
-                  <ImageUpload fileList={fileList} setFileList={setFileList} data={data?.fetchDetailProduct?.images}/>
+                  <ImageUpload
+                    fileList={fileList}
+                    setFileList={setFileList}
+                    data={data?.fetchDetailProduct?.images}
+                  />
                 </S.Image>
               </S.AttachedImg>
               <S.BoardAddress>
                 <S.Theme>주소 입력</S.Theme>
                 <S.AddressBox>
                   <S.MapBox>
-                    <Map address={address !== "" ? address : data?.fetchDetailProduct?.product_roadAddress} />
+                    <Map
+                      address={
+                        address !== ""
+                          ? address
+                          : data?.fetchDetailProduct?.product_roadAddress
+                      }
+                    />
                   </S.MapBox>
                   <S.SearchBox>
                     <S.ZipcodeBox>
-                      <InputHeight38px value={zipcode !== "" ? zipcode : data?.fetchDetailProduct?.product_postNum} disabled />
+                      <InputHeight38px
+                        value={
+                          zipcode !== ""
+                            ? zipcode
+                            : data?.fetchDetailProduct?.product_postNum ?? ""
+                        }
+                        disabled
+                      />
                       <S.SearchBtn onClick={onClickAddressSearch} type="button">
                         우편번호 검색
                       </S.SearchBtn>
                     </S.ZipcodeBox>
-                    <InputHeight38px value={address !== "" ? address : data?.fetchDetailProduct?.product_roadAddress} disabled />
-                    <S.Input {...register("product_detailAddress")} defaultValue={data?.fetchDetailProduct?.product_detailAddress}/>
+                    <InputHeight38px
+                      value={
+                        address !== ""
+                          ? address
+                          : data?.fetchDetailProduct?.product_roadAddress ?? ""
+                      }
+                      disabled
+                    />
+                    <S.Input
+                      {...register("product_detailAddress")}
+                      defaultValue={
+                        data?.fetchDetailProduct?.product_detailAddress ?? ""
+                      }
+                    />
                   </S.SearchBox>
                 </S.AddressBox>
               </S.BoardAddress>
@@ -170,4 +211,3 @@ export default function BoardWritePresenter(props: any) {
     </>
   );
 }
-

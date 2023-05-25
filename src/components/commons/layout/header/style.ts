@@ -33,6 +33,11 @@ export const SearchBox = styled.div`
   width: 260px;
   position: relative;
 `;
+
+export const SearchBtn = styled.button`
+  display: none;
+`;
+
 export const SearchIcon = styled(SearchOutlined)`
   position: absolute;
   top: 50%;
