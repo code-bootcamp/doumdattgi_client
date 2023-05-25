@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { useMutationSendTokenSMS } from "../../mutations/useMutationSentTokenSMS";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
