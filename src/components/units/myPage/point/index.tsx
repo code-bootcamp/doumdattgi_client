@@ -42,7 +42,7 @@ export default function PaymentPresenter(): JSX.Element {
     }
   }, [isCancel]);
 
-  // 결제내역 refetch
+  //  결제내역 refetch
   useEffect(() => {
     setRefetch(prev => ({ ...prev, login: loginRefetch, payment: payRefetch }));
   }, [loginRefetch, payRefetch]);
