@@ -28,6 +28,9 @@ export const FETCH_DETAIL_PRODUCT = gql`
       product_workDay
       product_startTime
       product_endTime
+      product_postNum
+      product_roadAddress
+      product_detailAddress
     }
   }
 `;

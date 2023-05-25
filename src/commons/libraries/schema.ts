@@ -51,9 +51,22 @@ export const schemaSignUp = yup.object({
 });
 
 export const schemaCreate = yup.object({
-  title: yup.string().required("게시글 제목을 작성해주세요."),
-  summary: yup.string().required("게시글에 대해 간략하게 설명해주세요."),
-  contents: yup.string().required("게시글 내용을 작성해주세요."),
+  product_title: yup.string().required("게시글 제목을 작성해주세요."),
+  product_summary: yup
+    .string()
+    .required("게시글에 대해 간략하게 설명해주세요."),
+  product_main_text: yup.string().required("게시글 내용을 작성해주세요."),
+  product_postNum: yup.string(),
+  product_roadAddress: yup.string(),
+  product_detailAddress: yup.string()
+});
+
+export const schemaUpdate = yup.object({
+  product_title: yup.string(),
+  product_summary: yup.string(),
+  product_main_text: yup.string(),
+  product_postNum: yup.string(),
+  product_roadAddress: yup.string(),
   product_detailAddress: yup.string()
 });
 
@@ -103,4 +116,8 @@ export const schemaPasswordReset = yup.object({
       "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요."
     )
     .required()
+});
+
+export const schemaCreateComment = yup.object({
+  text: yup.string().required("내용을 입력해주세요.")
 });

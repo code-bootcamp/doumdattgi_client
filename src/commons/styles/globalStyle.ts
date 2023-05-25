@@ -64,6 +64,18 @@ export const globalStyle = css`
     justify-content: space-between;
   }
 
+  /* TimePicker */
+  :where(.css-dev-only-do-not-override-15rg2km).ant-picker-dropdown .ant-picker-time-panel-column {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  :where(.css-dev-only-do-not-override-15rg2km).ant-btn.ant-btn-sm {
+    padding: 0 26px;
+    height: 26px;
+  }
+
   /* 헤더 드롭다운 */
   .header {
     width: 120px;

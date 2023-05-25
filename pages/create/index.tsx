@@ -1,5 +1,5 @@
-import BoardWritePresenter from "../../src/components/units/create";
+import CreateProduct from "../../src/components/units/create/index2";
 
 export default function BoardWrite() {
-  return <BoardWritePresenter isEdit={false}/>;
+  return <CreateProduct isEdit={false}/>;
 }

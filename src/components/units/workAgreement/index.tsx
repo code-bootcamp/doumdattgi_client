@@ -33,7 +33,9 @@ export default function WorkAgreement(): JSX.Element {
   return (
     <>
       <S.CommentBoxWrapper>
-        <CommentDrawer />
+        <CommentDrawer 
+          data={data}
+        />
         <S.Wrapper>
           <S.Category>
             {isAccept === "WAITING" && completed === "1970-1-1" ? (
