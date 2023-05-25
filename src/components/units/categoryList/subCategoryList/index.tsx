@@ -1,36 +1,46 @@
-import { useRouter } from "next/router";
-import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
-import * as S from "./styles";
-import { CategoryObj, Obj } from "../../../../commons/libraries/translate";
 import InfiniteScroll from "react-infinite-scroller";
-import { useQueryFetchAllProducts } from "../../../commons/hooks/queries/useQueryFetchAllProducts";
+import { useQueryfetchSubCategoryProduct } from "../../../commons/hooks/queries/useQueryFetchSubCategoryProduct";
 import SideSubCategory from "../../../commons/parts/list/sideSubcategoryList";
+import * as S from "./styles";
+import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
+import { CategoryObj, Obj } from "../../../../commons/libraries/translate";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-export default function AllList() {
+export default function SubCategorys() {
   const router = useRouter();
-
-  const { data, fetchMore } = useQueryFetchAllProducts();
   const { onClickMoveToPage } = useMoveToPage();
 
-  // 무한 스크롤 로직
+  const BigCategory = Array.isArray(router.query.data)
+    ? router.query.data[0]
+    : router.query.data || "";
+
+  const Sub = Array.isArray(router.query.sub)
+    ? router.query.sub[0]
+    : router.query.sub || "";
+
+  const { data, fetchMore } = useQueryfetchSubCategoryProduct(Sub);
+
+  const length = data?.fetchSubCategoryProduct.length;
+
   const onLoadMore = () => {
     if (data === undefined) return;
 
     fetchMore({
       variables: {
-        page: Math.ceil((data?.fetchProducts?.length ?? 10) / 10) + 1
+        page: Math.ceil((data?.fetchSubCategoryProduct?.length ?? 10) / 10) + 1
       },
       updateQuery: (prev, { fetchMoreResult }) => {
-        if (fetchMoreResult.fetchProducts === undefined) {
+        if (fetchMoreResult.fetchSubCategoryProduct === undefined) {
           return {
-            fetchProducts: [...prev.fetchProducts]
+            fetchSubCategoryProduct: [...prev.fetchSubCategoryProduct]
           };
         }
 
         return {
-          fetchProducts: [
-            ...prev.fetchProducts,
-            ...fetchMoreResult.fetchProducts
+          fetchSubCategoryProduct: [
+            ...prev.fetchSubCategoryProduct,
+            ...fetchMoreResult.fetchSubCategoryProduct
           ]
         };
       }
@@ -41,17 +51,23 @@ export default function AllList() {
     <S.Wrapper>
       <SideSubCategory />
       <S.WrapperRight>
-        <S.CategoryTag>홈</S.CategoryTag>
+        <Link href="/categoryList/all">
+          <S.CategoryTag>홈</S.CategoryTag>
+        </Link>
+        <S.CategoryTag>{`>`}</S.CategoryTag>
+        <S.CategoryTag>{CategoryObj[BigCategory]}</S.CategoryTag>
+        <S.CategoryTag>{`>`}</S.CategoryTag>
+        <S.CategoryTag>{Sub}</S.CategoryTag>
         <S.RightHeader>
           <div>
-            {data?.fetchProducts?.length}
+            {data?.fetchSubCategoryProduct?.length}
             개의 서비스
           </div>
           <div>최신순</div>
         </S.RightHeader>
         <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
           <S.ContentsBox>
-            {data?.fetchProducts.map(el => (
+            {data?.fetchSubCategoryProduct.map(el => (
               <S.Contents
                 onClick={onClickMoveToPage(`/${el.product_product_id}`)}
                 key={el.product_product_id}

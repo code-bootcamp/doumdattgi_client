@@ -30,6 +30,20 @@ export const LeftList = styled.div`
   margin-bottom: 24px;
 `;
 
+export const SubCategoryBox = styled.div`
+  height: 200px;
+  border: 2px solid red;
+`;
+
+export const SubCategory = styled.div`
+  height: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  border: 2px solid blue;
+`;
+
 export const WrapperRight = styled.div`
   width: 100%;
 `;

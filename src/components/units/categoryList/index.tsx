@@ -4,8 +4,8 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
 import { CategoryObj, Obj } from "../../../commons/libraries/translate";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
-import { useState } from "react";
 import Link from "next/link";
+import SideSubCategory from "../../commons/parts/list/sideSubcategoryList";
 
 export default function CategoryList(): JSX.Element {
   const router = useRouter();
@@ -18,10 +18,13 @@ export default function CategoryList(): JSX.Element {
 
   const { data, fetchMore } = useQueryFetchCategoryProduct(category);
 
+  console.log(category);
+  console.log("aaa");
+  console.log(data);
+
   // 조회용 카테고리 Key값
   const CategoryTitle =
     data?.fetchCategoryProduct?.[0]?.product_product_category;
-  console.log(data);
 
   // 무한 스크롤 로직
   const onLoadMore = () => {
@@ -48,16 +51,9 @@ export default function CategoryList(): JSX.Element {
     });
   };
 
-  console.log(data);
-
   return (
     <S.Wrapper>
-      <S.WrapperLeft>
-        디자인
-        <S.DivideLine />
-        <S.Ad />
-        <S.LeftList>리스트 목록</S.LeftList>
-      </S.WrapperLeft>
+      <SideSubCategory />
       <S.WrapperRight>
         <Link href="/categoryList/all">
           <S.CategoryTag>홈</S.CategoryTag>

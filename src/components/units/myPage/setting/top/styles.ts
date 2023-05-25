@@ -70,8 +70,10 @@ export const ProfileIntroduce = styled.p`
   margin-top: 20px;
 `;
 export const ProfileEditBtn = styled.div`
-
-`
+  width: 23%;
+  display: flex;
+  justify-content: space-between;
+`;
 export const ProfileEdit = styled.button`
   border: none;
   border-bottom: 1px solid #111;

@@ -24,6 +24,7 @@ export const SelectBar = styled.nav`
   width: 100%;
   display: flex;
   flex-direction: row;
+  margin-bottom: 40px;
 `;
 
 export const selectOption = styled.div`
@@ -75,4 +76,5 @@ export const ChargeBtn = styled.button`
   font-size: 18px;
   background-color: #111111;
   color: white;
+  cursor: pointer;
 `;

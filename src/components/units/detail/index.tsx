@@ -1,6 +1,7 @@
 import {
   faEllipsisVertical,
-  faSeedling
+  faSeedling,
+  faBookmark as Bookmark2
 } from "@fortawesome/free-solid-svg-icons";
 import Slider from "../../commons/parts/slider";
 import * as S from "./styles";
@@ -15,6 +16,7 @@ import DOMPurify from "dompurify";
 import { Obj, CategoryObj } from "../../../commons/libraries/translate";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
+import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutationCreatePick";
 
 export default function Detail() {
   const router = useRouter();
@@ -24,6 +26,7 @@ export default function Detail() {
   const { data } = useQueryFetchDetailProduct(id);
   const { data: loginData } = useQueryFetchLoginUser();
   const { data: random } = useQueryFetchRandomProduct();
+  const [createPick] = useMutationcreatePick();
 
   // fetch 한 이미지들을 담은 배열
   const ImgArr = data?.fetchDetailProduct.images.map(el => el.image_url);
@@ -34,6 +37,10 @@ export default function Detail() {
   // 작성 글 ID와 로그인 유저 ID
   const writer = data?.fetchDetailProduct.user.user_id;
   const LoginUser = loginData?.fetchLoginUser.user_id;
+
+  const clickPick = () => {
+    createPick({ variables: { product_id: router.query.id } });
+  };
 
   return (
     <S.Wrapper>
@@ -53,7 +60,7 @@ export default function Detail() {
             <S.TitleWrap>
               <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
               <S.IconBox>
-                <S.Icon icon={faBookmark} />
+                <S.Icon onClick={clickPick} icon={faBookmark} />
                 <S.Icon icon={faEllipsisVertical} />
               </S.IconBox>
             </S.TitleWrap>
