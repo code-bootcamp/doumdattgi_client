@@ -110,6 +110,7 @@ export const useCreateProduct2 = isEdit => {
       void trigger("product_main_text");
     }, [data]);
   }
+  
 
   const onClickAddressSearch = (): void => {
     setIsModalOpen(prev => !prev);
