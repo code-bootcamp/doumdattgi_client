@@ -1,4 +1,4 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { ModalCancelState, refetchAtom } from "../../../../commons/stores";
 import UseModal from "../../../../components/commons/hooks/custom/useModal/index";
 import ChargeModal from "../../../commons/parts/Modals/Charge/index";
@@ -23,16 +23,18 @@ export default function PaymentPresenter(): JSX.Element {
     { title: "전체", key: 0, isSelected: false },
     { title: "충전내역", key: 1, isSelected: false },
     { title: "입금내역", key: 2, isSelected: false },
-    { title: "차감내역", key: 3, isSelected: false },
-    { title: "환불내역", key: 4, isSelected: false }
+    { title: "의뢰요청", key: 3, isSelected: false },
+    { title: "의뢰취소", key: 4, isSelected: false },
+    { title: "환불내역", key: 5, isSelected: false }
   ]);
+  const [payState, setPayState] = useState<string>("");
 
   const { data: UserData, refetch: loginRefetch } = useQueryFetchLoginUser();
   const {
     data,
     fetchMore,
     refetch: payRefetch
-  } = useQueryFetchUserPaymentInfo();
+  } = useQueryFetchUserPaymentInfo(payState);
 
   const dataArr = data?.fetchPayments ?? [];
 
@@ -42,7 +44,7 @@ export default function PaymentPresenter(): JSX.Element {
     }
   }, [isCancel]);
 
-  // 결제내역 refetch
+  //  결제내역 refetch
   useEffect(() => {
     setRefetch(prev => ({ ...prev, login: loginRefetch, payment: payRefetch }));
   }, [loginRefetch, payRefetch]);
@@ -51,22 +53,32 @@ export default function PaymentPresenter(): JSX.Element {
   const clickRefund = (value: IValueArgs) => () => {
     const Info = [...refundInfo];
 
-    Info[0] = value.payment_payment_impUid;
-    Info[1] = value.payment_payment_type;
+    Info[0] = value.payment_impUid;
+    Info[1] = value.payment_type;
     console.log("hi");
 
     setIsRefund(true);
     setRefundInfo(Info);
   };
 
+  const TrnaslatePointSelect: { [key: string]: string } = {
+    전체: "",
+    충전내역: "PAYMENT",
+    입금내역: "SELL",
+    의뢰요청: "REQUEST",
+    의뢰취소: "REFUND",
+    환불내역: "CANCEL"
+  };
+
   // 네비게이션 바 선택유무 체크
   const selectState = (e: MouseEvent<HTMLDivElement>) => {
     const selectedId = e.currentTarget.id;
 
-    console.log(selectedId);
+    console.log(TrnaslatePointSelect[selectedId]);
     setStatus(prev =>
       prev.map(el => ({ ...el, isSelected: el.title === selectedId }))
     );
+    setPayState(TrnaslatePointSelect[selectedId]);
   };
 
   // 결제 내역 무한스크롤
@@ -93,8 +105,6 @@ export default function PaymentPresenter(): JSX.Element {
       }
     });
   };
-
-  console.log(data);
 
   return (
     <>
@@ -133,7 +143,7 @@ export default function PaymentPresenter(): JSX.Element {
               dataArr={dataArr}
               clickRefund={clickRefund}
               el={el}
-              key={el.payment_payment_id}
+              key={el.payment_id}
             />
           )) ?? []}
         </InfiniteScroll>

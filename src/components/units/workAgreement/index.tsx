@@ -1,5 +1,4 @@
 import * as S from "./workAgreement.styles";
-import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
 import CommentDrawer from "../../commons/parts/commentDrawer";
@@ -9,7 +8,6 @@ import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetc
 import { useRequestAcceptRefuse } from "../../commons/hooks/custom/useRequestAcceptRefuse/index";
 import { getDate, getDateTime } from "../../../commons/libraries/getDate";
 import { useRequestProcess } from "../../commons/hooks/custom/useRequestProcess/index";
-import { request } from "graphql-request";
 
 export default function WorkAgreement(): JSX.Element {
   const router = useRouter();
@@ -47,9 +45,7 @@ export default function WorkAgreement(): JSX.Element {
   return (
     <>
       <S.CommentBoxWrapper>
-        <CommentDrawer 
-          data={data}
-        />
+        <CommentDrawer data={data} />
         <S.Wrapper>
           <S.Category>
             {isRefuse === true || isAccept === "REFUSE" ? "거절됨" : <></>}
