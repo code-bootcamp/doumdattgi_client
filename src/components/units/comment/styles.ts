@@ -34,8 +34,8 @@ export const WrapperBody = styled.div`
   height: 100%;
   padding: 24px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
 `;
 
 export const SendingBox = styled.div`

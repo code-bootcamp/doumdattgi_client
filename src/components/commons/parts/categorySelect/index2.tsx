@@ -8,7 +8,13 @@ export default function Category2(props) {
   useEffect(() => {
     props.setCategorySelect(props.data?.product_category);
     props.setCategoryArray(option[props.data?.product_category]);
-    props.setOptionSelect(option[props.data?.product_category][0]);
+    // props.setOptionSelect(option[props.data?.product_category][0]);
+    if (
+      option[props.data?.product_category] &&
+      option[props.data?.product_category].length > 0
+    ) {
+      props.setOptionSelect(option[props.data?.product_category][0]);
+    }
   }, [props.data]);
 
   const handleCategoryChange = (value: CategoryName) => {
@@ -47,13 +53,13 @@ export default function Category2(props) {
         <Select
           style={{ width: "100%" }}
           size={"large"}
-          defaultValue={
-            props.data
-              ? `${props.data?.product_sub_category}`
+          value={
+            props.optionSelect
+              ? `${props.optionSelect}`
               : "옵션을 선택해주세요."
           }
           onChange={onSecondCityChange}
-          options={props.categoryArray.map(option => ({
+          options={props.categoryArray && props.categoryArray.map(option => ({
             label: option,
             value: option
           }))}
