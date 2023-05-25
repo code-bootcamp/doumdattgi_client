@@ -39,7 +39,6 @@ function ToastEditor(props: any) {
         hooks={{
           addImageBlobHook: async (blob, callback) => {
             const result = await uploadFile({ variables: { files: blob } });
-            // console.log(result?.data?.uploadFile);
             callback(`${result?.data?.uploadFile}`);
           }
         }}
