@@ -40,7 +40,11 @@ export const Title = styled.h2`
   font-size: 30px;
   line-height: 30px;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
+
 export const IconBox = styled.div``;
 export const Icon = styled(FontAwesomeIcon)`
   font-size: 24px;
@@ -70,7 +74,7 @@ export const Remarks = styled.p`
   line-height: 20px;
   color: #333;
   margin-top: 30px;
-  word-break: keep-all;
+  word-break: break-word;
 `;
 export const Button = styled.div`
   position: relative;
@@ -84,6 +88,7 @@ export const SlotBox = styled.div`
 `;
 export const SlotText = styled.span`
   display: block;
+  width: 100%;
   position: absolute;
   z-index: 999;
   left: 25px;
@@ -121,11 +126,11 @@ export const DetailTitle = styled.h3`
   font-weight: 600;
 `;
 export const DetailContents = styled.p`
+  width: 100%;
   font-size: 16px;
   line-height: 24px;
-  word-break: keep-all;
+  word-break: break-word;
   margin-top: 30px;
-
   img {
     max-width: 100%;
   }
@@ -209,6 +214,8 @@ export const UserWorkText = styled.span`
 `;
 export const UserLevelBox = styled.div``;
 export const UserLevelIcon = styled.img`
+  width: 25px;
+  height: 32px;
   padding-bottom: 4px;
 `;
 export const UserLevelText = styled.div``;
@@ -268,4 +275,29 @@ export const Preview = styled.div`
 export const PreviewImg = styled.img`
   width: 285px;
   height: 200px;
+`;
+
+export const EnableBtn = styled.div`
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+  border: none;
+  color: #929aa0;
+  background-color: #f6f7f9;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EnableSlotText = styled.span`
+  display: block;
+  width: 110%;
+  position: absolute;
+  z-index: 999;
+  left: 35px;
+  top: 15px;
+  font-weight: 600;
 `;

@@ -24,13 +24,29 @@ export type ICancelPaymentOutput = {
   payment_type: Scalars['String'];
 };
 
+export type IComment = {
+  __typename?: 'Comment';
+  comment_createdAt: Scalars['DateTime'];
+  comment_id: Scalars['String'];
+  comment_text: Scalars['String'];
+  request: IRequest;
+  sender_id: Scalars['String'];
+  user: IUser;
+};
+
+export type ICreateCommentInput = {
+  request_id: Scalars['String'];
+  sender_id: Scalars['String'];
+  text: Scalars['String'];
+};
+
 export type ICreateProductInput = {
   product_category: Scalars['String'];
-  product_detailAddress: Scalars['String'];
+  product_detailAddress?: InputMaybe<Scalars['String']>;
   product_endTime: Scalars['Int'];
   product_main_text: Scalars['String'];
-  product_postNum: Scalars['String'];
-  product_roadAddress: Scalars['String'];
+  product_postNum?: InputMaybe<Scalars['String']>;
+  product_roadAddress?: InputMaybe<Scalars['String']>;
   product_sellOrBuy: Scalars['Boolean'];
   product_startTime: Scalars['Int'];
   product_sub_category: Scalars['String'];
@@ -56,12 +72,27 @@ export type ICreateUserInput = {
   user_phone: Scalars['String'];
 };
 
+export type IFetchMyPickOutput = {
+  __typename?: 'FetchMyPickOutput';
+  i_image_url: Scalars['String'];
+  p_product_category: Scalars['String'];
+  p_product_id: Scalars['String'];
+  p_product_sellOrBuy: Scalars['Boolean'];
+  p_product_summary: Scalars['String'];
+  p_product_title: Scalars['String'];
+  p_product_workDay: Scalars['String'];
+  pick_pick_id: Scalars['String'];
+  u_user_nickname: Scalars['String'];
+  u_user_profileImage?: Maybe<Scalars['String']>;
+};
+
 export type IFetchMyProductOutput = {
   __typename?: 'FetchMyProductOutput';
   i_image_url: Scalars['String'];
   product_product_category: Scalars['String'];
   product_product_id: Scalars['String'];
   product_product_sellOrBuy: Scalars['Boolean'];
+  product_product_summary: Scalars['String'];
   product_product_title: Scalars['String'];
   product_product_workDay: Scalars['String'];
   u_user_id: Scalars['String'];
@@ -96,6 +127,19 @@ export type IFetchProductOutput = {
   u_user_profileImage?: Maybe<Scalars['String']>;
 };
 
+export type IFetchSearchProductOutput = {
+  __typename?: 'FetchSearchProductOutput';
+  i_image_url: Scalars['String'];
+  product_product_category: Scalars['String'];
+  product_product_id: Scalars['String'];
+  product_product_sellOrBuy: Scalars['Boolean'];
+  product_product_summary: Scalars['String'];
+  product_product_title: Scalars['String'];
+  product_product_workDay: Scalars['String'];
+  u_user_nickname: Scalars['String'];
+  u_user_profileImage?: Maybe<Scalars['String']>;
+};
+
 export type IFetchSubCategoryOutput = {
   __typename?: 'FetchSubCategoryOutput';
   i_image_url: Scalars['String'];
@@ -123,6 +167,7 @@ export type IMutation = {
   checkValidTokenEMAIL: Scalars['Boolean'];
   checkValidTokenFindEmailBySMS: Scalars['String'];
   checkValidTokenFindPwdBySMS: Scalars['Boolean'];
+  createComment: Scalars['Boolean'];
   createPayment: IPayment;
   createPick: Scalars['String'];
   createProduct: IProduct;
@@ -168,6 +213,11 @@ export type IMutationCheckValidTokenFindEmailBySmsArgs = {
 export type IMutationCheckValidTokenFindPwdBySmsArgs = {
   user_phone: Scalars['String'];
   user_token: Scalars['String'];
+};
+
+
+export type IMutationCreateCommentArgs = {
+  createCommentInput: ICreateCommentInput;
 };
 
 
@@ -300,12 +350,12 @@ export type IProduct = {
   images: Array<IImage>;
   product_category: IProduct_Category_Enum;
   product_deletedAt?: Maybe<Scalars['DateTime']>;
-  product_detailAddress: Scalars['String'];
+  product_detailAddress?: Maybe<Scalars['String']>;
   product_endTime: Scalars['Int'];
   product_id: Scalars['String'];
   product_main_text: Scalars['String'];
-  product_postNum: Scalars['String'];
-  product_roadAddress: Scalars['String'];
+  product_postNum?: Maybe<Scalars['String']>;
+  product_roadAddress?: Maybe<Scalars['String']>;
   product_sellOrBuy: Scalars['Boolean'];
   product_startTime: Scalars['Int'];
   product_sub_category: Scalars['String'];
@@ -321,19 +371,22 @@ export type IQuery = {
   fetchAllProducts: Array<IFetchProductOutput>;
   fetchBuyerRequest: Array<IRequest>;
   fetchCategoryProduct: Array<IFetchProductOutput>;
+  fetchComments: Array<IComment>;
   fetchDetailProduct: IProduct;
   fetchLoginUser: IUser;
   fetchMyProduct: Array<IFetchMyProductOutput>;
   fetchNewbieProduct: Array<IFetchProductOutput>;
   fetchOneRequest: IRequest;
   fetchPayments: Array<IFetchPaymentOutput>;
+  fetchPickUserProduct: Array<IFetchMyPickOutput>;
   fetchProducts: Array<IFetchProductOutput>;
   fetchRandomProduct: Array<IFetchProductOutput>;
-  fetchSearchProduct: Array<IFetchProductOutput>;
+  fetchSearchProduct: Array<IFetchSearchProductOutput>;
   fetchSellCategoryProducts: Array<IFetchProductOutput>;
   fetchSellProduct: Array<IFetchProductOutput>;
   fetchSellerWork: Array<IRequest>;
   fetchSubCategoryProduct: Array<IFetchSubCategoryOutput>;
+  fetchUserSlot: ISlot;
 };
 
 
@@ -341,6 +394,11 @@ export type IQueryFetchCategoryProductArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
   product_category: Scalars['String'];
+};
+
+
+export type IQueryFetchCommentsArgs = {
+  request_id: Scalars['String'];
 };
 
 
@@ -363,6 +421,13 @@ export type IQueryFetchOneRequestArgs = {
 export type IQueryFetchPaymentsArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
+  payment_status?: InputMaybe<Scalars['String']>;
+};
+
+
+export type IQueryFetchPickUserProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
 };
 
 
@@ -375,7 +440,7 @@ export type IQueryFetchProductsArgs = {
 export type IQueryFetchSearchProductArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
-  product_title: Scalars['String'];
+  search: Scalars['String'];
 };
 
 
@@ -421,6 +486,15 @@ export type IRequest = {
   seller_profileImage: Scalars['String'];
 };
 
+export type ISlot = {
+  __typename?: 'Slot';
+  slot_first: Scalars['Boolean'];
+  slot_id: Scalars['String'];
+  slot_second: Scalars['Boolean'];
+  slot_third: Scalars['Boolean'];
+  user: IUser;
+};
+
 export type IThumbnail = {
   isMain: Scalars['Boolean'];
   thumbnailImage: Scalars['String'];
@@ -458,6 +532,7 @@ export type IUser = {
   __typename?: 'User';
   payment: Array<IPayment>;
   product: Array<IProduct>;
+  slot: ISlot;
   user_email: Scalars['String'];
   user_id: Scalars['String'];
   user_introduce?: Maybe<Scalars['String']>;

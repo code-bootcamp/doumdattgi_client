@@ -43,8 +43,18 @@ export const List = styled.div`
   flex-direction: row;
   margin-bottom: 20px;
   cursor: pointer;
-  /* // 거절
-  background-color: #f8f8f8; */
+`;
+
+export const ListRefuse = styled.div`
+  height: 120px;
+  border: 1px solid #d0d2de;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  cursor: pointer;
+  background-color: #f8f8f8;
 `;
 
 export const ListLeft = styled.span`
@@ -100,9 +110,11 @@ export const ListStatusRefuse = styled.div`
 
 export const ListTitle = styled.div`
   font-size: 24px;
+`;
 
-  /* // 거절
-  color: #666666; */
+export const ListTitleRefuse = styled.div`
+  font-size: 24px;
+  color: #666666;
 `;
 
 export const ListDate = styled.div`

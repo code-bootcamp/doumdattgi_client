@@ -12,8 +12,6 @@ export default function SettingsBottom() {
 
   const { isDetailEdit, clickEditDetail, clickSaveDetail } = useSettings();
 
-  console.log(data);
-
   return (
     <S.Wrapper>
       <S.SettingBtm>

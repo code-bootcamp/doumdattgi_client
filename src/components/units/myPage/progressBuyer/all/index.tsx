@@ -1,23 +1,16 @@
-import { useQueryFetchSellerWork } from "../../../commons/hooks/queries/useQueryFetchSellerWork";
-import * as S from "./progress.styles";
-import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage/index";
-import { getDate } from "../../../../commons/libraries/getDate";
+import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
+import { useQueryFetchBuyerRequest } from "../../../../commons/hooks/queries/useQueryFetchBuyerRequest";
+import * as S from "../progress.styles";
+import { getDateTime } from "../../../../../commons/libraries/getDate";
 
-export default function ProgressSeller(): JSX.Element {
-  const { data } = useQueryFetchSellerWork();
+export default function ProgressBuyerAll(): JSX.Element {
+  const { data } = useQueryFetchBuyerRequest();
 
   const { onClickMoveToPage } = useMoveToPage();
 
   return (
-    <S.Wrapper>
-      <S.PageTitle>작업 진행 내역</S.PageTitle>
-      <S.TabBox>
-        <S.PageTab>전체</S.PageTab>
-        <S.PageTab>대기중</S.PageTab>
-        <S.PageTab>진행중</S.PageTab>
-        <S.PageTab>종료</S.PageTab>
-      </S.TabBox>
-      {data?.fetchSellerWork.map(el => (
+    <>
+      {data?.fetchBuyerRequest.map(el => (
         <div
           key={el.request_id}
           onClick={onClickMoveToPage(`/${el.request_id}/workAgreement`)}
@@ -29,16 +22,16 @@ export default function ProgressSeller(): JSX.Element {
                 <S.ListTitleRefuse>{el.request_title}</S.ListTitleRefuse>
               </S.ListLeft>
               <S.ListRight>
-                <S.ListDate>{getDate(el.request_createAt)}</S.ListDate>
+                <S.ListDate>{getDateTime(el.request_createAt)}</S.ListDate>
                 <S.UserBox>
                   <S.UserIcon
                     onError={e => {
                       const target = e.target as HTMLImageElement;
                       target.src = "/noimage.png";
                     }}
-                    src={el.buyer_profileImage}
+                    src={el.seller_profileImage}
                   />
-                  <S.UserName>{el.buyer_nickname}</S.UserName>
+                  <S.UserName>{el.seller_nickname}</S.UserName>
                 </S.UserBox>
               </S.ListRight>
             </S.ListRefuse>
@@ -55,11 +48,6 @@ export default function ProgressSeller(): JSX.Element {
                 ) : (
                   <></>
                 )}
-                {el.request_isAccept === "REFUSE" ? (
-                  <S.ListStatusRefuse>거절됨</S.ListStatusRefuse>
-                ) : (
-                  <></>
-                )}
                 {el.request_isAccept === "FINISH" ? (
                   <S.ListStatusFinish>종료</S.ListStatusFinish>
                 ) : (
@@ -68,22 +56,22 @@ export default function ProgressSeller(): JSX.Element {
                 <S.ListTitle>{el.request_title}</S.ListTitle>
               </S.ListLeft>
               <S.ListRight>
-                <S.ListDate>{getDate(el.request_createAt)}</S.ListDate>
+                <S.ListDate>{getDateTime(el.request_createAt)}</S.ListDate>
                 <S.UserBox>
                   <S.UserIcon
                     onError={e => {
                       const target = e.target as HTMLImageElement;
                       target.src = "/noimage.png";
                     }}
-                    src={el.buyer_profileImage}
+                    src={el.seller_profileImage}
                   />
-                  <S.UserName>{el.buyer_nickname}</S.UserName>
+                  <S.UserName>{el.seller_nickname}</S.UserName>
                 </S.UserBox>
               </S.ListRight>
             </S.List>
           )}
         </div>
       ))}
-    </S.Wrapper>
+    </>
   );
 }

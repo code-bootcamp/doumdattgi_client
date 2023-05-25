@@ -16,7 +16,10 @@ import DOMPurify from "dompurify";
 import { Obj, CategoryObj } from "../../../commons/libraries/translate";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
+import { useQueryFetchUserSlot } from "../../commons/hooks/queries/useQueryfetchUserSlot";
+import { useUser } from "../../commons/hooks/custom/useUser/index";
 import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutationCreatePick";
+
 
 export default function Detail() {
   const router = useRouter();
@@ -26,17 +29,23 @@ export default function Detail() {
   const { data } = useQueryFetchDetailProduct(id);
   const { data: loginData } = useQueryFetchLoginUser();
   const { data: random } = useQueryFetchRandomProduct();
+  const { data: slotData } = useQueryFetchUserSlot();
+  const { imageSrc, userTitle } = useUser();
   const [createPick] = useMutationcreatePick();
 
   // fetch 한 이미지들을 담은 배열
   const ImgArr = data?.fetchDetailProduct.images.map(el => el.image_url);
-
   const workDay = data?.fetchDetailProduct.product_workDay;
   const Day = workDay && Obj[workDay];
 
   // 작성 글 ID와 로그인 유저 ID
   const writer = data?.fetchDetailProduct.user.user_id;
   const LoginUser = loginData?.fetchLoginUser.user_id;
+
+  // 슬롯
+  const slot1 = slotData?.fetchUserSlot.slot_first;
+  const slot2 = slotData?.fetchUserSlot.slot_second;
+  const slot3 = slotData?.fetchUserSlot.slot_third;
 
   const clickPick = () => {
     createPick({ variables: { product_id: router.query.id } });
@@ -72,7 +81,9 @@ export default function Detail() {
           </S.DetailBox>
           <S.DetailBox>
             <S.Button>
-              {writer !== LoginUser || !writer || !LoginUser ? (
+              {slot3 ? (
+                <S.EnableBtn>현재 가능한 슬롯이 없습니다.</S.EnableBtn>
+              ) : writer !== LoginUser || !writer || !LoginUser ? (
                 <Link href={`/${router.query.id}/request`}>
                   <a>
                     <ButtonHeight50px title="신청하기" />
@@ -86,8 +97,16 @@ export default function Detail() {
                 </Link>
               )}
               <S.SlotBox>
-                <S.SlotText>현재 가능 슬롯 3개</S.SlotText>
-                <S.SlotBg />
+                {slot3 ? (
+                  <></>
+                ) : (
+                  <>
+                    <S.SlotText>
+                      현재 가능 슬롯 {!slot1 ? "3" : !slot2 ? "2" : "1"}개
+                    </S.SlotText>
+                    <S.SlotBg />
+                  </>
+                )}
               </S.SlotBox>
             </S.Button>
           </S.DetailBox>
@@ -104,7 +123,7 @@ export default function Detail() {
                   String(data?.fetchDetailProduct.product_main_text) ?? ""
                 )
               }}
-            ></S.DetailContents>
+            />
           )}
         </S.DetailContentsWrap>
         <S.DetailUserWrap>
@@ -134,8 +153,8 @@ export default function Detail() {
               </S.UserWorkRateBox>
               <S.VerticalLine />
               <S.UserWorkRateBox>
-                <S.UserLevelIcon src="/plant.png" />
-                <S.UserWorkText>새싹 구직자</S.UserWorkText>
+                <S.UserLevelIcon src={imageSrc} />
+                <S.UserWorkText>{userTitle}</S.UserWorkText>
               </S.UserWorkRateBox>
             </S.UserWorkRateWrap>
             <S.PortfolioTitleBox>

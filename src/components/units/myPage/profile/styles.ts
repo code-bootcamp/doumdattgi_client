@@ -51,19 +51,6 @@ export const LeftBody = styled.div`
   flex-direction: column;
 `;
 
-export const SubTitle = styled.div`
-  width: 100px;
-  height: 30px;
-  font-size: 14px;
-  color: #929aa0;
-  border: 1px solid #929aa0;
-  border-radius: 6px;
-  background-color: #f6f7f9;
-  padding: 0px 9px;
-  text-align: center;
-  line-height: 30px;
-`;
-
 export const PortfolioLink = styled.div`
   font-size: 18px;
   text-decoration: underline;
@@ -85,6 +72,18 @@ export const Slot = styled.div`
   color: #888888;
   text-align: center;
   line-height: 36px;
+`;
+
+export const SlotDisable = styled.div`
+  width: 100px;
+  height: 36px;
+  border: 2px solid #a9a9a9;
+  border-radius: 6px;
+  margin: 30px 0px 60px 0px;
+  color: #a9a9a9;
+  text-align: center;
+  line-height: 36px;
+  background-color: #eaeaea;
 `;
 
 export const Statistics = styled.div`
@@ -120,6 +119,20 @@ export const StatisticsTitle = styled.div`
 `;
 
 // 오른쪽
+
+export const SubTitle = styled.div`
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+  color: #929aa0;
+  border: 1px solid #929aa0;
+  border-radius: 6px;
+  background-color: #f6f7f9;
+  padding: 0px 9px;
+  text-align: center;
+  line-height: 30px;
+`;
+
 export const WrapperRight = styled.div`
   display: flex;
   flex-direction: column;
@@ -153,60 +166,17 @@ export const CreateIcon = styled.img`
   margin-right: 5px;
 `;
 
-export const RightListBox = styled.div`
-  width: 730px;
-  display: flex;
-  margin-top: 40px;
-`;
-
-export const RightDetailBox = styled.div`
-  margin-top: 10px;
-`;
-
-export const ListImage = styled.img`
-  width: 260px;
-  height: 170px;
-  border: 1px solid #e0e1ea;
-  border-radius: 3px;
-  margin-right: 24px;
-`;
-
-export const ListCategory = styled.div`
-  color: #333333;
-  margin-bottom: 20px;
-`;
-
-export const ListTitle = styled.div`
-  width: 440px;
-  font-size: 18px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 14px;
-`;
-
-export const ListDetail = styled.span`
+export const ListBtn = styled.button`
+  width: 100px;
+  height: 30px;
   font-size: 14px;
   color: #929aa0;
-  text-align: center;
-  line-height: 26px;
   border: 1px solid #929aa0;
-  border-radius: 12px;
+  border-radius: 6px;
   background-color: #f6f7f9;
-  padding: 6px 8px;
-  margin-right: 5px;
-`;
-
-export const DivideLine = styled.div`
-  border-top: 1px solid #d9d9d9;
-  margin: 17px 0px;
-`;
-
-export const Remarks = styled.div`
-  width: 440px;
-  /* height: 36px; */
-  color: #888888;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 0px 9px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  margin-right: 10px;
 `;
