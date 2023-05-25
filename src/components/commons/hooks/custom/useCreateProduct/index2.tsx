@@ -29,7 +29,6 @@ export const useCreateProduct2 = isEdit => {
 
   const { data } = useQueryFetchDetailProduct(String(router.query.id));
 
-  console.log(data);
   // 카테고리 state
   const [categoryArray, setCategoryArray] = useState([]);
   const [categorySelect, setCategorySelect] = useState("");

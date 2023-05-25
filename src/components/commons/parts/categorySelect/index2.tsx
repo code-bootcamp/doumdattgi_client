@@ -5,11 +5,12 @@ import { useEffect } from "react";
 type CategoryName = keyof typeof category;
 
 export default function Category2(props) {
-  useEffect(() => {
-    props.setCategorySelect(props.data?.product_category);
-    props.setCategoryArray(option[props.data?.product_category]);
-    props.setOptionSelect(option[props.data?.product_category][0]);
-  }, [props.data]);
+
+  // useEffect(() => {
+  //   props.setCategorySelect(props.data?.product_category);
+  //   props.setCategoryArray(option[props.data?.product_category]);
+  //   props.setOptionSelect(option[props.data?.product_category][0]);
+  // }, [props.data]);
 
   const handleCategoryChange = (value: CategoryName) => {
     props.setCategorySelect(value);
