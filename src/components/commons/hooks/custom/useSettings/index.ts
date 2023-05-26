@@ -121,7 +121,7 @@ export const useSettings = () => {
     try {
       const result = await updateProfileImage({
         variables: {
-          user_url: resultUrl
+          user_url: resultUrl ?? ""
         },
         refetchQueries: [
           {

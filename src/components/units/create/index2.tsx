@@ -255,7 +255,7 @@ export default function CreateProduct(props: IProps) {
                     <S.Input
                       {...register("product_detailAddress")}
                       defaultValue={
-                        data?.fetchDetailProduct?.product_detailAddress
+                        data?.fetchDetailProduct?.product_detailAddress ?? ""
                       }
                     />
                   </S.SearchBox>

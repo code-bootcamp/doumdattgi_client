@@ -11,8 +11,13 @@ interface IRecoveryResult {
 }
 
 export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
-  const { register, handleSubmit, formState, onClickResetPassword, onClickEditPassword } =
-    useResetAccount(props.isEditPassword);
+  const {
+    register,
+    handleSubmit,
+    formState,
+    onClickResetPassword,
+    onClickEditPassword
+  } = useResetAccount(props.isEditPassword ?? false);
   const [userEmail] = useRecoilState(userEmailState);
 
   const mask = (email: string) => {
@@ -44,7 +49,13 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
           </S.Footer>
         </>
       ) : (
-        <form onSubmit={props.isEditPassword ? handleSubmit(onClickEditPassword) : handleSubmit(onClickResetPassword)}>
+        <form
+          onSubmit={
+            props.isEditPassword
+              ? handleSubmit(onClickEditPassword)
+              : handleSubmit(onClickResetPassword)
+          }
+        >
           <S.Title>비밀번호 재설정</S.Title>
           {props.isEditPassword && (
             <>

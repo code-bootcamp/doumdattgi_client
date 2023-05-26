@@ -26,10 +26,7 @@ export const FETCH_PAYMENTS = gql`
 `;
 
 export const useQueryFetchUserPaymentInfo = (state: string) => {
-  const Query = useQuery<
-    Pick<IQuery, "fetchPayments">,
-    IQueryFetchPickUserProductArgs
-  >(FETCH_PAYMENTS, {
+  const Query = useQuery<Pick<IQuery, "fetchPayments">>(FETCH_PAYMENTS, {
     variables: { page: 1, pageSize: 10, payment_status: state }
   });
 

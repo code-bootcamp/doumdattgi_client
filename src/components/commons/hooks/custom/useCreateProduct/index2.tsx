@@ -19,6 +19,7 @@ import {
 import { useMutationCreateProduct } from "../../mutations/useMutationCreateProduct";
 import { useMutationUploadFile } from "../../mutations/useMutationUploadFile";
 import { useMutationUpdateProduct } from "../../mutations/useMutationUpdateProduct";
+import { IUpdate } from "./index.types";
 
 export const useCreateProduct2 = (isEdit: Boolean) => {
   const router = useRouter();
@@ -30,7 +31,7 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
   const { data } = useQueryFetchDetailProduct(String(router.query.id));
 
   // 카테고리 state
-  const [categoryArray, setCategoryArray] = useState([]);
+  const [categoryArray, setCategoryArray] = useState<string[]>([]);
   const [categorySelect, setCategorySelect] = useState("");
   const [optionSelect, setOptionSelect] = useState("");
 
@@ -133,7 +134,7 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
     );
 
     const product_thumbnailImage = results.map(el => {
-      return { thumbnailImage: el.data.uploadFile[0], isMain: false };
+      return { thumbnailImage: el.data?.uploadFile[0] ?? "", isMain: false };
     });
 
     product_thumbnailImage[0].isMain = true;
@@ -168,12 +169,12 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
   };
 
   // =============== 게시글 수정 ===============
-  const onClickEditProduct = async update => {
+  const onClickEditProduct = async (update: IUpdate) => {
     let updateFile = fileList.filter(el => el.originFileObj !== undefined);
     let prevFile = fileList
       .filter(el => el.originFileObj === undefined)
       .map(el => {
-        return { thumbnailImage: el.url, isMain: false };
+        return { thumbnailImage: el.url ?? "", isMain: false };
       });
 
     const results = await Promise.all(
@@ -182,7 +183,7 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
       )
     );
     const product_thumbnailImage = results.map(el => {
-      return { thumbnailImage: el.data.uploadFile[0], isMain: false };
+      return { thumbnailImage: el.data?.uploadFile[0] ?? "", isMain: false };
     });
 
     const resultUrl = [...prevFile, ...product_thumbnailImage];
