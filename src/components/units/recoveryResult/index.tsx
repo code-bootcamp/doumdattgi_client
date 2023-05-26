@@ -7,11 +7,12 @@ import { userEmailState } from "../../../commons/stores";
 
 interface IRecoveryResult {
   isEmail: boolean;
+  isEditPassword?: boolean;
 }
 
 export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
-  const { register, handleSubmit, formState, onClickEditPassword } =
-    useResetAccount();
+  const { register, handleSubmit, formState, onClickResetPassword, onClickEditPassword } =
+    useResetAccount(props.isEditPassword);
   const [userEmail] = useRecoilState(userEmailState);
 
   const mask = (email: string) => {
@@ -43,8 +44,17 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
           </S.Footer>
         </>
       ) : (
-        <form onSubmit={handleSubmit(onClickEditPassword)}>
+        <form onSubmit={props.isEditPassword ? handleSubmit(onClickEditPassword) : handleSubmit(onClickResetPassword)}>
           <S.Title>비밀번호 재설정</S.Title>
+          {props.isEditPassword && (
+            <>
+              <S.IndexTitle>기존 비밀번호</S.IndexTitle>
+              <InputHeight46px
+                placeholder="기존 비밀번호"
+                register={register("prevPassword")}
+              />
+            </>
+          )}
           <S.IndexTitle>새 비밀번호</S.IndexTitle>
           <InputHeight46px
             placeholder="새 비밀번호"

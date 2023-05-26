@@ -1,7 +1,7 @@
 import * as S from "./signup.style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaSignUp } from "../../../commons/libraries/schema";
+import { schemaEmail, schemaSignUp, schemaToken } from "../../../commons/libraries/schema";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import InputHeight42px from "../../commons/inputs/InputHeight42px";
 import { useUser } from "../../commons/hooks/custom/useUser";
@@ -14,13 +14,14 @@ interface IFormData {
   nickname: string;
   phone: string;
   name: string;
+  token?: string
 }
 
 export default function SignUp(): JSX.Element {
-  const { onClickSignUp, onClickValidation, isOn, isActive, sec } = useUser();
+  const { onClickSignUp, onClickValidation, onClickSendToken, isOn, isActive, isChecked, sec } = useUser();
 
   const { register, handleSubmit, formState } = useForm<IFormData>({
-    resolver: yupResolver(schemaSignUp),
+    resolver: yupResolver(isChecked ? schemaSignUp : (isOn ? schemaToken : schemaEmail) ),
     mode: "onChange"
   });
 
@@ -28,10 +29,10 @@ export default function SignUp(): JSX.Element {
     <S.Wrapper>
       <S.Title>회원가입</S.Title>
       <S.SubTitle>이메일</S.SubTitle>
-      <form onSubmit={handleSubmit(onClickSignUp)}>
+      <form onSubmit={isChecked ? handleSubmit(onClickSignUp) : (isOn ? handleSubmit(onClickValidation) : handleSubmit(onClickSendToken))}>
         <InputHeight42px placeholder="이메일" register={register("email")} />
         {!isOn && (
-          <S.AuthBtn type="button" onClick={onClickValidation}>
+          <S.AuthBtn>
             이메일 인증하기
           </S.AuthBtn>
         )}
@@ -39,12 +40,11 @@ export default function SignUp(): JSX.Element {
           <>
             <S.SubTitle>인증번호 입력</S.SubTitle>
             <S.InputBox>
-              <InputHeight42px placeholder="인증번호 입력" />
+              <InputHeight42px placeholder="인증번호 입력" register={register("token")}/>
               <S.Timer>{sec}</S.Timer>
               <S.ButtonBox>
                 <ButtonHeight42px
-                  title="인증하기"
-                  type="button"
+                  title={isChecked ? "인증완료" : "인증하기"}
                   isActive={isActive}
                 />
               </S.ButtonBox>

@@ -6,6 +6,7 @@ import { FETCH_LOGIN_USER } from "../../queries/useQueryFetchLoginUser";
 import { useMutationUpdateNicknameIntroduce } from "../../mutations/useMutationUpdateNicknameIntroduce";
 import { useMutationUpdateUserInfo } from "../../mutations/useMutationUpdateUserInfo";
 import { useQueryFetchLoginUser } from "../../queries/useQueryFetchLoginUser";
+import { useForm } from "react-hook-form";
 
 export interface IPropsIntroduceData {
   user_nickname: string;
@@ -28,6 +29,10 @@ export const useSettings = () => {
 
   const { data: loginData } = useQueryFetchLoginUser();
 
+  const { register, handleSubmit, resetField } = useForm<IPropsIntroduceData>({
+    mode: "onChange"
+  });
+
   // =============== 프로필 이미지 ===============
   const onClickEditAvatar = () => {
     setIsAvatarEdit(prev => !prev);
@@ -36,6 +41,7 @@ export const useSettings = () => {
   // =============== 프로필 자기소개 ===============
   const onClickEditProfile = () => {
     setIsProfileEdit(prev => !prev);
+    resetField("user_introduce");
   };
 
   const clickEditIntroduce = async (data: IPropsIntroduceData) => {
@@ -161,6 +167,8 @@ export const useSettings = () => {
     setIsAvatarEdit,
     clickEditDetail,
     clickSaveDetail,
-    isDetailEdit
+    isDetailEdit,
+    register,
+    handleSubmit
   };
 };

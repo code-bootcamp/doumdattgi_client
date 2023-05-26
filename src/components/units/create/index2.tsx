@@ -255,9 +255,7 @@ export default function CreateProduct(props: IProps) {
                     />
                     <S.Input
                       {...register("product_detailAddress")}
-                      defaultValue={
-                        data?.fetchDetailProduct?.product_detailAddress ?? ""
-                      }
+                      defaultValue={data?.fetchDetailProduct?.product_detailAddress}
                     />
                   </S.SearchBox>
                 </S.AddressBox>
@@ -265,7 +263,7 @@ export default function CreateProduct(props: IProps) {
             </S.Body_Middle>
             <S.Body_Bottom>
               <S.BtnBox>
-                <ButtonHeight40px title="취소하기" type={"button"}/>
+                <ButtonHeight40px title="취소하기" type={"button"} />
                 <ButtonHeight40px title="만들기" isActive={formState.isValid} />
               </S.BtnBox>
             </S.Body_Bottom>

@@ -20,8 +20,6 @@ interface IButtonProps {
 // `;
 
 export default function ButtonHeight50px(props: IButtonProps): JSX.Element {
-  console.log(props);
-
   const Button = styled.button`
     width: 100%;
     height: 50px;

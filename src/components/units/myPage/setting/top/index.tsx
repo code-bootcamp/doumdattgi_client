@@ -21,12 +21,11 @@ export default function SettingsTop() {
     onClickSubmitAvatar,
     onClickDeleteAvatar,
     onClickEditProfile,
-    clickEditIntroduce
+    clickEditIntroduce,
+    register,
+    handleSubmit
   } = useSettings();
 
-  const { register, handleSubmit } = useForm<IPropsIntroduceData>({
-    mode: "onChange"
-  });
 
   return (
     <S.Wrapper>
@@ -69,7 +68,7 @@ export default function SettingsTop() {
                     defaultValue={
                       data?.fetchLoginUser?.user_introduce !== ""
                         ? data?.fetchLoginUser?.user_introduce
-                        : "자기소개를 입력해주세요."
+                        : null
                     }
                   ></S.Text>
                 </S.ProfileBox>
