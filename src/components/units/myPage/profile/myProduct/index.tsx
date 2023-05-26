@@ -1,5 +1,4 @@
 import * as S from "./styles";
-import Link from "next/link";
 import { useQueryFetchMyProduct } from "../../../../commons/hooks/queries/useQueryfetchMyProduct";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage/index";
 

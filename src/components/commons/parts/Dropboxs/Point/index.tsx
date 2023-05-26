@@ -4,10 +4,18 @@ import * as S from "./index.styles";
 import Head from "next/head";
 import UseDropBox from "../../../hooks/custom/useDropbox/index";
 import UsePayment from "../../../hooks/custom/usePayment/Pay/index";
+import { useQueryFetchLoginUser } from "../../../hooks/queries/useQueryFetchLoginUser";
 
 export default function ChargeDropBox(): JSX.Element {
   const { items, amount } = UseDropBox();
   const { clickIniCis, isSelect, SelectOption } = UsePayment();
+  const { data } = useQueryFetchLoginUser();
+
+  const userInfo = {
+    email: data?.fetchLoginUser.user_email,
+    name: data?.fetchLoginUser.user_name,
+    phone: data?.fetchLoginUser.user_phone
+  };
 
   return (
     <>
@@ -56,7 +64,7 @@ export default function ChargeDropBox(): JSX.Element {
           disabled={amount === 0 || (!isSelect && true)}
           amount={String(amount)}
           isSelect={isSelect}
-          onClick={clickIniCis(Number(amount), isSelect)}
+          onClick={clickIniCis(Number(amount), isSelect, { ...userInfo })}
         >
           충전하기
         </S.ChargeBtn>

@@ -10,9 +10,10 @@ import RefundPoint from "../../../commons/parts/Modals/Refund";
 import { IValueArgs } from "./index.types";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/useQueryFetchLoginUser";
 import InfiniteScroll from "react-infinite-scroller";
+import { useRouter } from "next/router";
 
 export default function PaymentPresenter(): JSX.Element {
-  const { clickModal, openModal, setOpenModal } = UseModal();
+  const router = useRouter();
 
   const [isCancel, setIsCancel] = useRecoilState(ModalCancelState);
   const [refetches, setRefetch] = useRecoilState(refetchAtom);
@@ -29,6 +30,7 @@ export default function PaymentPresenter(): JSX.Element {
   ]);
   const [payState, setPayState] = useState<string>("");
 
+  const { clickModal, openModal, setOpenModal } = UseModal();
   const { data: UserData, refetch: loginRefetch } = useQueryFetchLoginUser();
   const {
     data,
@@ -55,7 +57,6 @@ export default function PaymentPresenter(): JSX.Element {
 
     Info[0] = value.payment_impUid;
     Info[1] = value.payment_type;
-    console.log("hi");
 
     setIsRefund(true);
     setRefundInfo(Info);
@@ -70,15 +71,22 @@ export default function PaymentPresenter(): JSX.Element {
     환불내역: "CANCEL"
   };
 
-  // 네비게이션 바 선택유무 체크
-  const selectState = (e: MouseEvent<HTMLDivElement>) => {
+  // 포인트 내역 네비게이션 바 선택 체크
+  const selectState = async (e: MouseEvent<HTMLDivElement>) => {
     const selectedId = e.currentTarget.id;
 
-    console.log(TrnaslatePointSelect[selectedId]);
     setStatus(prev =>
       prev.map(el => ({ ...el, isSelected: el.title === selectedId }))
     );
     setPayState(TrnaslatePointSelect[selectedId]);
+
+    const status = TrnaslatePointSelect[selectedId];
+    payRefetch({ page: 1, pageSize: 10, payment_status: status });
+
+    router.push({
+      pathname: `/mypage/point/`,
+      query: { status }
+    });
   };
 
   // 결제 내역 무한스크롤

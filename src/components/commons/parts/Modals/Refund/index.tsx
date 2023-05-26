@@ -4,8 +4,10 @@ import { useMutationCancelPayment } from "../../../hooks/mutations/useMutationCa
 import { refetchAtom } from "../../../../../commons/stores";
 import { useRecoilValue } from "recoil";
 import { IPropsRefund } from "./refund.types";
+import { useRouter } from "next/router";
 
 export default function RefundPoint(props: IPropsRefund) {
+  const router = useRouter();
   const refetches = useRecoilValue(refetchAtom);
 
   const [CancelPayment] = useMutationCancelPayment();
@@ -13,6 +15,10 @@ export default function RefundPoint(props: IPropsRefund) {
   const cancelRefund = () => {
     props.setIsRefund(false);
   };
+
+  const status = router.query.status === undefined ? "" : router.query.status;
+
+  console.log(status);
 
   const GotoRefund = async () => {
     try {
@@ -23,9 +29,10 @@ export default function RefundPoint(props: IPropsRefund) {
         }
       });
       alert("환불성공");
+
+      router.reload();
+
       props.setIsRefund(false);
-      refetches.payment();
-      refetches.login();
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }

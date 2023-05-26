@@ -17,16 +17,24 @@ declare const window: typeof globalThis & {
 };
 
 interface IUsePayment {
-  clickIniCis: (amount: number, isSelect: string) => () => void;
+  clickIniCis: (
+    amount: number,
+    isSelect: string,
+    userinfo: IUserInfo
+  ) => () => void;
   isSelect: string;
   SelectOption: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
+interface IUserInfo {
+  email: string | undefined;
+  name: string | undefined;
+  phone: string | undefined;
+}
+
 export default function UsePayment(): IUsePayment {
   const [isSelect, setIsSelect] = useState("");
-
   const [, setIsCancel] = useRecoilState(ModalCancelState);
-
   const refetches = useRecoilValue(refetchAtom);
 
   const [createPayment] = useMutationcreatePayment();
@@ -37,10 +45,8 @@ export default function UsePayment(): IUsePayment {
   };
 
   const clickIniCis =
-    (amount: number, isSelect: string) => async (): Promise<void> => {
-      console.log(amount);
-      console.log(isSelect);
-
+    (amount: number, isSelect: string, userInfo: IUserInfo) =>
+    async (): Promise<void> => {
       const IMP = window.IMP; // can be omitted
       IMP.init("imp70556024"); // Example: imp00000000
 
@@ -54,9 +60,9 @@ export default function UsePayment(): IUsePayment {
               // merchant_uid: "ORD20180131-0000011", // Error if order number overlaps (randomly generated if commented)
               name: "포인트 충전",
               amount,
-              buyer_email: "gildong@gmail.com",
-              buyer_name: "Hong Gil-dong",
-              buyer_tel: "010-4242-4242",
+              buyer_email: userInfo.email,
+              buyer_name: userInfo.name,
+              buyer_tel: userInfo.phone,
               buyer_addr: "Sinsa-dong, Gangnam-gu, Seoul",
               buyer_postcode: "01181"
             },

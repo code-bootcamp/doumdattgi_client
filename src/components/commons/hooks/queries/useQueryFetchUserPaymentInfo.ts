@@ -29,3 +29,11 @@ export const useQueryFetchUserPaymentInfo = (state: string) => {
 
   return Query;
 };
+
+export const useQueryFetchUserCanceldPaymentInfo = () => {
+  const Query = useQuery(FETCH_PAYMENTS, {
+    variables: { page: 1, pageSize: 50, payment_status: "CANCEL" }
+  });
+
+  return Query;
+};
