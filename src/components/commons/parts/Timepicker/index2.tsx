@@ -8,9 +8,11 @@ interface IProduct {
 }
 
 interface ITimePicker {
-  data: IProduct;
+  data?: IProduct;
   setStartTime: (startTime: number) => void;
   setEndTime: (endTime: number) => void;
+  startTime: number;
+  endTime: number;
 }
 
 export default function TimePick(props: ITimePicker) {

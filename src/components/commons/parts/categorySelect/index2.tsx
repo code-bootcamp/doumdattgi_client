@@ -1,10 +1,11 @@
 import { Select } from "antd";
 import { category, option } from "../../../../commons/libraries/category";
 import { useEffect } from "react";
+import { ICategory2Props } from "./index.types";
 
 type CategoryName = keyof typeof category;
 
-export default function Category2(props) {
+export default function Category2(props: ICategory2Props) {
   useEffect(() => {
     props.setCategorySelect(props.data?.product_category);
     props.setCategoryArray(option[props.data?.product_category]);
@@ -59,10 +60,13 @@ export default function Category2(props) {
               : "옵션을 선택해주세요."
           }
           onChange={onSecondCityChange}
-          options={props.categoryArray && props.categoryArray.map(option => ({
-            label: option,
-            value: option
-          }))}
+          options={
+            props.categoryArray &&
+            props.categoryArray.map(option => ({
+              label: option,
+              value: option
+            }))
+          }
         />
       </>
     </div>

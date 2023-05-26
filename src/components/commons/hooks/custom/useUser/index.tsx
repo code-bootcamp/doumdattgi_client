@@ -19,7 +19,12 @@ interface IFormData {
 
 interface IFormLoginData {
   email: string;
-  password: string;
+  password?: string;
+}
+
+interface IValidation {
+  email: string;
+  token: string;
 }
 
 // interface IUseUserReturn {
@@ -65,7 +70,7 @@ export const useUser = () => {
   }, [sec]);
 
   // =============== 인증번호 ===============
-  const onClickSendToken = async data => {
+  const onClickSendToken = async (data: IFormLoginData) => {
     setIsOn(true);
     setSec(180);
     try {
@@ -81,7 +86,7 @@ export const useUser = () => {
       if (error instanceof Error) alert(error.message);
     }
   };
-  const onClickValidation = async data => {
+  const onClickValidation = async (data: IValidation) => {
     try {
       const result = await checkEmail({
         variables: {
@@ -89,7 +94,7 @@ export const useUser = () => {
           user_token: data.token
         }
       });
-      console.log(result)
+      console.log(result);
       if (result) {
         setSec(0);
         setIsChecked(true);
@@ -128,7 +133,7 @@ export const useUser = () => {
       const result = await login({
         variables: {
           user_email: data.email,
-          user_password: data.password
+          user_password: data.password ?? ""
         }
       });
       alert("로그인에 성공하였습니다.");
