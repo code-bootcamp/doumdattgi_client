@@ -4,7 +4,10 @@ import { useState } from "react";
 import Comment from "../../../units/comment";
 import { Arrow } from "./index.styles";
 
-export default function CommentDrawer(props) {
+interface IProps {
+  data: string;
+}
+export default function CommentDrawer(props: IProps) {
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState<DrawerProps["placement"]>("left");
 

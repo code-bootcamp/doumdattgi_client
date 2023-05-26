@@ -191,7 +191,7 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
     try {
       const result = await updateProduct({
         variables: {
-          product_id: router.query.id,
+          product_id: router.query.id as string,
           updateProductInput: {
             product_sellOrBuy: update.product_sellOrBuy ?? true,
             product_title: update.product_title,

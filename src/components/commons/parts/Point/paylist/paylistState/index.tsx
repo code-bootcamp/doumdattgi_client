@@ -10,6 +10,11 @@ interface IProps {
     payment_amount: number;
     payment_status?: string;
   };
+  payment_impUid: string;
+  payment_type: string;
+  payment_createdAt: string;
+  payment_amount: number;
+  payment_status?: string;
 
   arr: string[];
   clickRefund: (value: IValueArgs) => () => void;
@@ -20,10 +25,11 @@ export default function PayState(props: IProps) {
 
   const Component = { key: <div></div> };
 
-  const canceled = data?.fetchPayments.map(el => el.payment_impUid);
+  const canceled = data?.fetchPayments.map((el: IProps) => el.payment_impUid);
 
   if (
-    canceled?.filter(el => el === props.el.payment_impUid).length > 0 &&
+    canceled?.filter((el: string) => el === props.el.payment_impUid).length >
+      0 &&
     props.el.payment_status === "PAYMENT"
   ) {
     Component["key"] = <S.ChargeDone>충전완료</S.ChargeDone>;

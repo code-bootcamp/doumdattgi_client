@@ -3,7 +3,12 @@ import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 import * as S from "./index.styles";
 
-export default function WorkTimeDropBox(props) {
+interface IProps {
+  selectedWorkDay: string;
+  setSelectedWorkDay: (workDay: string) => void;
+}
+
+export default function WorkTimeDropBox(props: IProps) {
   const handleMenuClick: MenuProps["onClick"] = e => {
     // console.log("click", e.key);
     props.setSelectedWorkDay(e.key);

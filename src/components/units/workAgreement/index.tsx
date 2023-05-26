@@ -39,7 +39,7 @@ export default function WorkAgreement(): JSX.Element {
   const send = getDate(data?.fetchOneRequest.request_sendAt);
   const completed = getDate(data?.fetchOneRequest.request_completedAt);
 
-  // 작업 거절, 진행, 대기, 종료
+  // 작업 거절, 진행, 대기, 종료인지 알려줌
   const isAccept = data?.fetchOneRequest?.request_isAccept;
 
   return (

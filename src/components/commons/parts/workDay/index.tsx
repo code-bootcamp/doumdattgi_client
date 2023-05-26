@@ -9,12 +9,13 @@ const option = [
 
 interface IWorkDay {
   data?: string;
-  setWorkDay: any;
+  setWorkDay: (props: string) => void;
+  workDay: string;
 }
 
 export default function WorkDay(props: IWorkDay) {
   useEffect(() => {
-    props.setWorkDay(props.data);
+    props.setWorkDay(props.data || "");
   }, [props.data]);
 
   const handleChange = (value: string) => {

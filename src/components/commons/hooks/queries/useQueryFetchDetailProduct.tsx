@@ -17,6 +17,11 @@ export const FETCH_DETAIL_PRODUCT = gql`
         user_portfolio
         user_workRate
         user_point
+        slot {
+          slot_first
+          slot_second
+          slot_third
+        }
       }
       images {
         image_id

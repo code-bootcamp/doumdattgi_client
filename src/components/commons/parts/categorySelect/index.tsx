@@ -1,17 +1,42 @@
 import { Select } from "antd";
-import { options } from "../../../../commons/libraries/category";
-import { useEffect, useState } from "react";
+import {
+  Key,
+  ReactChild,
+  ReactFragment,
+  ReactPortal,
+  useEffect,
+  useState
+} from "react";
 import { CategoryObj } from "../../../../commons/libraries/translate";
+import { option } from "../../../../commons/libraries/category";
 
-export default function CategorySelect(props: any) {
-  const [ssss, setSSSS] = useState("")
+interface IData {
+  fetchDetailProduct: {
+    product_category: string;
+  };
+}
+
+interface IProps {
+  setSelectedCategory: (value: string) => void;
+  setSelectedOptions: (value: string[]) => void;
+  selectedCategory: string | undefined;
+  selectedOptions: string[];
+  data?: IData;
+}
+
+interface IOption {
+  value: string;
+  label: string;
+}
+
+export default function CategorySelect(props: IProps) {
+  const [ssss, setSSSS] = useState("");
 
   useEffect(() => {
-    if(props.data !== undefined){
-      setSSSS(CategoryObj[props.data?.fetchDetailProduct?.product_category])
-      console.log(CategoryObj[props.data?.fetchDetailProduct?.product_category])
+    if (props.data !== undefined) {
+      setSSSS(CategoryObj[props.data?.fetchDetailProduct?.product_category]);
     }
-  }, [props.data])
+  }, [props.data]);
 
   // 카테고리 변경 기능
   const handleChangeCategory = (value: string) => {
@@ -27,9 +52,10 @@ export default function CategorySelect(props: any) {
   // 선택한 카테고리에 해당하는 options 필터링
   const getCategoryOptions = () => {
     if (props.selectedCategory) {
-      const selectedCategoryOptions = options.find(
-        category => category.label === props.selectedCategory
-      );
+      const selectedCategoryOptions = option.filter(
+        (category: { label: string | undefined }) =>
+          category.label === props.selectedCategory
+      )[0];
       return selectedCategoryOptions ? selectedCategoryOptions.options : [];
     }
     return [];
@@ -52,11 +78,12 @@ export default function CategorySelect(props: any) {
         size={"large"}
         defaultValue={`${ssss}`}
       >
-        {options.map(category => (
-          <Option key={category.label} value={category.label}>
-            {category.label.split("&")[0]}
-          </Option>
-        ))}
+        {Array.isArray(option) &&
+          option.map(category => (
+            <Option key={category.label} value={category.label}>
+              {category.label.split("&")[0]}
+            </Option>
+          ))}
       </Select>
       <Select
         style={{ width: "100%" }}
@@ -66,11 +93,23 @@ export default function CategorySelect(props: any) {
         size={"large"}
         // defaultValue={props.data?.fetchDetailProduct?.product_sub_category}
       >
-        {getCategoryOptions().map(option => (
-          <Option key={option.value} value={option.value}>
-            {option.label}
-          </Option>
-        ))}
+        {getCategoryOptions().map(
+          (option: {
+            value: Key | null | string | undefined;
+            label:
+              | boolean
+              | ReactChild
+              | ReactFragment
+              | ReactPortal
+              | null
+              | undefined
+              | string;
+          }) => (
+            <Option key={option.value} value={option.value}>
+              {option.label}
+            </Option>
+          )
+        )}
       </Select>
     </div>
   );

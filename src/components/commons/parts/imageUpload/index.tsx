@@ -3,7 +3,10 @@ import { Modal, Upload, UploadFile } from "antd";
 import { RcFile, UploadProps } from "antd/es/upload";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useQueryFetchDetailProduct } from "../../hooks/queries/useQueryFetchDetailProduct";
+
+interface IData {
+  image_url: string;
+}
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -27,10 +30,10 @@ function ImageUpload(props: any): JSX.Element {
 
   // 이미지 수정부분
   useEffect(() => {
-    const array = props.data?.map((el) => el.image_url)
+    const array = props.data?.map((el: IData) => el.image_url);
     if (array !== undefined) {
-      let arr: any[] = [];
-      array.map((el: any) => {
+      let arr: { url: string }[] = [];
+      array.map((el: string) => {
         let obj = { url: `${el}` };
         arr.push(obj);
       });
