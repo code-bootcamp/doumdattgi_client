@@ -5,11 +5,29 @@ import ProgressSellerProgressing from "./progress/index";
 import ProgressSellerWaiting from "./waiting/index";
 import ProgressSellerRefuse from "./refuse/index";
 import ProgressSellerAll from "./all/index";
+import { useRouter } from "next/router";
 
 export default function ProgressSeller(): JSX.Element {
+  const router = useRouter();
+
+  const obj = {
+    0: "all",
+    1: "done",
+    2: "progress",
+    3: "refuse",
+    4: "waiting"
+  };
+
   const [isList, setIsList] = useState(0);
 
   const onClickList = (index: number) => {
+    const state = obj[String(index)];
+
+    router.push({
+      pathname: `/mypage/progressSeller`,
+      query: { state }
+    });
+
     setIsList(index);
     localStorage.setItem("selectedTab", index.toString());
   };
