@@ -11,10 +11,7 @@ export const UPLOAD_FILE = gql`
 `;
 
 export const useMutationUploadFile = () => {
-  const mutation = useMutation<
-    Pick<IMutation, "uploadFile">,
-    IMutationUploadFileArgs
-  >(UPLOAD_FILE);
+  const mutation = useMutation<Pick<IMutation, "uploadFile">>(UPLOAD_FILE);
 
   return mutation;
 };

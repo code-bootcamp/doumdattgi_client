@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaCreate } from "../../../../../commons/libraries/schema";
 import { Address } from "react-daum-postcode";
-import { useQueryFetchDetailProduct } from "../../queries/useQueryFetchDetailProduct";
+import { RcFile } from "antd/es/upload";
 
 interface IFormData {
   title?: string;
@@ -24,6 +24,8 @@ interface IFormData {
   product_detailAddress?: string;
 }
 
+type RCFileArray = Array<RcFile>;
+
 export const useCreateProduct = () => {
   const router = useRouter();
 
@@ -33,7 +35,7 @@ export const useCreateProduct = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedWorkDay, setSelectedWorkDay] = useState("");
-  const [selectedWorkTime, setSelectedWorkTime] = useState("");
+  const [selectedWorkTime, setSelectedWorkTime] = useState(["", ""]);
   const [isToggle, setIsToggle] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [address, setAddress] = useState("");
@@ -75,11 +77,15 @@ export const useCreateProduct = () => {
   // =============== 글작성 ===============
   const onClickWrite = async (data: IFormData): Promise<void> => {
     const results = await Promise.all(
-      fileList.map(el => uploadFile({ variables: { files: el.originFileObj } }))
+      fileList.map(el =>
+        uploadFile({
+          variables: { files: el?.originFileObj }
+        })
+      )
     );
 
     const product_thumbnailImage = results.map(el => {
-      return { thumbnailImage: el.data.uploadFile[0], isMain: false };
+      return { thumbnailImage: el.data?.uploadFile[0], isMain: false };
     });
 
     product_thumbnailImage[0].isMain = true;
@@ -97,11 +103,11 @@ export const useCreateProduct = () => {
         variables: {
           createProductInput: {
             product_sellOrBuy: data.product_sellOrBuy ?? true,
-            product_title: data.title,
+            product_title: data.title ?? "",
             product_category: product_category,
             product_sub_category: selectedOptions,
-            product_summary: data.summary,
-            product_main_text: data.contents,
+            product_summary: data.summary ?? "",
+            product_main_text: data.contents ?? "",
             product_workDay: DateObj[selectedWorkDay],
             product_workTime: product_workTime,
             product_startTime: Number(product_startTime),

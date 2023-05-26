@@ -2,10 +2,13 @@ import { useRouter } from "next/router";
 import * as S from "./index.styles";
 import useMoveToSubCategory from "../../../hooks/custom/usemoveSubcategory";
 import { v4 as uuidv4 } from "uuid";
+import { CategoryObj } from "../../../../../commons/libraries/translate";
 
 export default function SideSubCategory() {
   const router = useRouter();
   const { clickSubCategory } = useMoveToSubCategory();
+
+  console.log(router.query.data);
 
   const BigCategory = Array.isArray(router.query.data)
     ? router.query.data[0]
@@ -79,7 +82,7 @@ export default function SideSubCategory() {
 
   return (
     <S.WrapperLeft>
-      디자인
+      {CategoryObj[BigCategory]}
       <S.DivideLine />
       <S.Ad />
       {!isAllList && (

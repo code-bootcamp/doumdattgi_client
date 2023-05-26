@@ -8,6 +8,6 @@ export const useMoveToPage = () => {
   };
 
   return {
-    onClickMoveToPage,
+    onClickMoveToPage
   };
 };

@@ -8,12 +8,18 @@ import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetc
 import { useRequestAcceptRefuse } from "../../commons/hooks/custom/useRequestAcceptRefuse/index";
 import { getDate, getDateTime } from "../../../commons/libraries/getDate";
 import { useRequestProcess } from "../../commons/hooks/custom/useRequestProcess/index";
+import { useEffect } from "react";
 
 export default function WorkAgreement(): JSX.Element {
   const router = useRouter();
 
-  const { data } = useQueryFetchOneRequest(router.query.id as string);
+  const { data, refetch } = useQueryFetchOneRequest(router.query.id as string);
   const { data: login } = useQueryFetchLoginUser();
+
+  useEffect(() => {
+    refetch({ request_id: router.query.id as string });
+    console.log("페이지 업데이트");
+  }, [router.query.id]);
 
   const {
     onClickRequestAccept,
@@ -31,13 +37,15 @@ export default function WorkAgreement(): JSX.Element {
   const ID = login?.fetchLoginUser?.user_id;
 
   // 불러온 작업 금액으로 시간 계산
-  const time = Number(data?.fetchOneRequest.request_price) / 9620;
+  const time = Number(data?.fetchOneRequest?.request_price) / 9620;
+
+  console.log(time);
 
   // 작업 신청, 시작, 전달, 완료
-  const create = getDate(data?.fetchOneRequest.request_createAt);
-  const start = getDate(data?.fetchOneRequest.request_startAt);
-  const send = getDate(data?.fetchOneRequest.request_sendAt);
-  const completed = getDate(data?.fetchOneRequest.request_completedAt);
+  const create = getDate(data?.fetchOneRequest?.request_createAt);
+  const start = getDate(data?.fetchOneRequest?.request_startAt);
+  const send = getDate(data?.fetchOneRequest?.request_sendAt);
+  const completed = getDate(data?.fetchOneRequest?.request_completedAt);
 
   // 작업 거절, 진행, 대기, 종료
   const isAccept = data?.fetchOneRequest?.request_isAccept;
@@ -164,7 +172,7 @@ export default function WorkAgreement(): JSX.Element {
           <S.PaymentBox>
             <S.Price>9620</S.Price>
             <S.SpecialCharacter> x </S.SpecialCharacter>
-            <S.Price>{time}</S.Price>
+            <S.Price>{String(time)}</S.Price>
             <S.SpecialCharacter> = </S.SpecialCharacter>
             <S.SpecialCharacter> ₩ </S.SpecialCharacter>
             <S.Price>{data?.fetchOneRequest?.request_price}</S.Price>
