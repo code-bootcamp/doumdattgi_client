@@ -9,7 +9,6 @@ import WorkDay from "../../commons/parts/workDay";
 import TimePick from "../../commons/parts/Timepicker/index2";
 import { useCreateProduct2 } from "../../commons/hooks/custom/useCreateProduct/index2";
 import AddressModal from "../../commons/hooks/custom/useAddress";
-import { useState } from "react";
 import { IProps } from "./index.types";
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
@@ -255,7 +254,9 @@ export default function CreateProduct(props: IProps) {
                     />
                     <S.Input
                       {...register("product_detailAddress")}
-                      defaultValue={data?.fetchDetailProduct?.product_detailAddress}
+                      defaultValue={
+                        data?.fetchDetailProduct?.product_detailAddress
+                      }
                     />
                   </S.SearchBox>
                 </S.AddressBox>

@@ -38,7 +38,7 @@ export default function SliderComponent(props: any) {
   return (
     <>
       <S.Wrapper {...settings}>
-        {arr?.map(el => (
+        {arr?.map((el: string) => (
           <Slide key={el}>
             <Image
               src={el}

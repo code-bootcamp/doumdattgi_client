@@ -20,4 +20,5 @@ export interface IFormData {
 
 export interface IProps {
   isEdit: boolean;
+  WorkDay?: string;
 }

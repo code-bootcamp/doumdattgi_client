@@ -16,4 +16,9 @@ export interface IPropsfetchUserPaymentInfo {
     payment_createdAt: string;
     payment_amount: number;
   };
+
+  payment_impUid: string;
+  payment_type: string;
+  payment_createdAt: string;
+  payment_amount: number;
 }

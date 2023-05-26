@@ -42,13 +42,15 @@ export default function Detail() {
   const LoginUser = loginData?.fetchLoginUser.user_id;
 
   // 슬롯
-  const slot1 = slotData?.fetchUserSlot.slot_first;
-  const slot2 = slotData?.fetchUserSlot.slot_second;
-  const slot3 = slotData?.fetchUserSlot.slot_third;
+  const slot1 = data?.fetchDetailProduct.user.slot.slot_first;
+  const slot2 = data?.fetchDetailProduct.user.slot.slot_second;
+  const slot3 = data?.fetchDetailProduct.user.slot.slot_third;
 
   const clickPick = () => {
-    createPick({ variables: { product_id: router.query.id } });
+    createPick({ variables: { product_id: router.query.id as string } });
   };
+
+  console.log(router.query);
 
   return (
     <S.Wrapper>
@@ -81,7 +83,7 @@ export default function Detail() {
           <S.DetailBox>
             <S.Button>
               {slot3 ? (
-                <S.EnableBtn>현재 가능한 슬롯이 없습니다.</S.EnableBtn>
+                <S.EnableBtn>현재 작업자의 가능한 슬롯이 없습니다.</S.EnableBtn>
               ) : writer !== LoginUser || !writer || !LoginUser ? (
                 <Link href={`/${router.query.id}/request`}>
                   <a>
@@ -103,7 +105,7 @@ export default function Detail() {
                 ) : (
                   <>
                     <S.SlotText>
-                      현재 가능 슬롯 {!slot1 ? "3" : !slot2 ? "2" : "1"}개
+                      현재 작업 가능 슬롯 {!slot1 ? "3" : !slot2 ? "2" : "1"}개
                     </S.SlotText>
                     <S.SlotBg />
                   </>
