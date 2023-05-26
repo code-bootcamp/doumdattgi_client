@@ -50,7 +50,7 @@
 //   {
 //     label: "마케팅&MARKETING",
 //     options: [
-//       { label: "채널 활성화", value: "채널 활성화" },
+//       { label : "채널 활성화", value: "채널 활성화" },
 //       { label: "바이럴", value: "바이럴" },
 //       { label: "PR・행사", value: "PR・행사" },
 //       { label: "업종・목적별", value: "업종・목적별" },
