@@ -5,11 +5,26 @@ import ProgressBuyerDone from "./done/index";
 import ProgressBuyerProgressing from "./progress/index";
 import ProgressBuyerWaiting from "./waiting/index";
 import ProgressBuyerRefuse from "./refuse/index";
+import { useRouter } from "next/router";
 
 export default function ProgressBuyer(): JSX.Element {
   const [isList, setIsList] = useState(0);
+  const router = useRouter();
+
+  const obj = {
+    0: "all",
+    1: "done",
+    2: "progress",
+    3: "refuse",
+    4: "waiting"
+  };
 
   const onClickList = (index: number) => {
+    const state = obj[String(index)];
+    router.push({
+      pathname: `/mypage/progressBuyer`,
+      query: { state }
+    });
     setIsList(index);
     localStorage.setItem("selectedTab", index.toString());
   };

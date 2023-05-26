@@ -1,12 +1,18 @@
+import { useEffect } from "react";
 import { getDateTime } from "../../../../../commons/libraries/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchSellerWork } from "../../../../commons/hooks/queries/useQueryFetchSellerWork";
 import * as S from "../progress.styles";
+import { useRouter } from "next/router";
 
 export default function ProgressSellerProgressing(): JSX.Element {
-  const { data } = useQueryFetchSellerWork();
-
+  const { data, refetch } = useQueryFetchSellerWork();
+  const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
+
+  useEffect(() => {
+    refetch();
+  }, [router.query.state]);
 
   return (
     <>
