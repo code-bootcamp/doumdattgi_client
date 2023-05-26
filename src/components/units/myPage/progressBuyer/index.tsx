@@ -50,8 +50,6 @@ export default function ProgressBuyer(): JSX.Element {
     }
   };
 
-  // 페이지 이름 수정
-
   return (
     <S.Wrapper>
       <S.PageTitle>신청 진행 내역</S.PageTitle>
