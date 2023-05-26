@@ -1,5 +1,6 @@
 import { atom, selector } from "recoil";
 import { getAccessToken } from "../libraries/getAccessToken";
+import { IPayment } from "../types/generated/types";
 
 export const accessTokenState = atom({
   key: "accessTokenState",

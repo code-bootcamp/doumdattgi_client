@@ -26,7 +26,6 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
   };
 
   const result = mask(userEmail);
-  console.log(result);
 
   return (
     <S.Wrapper>
