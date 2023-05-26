@@ -26,7 +26,6 @@ export default function SettingsTop() {
     handleSubmit
   } = useSettings();
 
-
   return (
     <S.Wrapper>
       <S.SettingTop>
@@ -67,8 +66,8 @@ export default function SettingsTop() {
                     placeholder="자기소개를 입력해주세요."
                     defaultValue={
                       data?.fetchLoginUser?.user_introduce !== ""
-                        ? data?.fetchLoginUser?.user_introduce
-                        : null
+                        ? data?.fetchLoginUser?.user_introduce ?? ""
+                        : undefined
                     }
                   ></S.Text>
                 </S.ProfileBox>

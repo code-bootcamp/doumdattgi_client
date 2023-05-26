@@ -1,12 +1,21 @@
 import { Dispatch, SetStateAction } from "react";
-import { IProduct } from "../../../../commons/types/generated/types";
+
+interface IData {
+  product_category: string;
+}
 
 export interface ICategory2Props {
-  categoryArray: string[];
+  categoryArray?: string[];
   setCategoryArray: Dispatch<SetStateAction<string[]>>;
-  categorySelect: string;
+  categorySelect?: string;
   setCategorySelect: Dispatch<SetStateAction<string>>;
-  optionSelect: string;
+  optionSelect?: string;
   setOptionSelect: Dispatch<SetStateAction<string>>;
-  data?: IProduct[];
+  //   data?: IProduct;
+
+  //   setSelectedCategory: (value: string) => void;
+  //   setSelectedOptions: (value: string[]) => void;
+  selectedCategory?: string | undefined;
+  selectedOptions?: string[];
+  data?: IData;
 }

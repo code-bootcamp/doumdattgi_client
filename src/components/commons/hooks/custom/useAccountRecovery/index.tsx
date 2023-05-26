@@ -13,8 +13,8 @@ import { userEmailState, userPhoneState } from "../../../../../commons/stores";
 import { useMutationCheckValidTokenFindEmailBySMS } from "../../mutations/useMutationCheckValidTokenFindEmailBySMS";
 
 interface IData {
-  user_phone: string;
-  user_token: string;
+  user_phone?: string;
+  user_token?: string;
 }
 
 export const useAccountRecovery = () => {
@@ -42,7 +42,7 @@ export const useAccountRecovery = () => {
     try {
       await sendTokenSMS({
         variables: {
-          user_phone: data.user_phone
+          user_phone: data.user_phone ?? ""
         }
       });
       alert("인증번호가 전송되었습니다.");
@@ -56,11 +56,11 @@ export const useAccountRecovery = () => {
     try {
       const result = await findPwdBySMS({
         variables: {
-          user_phone: data.user_phone,
-          user_token: data.user_token
+          user_phone: data.user_phone ?? "",
+          user_token: data.user_token ?? ""
         }
       });
-      setUserPhone(data.user_phone);
+      setUserPhone(data.user_phone ?? "");
       if (result?.data?.checkValidTokenFindPwdBySMS) {
         void router.push("/recoveryResult/password");
       }
@@ -73,8 +73,8 @@ export const useAccountRecovery = () => {
     try {
       const result = await findEmailBySMS({
         variables: {
-          user_phone: data.user_phone,
-          user_token: data.user_token
+          user_phone: data.user_phone ?? "",
+          user_token: data.user_token ?? ""
         }
       });
       console.log(result?.data);

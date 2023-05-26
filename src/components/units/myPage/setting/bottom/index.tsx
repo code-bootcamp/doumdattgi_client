@@ -13,7 +13,7 @@ export default function SettingsBottom() {
 
   const { isDetailEdit, clickEditDetail, clickSaveDetail } = useSettings();
 
-  const {onClickMoveToPage} = useMoveToPage()
+  const { onClickMoveToPage } = useMoveToPage();
 
   return (
     <S.Wrapper>
@@ -66,7 +66,9 @@ export default function SettingsBottom() {
                     <S.Categoty>포트폴리오 주소</S.Categoty>
                     {isDetailEdit ? (
                       <S.EditDetail
-                        defaultValue={data?.fetchLoginUser?.user_portfolio}
+                        defaultValue={
+                          data?.fetchLoginUser?.user_portfolio ?? ""
+                        }
                         {...register("user_portfolio")}
                       />
                     ) : (
@@ -87,7 +89,10 @@ export default function SettingsBottom() {
                   <S.SettingList>
                     <S.Categoty>비밀번호</S.Categoty>
                     <S.Contents>
-                      <S.PasswordEdit className="semiBold" onClick={onClickMoveToPage("/editPassword")}>
+                      <S.PasswordEdit
+                        className="semiBold"
+                        onClick={onClickMoveToPage("/editPassword")}
+                      >
                         비밀번호 변경하기
                       </S.PasswordEdit>
                     </S.Contents>
