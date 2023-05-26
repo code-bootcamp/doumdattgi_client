@@ -8,15 +8,24 @@ export interface IValueArgs {
 }
 
 export interface IPropsfetchUserPaymentInfo {
-  clickRefund: (value: IValueArgs) => () => void;
-  dataArr: IPayment[];
-  el: {
-    payment_impUid: string;
-    payment_type: string;
-    payment_createdAt: string;
-    payment_amount: number;
-  };
+  // clickRefund: (value: IValueArgs) => () => void;
+  // dataArr: IPayment[];
+  // key: string;
+  // el: {
+  //   payment_impUid: string;
+  //   payment_type: string;
+  //   payment_createdAt: string;
+  //   payment_amount: number;
+  // };
+  // payment_impUid: string;
+  // payment_type: string;
+  // payment_createdAt: string;
+  // payment_amount: number;
 
+  dataArr: IPayment[];
+  clickRefund: (value: IValueArgs) => () => void;
+  el: IPayment;
+  key: string;
   payment_impUid: string;
   payment_type: string;
   payment_createdAt: string;

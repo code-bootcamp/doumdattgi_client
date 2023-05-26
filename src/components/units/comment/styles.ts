@@ -38,14 +38,20 @@ export const WrapperBody = styled.div`
   justify-content: flex-start;
 `;
 
-export const SendingBox = styled.div`
+export const SendingBox = styled.div<{
+  me: string | undefined;
+  comment: string;
+}>`
   width: 100%;
   display: flex;
-  ${(props) => props.me === props.comment ? "flex-direction: row-reverse" : "flex-direction: row"}
-  ;
+  ${props =>
+    props.me === props.comment
+      ? "flex-direction: row-reverse"
+      : "flex-direction: row"};
   align-items: flex-end;
   margin-top: 30px;
-  ${(props) => props.me === props.comment ? "justify-content: flex-start" : null}
+  ${props =>
+    props.me === props.comment ? "justify-content: flex-start" : null}
 `;
 
 export const ReceivingBox = styled.div`

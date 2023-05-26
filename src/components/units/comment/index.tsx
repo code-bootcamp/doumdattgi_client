@@ -1,4 +1,9 @@
-import { useForm } from "react-hook-form";
+import {
+  FieldValue,
+  FieldValues,
+  SubmitHandler,
+  useForm
+} from "react-hook-form";
 import { useMutationCreateComment } from "../../commons/hooks/mutations/useMutationCreateComment";
 import InputHeight50px from "../../commons/inputs/InputHeight50px";
 import * as S from "./styles";
@@ -12,10 +17,19 @@ import {
 import { useRouter } from "next/router";
 import { getDate } from "../../../commons/libraries/getDate";
 import { fallback } from "../../../commons/libraries/fallback";
+import { IQuery } from "../../../commons/types/generated/types";
 
 interface ICommentProps {
-  data?: string;
+  data: Pick<IQuery, "fetchOneRequest"> | undefined;
   text?: string;
+}
+
+interface IData {
+  sender_id?: string;
+  text: string;
+  fetchOneRequest?: {
+    request_id?: string;
+  };
 }
 
 export default function Comment(props: ICommentProps): JSX.Element {
@@ -23,28 +37,25 @@ export default function Comment(props: ICommentProps): JSX.Element {
 
   const [createComment] = useMutationCreateComment();
   const { data: user } = useQueryFetchLoginUser();
-  const { data: comment } = useQueryFetchComments(router.query.id);
+  const { data: comment } = useQueryFetchComments(router.query.id as string);
 
   console.log(comment?.fetchComments);
-  const { register, setValue, trigger, handleSubmit, formState, resetField } =
-    useForm({
-      mode: "onChange",
-      resolver: yupResolver(schemaCreateComment)
-    });
+  const { register, handleSubmit, resetField } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schemaCreateComment)
+  });
 
-  console.log(props.data);
-  const onClickCreateComment = async data => {
-    const request_id = props.data?.fetchOneRequest?.request_id;
-
-    const sender_id = user?.fetchLoginUser?.user_id;
-
+  const onClickCreateComment: SubmitHandler<FieldValues> = async data => {
+    const request_id = props.data?.fetchOneRequest?.request_id || "";
+    const sender_id = user?.fetchLoginUser?.user_id || "";
+    const text = data.text || "";
     try {
       const result = await createComment({
         variables: {
           createCommentInput: {
             request_id,
             sender_id,
-            text: data.text
+            text
           }
         },
         refetchQueries: [
@@ -69,13 +80,13 @@ export default function Comment(props: ICommentProps): JSX.Element {
         <S.WrapperBody>
           {comment?.fetchComments?.map(el => (
             <S.SendingBox
-              me={user?.fetchLoginUser?.user_id}
+              me={user?.fetchLoginUser?.user_id || undefined}
               comment={el?.sender_id}
             >
               {user?.fetchLoginUser?.user_id !== el?.sender_id && (
                 <S.SenderIcon
                   src={
-                    el?.user?.user_profileImage !== ""
+                    el?.user?.user_profileImage !== null
                       ? el?.user?.user_profileImage
                       : fallback
                   }
