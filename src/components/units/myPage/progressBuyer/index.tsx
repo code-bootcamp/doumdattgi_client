@@ -37,7 +37,7 @@ export default function ProgressBuyer(): JSX.Element {
 
   return (
     <S.Wrapper>
-      <S.PageTitle>작업 진행 내역</S.PageTitle>
+      <S.PageTitle>신청 진행 내역</S.PageTitle>
       <S.TabBox>
         <S.PageTab onClick={() => onClickList(0)}>전체</S.PageTab>
         <S.PageTab onClick={() => onClickList(1)}>대기중</S.PageTab>

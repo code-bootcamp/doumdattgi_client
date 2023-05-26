@@ -15,7 +15,7 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
     useResetAccount(props.isEditPassword);
   const [userEmail] = useRecoilState(userEmailState);
 
-  const mask = email => {
+  const mask = (email: string) => {
     var atIndex = email.indexOf("@"); // '@' 기호의 위치 찾기
     if (atIndex >= 2) {
       // '@' 기호 앞에 최소한 2개의 문자가 있어야 마스킹 가능
@@ -27,7 +27,6 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
   };
 
   const result = mask(userEmail);
-  console.log(result);
 
   return (
     <S.Wrapper>

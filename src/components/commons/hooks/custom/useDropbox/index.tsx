@@ -1,12 +1,12 @@
 import { MenuProps } from "antd";
 import { MouseEvent, useState } from "react";
 
-interface IUsseDropBox {
+interface IUseDropBox {
   amount: number;
   items: MenuProps["items"];
 }
 
-export default function UseDropBox(): IUsseDropBox {
+export default function UseDropBox(): IUseDropBox {
   const [amount, setAmount] = useState(0);
 
   const clickThis = (e: MouseEvent<HTMLAnchorElement>): void => {

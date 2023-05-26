@@ -3,7 +3,7 @@ import * as S from "../progress.styles";
 import { getDateTime } from "../../../../../commons/libraries/getDate";
 import { useQueryFetchSellerWork } from "../../../../commons/hooks/queries/useQueryFetchSellerWork";
 
-export default function ProgressBuyerWaiting(): JSX.Element {
+export default function ProgressSellerWaiting(): JSX.Element {
   const { data } = useQueryFetchSellerWork();
 
   const { onClickMoveToPage } = useMoveToPage();
@@ -29,9 +29,9 @@ export default function ProgressBuyerWaiting(): JSX.Element {
                       const target = e.target as HTMLImageElement;
                       target.src = "/noimage.png";
                     }}
-                    src={el.seller_profileImage}
+                    src={el.buyer_profileImage}
                   />
-                  <S.UserName>{el.seller_nickname}</S.UserName>
+                  <S.UserName>{el.buyer_nickname}</S.UserName>
                 </S.UserBox>
               </S.ListRight>
             </S.List>

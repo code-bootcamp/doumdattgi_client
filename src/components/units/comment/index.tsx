@@ -13,7 +13,12 @@ import { useRouter } from "next/router";
 import { getDate } from "../../../commons/libraries/getDate";
 import { fallback } from "../../../commons/libraries/fallback";
 
-export default function Comment(props): JSX.Element {
+interface ICommentProps {
+  data?: string;
+  text?: string;
+}
+
+export default function Comment(props: ICommentProps): JSX.Element {
   const router = useRouter();
 
   const [createComment] = useMutationCreateComment();

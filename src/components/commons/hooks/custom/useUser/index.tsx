@@ -172,7 +172,9 @@ export const useUser = () => {
   // =============== 티어 이미지===============
   const tier = () => {
     const rate = fetchUser?.fetchLoginUser?.user_workRate;
-    if (rate <= 5) {
+    if (rate === undefined) {
+      <></>;
+    } else if (rate <= 5) {
       return "/seeds.png";
     } else if (rate > 5 && rate <= 10) {
       return "/sprout.png";
@@ -187,7 +189,9 @@ export const useUser = () => {
   // =============== 등급명 ===============
   const tierTitle = () => {
     const rate = fetchUser?.fetchLoginUser?.user_workRate;
-    if (rate <= 5) {
+    if (rate === undefined) {
+      <></>;
+    } else if (rate <= 5) {
       return "씨앗 주니어";
     } else if (rate > 5 && rate <= 10) {
       return "새싹 울트라";

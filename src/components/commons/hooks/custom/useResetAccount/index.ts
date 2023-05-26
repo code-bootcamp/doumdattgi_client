@@ -7,12 +7,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaPasswordEdit, schemaPasswordReset } from "../../../../../commons/libraries/schema";
 import { useMutationResetPasswordSettingPage } from "../../mutations/useMutationResetPasswordSettingPage";
 
+interface IDate {
+  password: string;
+}
+
 export const useResetAccount = (isEditPassword) => {
   const [resetPassword] = useMutationResetPassword();
   const [resetPasswordSettingPage] = useMutationResetPasswordSettingPage()
   const router = useRouter()
 
-  const [userPhone, setUserPhone] = useRecoilState(userPhoneState)
+  const [userPhone, setUserPhone] = useRecoilState(userPhoneState);
 
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
@@ -21,17 +25,17 @@ export const useResetAccount = (isEditPassword) => {
 
   const onClickResetPassword = async data => {
     try {
-        await resetPassword({
-            variables: {
-                user_phone: userPhone,
-                new_password: data.password
-            }
-        })
-        console.log(data)
-        alert("정상적으로 비밀번호가 변경되었습니다.")
-        router.push("/login")
+      await resetPassword({
+        variables: {
+          user_phone: userPhone,
+          new_password: data.password
+        }
+      });
+      console.log(data);
+      alert("정상적으로 비밀번호가 변경되었습니다.");
+      router.push("/login");
     } catch (error) {
-        if (error instanceof Error) alert(error.message)
+      if (error instanceof Error) alert(error.message);
     }
   }
 
@@ -49,7 +53,6 @@ const onClickEditPassword = async data => {
   }
 }
   
-
   return {
     onClickResetPassword,
     onClickEditPassword,

@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationCreatePickArgs
+} from "../../../../commons/types/generated/types";
 
 export const CREATE_PICK = gql`
   mutation createPick($product_id: String!) {
@@ -7,7 +11,10 @@ export const CREATE_PICK = gql`
 `;
 
 export const useMutationcreatePick = () => {
-  const Mutation = useMutation(CREATE_PICK);
+  const Mutation = useMutation<
+    Pick<IMutation, "createPick">,
+    IMutationCreatePickArgs
+  >(CREATE_PICK);
 
   return Mutation;
 };

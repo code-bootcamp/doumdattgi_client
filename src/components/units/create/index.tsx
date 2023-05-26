@@ -17,7 +17,11 @@ const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false
 });
 
-export default function BoardWritePresenter(props: any) {
+interface IBoardWritePresenterProps {
+  isEdit?: boolean;
+}
+
+export default function BoardWritePresenter(props: IBoardWritePresenterProps) {
   const {
     onClickWrite,
     selectedCategory,

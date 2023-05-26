@@ -90,7 +90,7 @@ export default function SideSubCategory() {
               <S.SubCategory
                 key={uuidv4()}
                 onClick={clickSubCategory(el)}
-              >{`- ${el}`}</S.SubCategory>
+              >{`${el}`}</S.SubCategory>
             ))}
           </S.SubCategoryBox>
         </>

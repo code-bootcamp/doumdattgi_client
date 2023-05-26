@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationUpdateProfileImageArgs
+} from "../../../../commons/types/generated/types";
 
 export const UPDATE_PROFILE_IMAGE = gql`
   mutation updateProfileImage($user_url: String!) {
@@ -9,7 +13,10 @@ export const UPDATE_PROFILE_IMAGE = gql`
 `;
 
 export const useMutationUpdateProfileImage = () => {
-  const mutation = useMutation(UPDATE_PROFILE_IMAGE);
+  const mutation = useMutation<
+    Pick<IMutation, "updateProfileImage">,
+    IMutationUpdateProfileImageArgs
+  >(UPDATE_PROFILE_IMAGE);
 
   return mutation;
 };

@@ -2,12 +2,13 @@ import { Modal } from "antd";
 import DaumPostcodeEmbed from "react-daum-postcode";
 
 interface Address {
+  isModalOpen: JSX.Element;
+  setIsModalOpen: any;
   address: string;
   zonecode: string;
 }
 
-export default function AddressModal (props) {
-
+export default function AddressModal(props: any) {
   const handleOk = () => {
     props.setIsModalOpen(false);
   };
@@ -21,6 +22,7 @@ export default function AddressModal (props) {
   //   // props.setZipcode(data.zonecode);
   //   props.setIsModalOpen(prev => !prev);
   // };
+
   return (
     <>
       {props.isModalOpen && (
