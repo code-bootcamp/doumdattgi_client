@@ -39,8 +39,6 @@ export default function WorkAgreement(): JSX.Element {
   // 불러온 작업 금액으로 시간 계산
   const time = Number(data?.fetchOneRequest?.request_price) / 9620;
 
-  console.log(time);
-
   // 작업 신청, 시작, 전달, 완료
   const create = getDate(data?.fetchOneRequest?.request_createAt);
   const start = getDate(data?.fetchOneRequest?.request_startAt);

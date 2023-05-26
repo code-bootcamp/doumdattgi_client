@@ -152,6 +152,10 @@ export default function PaymentPresenter(): JSX.Element {
               clickRefund={clickRefund}
               el={el}
               key={el.payment_id}
+              payment_impUid={""}
+              payment_type={""}
+              payment_createdAt={""}
+              payment_amount={0}
             />
           )) ?? []}
         </InfiniteScroll>

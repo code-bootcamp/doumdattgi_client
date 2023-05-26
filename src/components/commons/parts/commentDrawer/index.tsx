@@ -1,12 +1,14 @@
 import type { DrawerProps } from "antd";
 import { Button, Drawer, Space } from "antd";
 import { useState } from "react";
+import { IQuery } from "../../../../commons/types/generated/types";
 import Comment from "../../../units/comment";
 import { Arrow } from "./index.styles";
 
 interface IProps {
-  data: string;
+  data?: Pick<IQuery, "fetchOneRequest"> | undefined;
 }
+
 export default function CommentDrawer(props: IProps) {
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState<DrawerProps["placement"]>("left");
