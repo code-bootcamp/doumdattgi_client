@@ -69,10 +69,16 @@ export default function Detail() {
             </S.Category>
             <S.TitleWrap>
               <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
-              <S.IconBox>
-                <S.Icon onClick={clickPick} icon={faBookmark} />
-                <S.Icon icon={faEllipsisVertical} />
-              </S.IconBox>
+              {writer === LoginUser ? (
+                <S.IconBox>
+                  <S.Icon icon={faEllipsisVertical} />
+                </S.IconBox>
+              ) : (
+                <S.IconBox>
+                  <S.Icon onClick={clickPick} icon={faBookmark} />
+                  <S.Icon icon={faEllipsisVertical} />
+                </S.IconBox>
+              )}
             </S.TitleWrap>
             <S.TagWrap>
               <S.Tag>{data?.fetchDetailProduct.product_sub_category}</S.Tag>
@@ -105,7 +111,7 @@ export default function Detail() {
                 ) : (
                   <>
                     <S.SlotText>
-                      현재 작업 가능 슬롯 {!slot1 ? "3" : !slot2 ? "2" : "1"}개
+                      작업 가능 슬롯 {!slot1 ? "3" : !slot2 ? "2" : "1"}개
                     </S.SlotText>
                     <S.SlotBg />
                   </>

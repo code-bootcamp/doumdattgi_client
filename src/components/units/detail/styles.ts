@@ -37,6 +37,7 @@ export const TitleWrap = styled.div`
   margin-top: 20px;
 `;
 export const Title = styled.h2`
+  width: 80%;
   font-size: 30px;
   line-height: 30px;
   font-weight: 700;
