@@ -7,7 +7,12 @@ const option = [
   { value: "NEGOTIATION", label: "협의가능" }
 ];
 
-export default function WorkDay(props) {
+interface IWorkDay {
+  data?: string;
+  setWorkDay: any;
+}
+
+export default function WorkDay(props: IWorkDay) {
   useEffect(() => {
     props.setWorkDay(props.data);
   }, [props.data]);

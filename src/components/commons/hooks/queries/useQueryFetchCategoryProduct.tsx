@@ -1,5 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
-import { IQuery } from "../../../../commons/types/generated/types";
+import type {
+  IQuery,
+  IQueryFetchCategoryProductArgs
+} from "../../../../commons/types/generated/types";
 
 // ======== 카테고리별 조회 =========
 
@@ -42,7 +45,10 @@ export const FETCH_PRODUCTS = gql`
 `;
 
 export const useQueryFetchCategoryProduct = (category: string) => {
-  const Query = useQuery<Pick<IQuery, "fetchCategoryProduct">>(
+  const Query = useQuery<
+    Pick<IQuery, "fetchCategoryProduct">,
+    IQueryFetchCategoryProductArgs
+  >(
     FETCH_CATEGORY_PRODUCT,
 
     {

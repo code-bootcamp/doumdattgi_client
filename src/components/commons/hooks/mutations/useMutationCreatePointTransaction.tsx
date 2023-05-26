@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationCreatePaymentArgs
+} from "../../../../commons/types/generated/types";
 
 export const CREATE_PAYMENT = gql`
   mutation createPayment(
@@ -20,7 +24,10 @@ export const CREATE_PAYMENT = gql`
 `;
 
 export const useMutationcreatePayment = () => {
-  const Mutation = useMutation(CREATE_PAYMENT);
+  const Mutation = useMutation<
+    Pick<IMutation, "createPayment">,
+    IMutationCreatePaymentArgs
+  >(CREATE_PAYMENT);
 
   return Mutation;
 };
