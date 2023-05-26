@@ -1,5 +1,5 @@
 import CountUp from "react-countup";
-
+//
 export default function countUp(props: any): JSX.Element {
   return (
     <CountUp
