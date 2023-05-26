@@ -383,7 +383,6 @@ export type IQueryFetchPaymentsArgs = {
 export type IQueryFetchPickUserProductArgs = {
   page: Scalars["Float"];
   pageSize: Scalars["Float"];
-  payment_status: string;
 };
 
 export type IQueryFetchProductsArgs = {
