@@ -18,13 +18,11 @@ export default function CategoryList(): JSX.Element {
 
   const { data, fetchMore } = useQueryFetchCategoryProduct(category);
 
-  console.log(category);
-  console.log("aaa");
-  console.log(data);
-
   // 조회용 카테고리 Key값
   const CategoryTitle =
     data?.fetchCategoryProduct?.[0]?.product_product_category;
+
+  console.log(CategoryTitle);
 
   // 무한 스크롤 로직
   const onLoadMore = () => {

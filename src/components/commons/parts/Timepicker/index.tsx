@@ -2,11 +2,10 @@ import { Space, TimePicker } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { RangeValue } from "../../../../../node_modules/rc-picker/lib/interface";
-import { useState } from "react";
-import { useCreateProduct } from "../../hooks/custom/useCreateProduct";
 
 interface IWorkingTimePicker {
-  setSelectedWorkTime: any;
+  setSelectedWorkTime: (time: [string, string]) => void;
+  selectedWorkTime: string[];
 }
 
 export default function WorkingTimePicker(props: IWorkingTimePicker) {

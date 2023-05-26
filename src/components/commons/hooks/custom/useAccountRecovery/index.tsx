@@ -12,6 +12,11 @@ import { useRecoilState } from "recoil";
 import { userEmailState, userPhoneState } from "../../../../../commons/stores";
 import { useMutationCheckValidTokenFindEmailBySMS } from "../../mutations/useMutationCheckValidTokenFindEmailBySMS";
 
+interface IData {
+  user_phone: string;
+  user_token: string;
+}
+
 export const useAccountRecovery = () => {
   const [isValidateOpen, setIsValidateOpen] = useState(false);
 
@@ -29,7 +34,7 @@ export const useAccountRecovery = () => {
     resolver: yupResolver(isValidateOpen ? schemaPasswordRecover : schemaPhone)
   });
 
-  const onClickAuthPhone = async data => {
+  const onClickAuthPhone = async (data: IData) => {
     console.log("ehehe");
     console.log(data);
     console.log("ehehe");
@@ -47,7 +52,7 @@ export const useAccountRecovery = () => {
     }
   };
 
-  const onClickValidatePW = async data => {
+  const onClickValidatePW = async (data: IData) => {
     try {
       const result = await findPwdBySMS({
         variables: {
@@ -64,7 +69,7 @@ export const useAccountRecovery = () => {
     }
   };
 
-  const onClickValidateEmail = async data => {
+  const onClickValidateEmail = async (data: IData) => {
     try {
       const result = await findEmailBySMS({
         variables: {
@@ -73,7 +78,7 @@ export const useAccountRecovery = () => {
         }
       });
       console.log(result?.data);
-      setUserEmail(result?.data?.checkValidTokenFindEmailBySMS);
+      setUserEmail(result?.data?.checkValidTokenFindEmailBySMS ?? "");
       router.push("/recoveryResult/email");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
