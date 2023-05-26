@@ -47,7 +47,7 @@ export default function Detail() {
   const slot3 = slotData?.fetchUserSlot.slot_third;
 
   const clickPick = () => {
-    createPick({ variables: { product_id: router.query.id } });
+    createPick({ variables: { product_id: router.query.id as string } });
   };
 
   return (
