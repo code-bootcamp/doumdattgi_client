@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationCheckValidTokenFindPwdBySmsArgs
+} from "../../../../commons/types/generated/types";
 
 export const FIND_PWD_BY_SMS = gql`
   mutation checkValidTokenFindPwdBySMS(
@@ -13,7 +17,10 @@ export const FIND_PWD_BY_SMS = gql`
 `;
 
 export const useMutationCheckValidTokenFindPwdBySMS = () => {
-  const mutation = useMutation(FIND_PWD_BY_SMS);
+  const mutation = useMutation<
+    Pick<IMutation, "checkValidTokenFindPwdBySMS">,
+    IMutationCheckValidTokenFindPwdBySmsArgs
+  >(FIND_PWD_BY_SMS);
 
   return mutation;
 };

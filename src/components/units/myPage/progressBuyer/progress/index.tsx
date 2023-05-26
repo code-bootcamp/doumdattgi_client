@@ -1,16 +1,16 @@
 import { getDateTime } from "../../../../../commons/libraries/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
-import { useQueryFetchSellerWork } from "../../../../commons/hooks/queries/useQueryFetchSellerWork";
+import { useQueryFetchBuyerRequest } from "../../../../commons/hooks/queries/useQueryFetchBuyerRequest";
 import * as S from "../progress.styles";
 
 export default function ProgressBuyerProgressing(): JSX.Element {
-  const { data } = useQueryFetchSellerWork();
+  const { data } = useQueryFetchBuyerRequest();
 
   const { onClickMoveToPage } = useMoveToPage();
 
   return (
     <>
-      {data?.fetchSellerWork.map(el => (
+      {data?.fetchBuyerRequest.map(el => (
         <div
           key={el.request_id}
           onClick={onClickMoveToPage(`/${el.request_id}/workAgreement`)}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import {
   EditorInstance,
   EditorInstance2,
@@ -20,7 +20,7 @@ import { useMutationCreateProduct } from "../../mutations/useMutationCreateProdu
 import { useMutationUploadFile } from "../../mutations/useMutationUploadFile";
 import { useMutationUpdateProduct } from "../../mutations/useMutationUpdateProduct";
 
-export const useCreateProduct2 = isEdit => {
+export const useCreateProduct2 = (isEdit: Boolean) => {
   const router = useRouter();
 
   const [createProduct] = useMutationCreateProduct();
@@ -80,7 +80,10 @@ export const useCreateProduct2 = isEdit => {
     void trigger("product_main_text");
   };
 
-  const onCompleteAddressSearch = data => {
+  const onCompleteAddressSearch = (data: {
+    zonecode: SetStateAction<string>;
+    address: SetStateAction<string>;
+  }) => {
     setValue("product_postNum", data.zonecode);
     void trigger("product_postNum");
     setValue("product_roadAddress", data.address);
@@ -110,7 +113,6 @@ export const useCreateProduct2 = isEdit => {
       void trigger("product_main_text");
     }, [data]);
   }
-  
 
   const onClickAddressSearch = (): void => {
     setIsModalOpen(prev => !prev);
@@ -134,11 +136,11 @@ export const useCreateProduct2 = isEdit => {
         variables: {
           createProductInput: {
             product_sellOrBuy: data.product_sellOrBuy ?? true,
-            product_title: data.product_title,
+            product_title: String(data.product_title),
             product_category: categorySelect,
             product_sub_category: optionSelect,
-            product_summary: data.product_summary,
-            product_main_text: data.product_main_text,
+            product_summary: String(data.product_summary),
+            product_main_text: String(data.product_main_text),
             product_workDay: workDay,
             product_workTime: endTime - startTime,
             product_startTime: startTime,
@@ -159,7 +161,15 @@ export const useCreateProduct2 = isEdit => {
   };
 
   // =============== 게시글 수정 ===============
-  const onClickEditProduct = async data => {
+  const onClickEditProduct = async (data: {
+    product_sellOrBuy: any;
+    product_title: any;
+    product_summary: any;
+    product_main_text: any;
+    product_postNum: any;
+    product_roadAddress: any;
+    product_detailAddress: any;
+  }) => {
     console.log(fileList);
     try {
       const result = await updateProduct({

@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import {
+import type {
   IQuery,
   IQueryFetchOneRequestArgs
 } from "../../../../commons/types/generated/types";
@@ -29,7 +29,10 @@ export const FETCH_ONE_REQUEST = gql`
 `;
 
 export const useQueryFetchOneRequest = (id: string) => {
-  const Query = useQuery<Pick<IQuery, "fetchOneRequest">>(FETCH_ONE_REQUEST, {
+  const Query = useQuery<
+    Pick<IQuery, "fetchOneRequest">,
+    IQueryFetchOneRequestArgs
+  >(FETCH_ONE_REQUEST, {
     variables: { request_id: id }
   });
 

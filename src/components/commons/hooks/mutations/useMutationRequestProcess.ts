@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationRequestProcessArgs
+} from "../../../../commons/types/generated/types";
 
 export const REQUEST_PROCESS = gql`
   mutation requestProcess($process: String!, $request_id: String!) {
@@ -7,7 +11,10 @@ export const REQUEST_PROCESS = gql`
 `;
 
 export const useMutationRequestProcess = () => {
-  const Mutation = useMutation(REQUEST_PROCESS);
+  const Mutation = useMutation<
+    Pick<IMutation, "requestProcess">,
+    IMutationRequestProcessArgs
+  >(REQUEST_PROCESS);
 
   return Mutation;
 };

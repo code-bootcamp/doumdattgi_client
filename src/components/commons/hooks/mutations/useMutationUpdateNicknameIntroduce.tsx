@@ -1,6 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationUpdateNicknameIntroduceArgs
+} from "../../../../commons/types/generated/types";
 
-export const UPDATE_NICKNAME_INTRODUCDE = gql`
+export const UPDATE_NICKNAME_INTRODUCE = gql`
   mutation updateNicknameIntroduce(
     $updateNicknameIntroduceInput: UpdateNicknameIntroduceInput!
   ) {
@@ -17,7 +21,10 @@ export const UPDATE_NICKNAME_INTRODUCDE = gql`
 `;
 
 export const useMutationUpdateNicknameIntroduce = () => {
-  const Mutation = useMutation(UPDATE_NICKNAME_INTRODUCDE);
+  const Mutation = useMutation<
+    Pick<IMutation, "updateNicknameIntroduce">,
+    IMutationUpdateNicknameIntroduceArgs
+  >(UPDATE_NICKNAME_INTRODUCE);
 
   return Mutation;
 };

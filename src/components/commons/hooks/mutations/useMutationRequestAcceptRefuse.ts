@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationRequestAcceptRefuseArgs
+} from "../../../../commons/types/generated/types";
 
 export const REQUEST_ACCEPT_REFUSE = gql`
   mutation RequestAcceptRefuse($acceptRefuse: String!, $request_id: String!) {
@@ -11,7 +15,10 @@ export const REQUEST_ACCEPT_REFUSE = gql`
 `;
 
 export const useMutationRequestAcceptRefuse = () => {
-  const Mutation = useMutation(REQUEST_ACCEPT_REFUSE);
+  const Mutation = useMutation<
+    Pick<IMutation, "requestAcceptRefuse">,
+    IMutationRequestAcceptRefuseArgs
+  >(REQUEST_ACCEPT_REFUSE);
 
   return Mutation;
 };

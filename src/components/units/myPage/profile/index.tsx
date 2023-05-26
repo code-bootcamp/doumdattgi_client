@@ -53,7 +53,7 @@ export default function Profile(): JSX.Element {
           </S.PortfolioLink>
           <S.SubTitle>슬롯</S.SubTitle>
           <S.SlotBox>
-            {isAble?.slot_third === false ? (
+            {isAble?.slot_first === false ? (
               <S.Slot>가능</S.Slot>
             ) : (
               <S.SlotDisable>닫힘</S.SlotDisable>
@@ -63,7 +63,7 @@ export default function Profile(): JSX.Element {
             ) : (
               <S.SlotDisable>닫힘</S.SlotDisable>
             )}
-            {isAble?.slot_first === false ? (
+            {isAble?.slot_third === false ? (
               <S.Slot>가능</S.Slot>
             ) : (
               <S.SlotDisable>닫힘</S.SlotDisable>
