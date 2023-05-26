@@ -1,7 +1,11 @@
 import * as S from "./signup.style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaEmail, schemaSignUp, schemaToken } from "../../../commons/libraries/schema";
+import {
+  schemaEmail,
+  schemaSignUp,
+  schemaToken
+} from "../../../commons/libraries/schema";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import InputHeight42px from "../../commons/inputs/InputHeight42px";
 import { useUser } from "../../commons/hooks/custom/useUser";
@@ -14,14 +18,24 @@ interface IFormData {
   nickname: string;
   phone: string;
   name: string;
-  token?: string
+  token?: string;
 }
 
 export default function SignUp(): JSX.Element {
-  const { onClickSignUp, onClickValidation, onClickSendToken, isOn, isActive, isChecked, sec } = useUser();
+  const {
+    onClickSignUp,
+    onClickValidation,
+    onClickSendToken,
+    isOn,
+    isActive,
+    isChecked,
+    sec
+  } = useUser();
 
   const { register, handleSubmit, formState } = useForm<IFormData>({
-    resolver: yupResolver(isChecked ? schemaSignUp : (isOn ? schemaToken : schemaEmail) ),
+    resolver: yupResolver(
+      isChecked ? schemaSignUp : isOn ? schemaToken : schemaEmail
+    ),
     mode: "onChange"
   });
 
@@ -29,18 +43,25 @@ export default function SignUp(): JSX.Element {
     <S.Wrapper>
       <S.Title>회원가입</S.Title>
       <S.SubTitle>이메일</S.SubTitle>
-      <form onSubmit={isChecked ? handleSubmit(onClickSignUp) : (isOn ? handleSubmit(onClickValidation) : handleSubmit(onClickSendToken))}>
+      <form
+        onSubmit={
+          isChecked
+            ? handleSubmit(onClickSignUp)
+            : isOn
+            ? handleSubmit(onClickValidation)
+            : handleSubmit(onClickSendToken)
+        }
+      >
         <InputHeight42px placeholder="이메일" register={register("email")} />
-        {!isOn && (
-          <S.AuthBtn>
-            이메일 인증하기
-          </S.AuthBtn>
-        )}
+        {!isOn && <S.AuthBtn>이메일 인증하기</S.AuthBtn>}
         {isOn && (
           <>
             <S.SubTitle>인증번호 입력</S.SubTitle>
             <S.InputBox>
-              <InputHeight42px placeholder="인증번호 입력" register={register("token")}/>
+              <InputHeight42px
+                placeholder="인증번호 입력"
+                register={register("token")}
+              />
               <S.Timer>{sec}</S.Timer>
               <S.ButtonBox>
                 <ButtonHeight42px

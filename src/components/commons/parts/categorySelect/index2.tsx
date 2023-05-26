@@ -3,28 +3,28 @@ import { category, option } from "../../../../commons/libraries/category";
 import { useEffect } from "react";
 import { ICategory2Props } from "./index.types";
 
-type CategoryName = keyof typeof category;
-
 export default function Category2(props: ICategory2Props) {
   useEffect(() => {
-    props.setCategorySelect(props.data?.product_category);
-    props.setCategoryArray(option[props.data?.product_category]);
+    props.setCategorySelect(props.data?.product_category ?? "");
+    props.setCategoryArray(option[props.data?.product_category ?? "DESIGN"]);
     // props.setOptionSelect(option[props.data?.product_category][0]);
     if (
-      option[props.data?.product_category] &&
-      option[props.data?.product_category].length > 0
+      option[props.data?.product_category ?? "DESIGN"] &&
+      option[props.data?.product_category ?? "DESIGN"].length > 0
     ) {
-      props.setOptionSelect(option[props.data?.product_category][0]);
+      props.setOptionSelect(
+        option[props.data?.product_category ?? "DESIGN"][0]
+      );
     }
   }, [props.data]);
 
-  const handleCategoryChange = (value: CategoryName) => {
+  const handleCategoryChange = (value: string) => {
     props.setCategorySelect(value);
     props.setCategoryArray(option[value]);
     props.setOptionSelect(option[value][0]);
   };
 
-  const onSecondCityChange = (value: CategoryName) => {
+  const onSecondCityChange = (value: string) => {
     props.setOptionSelect(value);
   };
 

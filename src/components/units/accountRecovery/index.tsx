@@ -7,6 +7,8 @@ import { useAccountRecovery } from "../../commons/hooks/custom/useAccountRecover
 
 interface IFinding {
   isEmail: boolean;
+  user_phone?: string;
+  user_token?: string;
 }
 
 export default function AccountRecovery(props: IFinding): JSX.Element {

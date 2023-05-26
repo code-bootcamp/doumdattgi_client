@@ -78,6 +78,10 @@
 //   }
 // ];
 
+type OptionType = {
+  [key: string]: string[];
+};
+
 export const category = [
   { label: "디자인", value: "DESIGN" },
   { label: "IT・프로그래밍", value: "IT" },
@@ -87,7 +91,7 @@ export const category = [
   { label: "문서・레포트", value: "DOCUMENT" }
 ];
 
-export const option = {
+export const option: OptionType = {
   DESIGN: [
     "로고・브랜딩",
     "인쇄・홍보물",

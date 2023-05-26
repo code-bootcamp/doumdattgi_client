@@ -36,7 +36,7 @@ export default function Profile(): JSX.Element {
               const target = e.target as HTMLImageElement;
               target.src = "/noimage.png";
             }}
-            src={login?.fetchLoginUser?.user_profileImage}
+            src={login?.fetchLoginUser?.user_profileImage ?? ""}
           />
           <S.UserName>{login?.fetchLoginUser?.user_name}</S.UserName>
           <S.UserIntroduce>
