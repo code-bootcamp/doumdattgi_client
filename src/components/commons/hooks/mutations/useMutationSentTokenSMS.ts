@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationSendTokenSmsArgs
+} from "../../../../commons/types/generated/types";
 
 export const SEND_TOKEN_SMS = gql`
   mutation sendTokenSMS($user_phone: String!) {
@@ -7,7 +11,10 @@ export const SEND_TOKEN_SMS = gql`
 `;
 
 export const useMutationSendTokenSMS = () => {
-  const mutation = useMutation(SEND_TOKEN_SMS);
+  const mutation = useMutation<
+    Pick<IMutation, "sendTokenSMS">,
+    IMutationSendTokenSmsArgs
+  >(SEND_TOKEN_SMS);
 
   return mutation;
 };

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { getDate } from "../../../../../commons/libraries/getDate";
+import { getDateTime } from "../../../../../commons/libraries/getDate";
+
 import { IPropsfetchUserPaymentInfo } from "../../../../units/myPage/point/index.types";
 import * as S from "./index.styles";
 import PayState from "./paylistState";
@@ -16,7 +17,7 @@ export default function PayList(props: IPropsfetchUserPaymentInfo) {
       <S.TransactionInfo>
         <S.PayInfo>
           <S.Company>{props.el?.payment_type}</S.Company>
-          <S.Date>{getDate(props.el?.payment_createdAt)}</S.Date>
+          <S.Date>{getDateTime(props.el?.payment_createdAt)}</S.Date>
         </S.PayInfo>
         <S.TransactInfo>
           <S.Point>{`${props.el?.payment_amount} P`}</S.Point>

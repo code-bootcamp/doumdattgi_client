@@ -1,14 +1,21 @@
 import { TimePicker } from "antd";
 import { useEffect } from "react";
 import dayjs from "dayjs";
+import { IQuery } from "../../../../commons/types/generated/types";
 
-export default function TimePick(props) {
+interface ITimePicker {
+  data: any;
+  setStartTime: any;
+  setEndTime: any;
+}
+
+export default function TimePick(props: ITimePicker) {
   useEffect(() => {
     props.setStartTime(props.data?.product_startTime);
     props.setEndTime(props.data?.product_endTime);
   }, [props.data]);
 
-  const onChange = (_, timeString) => {
+  const onChange = (_: any, timeString: (string | any[])[]) => {
     const startTime = Number(timeString[0].slice(0, 2));
     const endTime = Number(timeString[1].slice(0, 2));
     props.setStartTime(startTime);

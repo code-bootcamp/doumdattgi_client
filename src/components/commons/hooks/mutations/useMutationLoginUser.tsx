@@ -1,5 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
-import { IMutation, IMutationLoginArgs } from "../../../../commons/types/generated/types";
+import type {
+  IMutation,
+  IMutationLoginArgs
+} from "../../../../commons/types/generated/types";
 
 export const LOGIN = gql`
   mutation login($user_email: String!, $user_password: String!) {
@@ -8,7 +11,9 @@ export const LOGIN = gql`
 `;
 
 export const useMutationLogin = () => {
-  const Mutation = useMutation<Pick<IMutation, "login">, IMutationLoginArgs>(LOGIN);
+  const Mutation = useMutation<Pick<IMutation, "login">, IMutationLoginArgs>(
+    LOGIN
+  );
 
   return Mutation;
 };

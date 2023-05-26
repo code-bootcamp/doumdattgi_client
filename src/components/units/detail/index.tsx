@@ -20,7 +20,6 @@ import { useQueryFetchUserSlot } from "../../commons/hooks/queries/useQueryfetch
 import { useUser } from "../../commons/hooks/custom/useUser/index";
 import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutationCreatePick";
 
-
 export default function Detail() {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
@@ -97,7 +96,9 @@ export default function Detail() {
                 </Link>
               )}
               <S.SlotBox>
-                {slot3 ? (
+                {writer === LoginUser ? (
+                  <></>
+                ) : slot3 ? (
                   <></>
                 ) : (
                   <>

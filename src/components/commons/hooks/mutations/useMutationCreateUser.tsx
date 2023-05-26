@@ -1,5 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import {
+import type {
   IMutation,
   IMutationCreateUserArgs
 } from "../../../../commons/types/generated/types";

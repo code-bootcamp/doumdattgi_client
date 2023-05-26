@@ -1,5 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
-import { IQuery } from "../../../../commons/types/generated/types";
+import type {
+  IQuery,
+  IQueryFetchSearchProductArgs
+} from "../../../../commons/types/generated/types";
 
 export const FETCH_SEARCH_PRODUCT = gql`
   query fetchSearchProduct($search: String!, $page: Float!, $pageSize: Float!) {
@@ -18,12 +21,12 @@ export const FETCH_SEARCH_PRODUCT = gql`
 `;
 
 export const useQueryfetchSearchProduct = (keyword: string) => {
-  const Query = useQuery<Pick<IQuery, "fetchSearchProduct">>(
-    FETCH_SEARCH_PRODUCT,
-    {
-      variables: { search: keyword, page: 1, pageSize: 10 }
-    }
-  );
+  const Query = useQuery<
+    Pick<IQuery, "fetchSearchProduct">,
+    IQueryFetchSearchProductArgs
+  >(FETCH_SEARCH_PRODUCT, {
+    variables: { search: keyword, page: 1, pageSize: 10 }
+  });
 
   return Query;
 };

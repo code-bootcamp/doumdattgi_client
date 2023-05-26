@@ -1,7 +1,6 @@
 import * as S from "./styles";
 import Link from "next/link";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage/index";
-// import { useQueryFetchPickUserProduct } from "../../../../commons/hooks/queries/useQueryfetchPickUserProduct";
 import { useQueryFetchPickUserProduct } from "../../../../commons/hooks/queries/useQueryFetchPickUserProduct";
 
 export default function ProfileMyFavorite(): JSX.Element {

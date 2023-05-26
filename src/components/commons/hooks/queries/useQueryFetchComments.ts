@@ -1,4 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
+import type {
+  IQuery,
+  IQueryFetchCommentsArgs
+} from "../../../../commons/types/generated/types";
 
 export const FETCH_COMMENTS = gql`
   query fetchComments($request_id: String!) {
@@ -14,12 +18,15 @@ export const FETCH_COMMENTS = gql`
   }
 `;
 
-export const useQueryFetchComments = (id) => {
-  const query = useQuery(FETCH_COMMENTS, {
+export const useQueryFetchComments = (id: string) => {
+  const query = useQuery<
+    Pick<IQuery, "fetchComments">,
+    IQueryFetchCommentsArgs
+  >(FETCH_COMMENTS, {
     variables: {
-        request_id: id
+      request_id: id
     }
   });
 
-  return query
+  return query;
 };

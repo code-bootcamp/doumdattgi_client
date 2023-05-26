@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import {
+import type {
   IQuery,
   IQueryFetchSubCategoryProductArgs
 } from "../../../../commons/types/generated/types";

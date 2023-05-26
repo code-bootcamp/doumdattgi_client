@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationUpdateProductArgs
+} from "../../../../commons/types/generated/types";
 
 export const UPDATE_PRODUCT = gql`
   mutation updateProduct(
@@ -13,7 +17,10 @@ export const UPDATE_PRODUCT = gql`
 `;
 
 export const useMutationUpdateProduct = () => {
-  const mutation = useMutation(UPDATE_PRODUCT);
+  const mutation = useMutation<
+    Pick<IMutation, "updateProduct">,
+    IMutationUpdateProductArgs
+  >(UPDATE_PRODUCT);
 
   return mutation;
 };
