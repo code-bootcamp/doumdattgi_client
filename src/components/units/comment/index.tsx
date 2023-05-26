@@ -62,19 +62,24 @@ export default function Comment(props): JSX.Element {
     <>
       <S.Wrapper>
         <S.WrapperBody>
-          {/* {comment?.fetchComments?.map(el => (
-            <>
-              <S.ReceivingBox>
-                <S.Date>{getDate(el.comment_createdAt)}</S.Date>
-                <S.ChatBox>{el.comment_text}</S.ChatBox>
-              </S.ReceivingBox>
-            </>
-          ))} */}
           {comment?.fetchComments?.map(el => (
-            <S.SendingBox>
-              <S.SenderIcon src={el?.user?.user_profileImage !== "" ? el?.user?.user_profileImage : fallback } />
+            <S.SendingBox
+              me={user?.fetchLoginUser?.user_id}
+              comment={el?.sender_id}
+            >
+              {user?.fetchLoginUser?.user_id !== el?.sender_id && (
+                <S.SenderIcon
+                  src={
+                    el?.user?.user_profileImage !== ""
+                      ? el?.user?.user_profileImage
+                      : fallback
+                  }
+                />
+              )}
               <div>
-                <S.Sender>{el?.user?.user_nickname}</S.Sender>
+                {user?.fetchLoginUser?.user_id !== el?.sender_id && (
+                  <S.Sender>{el?.user?.user_nickname}</S.Sender>
+                )}
                 <S.ChatBox>{el.comment_text}</S.ChatBox>
               </div>
               <S.Date>{getDate(el.comment_createdAt)}</S.Date>

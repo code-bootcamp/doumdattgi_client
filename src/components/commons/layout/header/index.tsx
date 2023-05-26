@@ -55,7 +55,6 @@ export default function Header(): JSX.Element {
         "https://doumdattgi-server.com/graphql",
         query
       );
-      console.log(data?.fetchRandomProduct);
 
       const num = Math.floor(Math.random() * data?.fetchRandomProduct.length);
       const MovePage = data?.fetchRandomProduct[num].product_product_id;
@@ -67,8 +66,6 @@ export default function Header(): JSX.Element {
   };
 
   const getDebounce = debounce(e => {
-    console.log(e);
-
     router.push({
       pathname: `/categoryList/all/${e}`
     });
@@ -84,9 +81,7 @@ export default function Header(): JSX.Element {
     <>
       <S.Wrapper>
         <S.Container>
-          <Link href={"/"}>
-            <S.Logo>LOGO</S.Logo>
-          </Link>
+          <S.Logo onClick={onClickMoveToPage("/")}>LOGO</S.Logo>
           <S.HeaderBox>
             <form onSubmit={handleSubmit(searchKeyword)}>
               <S.SearchBox>

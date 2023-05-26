@@ -93,6 +93,13 @@ export const useCreateProduct2 = isEdit => {
 
   if (isEdit) {
     useEffect(() => {
+      setValue("product_title", data?.fetchDetailProduct?.product_title);
+      setValue("product_summary", data?.fetchDetailProduct?.product_summary);
+      setValue(
+        "product_detailAddress",
+        data?.fetchDetailProduct?.product_detailAddress
+      );
+
       setValue("product_postNum", data?.fetchDetailProduct?.product_postNum);
       void trigger("product_postNum");
       setValue(
@@ -110,7 +117,6 @@ export const useCreateProduct2 = isEdit => {
       void trigger("product_main_text");
     }, [data]);
   }
-  
 
   const onClickAddressSearch = (): void => {
     setIsModalOpen(prev => !prev);
@@ -159,27 +165,45 @@ export const useCreateProduct2 = isEdit => {
   };
 
   // =============== 게시글 수정 ===============
-  const onClickEditProduct = async data => {
-    console.log(fileList);
+  const onClickEditProduct = async update => {
+    let updateFile = fileList.filter(el => el.originFileObj !== undefined);
+    let prevFile = fileList
+      .filter(el => el.originFileObj === undefined)
+      .map(el => {
+        return { thumbnailImage: el.url, isMain: false };
+      });
+
+    const results = await Promise.all(
+      updateFile.map(el =>
+        uploadFile({ variables: { files: el.originFileObj } })
+      )
+    );
+    const product_thumbnailImage = results.map(el => {
+      return { thumbnailImage: el.data.uploadFile[0], isMain: false };
+    });
+
+    const resultUrl = [...prevFile, ...product_thumbnailImage];
+    resultUrl[0].isMain = true;
+
     try {
       const result = await updateProduct({
         variables: {
           product_id: router.query.id,
           updateProductInput: {
-            product_sellOrBuy: data.product_sellOrBuy ?? true,
-            product_title: data.product_title,
+            product_sellOrBuy: update.product_sellOrBuy ?? true,
+            product_title: update.product_title,
             product_category: categorySelect,
             product_sub_category: optionSelect,
-            product_summary: data.product_summary,
-            product_main_text: data.product_main_text,
+            product_summary: update.product_summary,
+            product_main_text: update.product_main_text,
             product_workDay: workDay,
             product_workTime: endTime - startTime,
             product_startTime: startTime,
             product_endTime: endTime,
-            // product_thumbnailImage: product_thumbnailImage,
-            product_postNum: data.product_postNum,
-            product_roadAddress: data.product_roadAddress,
-            product_detailAddress: data.product_detailAddress
+            product_thumbnailImage: resultUrl,
+            product_postNum: update.product_postNum,
+            product_roadAddress: update.product_roadAddress,
+            product_detailAddress: update.product_detailAddress
           }
         },
         refetchQueries: [

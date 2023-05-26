@@ -5,12 +5,15 @@ import {
 import { useQueryFetchLoginUser } from "../../../../commons/hooks/queries/useQueryFetchLoginUser";
 import { useForm } from "react-hook-form";
 import * as S from "./styles";
+import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
 
 export default function SettingsBottom() {
   const { data } = useQueryFetchLoginUser();
   const { register, handleSubmit } = useForm<IpropsDetail>();
 
   const { isDetailEdit, clickEditDetail, clickSaveDetail } = useSettings();
+
+  const {onClickMoveToPage} = useMoveToPage()
 
   return (
     <S.Wrapper>
@@ -84,7 +87,7 @@ export default function SettingsBottom() {
                   <S.SettingList>
                     <S.Categoty>비밀번호</S.Categoty>
                     <S.Contents>
-                      <S.PasswordEdit className="semiBold">
+                      <S.PasswordEdit className="semiBold" onClick={onClickMoveToPage("/editPassword")}>
                         비밀번호 변경하기
                       </S.PasswordEdit>
                     </S.Contents>

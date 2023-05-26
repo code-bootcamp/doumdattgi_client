@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useMutationCreateUser } from "../../mutations/useMutationCreateUser";
 import { useMutationLogout } from "../../mutations/useMutationLogout";
 import { useQueryFetchLoginUser } from "../../queries/useQueryFetchLoginUser";
+import { useMutationSendTokenEmail } from "../../mutations/useMutationSendTokenEmail";
+import { useMutationCheckEmail } from "../../mutations/useMutationCheckValidTokenEMAIL";
 
 interface IFormData {
   email: string;
@@ -38,9 +40,12 @@ export const useUser = () => {
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [login] = useMutationLogin();
   const [createUser] = useMutationCreateUser();
+  const [sendTokenEmail] = useMutationSendTokenEmail();
+  const [checkEmail] = useMutationCheckEmail();
   const [logout] = useMutationLogout();
   const [isOn, setIsOn] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [sec, setSec] = useState(0);
   const { data: fetchUser } = useQueryFetchLoginUser();
 
@@ -49,7 +54,6 @@ export const useUser = () => {
     setIsActive(true);
     const interval = setInterval(() => {
       setSec(prev => prev - 1);
-      console.log(isActive);
     }, 1000);
 
     if (sec === 0) {
@@ -61,9 +65,39 @@ export const useUser = () => {
   }, [sec]);
 
   // =============== 인증번호 ===============
-  const onClickValidation = () => {
+  const onClickSendToken = async data => {
     setIsOn(true);
-    setSec(6);
+    setSec(180);
+    try {
+      const result = await sendTokenEmail({
+        variables: {
+          user_email: data.email
+        }
+      });
+      console.log(result);
+    } catch (error) {
+      setIsOn(false);
+      setSec(0);
+      if (error instanceof Error) alert(error.message);
+    }
+  };
+  const onClickValidation = async data => {
+    try {
+      const result = await checkEmail({
+        variables: {
+          user_email: data.email,
+          user_token: data.token
+        }
+      });
+      console.log(result)
+      if (result) {
+        setSec(0);
+        setIsChecked(true);
+        setIsActive(false);
+      }
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
   };
 
   // =============== 회원가입 ===============
@@ -171,9 +205,11 @@ export const useUser = () => {
     onClickSignUp,
     onClickLogin,
     onClickLogout,
+    onClickSendToken,
     isOn,
     sec,
     isActive,
+    isChecked,
     imageSrc,
     userTitle
   };
