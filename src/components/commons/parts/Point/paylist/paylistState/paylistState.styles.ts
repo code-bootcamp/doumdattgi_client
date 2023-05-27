@@ -8,6 +8,7 @@ export const ChargeDone = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 6px;
+  margin-left: 10px;
   border: none;
   background-color: #389e0d;
   color: white;
@@ -29,6 +30,7 @@ export const RefundDone = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 6px;
+  margin-left: 10px;
   border: none;
   background-color: black;
   color: white;
@@ -71,7 +73,6 @@ export const Request_BuyBtn = styled.button`
   color: white;
   margin-left: 10px;
 `;
-
 
 export const Request_RefundBtn = styled.button`
   width: 85px;

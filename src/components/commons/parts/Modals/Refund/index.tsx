@@ -16,9 +16,7 @@ export default function RefundPoint(props: IPropsRefund) {
     props.setIsRefund(false);
   };
 
-  const status = router.query.status === undefined ? "" : router.query.status;
-
-  console.log(status);
+  // const status = router.query.status === undefined ? "" : router.query.status;
 
   const GotoRefund = async () => {
     try {

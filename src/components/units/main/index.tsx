@@ -4,7 +4,6 @@ import { useQueryFetchRandomProduct } from "../../commons/hooks/queries/useQuery
 import Slider from "../../commons/parts/main/carousel";
 import BarBox from "../../commons/parts/main/previewContents";
 import * as S from "./main.styles";
-import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchSellProduct } from "../../commons/hooks/queries/useQueryFetchSellProduct";
 import CardBox4 from "../../commons/parts/cardBox/col4";
 import CardBox3 from "../../commons/parts/cardBox/col3";
@@ -14,8 +13,6 @@ export default function MainPresenter() {
   const { data: Products } = useQueryFetchProducts();
   const { data: Newbie } = useQueryFetchNewbieProduct();
   const { data: Sellers } = useQueryFetchSellProduct();
-
-  const { onClickMoveToPage } = useMoveToPage();
 
   return (
     <S.Wrapper>
