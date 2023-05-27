@@ -4,7 +4,7 @@ import { IProduct } from "../../../commons/types/generated/types";
 
 export const Wrapper = styled.div`
   width: 1140px;
-  margin: 40px auto;
+  margin: 50px auto 150px;
 
   .bottom {
     margin-top: 40px;
