@@ -10,6 +10,8 @@ import { CategoryObj } from "../../../../../commons/libraries/translate";
 import CardBox from "../../cardBox/col4";
 import { useQueryFetchCategoryProduct } from "../../../hooks/queries/useQueryFetchCategoryProduct";
 import ListCardBox from "../../cardBox/list";
+import { useState } from "react";
+import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 
 export default function ProductList() {
   const router = useRouter();
@@ -22,11 +24,23 @@ export default function ProductList() {
 
   const { data, fetchMore } = useQueryFetchCategoryProduct(category);
 
+  // 카테고리 최신순, 과거순 정렬
+  const [isRecent, setIsRecent] = useState(true);
+  const categoryList = !isRecent
+    ? [...(data?.fetchCategoryProduct || [])].reverse()
+    : data?.fetchCategoryProduct;
+
+  const RecentOrNot = (value: string) => {
+    if (value === "최신순") {
+      setIsRecent(true);
+    } else if (value === "과거순") {
+      setIsRecent(false);
+    }
+  };
+
   // 조회용 카테고리 Key값
   const CategoryTitle =
     data?.fetchCategoryProduct?.[0]?.product_product_category;
-
-  console.log(CategoryTitle);
 
   // 무한 스크롤 로직
   const onLoadMore = () => {
@@ -52,6 +66,7 @@ export default function ProductList() {
       }
     });
   };
+
   return (
     <S.Container>
       <S.CategoryBox>
@@ -77,10 +92,11 @@ export default function ProductList() {
             { value: "인기순", label: "인기순" },
             { value: "과거순", label: "과거순" }
           ]}
+          onChange={RecentOrNot}
         />
       </S.LengthBox>
       <S.ContentsBox loadMore={onLoadMore} pageStart={0} hasMore={true}>
-        {data?.fetchCategoryProduct.map(el => (
+        {categoryList?.map(el => (
           <ListCardBox data={el} />
         ))}
       </S.ContentsBox>
