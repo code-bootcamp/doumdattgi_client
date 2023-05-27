@@ -1,6 +1,6 @@
 import SliderComponent from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import { Image } from "antd";
 import { fallback } from "../../../../../commons/libraries/fallback";
