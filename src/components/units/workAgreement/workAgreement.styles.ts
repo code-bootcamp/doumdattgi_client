@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 1140px;
-`
+`;
 
 export const Category = styled.div`
   margin-bottom: 15px;
@@ -153,6 +153,7 @@ export const ContentsDetail = styled.div`
 export const Contents = styled.div`
   background-color: #f6f7f9;
   border-radius: 6px;
+  border: 3px solid blue;
   padding: 30px;
 `;
 

@@ -9,12 +9,19 @@ import { useRequestAcceptRefuse } from "../../commons/hooks/custom/useRequestAcc
 import { getDate, getDateTime } from "../../../commons/libraries/getDate";
 import { useRequestProcess } from "../../commons/hooks/custom/useRequestProcess/index";
 import DOMPurify from "dompurify";
+import { useEffect, useState } from "react";
 
 export default function WorkAgreement(): JSX.Element {
   const router = useRouter();
 
-  const { data } = useQueryFetchOneRequest(router.query.id as string);
+  const { data, refetch } = useQueryFetchOneRequest(router.query.id as string);
   const { data: login } = useQueryFetchLoginUser();
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const {
     onClickRequestAccept,
@@ -42,6 +49,12 @@ export default function WorkAgreement(): JSX.Element {
 
   // 작업 거절, 진행, 대기, 종료
   const isAccept = data?.fetchOneRequest?.request_isAccept;
+
+  useEffect(() => {
+    refetch({ request_id: router.query.id as string });
+  }, [isAccept]);
+
+  console.log(isAccept);
 
   return (
     <>
@@ -161,7 +174,7 @@ export default function WorkAgreement(): JSX.Element {
             </S.StatusBox>
           </S.ProcessBox>
           <S.ContentsDetail>신청 내용</S.ContentsDetail>
-          {typeof window !== "undefined" && (
+          {isClient && (
             <S.Contents
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(
