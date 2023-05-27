@@ -5,33 +5,11 @@ import ProgressSellerProgressing from "./progress/index";
 import ProgressSellerWaiting from "./waiting/index";
 import ProgressSellerRefuse from "./refuse/index";
 import ProgressSellerAll from "./all/index";
-import { useRouter } from "next/router";
-
-type ObjType = {
-  [key: string]: string;
-};
 
 export default function ProgressSeller(): JSX.Element {
-  const router = useRouter();
+  const [isList, setIsList] = useState(0);
 
-  const obj: ObjType = {
-    all: "all",
-    waiting: "done",
-    progressing: "progress",
-    done: "refuse",
-    refuse: "waiting"
-  };
-
-  const [isList, setIsList] = useState("");
-
-  const onClickList = (index: string) => {
-    const state = obj[index];
-
-    router.push({
-      pathname: `/mypage/progressSeller`,
-      query: { state }
-    });
-
+  const onClickList = (index: number) => {
     setIsList(index);
     localStorage.setItem("selectedTab", index.toString());
   };
@@ -39,35 +17,37 @@ export default function ProgressSeller(): JSX.Element {
   useEffect(() => {
     const storedTab = localStorage.getItem("selectedTab");
     if (storedTab) {
-      setIsList(storedTab);
+      setIsList(parseInt(storedTab));
     }
   }, []);
 
   const renderPage = () => {
-    if (isList === "all") {
+    if (isList === 0) {
       return <ProgressSellerAll />;
-    } else if (isList === "waiting") {
+    } else if (isList === 1) {
       return <ProgressSellerWaiting />;
-    } else if (isList === "progressing") {
+    } else if (isList === 2) {
       return <ProgressSellerProgressing />;
-    } else if (isList === "done") {
+    } else if (isList === 3) {
       return <ProgressSellerDone />;
-    } else if (isList === "refuse") {
+    } else if (isList === 4) {
       return <ProgressSellerRefuse />;
     }
   };
 
   return (
     <S.Wrapper>
+      <S.Container>
       <S.PageTitle>작업 진행 내역</S.PageTitle>
       <S.TabBox>
-        <S.PageTab onClick={() => onClickList("all")}>전체</S.PageTab>
-        <S.PageTab onClick={() => onClickList("waiting")}>대기중</S.PageTab>
-        <S.PageTab onClick={() => onClickList("progressing")}>진행중</S.PageTab>
-        <S.PageTab onClick={() => onClickList("done")}>종료</S.PageTab>
-        <S.PageTab onClick={() => onClickList("refuse")}>거절</S.PageTab>
+        <S.PageTab onClick={() => onClickList(0)}>전체</S.PageTab>
+        <S.PageTab onClick={() => onClickList(1)}>대기중</S.PageTab>
+        <S.PageTab onClick={() => onClickList(2)}>진행중</S.PageTab>
+        <S.PageTab onClick={() => onClickList(3)}>종료</S.PageTab>
+        <S.PageTab onClick={() => onClickList(4)}>거절</S.PageTab>
       </S.TabBox>
       {renderPage()}
+      </S.Container>
     </S.Wrapper>
   );
 }

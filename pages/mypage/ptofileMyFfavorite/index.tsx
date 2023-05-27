@@ -1,5 +1,8 @@
+import { LoginCheck } from "../../../src/commons/libraries/loginCheck";
 import Profile from "../../../src/components/units/myPage/profile";
 
-export default function ProfilePage(): JSX.Element {
+function ProfilePage(): JSX.Element {
   return <Profile />;
 }
+
+export default LoginCheck(ProfilePage);

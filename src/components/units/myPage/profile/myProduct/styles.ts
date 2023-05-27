@@ -23,7 +23,7 @@ export const SubTitle = styled.div`
 export const WrapperRight = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: white;
+  margin-top: 40px;
 `;
 
 export const RightTitleBox = styled.div`
@@ -54,10 +54,8 @@ export const CreateIcon = styled.img`
 export const RightListBox = styled.div`
   width: 730px;
   display: flex;
-  margin-top: 40px;
-  border-bottom: 1px solid #d9d9d9;
-  padding-bottom: 30px;
   cursor: pointer;
+  padding-bottom: 20px;
 `;
 
 export const RightDetailBox = styled.div`

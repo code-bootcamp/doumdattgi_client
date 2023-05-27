@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  margin-bottom: 150px;
+`;
 
 export const SettingTop = styled.div`
   width: 100%;
@@ -159,6 +161,7 @@ export const EditBtn = styled.button`
   line-height: 24px;
   font-weight: 600;
   padding: 13px 0;
+  cursor: pointer;
 `;
 
 export const SaveBtn = styled.button`

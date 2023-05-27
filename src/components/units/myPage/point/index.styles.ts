@@ -5,13 +5,15 @@ interface IPropsSelect {
 }
 
 export const Wrapper = styled.div`
-  width: 800px;
-  margin: 0 auto;
-  margin-top: 90px;
-  margin-bottom: 90px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 150px;
+`;
+
+export const Container = styled.div`
+  width: 800px;
+  min-height: 600px;
 `;
 
 export const Title = styled.h1`
@@ -28,7 +30,7 @@ export const SelectBar = styled.nav`
 `;
 
 export const selectOption = styled.div`
-  width: 120px;
+  width: 100px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -37,29 +39,31 @@ export const selectOption = styled.div`
   color: ${(props: IPropsSelect) => (props.isSelect ? "black" : "#AAAAAA")};
   border-bottom: 2px solid ${props => (props.isSelect ? "black" : "white")};
   cursor: pointer;
+  margin-left: 10px;
+  &:first-of-type {
+    margin-left: 0;
+  }
 `;
 
 export const HoldingBox = styled.div`
-  width: 800px;
-  height: 180px;
   margin-bottom: 14px;
-  padding: 0px 30px;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
   background-color: #f2f2f4;
+  padding: 30px;
 `;
 
-export const HoldTitle = styled.div`
-  font-family: "Arita-dotum4.0";
+export const HoldTitle = styled.span`
   font-size: 20px;
-  margin-top: 30px;
+  display: block;
 `;
 
 export const CurrentHold = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-top: 22px;
 `;
 
@@ -69,12 +73,11 @@ export const HoldPoint = styled.span`
 `;
 
 export const ChargeBtn = styled.button`
-  width: 160px;
-  height: 48px;
-  border-radius: 30px;
-  font-family: "Arita-dotum4.0";
   font-size: 18px;
   background-color: #111111;
+  border-radius: 30px;
+  padding: 15px 36px;
+  border: none;
   color: white;
   cursor: pointer;
 `;

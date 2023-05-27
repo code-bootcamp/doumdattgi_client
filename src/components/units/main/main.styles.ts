@@ -1,79 +1,45 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  margin-top: 50px;
-  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  margin-bottom: 150px;
 `;
 
-export const CarouselBox = styled.div`
-  width: 1200px;
-  height: 400px;
+export const Container = styled.div`
+  width: 1140px;
 `;
 
-export const Body = styled.div`
-  width: 1200px;
-  margin: 0 auto;
+export const Banner = styled.div`
+  width: 1140px;
+  margin-top: 50px;
 `;
 
-export const ShowBoards = styled.div`
+export const Section = styled.section`
   margin-top: 100px;
-  height: 390px;
 `;
 
-export const Theme = styled.span`
+export const Title = styled.h2`
   font-size: 20px;
+  font-weight: 600;
 `;
 
-export const PreviewBox = styled.div`
+export const CardboxWrap = styled.div`
   margin-top: 20px;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
-export const Preview = styled.div`
-  width: 285px;
-  height: 330px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1px solid #bec3c7;
-  overflow: hidden;
-  cursor: pointer;
-`;
-
-export const PreviewImg = styled.img`
-  width: 285px;
-  height: 200px;
+  gap: 40px 20px;
 `;
 
 export const AdBar = styled.div`
-  height: 160px;
-  margin-top: 130px;
-`;
-
-export const RecentBoards = styled.div`
-  height: 740px;
-  margin-top: 130px;
-`;
-
-export const JobOfferBox = styled.div`
-  height: 310px;
-  margin-top: 130px;
-`;
-
-export const OfferPreview = styled.div`
-  width: 590px;
   height: 120px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1px solid #d9d9d9;
+  background-color: #ccc;
+  margin-top: 100px;
 `;
+
+export const BarBox = styled.div``;
 
 export const IntroBar = styled.div`
   height: 120px;
@@ -99,30 +65,3 @@ export const NewPreviewImg = styled.img`
   width: 386.68px;
   height: 260px;
 `;
-
-// export const Bottom = styled.div`
-//   /* width: 1920px; */
-//   position: relative;
-//   width: 100%;
-//   height: 340px;
-//   padding: 0px 360px;
-//   display: flex;
-//   justify-content: center;
-//   border-top: 1px solid #bdbdbd;
-// `;
-
-// export const BottomInfo = styled.div`
-//   width: 1200px;
-//   height: 340px;
-//   display: flex;
-//   flex-direction: column;
-//   margin-top: 60px;
-// `;
-
-// export const CompanyInfo = styled.div`
-//   height: 100px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   margin-bottom: 80px;
-// `;

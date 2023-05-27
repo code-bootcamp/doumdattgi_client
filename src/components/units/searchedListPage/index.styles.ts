@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 0px auto;
   display: flex;
-  margin-top: 90px;
+  justify-content: center;
+  margin: 50px 0 150px 0;
 `;
+
+export const Container = styled.div`
+  width: 1140px;
+`
 
 export const WrapperLeft = styled.div`
   width: 220px;
@@ -50,6 +53,7 @@ export const ContentsBox = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 30px 10px;
 `;
 
 export const Contents = styled.div`

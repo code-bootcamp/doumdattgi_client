@@ -63,7 +63,7 @@ export const ProfileBox = styled.div``;
 export const ProfileNickname = styled.h2`
   font-size: 36px;
   line-height: 36px;
-  font-weight: 700;
+  font-weight: 600;
 `;
 export const ProfileIntroduce = styled.p`
   color: #888;

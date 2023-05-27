@@ -19,10 +19,10 @@ interface IFormData {
 
 interface IFormLoginData {
   email: string;
-  password?: string;
+  password: string;
 }
 
-interface IValidation {
+interface IFormEmailValidate {
   email?: string;
   token?: string;
 }
@@ -51,28 +51,28 @@ export const useUser = () => {
   const [isOn, setIsOn] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [sec, setSec] = useState(0);
+  const [time, setTime] = useState(0);
   const { data: fetchUser } = useQueryFetchLoginUser();
 
   // =============== 타이머 ===============
   useEffect(() => {
     setIsActive(true);
     const interval = setInterval(() => {
-      setSec(prev => prev - 1);
+      setTime(prev => prev - 1);
     }, 1000);
 
-    if (sec === 0) {
+    if (time === 0) {
       setIsActive(false);
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
-  }, [sec]);
+  }, [time]);
 
   // =============== 인증번호 ===============
-  const onClickSendToken = async (data: IFormLoginData) => {
+  const onClickSendToken = async (data: IFormEmailValidate) => {
     setIsOn(true);
-    setSec(180);
+    setTime(180);
     try {
       const result = await sendTokenEmail({
         variables: {
@@ -82,11 +82,11 @@ export const useUser = () => {
       console.log(result);
     } catch (error) {
       setIsOn(false);
-      setSec(0);
+      setTime(0);
       if (error instanceof Error) alert(error.message);
     }
   };
-  const onClickValidation = async (data: IValidation) => {
+  const onClickValidation = async (data: IFormEmailValidate) => {
     try {
       const result = await checkEmail({
         variables: {
@@ -96,7 +96,7 @@ export const useUser = () => {
       });
       console.log(result);
       if (result) {
-        setSec(0);
+        setTime(0);
         setIsChecked(true);
         setIsActive(false);
       }
@@ -133,7 +133,7 @@ export const useUser = () => {
       const result = await login({
         variables: {
           user_email: data.email,
-          user_password: data.password ?? ""
+          user_password: data.password
         }
       });
       alert("로그인에 성공하였습니다.");
@@ -186,7 +186,7 @@ export const useUser = () => {
     } else if (rate > 10 && rate <= 20) {
       return "/plant.png";
     } else {
-      return "tree.png";
+      return "/tree.png";
     }
   };
   const imageSrc = tier();
@@ -216,7 +216,7 @@ export const useUser = () => {
     onClickLogout,
     onClickSendToken,
     isOn,
-    sec,
+    time,
     isActive,
     isChecked,
     imageSrc,

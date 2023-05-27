@@ -17,7 +17,7 @@ export const schemaLogin = yup.object({
 });
 
 export const schemaEmail = yup.object({
-  email: yup.string().required("이메일을 인증해주세요.")
+  email: yup.string().required("이메일을 인증해주세요.").email("올바른 이메일을 입력해주세요.")
 })
 export const schemaToken = yup.object({
   email: yup.string().required("이메일을 인증해주세요."),

@@ -5,10 +5,14 @@ interface IIsToggle {
 }
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 0 auto;
-  margin-top: 90px;
-  margin-bottom: 90px;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 150px;
+`;
+
+export const Container = styled.div`
+  width: 1000px;
 `;
 
 export const Head = styled.div`
@@ -54,7 +58,7 @@ export const Employer = styled.div`
 `;
 
 export const DivideLine = styled.div`
-  border-left: 2px solid #333333;
+  border-left: 2px solid #111;
 `;
 
 export const Title = styled.span`
@@ -65,18 +69,20 @@ export const Body = styled.div``;
 
 export const Body_Top = styled.div`
   margin-top: 30px;
-  border-top: 2px solid #333333;
+  border-top: 2px solid #88b04b;
   border-bottom: 1px solid #bbbbbb;
 `;
 
 export const InputBox = styled.div`
-  height: 60px;
-  margin: 30px 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   position: relative;
+  padding-top: 40px;
+  &:last-of-type {
+    padding-bottom: 40px;
+  }
 `;
 
 export const Theme = styled.span`
@@ -135,7 +141,6 @@ export const SetTimeBox = styled.div`
 `;
 
 export const AttachedImg = styled.div`
-  height: 194px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -143,17 +148,15 @@ export const AttachedImg = styled.div`
 `;
 
 export const Image = styled.div`
-  width: 100%;
-  display: flex;
+  margin-top: 20px;
 `;
 
 export const MapBox = styled.div`
-  width: 440px;
-  height: 300px;
+  width: 380px;
+  height: 220px;
 `;
 
 export const BoardAddress = styled.div`
-  height: 354px;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
@@ -164,68 +167,54 @@ export const AddressBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 20px;
 `;
 
 export const SearchBox = styled.div`
-  width: 736px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 120px;
+  width: calc(100% - 380px);
+  padding-left: 24px;
 `;
 
+export const ZipcodeWrap = styled.div`
+  display: flex;
+`;
 export const ZipcodeBox = styled.div`
-  width: 278px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-export const InputZipcode = styled.input`
-  width: 120px;
-  height: 60px;
-  border-radius: 6px;
-  border: 1px solid #cccccc;
+  width: 100px;
 `;
 
 export const SearchBtn = styled.button`
-  background-color: black;
-  width: 250px;
-  height: 38px;
+  background-color: #111;
   border-radius: 6px;
   border: none;
-  font-size: 14px;
+  font-size: 12px;
   color: #ffffff;
+  padding: 0 20px;
   margin-left: 10px;
 `;
-
-export const InputAddress = styled.input`
-  width: 736px;
-  height: 60px;
-  margin-top: 14px;
-  border-radius: 6px;
-  border: 1px solid #cccccc;
+export const AddressInput = styled.div`
+  margin-top: 20px;
 `;
 
-export const Body_Bottom = styled.div``;
-
-export const BtnBox = styled.div`
-  margin-top: 130px;
+export const Body_Bottom = styled.div`
+  margin-top: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const Between = styled.div`
-  width: 10px;
+export const BtnBox = styled.div`
+  width: 50%;
+  &:last-of-type{
+    padding-left: 14px;
+  }
 `;
 
 export const Error = styled.span`
-    position: absolute;
-    top: 100%;
-    left: 230px;
-    display: block;
-    color: red;
-    font-size: 16px;
-`
+  position: absolute;
+  top: 100%;
+  left: 230px;
+  display: block;
+  color: red;
+  font-size: 16px;
+`;

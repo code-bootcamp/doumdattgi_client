@@ -10,6 +10,7 @@ import { schemaCreateRequest } from "../../../commons/libraries/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useRef } from "react";
 import { EditorInstance, EditorInstance2 } from "./index.types";
+import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 
 const CountUp = dynamic(
   async () => await import("../../commons/parts/countUp/intex"),
@@ -72,41 +73,43 @@ export default function Request(props: any): JSX.Element {
   return (
     <form onSubmit={handleSubmit(onClickWriteRequest)}>
       <S.Wrapper>
-        <S.Title>의뢰서 작성하기</S.Title>
-        <S.DivideLine />
-        <S.ContentsBox>
+        <S.Container>
+          <S.Title>의뢰서 작성하기</S.Title>
+          <S.DivideLine />
+          <S.ContentsBox>
+            <S.SubTitle>
+              의뢰 제안서<S.SubTitle2> *</S.SubTitle2>
+            </S.SubTitle>
+            <InputHeight50px register={register("request_title")} />
+            <S.SubTitle>
+              의뢰 내용
+              <S.SubTitle2> *</S.SubTitle2>
+            </S.SubTitle>
+            <Editor onChangeValue={onChangeContents} editorRef={editorRef} />
+          </S.ContentsBox>
           <S.SubTitle>
-            의뢰 제안서<S.SubTitle2> *</S.SubTitle2>
-          </S.SubTitle>
-          <InputHeight50px register={register("request_title")} />
-          <S.SubTitle>
-            의뢰 내용
+            작업 요청 시간
             <S.SubTitle2> *</S.SubTitle2>
           </S.SubTitle>
-          <Editor onChangeValue={onChangeContents} editorRef={editorRef} />
-        </S.ContentsBox>
-        <S.SubTitle>
-          작업 요청 시간
-          <S.SubTitle2> *</S.SubTitle2>
-        </S.SubTitle>
-        <S.PaymentBox>
-          <S.PaymentIndex1>9,620</S.PaymentIndex1>
-          <S.PaymentIndex2>X</S.PaymentIndex2>
-          <div>
-            <S.Time onChange={onChangeTime} />
-          </div>
-          <S.PaymentIndex2>시간</S.PaymentIndex2>
-          <S.PaymentIndex1>=</S.PaymentIndex1>
-          <S.PaymentIndex2>₩</S.PaymentIndex2>
-          <CountUp isTime={isTime} setIsTime={setIsTime} />
-        </S.PaymentBox>
-        <S.BtnBox>
-          <Link href={link}>
-            <ButtonHeight70px title="취소하기" />
-          </Link>
-          <S.Between />
-          <ButtonHeight70px title="신청하기" isActive={formState.isValid} />
-        </S.BtnBox>
+          <S.PaymentBox>
+            <S.PaymentIndex1>9,620원</S.PaymentIndex1>
+            <S.PaymentIndex2>X</S.PaymentIndex2>
+            <div>
+              <S.Time onChange={onChangeTime} />
+            </div>
+            <S.PaymentIndex2>시간</S.PaymentIndex2>
+            <S.PaymentIndex1>=</S.PaymentIndex1>
+            <S.PaymentIndex2>₩</S.PaymentIndex2>
+            <CountUp isTime={isTime} setIsTime={setIsTime} />
+          </S.PaymentBox>
+          <S.BtnBox>
+            <Link href={link}>
+              <ButtonHeight50px title="취소하기" />
+            </Link>
+            <S.Between />
+            <ButtonHeight50px title="신청하기" isActive={formState.isValid} />
+          </S.BtnBox>
+        </S.Container>
       </S.Wrapper>
     </form>
   );

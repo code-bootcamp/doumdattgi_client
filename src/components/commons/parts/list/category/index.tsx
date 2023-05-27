@@ -4,11 +4,9 @@ import useMoveToSubCategory from "../../../hooks/custom/usemoveSubcategory";
 import { v4 as uuidv4 } from "uuid";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
 
-export default function SideSubCategory() {
+export default function SideCategory() {
   const router = useRouter();
   const { clickSubCategory } = useMoveToSubCategory();
-
-  console.log(router.query.data);
 
   const BigCategory = Array.isArray(router.query.data)
     ? router.query.data[0]
@@ -81,23 +79,19 @@ export default function SideSubCategory() {
   };
 
   return (
-    <S.WrapperLeft>
-      {CategoryObj[BigCategory]}
+    <S.Wrapper>
+      <S.Title>{CategoryObj[BigCategory]}</S.Title>
       <S.DivideLine />
       <S.Ad />
       {!isAllList && (
-        <>
-          <S.LeftList>리스트 목록</S.LeftList>
-          <S.SubCategoryBox>
-            {filtering[BigCategory]?.map(el => (
-              <S.SubCategory
-                key={uuidv4()}
-                onClick={clickSubCategory(el)}
-              >{`${el}`}</S.SubCategory>
-            ))}
-          </S.SubCategoryBox>
-        </>
+        <S.SubCategoryBox>
+          {filtering[BigCategory]?.map(el => (
+            <S.SubCategory key={uuidv4()} onClick={clickSubCategory(el)}>
+              {`${el}`}
+            </S.SubCategory>
+          ))}
+        </S.SubCategoryBox>
       )}
-    </S.WrapperLeft>
+    </S.Wrapper>
   );
 }

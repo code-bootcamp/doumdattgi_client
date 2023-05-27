@@ -6,12 +6,14 @@ export const CommentBoxWrapper = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  width: 1200px;
   display: flex;
-  flex-direction: column;
-  margin: 0px auto;
-  padding: 90px 0px;
+  justify-content: center;
+  margin: 50px 0 150px 0;
 `;
+
+export const Container = styled.div`
+  width: 1140px;
+`
 
 export const Category = styled.div`
   margin-bottom: 15px;
@@ -160,7 +162,7 @@ export const PaymentBox = styled.div`
 `;
 
 export const Price = styled.span`
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 500px;
 `;
 
@@ -170,6 +172,7 @@ export const SpecialCharacter = styled.span`
 
 export const Box = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const Between = styled.div`
@@ -180,7 +183,6 @@ export const UserBox = styled.div`
   width: 588px;
   height: 415px;
   border: 1px solid #d4d4d8;
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -209,16 +211,16 @@ export const Arrow = styled.img`
   width: 128.5px;
   height: 20.5px;
   position: relative;
-  top: 294px;
   right: 50px;
 `;
 
 export const AcceptBox = styled.div`
   width: 100%;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 600px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: flex-end;
   margin-bottom: 80px;
 `;
@@ -252,15 +254,16 @@ export const ContentsIndex = styled.div`
 
 export const Btn2 = styled.button`
   width: 100%;
-  height: 70px;
-  border-radius: 10px;
-  border: 1px solid #888888;
+  height: 60px;
+  border-radius: 6px;
+  border: 2px solid #888888;
   color: #888888;
   background-color: white;
   cursor: pointer;
   margin-top: 60px;
   font-size: 24px;
   font-weight: 600px;
+  transition: all 0.2s ease-in-out;
   :hover {
     border: none;
     background-color: black;

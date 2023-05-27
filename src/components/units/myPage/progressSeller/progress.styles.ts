@@ -1,14 +1,19 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 800px;
-  margin: 0px auto;
-  padding: 90px 0px;
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 150px 0;
+  min-height: 600px;
 `;
+
+export const Container = styled.div`
+  width: 800px;
+`
 
 export const PageTitle = styled.div`
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 export const TabBox = styled.div`

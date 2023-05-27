@@ -6,7 +6,7 @@ export const Wrapper = styled.nav`
   border-bottom: 1px solid #e5e5e5;
 `;
 export const Container = styled.div`
-  width: 1200px;
+  width: 1140px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

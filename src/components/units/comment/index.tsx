@@ -1,9 +1,4 @@
-import {
-  FieldValue,
-  FieldValues,
-  SubmitHandler,
-  useForm
-} from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useMutationCreateComment } from "../../commons/hooks/mutations/useMutationCreateComment";
 import InputHeight50px from "../../commons/inputs/InputHeight50px";
 import * as S from "./styles";
@@ -17,6 +12,8 @@ import {
 import { useRouter } from "next/router";
 import { getDate } from "../../../commons/libraries/getDate";
 import { fallback } from "../../../commons/libraries/fallback";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { IQuery } from "../../../commons/types/generated/types";
 
 interface ICommentProps {
@@ -24,12 +21,8 @@ interface ICommentProps {
   text?: string;
 }
 
-interface IData {
-  sender_id?: string;
-  text: string;
-  fetchOneRequest?: {
-    request_id?: string;
-  };
+interface ICommentForm {
+  text?: string;
 }
 
 export default function Comment(props: ICommentProps): JSX.Element {
@@ -37,25 +30,25 @@ export default function Comment(props: ICommentProps): JSX.Element {
 
   const [createComment] = useMutationCreateComment();
   const { data: user } = useQueryFetchLoginUser();
-  const { data: comment } = useQueryFetchComments(router.query.id as string);
+  const { data: comment, refetch } = useQueryFetchComments(router.query.id as string);
 
-  console.log(comment?.fetchComments);
-  const { register, handleSubmit, resetField } = useForm({
-    mode: "onChange",
-    resolver: yupResolver(schemaCreateComment)
-  });
+  const { register, setValue, trigger, handleSubmit, formState, resetField } =
+    useForm({
+      mode: "onChange",
+      resolver: yupResolver(schemaCreateComment)
+    });
 
-  const onClickCreateComment: SubmitHandler<FieldValues> = async data => {
+  const onClickCreateComment= async (data: ICommentForm) => {
     const request_id = props.data?.fetchOneRequest?.request_id || "";
-    const sender_id = user?.fetchLoginUser?.user_id || "";
-    const text = data.text || "";
+    const sender_id = user?.fetchLoginUser?.user_id;
+
     try {
       const result = await createComment({
         variables: {
           createCommentInput: {
             request_id,
-            sender_id,
-            text
+            sender_id: sender_id ?? "",
+            text: data.text ?? ""
           }
         },
         refetchQueries: [
@@ -74,13 +67,22 @@ export default function Comment(props: ICommentProps): JSX.Element {
     }
   };
 
+  const onClickRelode = () => {
+    refetch({
+      request_id: router.query.id as string
+    });
+  };
+
   return (
     <>
       <S.Wrapper>
+        <S.Relode onClick={onClickRelode}>
+          <S.RotateIcon icon={faRotateRight} />
+        </S.Relode>
         <S.WrapperBody>
           {comment?.fetchComments?.map(el => (
             <S.SendingBox
-              me={user?.fetchLoginUser?.user_id || undefined}
+              me={user?.fetchLoginUser?.user_id ?? ""}
               comment={el?.sender_id}
             >
               {user?.fetchLoginUser?.user_id !== el?.sender_id && (
@@ -105,7 +107,7 @@ export default function Comment(props: ICommentProps): JSX.Element {
         <form onSubmit={handleSubmit(onClickCreateComment)}>
           <S.WrapperFooter>
             <InputHeight50px
-              placeholder="메세지를 입력하세요"
+              placeholder="메세지를 입력하세요."
               register={register("text")}
             />
             <S.SendingBtn>전송</S.SendingBtn>
