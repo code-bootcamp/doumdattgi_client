@@ -135,3 +135,4 @@ export const globalStyle = css`
     color: white;
   }
 `;
+
