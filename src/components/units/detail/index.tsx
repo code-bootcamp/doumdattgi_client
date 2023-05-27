@@ -32,7 +32,7 @@ export default function Detail() {
   const { imageSrc, userTitle } = useUser();
   const [createPick] = useMutationcreatePick();
 
-  // fetch 한 이미지들을 담은 배열
+  //. fetch 한 이미지들을 담은 배열
   const ImgArr = data?.fetchDetailProduct.images.map(el => el.image_url);
   const workDay = data?.fetchDetailProduct.product_workDay;
   const Day = workDay && Obj[workDay];
