@@ -2,6 +2,7 @@ import * as S from "./styles";
 import Link from "next/link";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage/index";
 import { useQueryFetchPickUserProduct } from "../../../../commons/hooks/queries/useQueryFetchPickUserProduct";
+import Tag from "../../../../commons/tag";
 
 export default function ProfileMyFavorite(): JSX.Element {
   const { data } = useQueryFetchPickUserProduct();
@@ -36,14 +37,7 @@ export default function ProfileMyFavorite(): JSX.Element {
                     {el.p_product_category === "DOCUMENT" ? "문서・레포트" : ""}
                   </S.ListCategory>
                   <S.ListTitle>{el.p_product_title}</S.ListTitle>
-                  <S.ListDetail>
-                    #
-                    {el.p_product_workDay === "NEGOTIATION"
-                      ? "협의가능"
-                      : el.p_product_workDay === "WEEKEND"
-                      ? "주말"
-                      : "주중"}
-                  </S.ListDetail>
+                  <Tag data={el.p_product_workDay} />
                   <S.DivideLine />
                   <S.Remarks>{el.p_product_summary}</S.Remarks>
                 </S.RightDetailBox>

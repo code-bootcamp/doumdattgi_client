@@ -61,6 +61,8 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
     setValue("product_sellOrBuy", false);
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const editorRef = useRef<EditorInstance>(null);
 
   const { register, setValue, trigger, handleSubmit, formState } = useForm({
@@ -129,17 +131,20 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
   // =============== 게시글 작성 ===============
 
   const onClickCreateProduct = async (data: IFormData): Promise<void> => {
-    const results = await Promise.all(
-      fileList.map(el => uploadFile({ variables: { files: el.originFileObj } }))
-    );
-
-    const product_thumbnailImage = results.map(el => {
-      return { thumbnailImage: el.data?.uploadFile[0] ?? "", isMain: false };
-    });
-
-    product_thumbnailImage[0].isMain = true;
-
     try {
+      setIsSubmitting(true);
+      const results = await Promise.all(
+        fileList.map(el =>
+          uploadFile({ variables: { files: el.originFileObj } })
+        )
+      );
+
+      const product_thumbnailImage = results.map(el => {
+        return { thumbnailImage: el.data?.uploadFile[0] ?? "", isMain: false };
+      });
+
+      product_thumbnailImage[0].isMain = true;
+
       const result = await createProduct({
         variables: {
           createProductInput: {
@@ -160,7 +165,7 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
           }
         }
       });
-      console.log(result);
+      setIsSubmitting(false);
       alert("게시글 등록이 완료되었습니다.");
       void router.push(`/${result.data?.createProduct.product_id as string}`);
     } catch (error) {
@@ -262,6 +267,7 @@ export const useCreateProduct2 = (isEdit: Boolean) => {
     onCompleteAddressSearch,
 
     address,
-    zipcode
+    zipcode,
+    isSubmitting
   };
 };

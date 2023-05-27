@@ -159,20 +159,31 @@ export const Contents = styled.div`
 export const PaymentBox = styled.div`
   text-align: right;
   margin: 50px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `;
 
 export const Price = styled.span`
   font-size: 40px;
   font-weight: 500px;
+  margin-left: 10px;
+  display: block;
+  &:last-of-type {
+    margin-left: 0;
+  }
 `;
 
 export const SpecialCharacter = styled.span`
   font-size: 45px;
+  display: block;
+  margin-left: 10px;
 `;
 
 export const Box = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 100px;
 `;
 
 export const Between = styled.div`
@@ -217,7 +228,7 @@ export const Arrow = styled.img`
 export const AcceptBox = styled.div`
   width: 100%;
   font-size: 50px;
-  font-weight: 600px;
+  font-weight: 500;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -233,18 +244,24 @@ export const Icon = styled.img`
 
 export const Btn = styled.button`
   width: 100%;
-  height: 70px;
-  border-radius: 10px;
-  border: 1px solid #888888;
+  height: 60px;
+  border-radius: 6px;
+  border: 2px solid #ccc;
   color: #888888;
   background-color: white;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600px;
-  :hover {
+  transition: all 0.2s ease-in-out;
+  margin-left: 10px;
+  font-weight: 500;
+  &:first-of-type {
+    margin-left: 0;
+  }
+  &.accept {
+    background-color: #88b04b;
+    color: #fff;
     border: none;
-    background-color: black;
-    color: white;
   }
 `;
 
@@ -256,17 +273,12 @@ export const Btn2 = styled.button`
   width: 100%;
   height: 60px;
   border-radius: 6px;
-  border: 2px solid #888888;
+  border: 2px solid #ccc;
   color: #888888;
   background-color: white;
   cursor: pointer;
   margin-top: 60px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600px;
   transition: all 0.2s ease-in-out;
-  :hover {
-    border: none;
-    background-color: black;
-    color: white;
-  }
 `;

@@ -11,10 +11,10 @@ export const Container = styled.div`
 `;
 
 export const WrapperLeft = styled.div`
-width: 390px;
-padding: 90px 40px;
-background-color: #fff;
-box-shadow: 10px 0px 10px rgba(204, 204, 204, 0.25);
+  width: 390px;
+  padding: 90px 40px;
+  background-color: #fff;
+  box-shadow: 10px 0px 10px rgba(204, 204, 204, 0.25);
 `;
 
 export const UserBox = styled.div`
@@ -45,43 +45,43 @@ export const UserIntroduce = styled.div`
 `;
 
 export const ProfileEdit = styled.span`
-display: inline-block;
+  display: inline-block;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-margin-top: 30px;
-border-bottom: 1px solid #111;
+  margin-top: 30px;
+  border-bottom: 1px solid #111;
 `;
 
 export const DivideLine = styled.div`
-  border-bottom: 1px solid #DDDFE3;
-`
+  border-bottom: 1px solid #dddfe3;
+`;
 export const ContentWrap = styled.div`
-padding-bottom: 60px;
-&.first {
-  padding-top: 30px;
-}
-`
+  padding-bottom: 60px;
+  &.first {
+    padding-top: 30px;
+  }
+`;
 export const SubTitle = styled.span`
   display: inline-block;
   padding: 6px 8px;
-  background-color: #F6F7F9;
-  border: 1px solid #929AA0;
+  background-color: #f6f7f9;
+  border: 1px solid #929aa0;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
-  color: #929AA0;
+  color: #929aa0;
 `;
 export const PortfolioLink = styled.span`
-display: block;
-  font-size: 18px;
+  display: block;
+  font-size: 16px;
   margin-top: 30px;
-text-decoration: underline;
+  text-decoration: underline;
   cursor: pointer;
 `;
 export const SlotWrap = styled.div`
   padding-bottom: 60px;
-`
+`;
 export const SlotBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -99,12 +99,11 @@ export const Slot = styled.div`
 `;
 
 export const SlotDisable = styled.div`
-
   font-size: 16px;
   font-weight: 600;
   color: #888;
-  background-color: #EAEAEA;
-  border: 2px solid #A9A9A9;
+  background-color: #eaeaea;
+  border: 2px solid #a9a9a9;
   padding: 8px 30px;
   border-radius: 6px;
 `;
@@ -179,12 +178,12 @@ export const CreateIcon = styled.img`
 export const ListBtn = styled.button`
   display: inline-block;
   padding: 6px 8px;
-  background-color: #F6F7F9;
-  border: 1px solid #929AA0;
+  background-color: #f6f7f9;
+  border: 1px solid #929aa0;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
-  color: #929AA0;
+  color: #929aa0;
   cursor: pointer;
   &:last-of-type {
     margin-left: 6px;

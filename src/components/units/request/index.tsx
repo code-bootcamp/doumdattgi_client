@@ -41,7 +41,9 @@ export default function Request(props: any): JSX.Element {
   const storage = globalThis?.sessionStorage;
   const link = storage?.getItem("prevPath") || "/";
 
-  const { onClickWriteRequest, isTime, setIsTime } = useRequest();
+  const { onClickWriteRequest, isTime, setIsTime, isSubmitting } = useRequest();
+
+  console.log(isSubmitting)
 
   const minimumWage = 9620;
 
@@ -107,7 +109,7 @@ export default function Request(props: any): JSX.Element {
               <ButtonHeight50px title="취소하기" />
             </Link>
             <S.Between />
-            <ButtonHeight50px title="신청하기" isActive={formState.isValid} />
+            <ButtonHeight50px title="신청하기" isActive={formState.isValid} disabled={isSubmitting} />
           </S.BtnBox>
         </S.Container>
       </S.Wrapper>

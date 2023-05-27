@@ -66,6 +66,7 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
               <S.SignupBox>
                 <S.IndexTitle>기존 비밀번호</S.IndexTitle>
                 <InputHeight46px
+                  type="password"
                   placeholder="기존 비밀번호"
                   register={register("prevPassword")}
                 />
@@ -75,6 +76,7 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
             <S.SignupBox>
               <S.IndexTitle>새 비밀번호</S.IndexTitle>
               <InputHeight46px
+                type="password"
                 placeholder="새 비밀번호"
                 register={register("password")}
               />
@@ -83,6 +85,7 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
             <S.SignupBox>
               <S.IndexTitle>새 비밀번호 확인</S.IndexTitle>
               <InputHeight46px
+                type="password"
                 placeholder="새 비밀번호 확인"
                 register={register("passwordCheck")}
               />

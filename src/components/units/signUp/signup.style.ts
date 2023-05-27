@@ -43,14 +43,16 @@ export const SubTitle = styled.span`
   margin-bottom: 10px;
 `;
 
-export const AuthBtn = styled.button`
+export const AuthBtn = styled.button<{
+  isActive: boolean;
+}>`
   width: 100%;
   height: 42px;
   font-size: 14px;
   font-weight: 600;
-  color: #bec3c7;
-  background-color: #f6f7f9;
-  border: 1px solid #dddfe3;
+  color: ${props => (props.isActive ? "#fff" : "#bec3c7")};
+  background-color: ${props => (props.isActive ? "#88b04b" : "#f6f7f9")};
+  border: ${props => (props.isActive ? "none" : "1px solid #dddfe3")};
   border-radius: 6px;
   cursor: pointer;
   margin-top: 10px;
@@ -82,7 +84,7 @@ export const Error = styled.span`
   position: absolute;
   display: block;
   font-size: 14px;
-  color: #E31C1C;
+  color: #e31c1c;
   top: calc(100% + 8px);
 `;
 
@@ -104,4 +106,4 @@ export const Timer = styled.span`
 
 export const SubmitBtn = styled.div`
   margin-top: 60px;
-`
+`;

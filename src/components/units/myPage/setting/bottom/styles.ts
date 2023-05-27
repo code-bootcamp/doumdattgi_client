@@ -169,7 +169,7 @@ export const SaveBtn = styled.button`
   border: none;
   color: #fff;
   border-radius: 6px;
-  background-color: green;
+  background-color: #88b04b;
   font-size: 24px;
   line-height: 24px;
   font-weight: 600;
