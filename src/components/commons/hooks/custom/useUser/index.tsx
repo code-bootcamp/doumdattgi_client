@@ -121,7 +121,7 @@ export const useUser = () => {
         }
       });
       alert(`${data.name}님 환영합니다.`);
-      void router.push("/login/");
+      void router.push("/login");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

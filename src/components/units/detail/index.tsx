@@ -22,6 +22,7 @@ import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutation
 import CardBox from "../../commons/parts/cardBox/col4";
 import { useState } from "react";
 import { IProduct } from "../../../commons/types/generated/types";
+import { FETCH_PICK_OR_NOT, useQueryFetchPickOrNot } from "../../commons/hooks/queries/useQueryFetchPickOrNot";
 
 export default function Detail() {
   const router = useRouter();
@@ -32,8 +33,10 @@ export default function Detail() {
   const { data: loginData } = useQueryFetchLoginUser();
   const { data: random } = useQueryFetchRandomProduct();
   const { data: slotData } = useQueryFetchUserSlot();
+  const { data: pick } = useQueryFetchPickOrNot(String(router.query.id))
+  console.log(pick?.fetchPickOrNot)
   const { imageSrc, userTitle } = useUser();
-  const [picked, setPicked] = useState(false);
+  // const [picked, setPicked] = useState(false);
   const [createPick] = useMutationcreatePick();
 
   // fetch 한 이미지들을 담은 배열
@@ -52,10 +55,16 @@ export default function Detail() {
 
   const clickPick = async () => {
     const result = await createPick({
-      variables: { product_id: router.query.id as string }
+      variables: { product_id: router.query.id as string },
+      refetchQueries: [
+        {
+          query: FETCH_PICK_OR_NOT,
+          variables: {
+            product_id: router.query.id
+          }
+        }
+      ]
     });
-    const pick = result?.data?.createPick === "찜 되었습니다!!" ? true : false;
-    setPicked(pick);
   };
 
   return (
@@ -76,7 +85,7 @@ export default function Detail() {
             <S.TitleWrap>
               <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
               <S.IconBox>
-                {picked ? (
+                {pick?.fetchPickOrNot ? (
                   <S.Icon onClick={clickPick} icon={Bookmark2} />
                 ) : (
                   <S.Icon onClick={clickPick} icon={faBookmark} />

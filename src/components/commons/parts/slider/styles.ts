@@ -66,7 +66,8 @@ export const Wrapper = styled(Slider)`
     z-index: 9999;
     top: 0;
     left: 0;
-    border: 5px solid #ffd600;
+    border: 5px solid #88b04b;
     box-sizing: border-box;
+    border-radius: 6px;
   }
 `;
