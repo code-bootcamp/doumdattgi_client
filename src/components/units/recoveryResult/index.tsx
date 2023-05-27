@@ -30,7 +30,7 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
         email.substring(0, 2) + "****" + email.substring(atIndex);
       return maskedEmail;
     }
-    return email; // .마스킹할 수 없는 경우 원래 이메일 반환
+    return email; // 마스킹할 수 없는 경우 원래 이메일 반환
   };
 
   const result = mask(userEmail);
