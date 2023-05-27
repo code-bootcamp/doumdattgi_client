@@ -49,7 +49,7 @@ export default function PaymentPresenter(): JSX.Element {
   //  결제내역 refetch
   useEffect(() => {
     setRefetch(prev => ({ ...prev, login: loginRefetch, payment: payRefetch }));
-  }, [loginRefetch, payRefetch]);
+  }, [payRefetch]);
 
   // 환불요청
   const clickRefund = (value: IValueArgs) => () => {
@@ -81,12 +81,12 @@ export default function PaymentPresenter(): JSX.Element {
     setPayState(TrnaslatePointSelect[selectedId]);
 
     const status = TrnaslatePointSelect[selectedId];
-    payRefetch({ page: 1, pageSize: 10, payment_status: status });
+    await payRefetch({ page: 1, pageSize: 10, payment_status: status });
 
-    router.push({
-      pathname: `/mypage/point/`,
-      query: { status }
-    });
+    // router.push({
+    //   pathname: `/mypage/point/`,
+    //   query: { status }
+    // });
   };
 
   // 결제 내역 무한스크롤
@@ -152,7 +152,12 @@ export default function PaymentPresenter(): JSX.Element {
                 dataArr={dataArr}
                 clickRefund={clickRefund}
                 el={el}
-                key={el.payment_id} payment_impUid={""} payment_type={""} payment_createdAt={""} payment_amount={0}              />
+                key={el.payment_id}
+                payment_impUid={""}
+                payment_type={""}
+                payment_createdAt={""}
+                payment_amount={0}
+              />
             )) ?? []}
           </InfiniteScroll>
         </S.Container>

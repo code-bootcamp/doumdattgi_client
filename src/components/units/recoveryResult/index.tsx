@@ -19,7 +19,7 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
     onClickResetPassword,
     onClickEditPassword
   } = useResetAccount(props.isEditPassword ?? false);
-  const {onClickMoveToPage} = useMoveToPage()
+  const { onClickMoveToPage } = useMoveToPage();
   const [userEmail] = useRecoilState(userEmailState);
 
   const mask = (email: string) => {
@@ -30,7 +30,7 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
         email.substring(0, 2) + "****" + email.substring(atIndex);
       return maskedEmail;
     }
-    return email; // 마스킹할 수 없는 경우 원래 이메일 반환
+    return email; // .마스킹할 수 없는 경우 원래 이메일 반환
   };
 
   const result = mask(userEmail);
@@ -47,7 +47,7 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
               <S.SubTitle className="padding">입니다.</S.SubTitle>
             </S.AuthBody>
             <S.Footer>
-            <S.JoinText>이메일이 생각나셨나요?</S.JoinText>
+              <S.JoinText>이메일이 생각나셨나요?</S.JoinText>
               <S.JoinBtn onClick={onClickMoveToPage("/login")}>
                 로그인
               </S.JoinBtn>
