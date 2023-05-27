@@ -1,11 +1,18 @@
 import * as S from "./styles";
 import { useQueryFetchMyProduct } from "../../../../commons/hooks/queries/useQueryfetchMyProduct";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage/index";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function ProfileMyProduct(): JSX.Element {
-  const { data: myProduct } = useQueryFetchMyProduct();
+  const router = useRouter();
 
+  const { data: myProduct, refetch } = useQueryFetchMyProduct();
   const { onClickMoveToPage } = useMoveToPage();
+
+  useEffect(() => {
+    refetch();
+  }, [router.query]);
 
   return (
     <S.Wrapper>
@@ -15,7 +22,10 @@ export default function ProfileMyProduct(): JSX.Element {
         ) : (
           <>
             {myProduct?.fetchMyProduct.map(el => (
-              <S.RightListBox onClick={onClickMoveToPage(`/${el.product_id}`)}>
+              <S.RightListBox
+                key={el.product_id}
+                onClick={onClickMoveToPage(`/${el.product_id}`)}
+              >
                 <S.ListImage
                   onError={e => {
                     const target = e.target as HTMLImageElement;
