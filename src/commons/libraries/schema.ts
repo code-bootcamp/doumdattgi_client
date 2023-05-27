@@ -43,13 +43,8 @@ export const schemaSignUp = yup.object({
     .required("비밀번호를 입력해주세요."),
   passwordCheck: yup
     .string()
-    .required("비밀번호를 입력해주세요.")
-    .oneOf([yup.ref("password")])
-    .matches(
-      /^[a-zA-Z0-9]{8,16}$/,
-      "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요."
-    )
-    .required(),
+    .oneOf([yup.ref("password"), undefined], "비밀번호가 일치하지 않습니다.")
+    .required("비밀번호 확인을 입력해주세요."),
   nickname: yup.string().required("닉네임을 입력해주세요."),
   phone: yup
     .string()
@@ -123,13 +118,8 @@ export const schemaPasswordEdit = yup.object({
     .required("비밀번호를 입력해주세요."),
   passwordCheck: yup
     .string()
-    .required("비밀번호를 입력해주세요.")
-    .oneOf([yup.ref("password")])
-    .matches(
-      /^[a-zA-Z0-9]{8,16}$/,
-      "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요."
-    )
-    .required()
+    .oneOf([yup.ref("password"), undefined], "비밀번호가 일치하지 않습니다.")
+    .required("비밀번호 확인을 입력해주세요.")
 });
 
 export const schemaPasswordReset = yup.object({
@@ -144,13 +134,8 @@ export const schemaPasswordReset = yup.object({
     .required("비밀번호를 입력해주세요."),
   passwordCheck: yup
     .string()
-    .required("비밀번호를 입력해주세요.")
-    .oneOf([yup.ref("password")])
-    .matches(
-      /^[a-zA-Z0-9]{8,16}$/,
-      "영문 + 숫자 조합 8 ~ 16자리의 비밀번호를 입력해주세요."
-    )
-    .required()
+    .oneOf([yup.ref("password"), undefined], "비밀번호가 일치하지 않습니다.")
+    .required("비밀번호 확인을 입력해주세요.")
 });
 
 export const schemaCreateComment = yup.object({

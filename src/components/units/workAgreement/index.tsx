@@ -185,7 +185,7 @@ export default function WorkAgreement(): JSX.Element {
           )}
 
           <S.PaymentBox>
-            <S.Price>9620 원</S.Price>
+            <S.Price>9,620원</S.Price>
             <S.SpecialCharacter> x </S.SpecialCharacter>
             <S.Price>{`${time}시간`}</S.Price>
             <S.SpecialCharacter> = </S.SpecialCharacter>
@@ -251,11 +251,11 @@ export default function WorkAgreement(): JSX.Element {
                       • 작업물 전달은 이메일로 이루어집니다. 상대방의 이메일로
                       올바르게 전송하였는지 확인해주세요.
                     </S.ContentsIndex>
-                    <S.Box>
+                    <S.ContentsIndex>
                       • 판매자와 신청자가 상호 협의한 경우 이미 시작한 작업을
                       취소할 수 있어요. 이 경우 환불 금액은 상호 협의한 금액에
                       따라요.
-                    </S.Box>
+                    </S.ContentsIndex>
                   </S.Contents>
                   <S.Btn2
                     onClick={() => {
@@ -285,8 +285,7 @@ export default function WorkAgreement(): JSX.Element {
                 completed === "1970-1-1" ? (
                 <S.Box>
                   <S.Btn onClick={onClickRequestRefuse}>거절하기</S.Btn>
-                  <S.Between></S.Between>
-                  <S.Btn onClick={onClickRequestAccept}>수락하기</S.Btn>
+                  <S.Btn onClick={onClickRequestAccept} className="accept">수락하기</S.Btn>
                 </S.Box>
               ) : (
                 <></>
@@ -315,11 +314,11 @@ export default function WorkAgreement(): JSX.Element {
                       • 작업물 전달은 이메일로 이루어집니다. 상대방의 이메일로
                       올바르게 전송하였는지 확인해주세요.
                     </S.ContentsIndex>
-                    <S.Box>
+                    <S.ContentsIndex>
                       • 판매자와 신청자가 상호 협의한 경우 이미 시작한 작업을
                       취소할 수 있어요. 이 경우 환불 금액은 상호 협의한 금액에
                       따라요.
-                    </S.Box>
+                    </S.ContentsIndex>
                   </S.Contents>
                   <S.Btn2 onClick={onClickRequestProcessSeller}>
                     작업 완료하기

@@ -58,7 +58,9 @@ export default function CreateProduct(props: IProps) {
     onCompleteAddressSearch,
 
     address,
-    zipcode
+    zipcode,
+
+    isSubmitting
   } = useCreateProduct2(props.isEdit);
 
   const {onClickMoveToPage} = useMoveToPage()
@@ -283,12 +285,13 @@ export default function CreateProduct(props: IProps) {
               </S.Body_Middle>
               <S.Body_Bottom>
                 <S.BtnBox>
-                  <ButtonHeight50px title="취소하기" type="button" onClick={onClickMoveToPage(`/${router.query.id}`)}/>
+                  <ButtonHeight50px title="취소하기" type="button" onClick={onClickMoveToPage("/mypage/profile")}/>
                 </S.BtnBox>
                 <S.BtnBox>
                   <ButtonHeight50px
                     title="만들기"
                     isActive={formState.isValid}
+                    disabled={isSubmitting}
                   />
                 </S.BtnBox>
               </S.Body_Bottom>

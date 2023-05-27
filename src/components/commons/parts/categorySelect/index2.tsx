@@ -55,7 +55,7 @@ export default function Category2(props: ICategory2Props) {
           style={{ width: "100%" }}
           size={"large"}
           value={
-            props.optionSelect
+            props.optionSelect !== "로고・브랜딩"
               ? `${props.optionSelect}`
               : "옵션을 선택해주세요."
           }

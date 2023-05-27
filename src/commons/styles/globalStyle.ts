@@ -13,6 +13,12 @@ export const globalStyle = css`
     letter-spacing: -0.03em;
   }
 
+  input {
+    &:focus {
+      outline-color: #88b04b;
+    }
+  }
+
   /* 결제 모달창 CSS */
   .ChargeModal .ant-space {
     width: 384px;
@@ -83,13 +89,9 @@ export const globalStyle = css`
   }
 
   /* 아바타 업로드 */
-  &:where(
-      .css-dev-only-do-not-override-15rg2km
-    ).ant-upload-wrapper.ant-upload-picture-circle-wrapper
+  &.ant-upload-wrapper.ant-upload-picture-circle-wrapper
     .ant-upload.ant-upload-select,
-  &:where(
-      .css-dev-only-do-not-override-15rg2km
-    ).ant-upload-wrapper.ant-upload-picture-circle-wrapper
+  &.ant-upload-wrapper.ant-upload-picture-circle-wrapper
     .ant-upload-list.ant-upload-list-picture-circle
     .ant-upload-list-item-container {
     height: 130px;
@@ -132,5 +134,5 @@ export const globalStyle = css`
   .toastui-editor-tooltip .text {
     color: white;
   }
-
 `;
+

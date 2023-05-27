@@ -6,6 +6,7 @@ interface IButtonProps {
   isYou?: boolean;
   onClick?: () => void;
   type?: 'button' | 'submit' | undefined
+  disabled?: boolean
 }
 
 export default function ButtonHeight50px(props: IButtonProps): JSX.Element {
@@ -17,7 +18,7 @@ export default function ButtonHeight50px(props: IButtonProps): JSX.Element {
     color: ${(props: IButtonProps) =>
       props.isActive ? "#fff" : "#aaa"};
     background-color: ${(props: IButtonProps) =>
-      props.isActive ? "#111" : "#eee"};
+      props.isActive ? "#88b04b" : "#eee"};
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
@@ -29,6 +30,7 @@ export default function ButtonHeight50px(props: IButtonProps): JSX.Element {
       isYou={props.isYou}
       isActive={props.isActive}
       type={props.type}
+      disabled={props.disabled}
     >
       {props.title}
     </Button>

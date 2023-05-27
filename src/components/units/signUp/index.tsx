@@ -62,7 +62,7 @@ export default function SignUp(): JSX.Element {
                 placeholder="이메일"
                 register={register("email")}
               />
-              {!isOn && <S.AuthBtn>이메일 인증하기</S.AuthBtn>}
+              {!isOn && <S.AuthBtn isActive={formState.isValid}>이메일 인증하기</S.AuthBtn>}
               <S.Error>{formState.errors.email?.message}</S.Error>
               {isOn && (
                 <S.SignupBox>

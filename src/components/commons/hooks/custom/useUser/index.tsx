@@ -39,6 +39,15 @@ interface IFormEmailValidate {
 //   isAvatarEdit: boolean;
 // }
 
+const except = [
+  "/signup/",
+  "/accountRecovery/email/",
+  "/accountRecovery/password/",
+  "/recoveryResult/password/",
+  "/recoveryResult/email/",
+  "/editPassword/"
+];
+
 export const useUser = () => {
   const router = useRouter();
 
@@ -152,7 +161,11 @@ export const useUser = () => {
       const storage = globalThis?.sessionStorage;
       const link = storage.getItem("prevPath") || "/";
 
-      if (link === "/signup/") {
+      const isActive = except.includes(link);
+
+      console.log(isActive)
+
+      if (isActive) {
         void router.push("/");
       } else {
         void router.push(link);

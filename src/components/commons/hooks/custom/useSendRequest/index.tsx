@@ -16,10 +16,12 @@ export const useRequest = () => {
   const [isTime, setIsTime] = useState("");
 
   const [sendRequest] = useMutation(SEND_REQUEST);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // =============== 의뢰서 작성 기능 ===============
   const onClickWriteRequest = async (data: IMutationData) => {
     try {
+      setIsSubmitting(true);
       const result = await sendRequest({
         variables: {
           createRequestInput: {
@@ -31,6 +33,7 @@ export const useRequest = () => {
         }
       });
       alert("의뢰서 작성이 완료되었습니다.");
+      setIsSubmitting(false);
       void router.push(`/${router.query.id}`);
     } catch (error) {
       if (error instanceof Error) {
@@ -38,5 +41,5 @@ export const useRequest = () => {
       }
     }
   };
-  return { onClickWriteRequest, isTime, setIsTime };
+  return { onClickWriteRequest, isTime, setIsTime, isSubmitting };
 };
