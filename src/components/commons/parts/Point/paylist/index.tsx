@@ -16,15 +16,15 @@ export default function PayList(props: IPropsfetchUserPaymentInfo) {
     <S.TransferList>
       <S.TransactionInfo>
         <S.PayInfo>
-          <S.Company>{props.el?.payment_type}</S.Company>
+          <S.PayInfoBox>
+            <S.Company>{props.el?.payment_type}</S.Company>
+            <PayState el={props.el} arr={arr} clickRefund={props.clickRefund} />
+          </S.PayInfoBox>
           <S.Date>{getDateTime(props.el?.payment_createdAt)}</S.Date>
         </S.PayInfo>
         <S.TransactInfo>
           <S.Point>{`${props.el?.payment_amount} P`}</S.Point>
-          <S.Box>
-            <PayState el={props.el} arr={arr} clickRefund={props.clickRefund} />
-            <S.Amount>{`${String(props.el?.payment_amount)} 원`}</S.Amount>
-          </S.Box>
+          <S.Amount>{`${String(props.el?.payment_amount)} 원`}</S.Amount>
         </S.TransactInfo>
       </S.TransactionInfo>
     </S.TransferList>

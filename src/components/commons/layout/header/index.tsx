@@ -81,7 +81,10 @@ export default function Header(): JSX.Element {
     <>
       <S.Wrapper>
         <S.Container>
-          <S.Logo onClick={onClickMoveToPage("/")}>LOGO</S.Logo>
+          <S.Logo onClick={onClickMoveToPage("/")}>
+            <S.LogoIcon src="/logo.svg"/>
+            <S.LogoTitle>도움닫기</S.LogoTitle>
+          </S.Logo>
           <S.HeaderBox>
             <form onSubmit={handleSubmit(searchKeyword)}>
               <S.SearchBox>

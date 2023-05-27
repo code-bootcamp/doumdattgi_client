@@ -35,6 +35,7 @@ export const FETCH_DETAIL_PRODUCT = gql`
       product_roadAddress
       product_detailAddress
     }
+
   }
 `;
 

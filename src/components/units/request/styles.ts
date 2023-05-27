@@ -1,19 +1,21 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1200px;
   display: flex;
-  flex-direction: column;
-  margin: 0px auto;
-  padding: 150px 0px;
+  justify-content: center;
+  margin: 50px 0 150px 0;
 `;
+
+export const Container = styled.div`
+  width: 1000px;
+`
 
 export const Title = styled.div`
   font-size: 36px;
 `;
 
 export const DivideLine = styled.div`
-  border-top: 1px solid #333333;
+  border-top: 2px solid #88b04b;
   margin: 30px 0px;
 `;
 
@@ -38,7 +40,7 @@ export const PaymentBox = styled.div`
   align-items: center;
   justify-content: flex-start;
   text-align: left;
-  margin: 20px 0px 90px 0px;
+  margin: 20px 0px 60px 0px;
   font-size: 60px;
 `;
 
@@ -60,6 +62,7 @@ export const Time = styled.input`
   padding-right: 10px;
   margin-right: 20px;
   text-align: right;
+  border: 2px solid #dbdbdb;
 `;
 
 export const BtnBox = styled.div`

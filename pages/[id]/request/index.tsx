@@ -1,5 +1,8 @@
+import { LoginCheck } from "../../../src/commons/libraries/loginCheck";
 import Request from "../../../src/components/units/request";
 
-export default function RequestPage(): JSX.Element {
+function RequestPage(): JSX.Element {
   return <Request />;
 }
+
+export default LoginCheck(RequestPage)

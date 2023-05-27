@@ -45,8 +45,8 @@ export default function SliderComponent(props: any) {
               //   src={`https://storage.googleapis.com/${el}`}
               alt=""
               fallback={fallback}
-              width={680}
-              height={680}
+              width={640}
+              height={640}
             />
           </Slide>
         ))}

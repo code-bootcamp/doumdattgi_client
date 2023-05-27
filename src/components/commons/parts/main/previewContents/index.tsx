@@ -1,5 +1,8 @@
 import * as S from "./index.styles";
 import { CategoryObj, Obj } from "../../../../../commons/libraries/translate";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import Tag from "../../../tag";
+import { Avatar } from "antd";
 
 interface IProps {
   el: {
@@ -11,24 +14,26 @@ interface IProps {
   };
 }
 
-export default function PreviewContents(props: IProps) {
+export default function BarBox(props: IProps) {
   return (
-    <S.PreviewContent>
-      <S.Pv_Top>{CategoryObj[props.el?.product_product_category]}</S.Pv_Top>
-      <S.Pv_Title>{props.el?.product_product_title}</S.Pv_Title>
-      <S.Pv_Footer>
-        <S.Tag>{Obj[props.el?.product_product_workDay]}</S.Tag>
+    <S.Wrapper>
+      <S.CategoryBox>
+        <S.Category>
+          {CategoryObj[props.el?.product_product_category]}
+        </S.Category>
+        <S.Icon icon={faBookmark} />
+      </S.CategoryBox>
+
+      <S.TitleBox>
+        <S.Title>{props.el?.product_product_title}</S.Title>
+      </S.TitleBox>
+      <S.InfoBox>
+        <Tag data={props.el?.product_product_workDay} />
         <S.UserInfo>
-          <S.ProfileImg
-            src={props.el?.u_user_profileImage ?? ""}
-            onError={e => {
-              const target = e.target as HTMLImageElement;
-              target.src = "/Profile.png";
-            }}
-          />
+          <Avatar src={props.el?.u_user_profileImage} />
           <S.NickName>{props.el?.u_user_nickname}</S.NickName>
         </S.UserInfo>
-      </S.Pv_Footer>
-    </S.PreviewContent>
+      </S.InfoBox>
+    </S.Wrapper>
   );
 }

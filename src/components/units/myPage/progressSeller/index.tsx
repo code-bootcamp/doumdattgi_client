@@ -37,6 +37,7 @@ export default function ProgressSeller(): JSX.Element {
 
   return (
     <S.Wrapper>
+      <S.Container>
       <S.PageTitle>작업 진행 내역</S.PageTitle>
       <S.TabBox>
         <S.PageTab onClick={() => onClickList(0)}>전체</S.PageTab>
@@ -46,6 +47,7 @@ export default function ProgressSeller(): JSX.Element {
         <S.PageTab onClick={() => onClickList(4)}>거절</S.PageTab>
       </S.TabBox>
       {renderPage()}
+      </S.Container>
     </S.Wrapper>
   );
 }

@@ -8,6 +8,7 @@ import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetc
 import { useRequestAcceptRefuse } from "../../commons/hooks/custom/useRequestAcceptRefuse/index";
 import { getDate, getDateTime } from "../../../commons/libraries/getDate";
 import { useRequestProcess } from "../../commons/hooks/custom/useRequestProcess/index";
+import DOMPurify from "dompurify";
 
 export default function WorkAgreement(): JSX.Element {
   const router = useRouter();
@@ -44,9 +45,9 @@ export default function WorkAgreement(): JSX.Element {
 
   return (
     <>
-      <S.CommentBoxWrapper>
-        <CommentDrawer data={data} />
-        <S.Wrapper>
+      <CommentDrawer data={data} />
+      <S.Wrapper>
+        <S.Container>
           <S.Category>
             {isRefuse === true || isAccept === "REFUSE" ? "거절됨" : <></>}
             {isOk === true ||
@@ -93,7 +94,7 @@ export default function WorkAgreement(): JSX.Element {
                   <S.StartWork>
                     <S.CheckImage src="/check.png" />
                   </S.StartWork>
-                  <S.Theme>작업 시작</S.Theme>{" "}
+                  <S.Theme>작업 시작</S.Theme>
                   <S.Date>
                     {getDateTime(data?.fetchOneRequest?.request_startAt)}
                   </S.Date>
@@ -160,14 +161,23 @@ export default function WorkAgreement(): JSX.Element {
             </S.StatusBox>
           </S.ProcessBox>
           <S.ContentsDetail>신청 내용</S.ContentsDetail>
-          <S.Contents>{data?.fetchOneRequest?.request_content}</S.Contents>
+          {typeof window !== "undefined" && (
+            <S.Contents
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(
+                  String(data?.fetchOneRequest?.request_content) ?? ""
+                )
+              }}
+            ></S.Contents>
+          )}
+
           <S.PaymentBox>
-            <S.Price>9620</S.Price>
+            <S.Price>9620 원</S.Price>
             <S.SpecialCharacter> x </S.SpecialCharacter>
-            <S.Price>{time}</S.Price>
+            <S.Price>{`${time}시간`}</S.Price>
             <S.SpecialCharacter> = </S.SpecialCharacter>
             <S.SpecialCharacter> ₩ </S.SpecialCharacter>
-            <S.Price>{data?.fetchOneRequest?.request_price}</S.Price>
+            <S.Price>{`${data?.fetchOneRequest?.request_price}원`}</S.Price>
           </S.PaymentBox>
           {data?.fetchOneRequest?.buyer_id === ID ? (
             <>
@@ -349,8 +359,8 @@ export default function WorkAgreement(): JSX.Element {
               <S.UserEmail>{data?.fetchOneRequest?.buyer_email}</S.UserEmail>
             </S.UserBox>
           </S.Box>
-        </S.Wrapper>
-      </S.CommentBoxWrapper>
+        </S.Container>
+      </S.Wrapper>
     </>
   );
 }

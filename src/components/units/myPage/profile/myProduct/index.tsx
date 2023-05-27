@@ -1,6 +1,9 @@
 import * as S from "./styles";
 import { useQueryFetchMyProduct } from "../../../../commons/hooks/queries/useQueryfetchMyProduct";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage/index";
+import { CategoryObj, Obj } from "../../../../../commons/libraries/translate";
+import { fallback } from "../../../../../commons/libraries/fallback";
+import Tag from "../../../../commons/tag";
 
 export default function ProfileMyProduct(): JSX.Element {
   const { data: myProduct } = useQueryFetchMyProduct();
@@ -19,28 +22,16 @@ export default function ProfileMyProduct(): JSX.Element {
                 <S.ListImage
                   onError={e => {
                     const target = e.target as HTMLImageElement;
-                    target.src = "/noimage.png";
+                    target.src = fallback;
                   }}
                   src={el.images[0].image_url}
                 />
                 <S.RightDetailBox>
                   <S.ListCategory>
-                    {el.product_category === "IT" ? "IT・프로그래밍" : ""}
-                    {el.product_category === "DESIGN" ? "디자인" : ""}
-                    {el.product_category === "TRANSLATE" ? "번역・통역" : ""}
-                    {el.product_category === "VIDEO" ? "영상・방송" : ""}
-                    {el.product_category === "MARKETING" ? "마케팅" : ""}
-                    {el.product_category === "DOCUMENT" ? "문서・레포트" : ""}
+                    {CategoryObj[el.product_category]}
                   </S.ListCategory>
                   <S.ListTitle>{el.product_title}</S.ListTitle>
-                  <S.ListDetail>
-                    #
-                    {el.product_workDay === "NEGOTIATION"
-                      ? "협의가능"
-                      : el.product_workDay === "WEEKEND"
-                      ? "주말"
-                      : "주중"}
-                  </S.ListDetail>
+                  <Tag data={el.product_workDay} />
                   <S.DivideLine />
                   <S.Remarks>{el.product_summary}</S.Remarks>
                 </S.RightDetailBox>

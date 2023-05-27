@@ -4,19 +4,22 @@ export const TransferList = styled.div``;
 
 export const TransactionInfo = styled.div`
   width: 800px;
-  height: 120px;
   border: 1px solid #d7d7d7;
   border-radius: 6px;
   margin: 16px 0px;
-  padding: 0px 30px;
+  padding: 20px 30px;
 `;
 
+export const PayInfoBox = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const PayInfo = styled.div`
-  height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 20px;
+  align-items: center;
 `;
 
 export const Company = styled.span`
@@ -31,19 +34,11 @@ export const Date = styled.span`
 `;
 
 export const TransactInfo = styled.div`
-  height: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-`;
-
-export const Box = styled.div`
-  width: 350px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
+  margin-top: 30px;
 `;
 
 export const RefundBox = styled.div`
@@ -54,17 +49,18 @@ export const RefundBox = styled.div`
 `;
 
 export const Point = styled.span`
-  font-family: "Arita-dotum4.0";
+  display: block;
   font-size: 30px;
 `;
 
 export const Amount = styled.span`
-  font-family: "Arita-dotum4.0";
-  width: 140px;
+display: block;
+  font-size: 30px;
+`;
+export const Box = styled.div`
+  width: 150px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
-  font-size: 30px;
-  margin-left: 30px;
+  justify-content: space-between;
 `;

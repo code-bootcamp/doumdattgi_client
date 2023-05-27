@@ -123,38 +123,40 @@ export default function PaymentPresenter(): JSX.Element {
       />
       <ChargeModal openModal={openModal} setOpenModal={setOpenModal} />
       <S.Wrapper>
-        <S.Title>포인트</S.Title>
-        <S.SelectBar>
-          {status.map(el => (
-            <S.selectOption
-              isSelect={el.isSelected}
-              id={el.title}
-              key={el.key}
-              onClick={selectState}
-            >
-              {el.title}
-            </S.selectOption>
-          ))}
-        </S.SelectBar>
-        <S.HoldingBox>
-          <S.HoldTitle>보유포인트</S.HoldTitle>
-          <S.CurrentHold>
-            <S.HoldPoint>{`${
-              UserData?.fetchLoginUser.user_point ?? "0"
-            } P`}</S.HoldPoint>
-            <S.ChargeBtn onClick={clickModal}>포인트 충전</S.ChargeBtn>
-          </S.CurrentHold>
-        </S.HoldingBox>
-        <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
-          {data?.fetchPayments.map(el => (
-            <PayList
-              dataArr={dataArr}
-              clickRefund={clickRefund}
-              el={el}
-              key={el.payment_id}
-            />
-          )) ?? []}
-        </InfiniteScroll>
+        <S.Container>
+          <S.Title>포인트</S.Title>
+          <S.SelectBar>
+            {status.map(el => (
+              <S.selectOption
+                isSelect={el.isSelected}
+                id={el.title}
+                key={el.key}
+                onClick={selectState}
+              >
+                {el.title}
+              </S.selectOption>
+            ))}
+          </S.SelectBar>
+          <S.HoldingBox>
+            <S.HoldTitle>보유포인트</S.HoldTitle>
+            <S.CurrentHold>
+              <S.HoldPoint>{`${
+                UserData?.fetchLoginUser.user_point ?? "0"
+              } P`}</S.HoldPoint>
+              <S.ChargeBtn onClick={clickModal}>포인트 충전</S.ChargeBtn>
+            </S.CurrentHold>
+          </S.HoldingBox>
+          <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
+            {data?.fetchPayments.map(el => (
+              <PayList
+                dataArr={dataArr}
+                clickRefund={clickRefund}
+                el={el}
+                key={el.payment_id}
+              />
+            )) ?? []}
+          </InfiniteScroll>
+        </S.Container>
       </S.Wrapper>
     </>
   );

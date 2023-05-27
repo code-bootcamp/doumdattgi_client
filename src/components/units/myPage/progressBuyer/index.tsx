@@ -37,15 +37,17 @@ export default function ProgressBuyer(): JSX.Element {
 
   return (
     <S.Wrapper>
-      <S.PageTitle>신청 진행 내역</S.PageTitle>
-      <S.TabBox>
-        <S.PageTab onClick={() => onClickList(0)}>전체</S.PageTab>
-        <S.PageTab onClick={() => onClickList(1)}>대기중</S.PageTab>
-        <S.PageTab onClick={() => onClickList(2)}>진행중</S.PageTab>
-        <S.PageTab onClick={() => onClickList(3)}>종료</S.PageTab>
-        <S.PageTab onClick={() => onClickList(4)}>거절</S.PageTab>
-      </S.TabBox>
-      {renderPage()}
+      <S.Container>
+        <S.PageTitle>신청 진행 내역</S.PageTitle>
+        <S.TabBox>
+          <S.PageTab onClick={() => onClickList(0)}>전체</S.PageTab>
+          <S.PageTab onClick={() => onClickList(1)}>대기중</S.PageTab>
+          <S.PageTab onClick={() => onClickList(2)}>진행중</S.PageTab>
+          <S.PageTab onClick={() => onClickList(3)}>종료</S.PageTab>
+          <S.PageTab onClick={() => onClickList(4)}>거절</S.PageTab>
+        </S.TabBox>
+        {renderPage()}
+      </S.Container>
     </S.Wrapper>
   );
 }

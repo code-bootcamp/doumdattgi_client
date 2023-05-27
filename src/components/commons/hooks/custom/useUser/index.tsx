@@ -46,28 +46,28 @@ export const useUser = () => {
   const [isOn, setIsOn] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [sec, setSec] = useState(0);
+  const [time, setTime] = useState(0);
   const { data: fetchUser } = useQueryFetchLoginUser();
 
   // =============== 타이머 ===============
   useEffect(() => {
     setIsActive(true);
     const interval = setInterval(() => {
-      setSec(prev => prev - 1);
+      setTime(prev => prev - 1);
     }, 1000);
 
-    if (sec === 0) {
+    if (time === 0) {
       setIsActive(false);
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
-  }, [sec]);
+  }, [time]);
 
   // =============== 인증번호 ===============
   const onClickSendToken = async data => {
     setIsOn(true);
-    setSec(180);
+    setTime(180);
     try {
       const result = await sendTokenEmail({
         variables: {
@@ -77,7 +77,7 @@ export const useUser = () => {
       console.log(result);
     } catch (error) {
       setIsOn(false);
-      setSec(0);
+      setTime(0);
       if (error instanceof Error) alert(error.message);
     }
   };
@@ -91,7 +91,7 @@ export const useUser = () => {
       });
       console.log(result)
       if (result) {
-        setSec(0);
+        setTime(0);
         setIsChecked(true);
         setIsActive(false);
       }
@@ -181,7 +181,7 @@ export const useUser = () => {
     } else if (rate > 10 && rate <= 20) {
       return "/plant.png";
     } else {
-      return "tree.png";
+      return "/tree.png";
     }
   };
   const imageSrc = tier();
@@ -211,7 +211,7 @@ export const useUser = () => {
     onClickLogout,
     onClickSendToken,
     isOn,
-    sec,
+    time,
     isActive,
     isChecked,
     imageSrc,

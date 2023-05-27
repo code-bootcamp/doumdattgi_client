@@ -4,6 +4,7 @@ import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import { useResetAccount } from "../../commons/hooks/custom/useResetAccount";
 import { useRecoilState } from "recoil";
 import { userEmailState } from "../../../commons/stores";
+import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 
 interface IRecoveryResult {
   isEmail: boolean;
@@ -11,8 +12,14 @@ interface IRecoveryResult {
 }
 
 export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
-  const { register, handleSubmit, formState, onClickResetPassword, onClickEditPassword } =
-    useResetAccount(props.isEditPassword);
+  const {
+    register,
+    handleSubmit,
+    formState,
+    onClickResetPassword,
+    onClickEditPassword
+  } = useResetAccount(props.isEditPassword);
+  const {onClickMoveToPage} = useMoveToPage()
   const [userEmail] = useRecoilState(userEmailState);
 
   const mask = (email: string) => {
@@ -30,48 +37,72 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
 
   return (
     <S.Wrapper>
-      {props.isEmail ? (
-        <>
-          <S.Title>이메일 찾기</S.Title>
-          <S.SubTitle>입력하신 휴대폰 번호에 일치하는 이메일은</S.SubTitle>
-          <S.AuthBody>
-            <S.Email>{userEmail}</S.Email>
-            <S.SubTitle>입니다.</S.SubTitle>
-          </S.AuthBody>
-          <S.Footer>
-            이메일이 생각나셨나요?
-            <S.Login href="/login">로그인</S.Login>
-          </S.Footer>
-        </>
-      ) : (
-        <form onSubmit={props.isEditPassword ? handleSubmit(onClickEditPassword) : handleSubmit(onClickResetPassword)}>
-          <S.Title>비밀번호 재설정</S.Title>
-          {props.isEditPassword && (
-            <>
-              <S.IndexTitle>기존 비밀번호</S.IndexTitle>
+      <S.Container>
+        {props.isEmail ? (
+          <>
+            <S.Title>이메일 찾기</S.Title>
+            <S.SubTitle>입력하신 휴대폰 번호에 일치하는 이메일은</S.SubTitle>
+            <S.AuthBody>
+              <S.Email>{result}</S.Email>
+              <S.SubTitle className="padding">입니다.</S.SubTitle>
+            </S.AuthBody>
+            <S.Footer>
+            <S.JoinText>이메일이 생각나셨나요?</S.JoinText>
+              <S.JoinBtn onClick={onClickMoveToPage("/login")}>
+                로그인
+              </S.JoinBtn>
+            </S.Footer>
+          </>
+        ) : (
+          <form
+            onSubmit={
+              props.isEditPassword
+                ? handleSubmit(onClickEditPassword)
+                : handleSubmit(onClickResetPassword)
+            }
+          >
+            <S.Title>비밀번호 재설정</S.Title>
+            {props.isEditPassword && (
+              <S.SignupBox>
+                <S.IndexTitle>기존 비밀번호</S.IndexTitle>
+                <InputHeight46px
+                  placeholder="기존 비밀번호"
+                  register={register("prevPassword")}
+                />
+                <S.Error>{formState.errors.prevPassword?.message}</S.Error>
+              </S.SignupBox>
+            )}
+            <S.SignupBox>
+              <S.IndexTitle>새 비밀번호</S.IndexTitle>
               <InputHeight46px
-                placeholder="기존 비밀번호"
-                register={register("prevPassword")}
+                placeholder="새 비밀번호"
+                register={register("password")}
               />
-            </>
-          )}
-          <S.IndexTitle>새 비밀번호</S.IndexTitle>
-          <InputHeight46px
-            placeholder="새 비밀번호"
-            register={register("password")}
-          />
-          <S.IndexTitle>새 비밀번호 확인</S.IndexTitle>
-          <InputHeight46px
-            placeholder="새 비밀번호 확인"
-            register={register("passwordCheck")}
-          />
-          <ButtonHeight50px title="비밀번호 재설정하기" />
-          <S.Footer>
-            이메일이 생각나셨나요?
-            <S.Login href="/login">로그인</S.Login>
-          </S.Footer>
-        </form>
-      )}
+              <S.Error>{formState.errors.password?.message}</S.Error>
+            </S.SignupBox>
+            <S.SignupBox>
+              <S.IndexTitle>새 비밀번호 확인</S.IndexTitle>
+              <InputHeight46px
+                placeholder="새 비밀번호 확인"
+                register={register("passwordCheck")}
+              />
+              <S.Error>{formState.errors.passwordCheck?.message}</S.Error>
+            </S.SignupBox>
+            <S.SubmitBtn>
+              <ButtonHeight50px
+                title="비밀번호 재설정하기"
+                isActive={formState.isValid}
+              />
+            </S.SubmitBtn>
+            <S.Footer>
+              <S.JoinText>이미 아이디가 있으신가요?</S.JoinText>
+              <S.JoinBtn onClick={onClickMoveToPage("/login")}>
+                로그인
+              </S.JoinBtn>
+            </S.Footer>
+          </form>
+        )}
+      </S.Container>
     </S.Wrapper>
   );
 }

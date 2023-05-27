@@ -1,5 +1,5 @@
-import SubCategorys from "../../../../src/components/units/categoryList/subCategoryList";
+import SubCategoryListUnit from "../../../../src/components/units/categoryList/subCategoryList";
 
-export default function SubCategoryList() {
-  return <SubCategorys />;
+export default function SubCategoryListPage() {
+  return <SubCategoryListUnit/>
 }

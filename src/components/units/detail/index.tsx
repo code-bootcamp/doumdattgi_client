@@ -19,6 +19,8 @@ import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetc
 import { useQueryFetchUserSlot } from "../../commons/hooks/queries/useQueryfetchUserSlot";
 import { useUser } from "../../commons/hooks/custom/useUser/index";
 import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutationCreatePick";
+import CardBox from "../../commons/parts/cardBox/col4";
+import { useState } from "react";
 
 export default function Detail() {
   const router = useRouter();
@@ -30,6 +32,7 @@ export default function Detail() {
   const { data: random } = useQueryFetchRandomProduct();
   const { data: slotData } = useQueryFetchUserSlot();
   const { imageSrc, userTitle } = useUser();
+  const [picked, setPicked] = useState(false);
   const [createPick] = useMutationcreatePick();
 
   // fetch 한 이미지들을 담은 배열
@@ -46,14 +49,18 @@ export default function Detail() {
   const slot2 = slotData?.fetchUserSlot.slot_second;
   const slot3 = slotData?.fetchUserSlot.slot_third;
 
-  const clickPick = () => {
-    createPick({ variables: { product_id: router.query.id } });
+  const clickPick = async () => {
+    const result = await createPick({
+      variables: { product_id: router.query.id }
+    });
+    const pick = result?.data?.createPick === "찜 되었습니다!!" ? true : false;
+    setPicked(pick);
   };
 
   return (
     <S.Wrapper>
       <S.Container>
-        <S.SliderBox>
+        <S.SliderBox ImgArr={ImgArr}>
           <Slider ImgArr={ImgArr} />
         </S.SliderBox>
         <S.DetailWrap>
@@ -68,7 +75,11 @@ export default function Detail() {
             <S.TitleWrap>
               <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
               <S.IconBox>
-                <S.Icon onClick={clickPick} icon={faBookmark} />
+                {picked ? (
+                  <S.Icon onClick={clickPick} icon={Bookmark2} />
+                ) : (
+                  <S.Icon onClick={clickPick} icon={faBookmark} />
+                )}
                 <S.Icon icon={faEllipsisVertical} />
               </S.IconBox>
             </S.TitleWrap>
@@ -79,13 +90,13 @@ export default function Detail() {
             <S.Remarks>{data?.fetchDetailProduct.product_summary}</S.Remarks>
           </S.DetailBox>
           <S.DetailBox>
-            <S.Button>
+            <S.Button ImgArr={ImgArr}>
               {slot3 ? (
                 <S.EnableBtn>현재 가능한 슬롯이 없습니다.</S.EnableBtn>
               ) : writer !== LoginUser || !writer || !LoginUser ? (
                 <Link href={`/${router.query.id}/request`}>
                   <a>
-                    <ButtonHeight50px title="신청하기" />
+                    <ButtonHeight50px title="신청하기" isActive={true} />
                   </a>
                 </Link>
               ) : (
@@ -176,19 +187,7 @@ export default function Detail() {
       <S.Subtitle>이런 게시글은 어떠세요?</S.Subtitle>
       <S.CardBoxWrap>
         {random?.fetchRandomProduct.map(el => (
-          <S.Preview
-            onClick={onClickMoveToPage(`/${el.product_product_id}`)}
-            key={el.product_product_id}
-          >
-            <S.PreviewImg
-              src={el.i_image_url}
-              onError={e => {
-                const target = e.target as HTMLImageElement;
-                target.src = "/noimage.png";
-              }}
-            />
-            <PreviewContents el={el} />
-          </S.Preview>
+          <CardBox data={el} />
         ))}
       </S.CardBoxWrap>
     </S.Wrapper>

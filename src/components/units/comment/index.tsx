@@ -12,6 +12,8 @@ import {
 import { useRouter } from "next/router";
 import { getDate } from "../../../commons/libraries/getDate";
 import { fallback } from "../../../commons/libraries/fallback";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 
 interface ICommentProps {
   data?: string;
@@ -23,16 +25,14 @@ export default function Comment(props: ICommentProps): JSX.Element {
 
   const [createComment] = useMutationCreateComment();
   const { data: user } = useQueryFetchLoginUser();
-  const { data: comment } = useQueryFetchComments(router.query.id);
+  const { data: comment, refetch } = useQueryFetchComments(router.query.id);
 
-  console.log(comment?.fetchComments);
   const { register, setValue, trigger, handleSubmit, formState, resetField } =
     useForm({
       mode: "onChange",
       resolver: yupResolver(schemaCreateComment)
     });
 
-  console.log(props.data);
   const onClickCreateComment = async data => {
     const request_id = props.data?.fetchOneRequest?.request_id;
 
@@ -63,9 +63,18 @@ export default function Comment(props: ICommentProps): JSX.Element {
     }
   };
 
+  const onClickRelode = () => {
+    refetch({
+      request_id: router.query.id
+    });
+  };
+
   return (
     <>
       <S.Wrapper>
+        <S.Relode onClick={onClickRelode}>
+          <S.RotateIcon icon={faRotateRight} />
+        </S.Relode>
         <S.WrapperBody>
           {comment?.fetchComments?.map(el => (
             <S.SendingBox
@@ -94,7 +103,7 @@ export default function Comment(props: ICommentProps): JSX.Element {
         <form onSubmit={handleSubmit(onClickCreateComment)}>
           <S.WrapperFooter>
             <InputHeight50px
-              placeholder="메세지를 입력하세요"
+              placeholder="메세지를 입력하세요."
               register={register("text")}
             />
             <S.SendingBtn>전송</S.SendingBtn>
