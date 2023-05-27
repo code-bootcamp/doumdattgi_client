@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IProduct } from "../../../commons/types/generated/types";
 
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 1140px;
   margin: 40px auto;
 
   .bottom {
@@ -14,8 +15,11 @@ export const Container = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 `;
-export const SliderBox = styled.div`
-  width: 680px;
+export const SliderBox = styled.div<{
+  ImgArr: string[];
+}>`
+  width: 640px;
+  padding-bottom: ${props => (props.ImgArr?.length >= 2 ? "0" : "40px")};
 `;
 export const DetailWrap = styled.div`
   width: 460px;
@@ -37,13 +41,13 @@ export const TitleWrap = styled.div`
   margin-top: 20px;
 `;
 export const Title = styled.h2`
-  width: 80%;
   font-size: 30px;
   line-height: 30px;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 370px;
 `;
 
 export const IconBox = styled.div``;
@@ -77,9 +81,11 @@ export const Remarks = styled.p`
   margin-top: 30px;
   word-break: break-word;
 `;
-export const Button = styled.div`
+export const Button = styled.div<{
+  ImgArr: string[];
+}>`
   position: relative;
-  padding-bottom: 90px;
+  padding-bottom: ${props => (props.ImgArr?.length >= 2 ? "90px" : "40px")};
 `;
 export const SlotBox = styled.div`
   position: absolute;
@@ -119,7 +125,7 @@ export const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
 `;
 export const DetailContentsWrap = styled.div`
-  width: 680px;
+  width: 640px;
 `;
 export const DetailTitle = styled.h3`
   font-size: 18px;

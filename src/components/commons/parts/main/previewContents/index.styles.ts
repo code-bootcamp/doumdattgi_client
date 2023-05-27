@@ -1,53 +1,57 @@
 import styled from "@emotion/styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const PreviewContent = styled.div`
-  height: 130px;
-  padding: 0px 16px 0px 16px;
+export const Wrapper = styled.div`
+  width: calc((100% - 20px) / 2);
+  border-radius: 6px;
+  border: 1px solid #dddfe3;
+  padding: 14px;
 `;
-
-export const Pv_Top = styled.div`
-  font-size: 14px;
-  margin: 12px 0px 5px 0px;
-`;
-
-export const Pv_Title = styled.span`
-  font-size: 18px;
-`;
-
-export const Pv_Footer = styled.div`
+export const CategoryBox = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 26px;
 `;
 
-export const Tag = styled.div`
-  height: 26px;
-  text-align: center;
-  line-height: 1.7;
-  border-radius: 12px;
-  border: 1px solid #929aa0;
-  padding: 0px 5px;
+export const Category = styled.span`
   font-size: 14px;
-  color: #929aa0;
+  display: block;
+  font-weight: 500;
+`;
+export const TitleBox = styled.div`
+  margin-top: 8px;
+`;
+
+export const Title = styled.h2`
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+`;
+
+export const Icon = styled(FontAwesomeIcon)`
+  font-size: 20px;
+`;
+
+export const InfoBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
 `;
 
 export const UserInfo = styled.div`
-  width: 89px;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
-`;
-
-export const ProfileImg = styled.img`
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  margin-right: 10px;
 `;
 
 export const NickName = styled.div`
   font-size: 14px;
+  font-weight: 600;
+  margin-left: 6px;
 `;

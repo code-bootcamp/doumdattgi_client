@@ -1,5 +1,6 @@
-import CategoryList from "../../src/components/units/categoryList";
+import ListUnit from "../../src/components/units/categoryList";
 
-export default function CategoryListPage(): JSX.Element {
-  return <CategoryList />;
+
+export default function ListPage(): JSX.Element {
+  return <ListUnit/>
 }

@@ -1,9 +1,10 @@
 import type { DrawerProps } from "antd";
 import { Button, Drawer, Space } from "antd";
 import { useState } from "react";
-import { IQuery } from "../../../../commons/types/generated/types";
 import Comment from "../../../units/comment";
 import { Arrow } from "./index.styles";
+import * as S from "./index.styles";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 interface IProps {
   data?: Pick<IQuery, "fetchOneRequest"> | undefined;
@@ -39,19 +40,21 @@ export default function CommentDrawer(props: IProps) {
     <>
       <Space
         style={{
-          width: "200px",
-          height: "100vh",
           position: "fixed"
         }}
       >
-        <Button type="primary" onClick={showDrawer} style={CommentBtnStyle}>
-          <Arrow>▶︎</Arrow>
-        </Button>
+        <S.ButtonWrap onClick={showDrawer}>
+          <span>MESSAGE</span>
+          <svg width="13px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg>
+        </S.ButtonWrap>
       </Space>
       <Drawer
         placement={placement}
         contentWrapperStyle={{
-          width: "38vw"
+          width: "400px"
         }}
         closable={false}
         onClose={onClose}

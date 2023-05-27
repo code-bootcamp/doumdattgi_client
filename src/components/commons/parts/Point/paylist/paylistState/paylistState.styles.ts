@@ -49,6 +49,7 @@ export const RefundBtn = styled.button`
   border: none;
   background-color: #ff6b6b;
   color: white;
+  margin-left: 10px;
 `;
 
 export const SoldBtn = styled.button`
@@ -58,6 +59,7 @@ export const SoldBtn = styled.button`
   border: none;
   background-color: skyblue;
   color: white;
+  margin-left: 10px;
 `;
 
 export const Request_BuyBtn = styled.button`
@@ -67,7 +69,9 @@ export const Request_BuyBtn = styled.button`
   border: none;
   background-color: #ac58fa;
   color: white;
+  margin-left: 10px;
 `;
+
 
 export const Request_RefundBtn = styled.button`
   width: 85px;
@@ -76,4 +80,5 @@ export const Request_RefundBtn = styled.button`
   border: none;
   background-color: #ff8000;
   color: white;
+  margin-left: 10px;
 `;

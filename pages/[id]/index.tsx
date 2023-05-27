@@ -1,5 +1,8 @@
+import { LoginCheck } from "../../src/commons/libraries/loginCheck";
 import Detail from "../../src/components/units/detail";
 
-export default function RoutingPage(): JSX.Element {
+function RoutingPage(): JSX.Element {
   return <Detail />;
 }
+
+export default LoginCheck(RoutingPage)

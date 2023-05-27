@@ -14,7 +14,7 @@ export const globalStyle = css`
   }
 
   /* 결제 모달창 CSS */
-  / .ChargeModal .ant-space {
+  .ChargeModal .ant-space {
     width: 384px;
     height: 34px;
     border: none;
@@ -65,7 +65,8 @@ export const globalStyle = css`
   }
 
   /* TimePicker */
-  :where(.css-dev-only-do-not-override-15rg2km).ant-picker-dropdown .ant-picker-time-panel-column {
+  :where(.css-dev-only-do-not-override-15rg2km).ant-picker-dropdown
+    .ant-picker-time-panel-column {
     width: 100px;
     display: flex;
     flex-direction: column;
@@ -98,9 +99,32 @@ export const globalStyle = css`
 
   @font-face {
     font-family: "Arita-dotum";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff")
-      format("woff");
-    font-weight: normal;
+    src: url("/fonts/Arita4.0_T.otf");
+    font-weight: 100;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Arita-dotum";
+    src: url("/fonts/Arita4.0_L.otf");
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Arita-dotum";
+    src: url("/fonts/Arita4.0_M.otf");
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Arita-dotum";
+    src: url("/fonts/Arita4.0_SB.otf");
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Arita-dotum";
+    src: url("/fonts/Arita4.0_B.otf");
+    font-weight: 700;
     font-style: normal;
   }
 
@@ -108,4 +132,5 @@ export const globalStyle = css`
   .toastui-editor-tooltip .text {
     color: white;
   }
+
 `;

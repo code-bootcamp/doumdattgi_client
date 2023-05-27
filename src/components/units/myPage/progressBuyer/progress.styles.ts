@@ -1,14 +1,19 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 800px;
-  margin: 0px auto;
-  padding: 90px 0px;
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 150px 0;
+  min-height: 600px;
 `;
 
-export const PageTitle = styled.div`
+export const Container = styled.div`
+  width: 800px;
+`
+
+export const PageTitle = styled.h1`
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 export const TabBox = styled.div`
@@ -16,7 +21,6 @@ export const TabBox = styled.div`
   flex-direction: row;
   align-items: center;
   text-align: center;
-  line-height: 50px;
 `;
 
 export const PageTab = styled.button`
@@ -26,8 +30,8 @@ export const PageTab = styled.button`
   font-size: 20px;
   border: none;
   background-color: white;
-  margin: 60px 0px 40px 0px;
   cursor: pointer;
+  margin: 30px 0;
   :active {
     color: black;
     border-bottom: 3px solid black;

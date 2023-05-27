@@ -1,19 +1,12 @@
 import * as S from "./styles";
+import Link from "next/link";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage/index";
 import { useQueryFetchPickUserProduct } from "../../../../commons/hooks/queries/useQueryFetchPickUserProduct";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function ProfileMyFavorite(): JSX.Element {
-  const router = useRouter();
-
-  const { data, refetch } = useQueryFetchPickUserProduct();
+  const { data } = useQueryFetchPickUserProduct();
 
   const { onClickMoveToPage } = useMoveToPage();
-
-  useEffect(() => {
-    refetch();
-  }, [router.query]);
 
   return (
     <S.Wrapper>

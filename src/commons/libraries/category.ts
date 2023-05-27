@@ -1,6 +1,6 @@
 // export const options = [
 //   {
-//     label: "디자인&DESIGN",
+//     label: ".디자인&DESIGN",
 //     options: [
 //       { label: "로고・브랜딩", value: "로고・브랜딩" },
 //       { label: "인쇄・홍보물", value: "인쇄・홍보물" },
