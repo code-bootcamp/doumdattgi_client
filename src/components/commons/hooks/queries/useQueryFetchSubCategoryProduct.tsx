@@ -6,13 +6,11 @@ import type {
 
 export const FETCH_SUB_CATEGORY_PRODUCT = gql`
   query fetchSubCategoryProduct(
-    $product_category: String!
     $product_sub_category: String!
     $page: Float!
     $pageSize: Float!
   ) {
     fetchSubCategoryProduct(
-      product_category: $product_category
       product_sub_category: $product_sub_category
       page: $page
       pageSize: $pageSize
@@ -36,7 +34,6 @@ export const useQueryfetchSubCategoryProduct = (sub: string) => {
     IQueryFetchSubCategoryProductArgs
   >(FETCH_SUB_CATEGORY_PRODUCT, {
     variables: {
-      product_category: "",
       product_sub_category: sub,
       page: 1,
       pageSize: 10
