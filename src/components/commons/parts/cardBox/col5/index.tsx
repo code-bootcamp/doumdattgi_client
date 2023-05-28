@@ -36,7 +36,7 @@ export default function CardBox(props: IProps) {
         <S.InfoBox>
           <Tag data={props.data?.product_product_workDay} />
           <S.UserBox>
-            <Avatar size={24} src={`${props.data?.i_image_url}`} />
+            <Avatar size={24} src={`${props.data?.u_user_profileImage}`} />
             <S.UserName>{props.data?.u_user_nickname}</S.UserName>
           </S.UserBox>
         </S.InfoBox>
