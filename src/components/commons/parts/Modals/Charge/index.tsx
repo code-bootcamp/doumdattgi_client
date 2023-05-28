@@ -9,7 +9,7 @@ import { ModalCancelState } from "../../../../../commons/stores";
 export default function ChargeModal(props: IProps): JSX.Element {
   const { openModal, setOpenModal, handleCancel } = UseModal();
   const [isCance, setIsCancel] = useRecoilState(ModalCancelState);
-
+  //
   useEffect(() => {
     if (props.openModal) {
       setIsCancel(true);
