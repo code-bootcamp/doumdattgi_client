@@ -7,8 +7,8 @@ export default function Header2() {
     <>
       <S.Wrapper>
         <S.Container>
-        <S.Logo onClick={onClickMoveToPage("/")}>
-            <S.LogoIcon src="/logo.svg"/>
+          <S.Logo onClick={onClickMoveToPage("/")}>
+            <S.LogoIcon src="/logo.svg" />
             <S.LogoTitle>도움닫기</S.LogoTitle>
           </S.Logo>
         </S.Container>
