@@ -147,6 +147,9 @@ export const WrapperRight = styled.div`
   padding: 90px 0px 90px 0px;
   background-color: white;
   margin-left: 40px;
+
+  //  넓이 안주면 작성글 없을 때 줄어들어서 추가함
+  width: 730px;
 `;
 
 export const RightTitleBox = styled.div`

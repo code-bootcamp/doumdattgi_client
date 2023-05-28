@@ -205,7 +205,7 @@ export const Body_Bottom = styled.div`
 
 export const BtnBox = styled.div`
   width: 50%;
-  &:last-of-type{
+  &:last-of-type {
     padding-left: 14px;
   }
 `;

@@ -63,8 +63,8 @@ export default function CreateProduct(props: IProps) {
     isSubmitting
   } = useCreateProduct2(props.isEdit);
 
-  const {onClickMoveToPage} = useMoveToPage()
-  const router = useRouter()
+  const { onClickMoveToPage } = useMoveToPage();
+  const router = useRouter();
 
   return (
     <>
@@ -275,7 +275,8 @@ export default function CreateProduct(props: IProps) {
                         <S.Input
                           {...register("product_detailAddress")}
                           defaultValue={
-                            data?.fetchDetailProduct?.product_detailAddress ?? ""
+                            data?.fetchDetailProduct?.product_detailAddress ??
+                            ""
                           }
                         />
                       </S.AddressInput>
@@ -285,7 +286,11 @@ export default function CreateProduct(props: IProps) {
               </S.Body_Middle>
               <S.Body_Bottom>
                 <S.BtnBox>
-                  <ButtonHeight50px title="취소하기" type="button" onClick={onClickMoveToPage("/mypage/profile")}/>
+                  <ButtonHeight50px
+                    title="취소하기"
+                    type="button"
+                    onClick={onClickMoveToPage("/mypage/profile")}
+                  />
                 </S.BtnBox>
                 <S.BtnBox>
                   <ButtonHeight50px

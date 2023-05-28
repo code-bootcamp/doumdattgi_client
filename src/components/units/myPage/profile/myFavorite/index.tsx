@@ -12,7 +12,7 @@ export default function ProfileMyFavorite(): JSX.Element {
   return (
     <S.Wrapper>
       <S.WrapperRight>
-        {data?.fetchPickUserProduct === undefined ? (
+        {data?.fetchPickUserProduct[0] === undefined ? (
           <S.None>아직 찜한 글이 없습니당</S.None>
         ) : (
           <>

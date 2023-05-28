@@ -22,7 +22,10 @@ import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutation
 import CardBox from "../../commons/parts/cardBox/col4";
 import { useState } from "react";
 import { IProduct } from "../../../commons/types/generated/types";
-import { FETCH_PICK_OR_NOT, useQueryFetchPickOrNot } from "../../commons/hooks/queries/useQueryFetchPickOrNot";
+import {
+  FETCH_PICK_OR_NOT,
+  useQueryFetchPickOrNot
+} from "../../commons/hooks/queries/useQueryFetchPickOrNot";
 
 export default function Detail() {
   const router = useRouter();
@@ -33,8 +36,8 @@ export default function Detail() {
   const { data: loginData } = useQueryFetchLoginUser();
   const { data: random } = useQueryFetchRandomProduct();
   const { data: slotData } = useQueryFetchUserSlot();
-  const { data: pick } = useQueryFetchPickOrNot(String(router.query.id))
-  console.log(pick?.fetchPickOrNot)
+  const { data: pick } = useQueryFetchPickOrNot(String(router.query.id));
+  console.log(pick?.fetchPickOrNot);
   const { imageSrc, userTitle } = useUser();
   // const [picked, setPicked] = useState(false);
   const [createPick] = useMutationcreatePick();
@@ -49,9 +52,11 @@ export default function Detail() {
   const LoginUser = loginData?.fetchLoginUser.user_id;
 
   // 슬롯
-  const slot1 = slotData?.fetchUserSlot.slot_first;
-  const slot2 = slotData?.fetchUserSlot.slot_second;
-  const slot3 = slotData?.fetchUserSlot.slot_third;
+  const slot1 = data?.fetchDetailProduct.user.slot.slot_first;
+  const slot2 = data?.fetchDetailProduct.user.slot.slot_second;
+  const slot3 = data?.fetchDetailProduct.user.slot.slot_third;
+
+  console.log(slot1, slot2, slot3);
 
   const clickPick = async () => {
     const result = await createPick({
