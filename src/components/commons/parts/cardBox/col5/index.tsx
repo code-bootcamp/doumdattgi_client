@@ -44,3 +44,4 @@ export default function CardBox(props: IProps) {
     </S.Wrapper>
   );
 }
+
