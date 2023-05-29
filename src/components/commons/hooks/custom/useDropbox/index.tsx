@@ -11,7 +11,7 @@ export default function UseDropBox(): IUseDropBox {
 
   const clickThis = (e: MouseEvent<HTMLAnchorElement>): void => {
     const target = e.target as HTMLAnchorElement;
-    console.log(target);
+
     setAmount(Number(target.target));
   };
 
