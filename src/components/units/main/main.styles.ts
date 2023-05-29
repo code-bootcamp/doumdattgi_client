@@ -34,10 +34,16 @@ export const CardboxWrap = styled.div`
 `;
 
 export const AdBar = styled.div`
-  height: 120px;
+  height: 150px;
   background-color: #ccc;
   margin-top: 100px;
+  border-radius: 6px;
+  overflow: hidden;
 `;
+
+export const Ad = styled.img`
+
+`
 
 export const BarBox = styled.div``;
 

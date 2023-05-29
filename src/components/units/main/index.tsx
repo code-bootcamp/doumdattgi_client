@@ -7,12 +7,15 @@ import * as S from "./main.styles";
 import { useQueryFetchSellProduct } from "../../commons/hooks/queries/useQueryFetchSellProduct";
 import CardBox4 from "../../commons/parts/cardBox/col4";
 import CardBox3 from "../../commons/parts/cardBox/col3";
+import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 
 export default function MainPresenter() {
   const { data } = useQueryFetchRandomProduct();
   const { data: Products } = useQueryFetchProducts();
   const { data: Newbie } = useQueryFetchNewbieProduct();
   const { data: Sellers } = useQueryFetchSellProduct();
+
+  const {onClickMoveToPage} = useMoveToPage()
 
   return (
     <S.Wrapper>
@@ -28,7 +31,9 @@ export default function MainPresenter() {
             ))}
           </S.CardboxWrap>
         </S.Section>
-        <S.AdBar></S.AdBar>
+        <S.AdBar>
+          <S.Ad src="/ad1.png" />
+        </S.AdBar>
         <S.Section>
           <S.Title>✨최신 게시글</S.Title>
           <S.CardboxWrap>
@@ -45,7 +50,9 @@ export default function MainPresenter() {
             ))}
           </S.CardboxWrap>
         </S.Section>
-        <S.AdBar></S.AdBar>
+        <S.AdBar>
+          <S.Ad src="/Frame 9.png" onClick={onClickMoveToPage("/signup")}/>
+        </S.AdBar>
         <S.Section>
           <S.Title>🌱 신규 주니어의 첫 게시글</S.Title>
           <S.CardboxWrap>

@@ -20,6 +20,7 @@ export const Ad = styled.div`
   height: 70px;
   background-color: #ccc;
   border-radius: 6px;
+  overflow: hidden;
 `;
 
 export const SubCategoryBox = styled.ul`

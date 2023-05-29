@@ -82,7 +82,9 @@ export default function SideCategory() {
     <S.Wrapper>
       <S.Title>{CategoryObj[BigCategory]}</S.Title>
       <S.DivideLine />
-      <S.Ad />
+      <S.Ad>
+        <img src="/ad3 1.png"/>
+      </S.Ad>
       {!isAllList && (
         <S.SubCategoryBox>
           {filtering[BigCategory]?.map(el => (
