@@ -7,8 +7,11 @@ import * as S from "./main.styles";
 import { useQueryFetchSellProduct } from "../../commons/hooks/queries/useQueryFetchSellProduct";
 import CardBox4 from "../../commons/parts/cardBox/col4";
 import CardBox3 from "../../commons/parts/cardBox/col3";
+
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
+
 
 export default function MainPresenter() {
   const router = useRouter();
@@ -27,6 +30,8 @@ export default function MainPresenter() {
     }
   }, [router.asPath]);
 
+  const {onClickMoveToPage} = useMoveToPage()
+
   return (
     <S.Wrapper>
       <S.Banner>
@@ -41,7 +46,9 @@ export default function MainPresenter() {
             ))}
           </S.CardboxWrap>
         </S.Section>
-        <S.AdBar></S.AdBar>
+        <S.AdBar>
+          <S.Ad src="/ad1.png" />
+        </S.AdBar>
         <S.Section>
           <S.Title>✨최신 게시글</S.Title>
           <S.CardboxWrap>
@@ -58,7 +65,9 @@ export default function MainPresenter() {
             ))}
           </S.CardboxWrap>
         </S.Section>
-        <S.AdBar></S.AdBar>
+        <S.AdBar>
+          <S.Ad src="/Frame 9.png" onClick={onClickMoveToPage("/signup")}/>
+        </S.AdBar>
         <S.Section>
           <S.Title>🌱 신규 주니어의 첫 게시글</S.Title>
           <S.CardboxWrap>

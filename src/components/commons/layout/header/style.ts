@@ -27,7 +27,7 @@ export const LogoIcon = styled.img`
   display: block;
   width: 36px;
   height: 36px;
-`
+`;
 export const LogoTitle = styled.h1`
   font-size: 30px;
   line-height: 30px;
@@ -79,6 +79,13 @@ export const ShuffleBtn = styled.div`
 `;
 export const ShuffleIcon = styled.img`
   display: block;
+`;
+export const Avatar = styled.img`
+  cursor: pointer;
+  margin-left: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
 `;
 
 export const LoginBox = styled.div`

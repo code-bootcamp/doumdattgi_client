@@ -147,6 +147,7 @@ export const WrapperRight = styled.div`
   padding: 90px 0px 90px 0px;
   background-color: white;
   margin-left: 40px;
+  width: calc(100% - 430px);
 `;
 
 export const RightTitleBox = styled.div`

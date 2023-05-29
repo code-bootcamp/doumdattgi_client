@@ -13,7 +13,7 @@ export default function ProfileMyProduct(): JSX.Element {
   return (
     <S.Wrapper>
       <S.WrapperRight>
-        {myProduct?.fetchMyProduct === undefined ? (
+        {myProduct?.fetchMyProduct[0] === undefined ? (
           <S.None>아직 게시물이 없습니당</S.None>
         ) : (
           <>
