@@ -6,9 +6,6 @@ export default function Nav() {
   const router = useRouter();
 
   const clickCategory = (data: string) => () => {
-    console.log(data);
-    console.log("hehe");
-
     router.push({
       pathname: "/categoryList",
       query: { data }

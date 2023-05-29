@@ -4,8 +4,6 @@ export default function useMoveToSubCategory() {
   const router = useRouter();
 
   const clickSubCategory = (data: string) => () => {
-    console.log(data);
-
     const sub = String(data);
 
     router.push({

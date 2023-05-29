@@ -7,13 +7,28 @@ import * as S from "./main.styles";
 import { useQueryFetchSellProduct } from "../../commons/hooks/queries/useQueryFetchSellProduct";
 import CardBox4 from "../../commons/parts/cardBox/col4";
 import CardBox3 from "../../commons/parts/cardBox/col3";
+
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 
+
 export default function MainPresenter() {
-  const { data } = useQueryFetchRandomProduct();
-  const { data: Products } = useQueryFetchProducts();
-  const { data: Newbie } = useQueryFetchNewbieProduct();
-  const { data: Sellers } = useQueryFetchSellProduct();
+  const router = useRouter();
+
+  const { data, refetch } = useQueryFetchRandomProduct();
+  const { data: Products, refetch: refetch2 } = useQueryFetchProducts();
+  const { data: Newbie, refetch: refetch3 } = useQueryFetchNewbieProduct();
+  const { data: Sellers, refetch: refetch4 } = useQueryFetchSellProduct();
+
+  useEffect(() => {
+    if (router.asPath === "/") {
+      refetch();
+      refetch2();
+      refetch3();
+      refetch4();
+    }
+  }, [router.asPath]);
 
   const {onClickMoveToPage} = useMoveToPage()
 
@@ -27,7 +42,7 @@ export default function MainPresenter() {
           <S.Title>✨ 숨은 보석같은 게시글들</S.Title>
           <S.CardboxWrap>
             {data?.fetchRandomProduct.map(el => (
-              <CardBox4 data={el} />
+              <CardBox4 key={el.product_product_id} data={el} />
             ))}
           </S.CardboxWrap>
         </S.Section>
@@ -38,7 +53,7 @@ export default function MainPresenter() {
           <S.Title>✨최신 게시글</S.Title>
           <S.CardboxWrap>
             {Products?.fetchAllProducts.map(el => (
-              <CardBox4 data={el} />
+              <CardBox4 key={el.product_product_id} data={el} />
             ))}
           </S.CardboxWrap>
         </S.Section>
@@ -57,7 +72,7 @@ export default function MainPresenter() {
           <S.Title>🌱 신규 주니어의 첫 게시글</S.Title>
           <S.CardboxWrap>
             {Newbie?.fetchNewbieProduct.map(el => (
-              <CardBox3 data={el} />
+              <CardBox3 key={el.product_product_id} data={el} />
             ))}
           </S.CardboxWrap>
         </S.Section>

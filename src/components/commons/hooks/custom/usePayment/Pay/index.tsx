@@ -40,7 +40,6 @@ export default function UsePayment(): IUsePayment {
   const [createPayment] = useMutationcreatePayment();
 
   const SelectOption = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target);
     setIsSelect(e.target.value);
   };
 

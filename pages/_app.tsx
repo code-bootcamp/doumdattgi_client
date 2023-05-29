@@ -30,6 +30,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <ApolloSetting>
         <>
           <Global styles={globalStyle} />
+
           <Layout>
             <Component {...pageProps} />
           </Layout>
