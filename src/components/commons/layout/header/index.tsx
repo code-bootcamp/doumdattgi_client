@@ -28,7 +28,7 @@ export default function Header(): JSX.Element {
     {
       type: "divider"
     },
-    { label: <Link href={"/mypage/progressBuyer"}>신청자</Link> },
+    { label: <Link href={"/mypage/progressBuyer"}>작업 신청 내역</Link> },
     { label: <Link href={"/mypage/progressSeller"}>작업자</Link> },
     { label: <Link href={"/mypage/settings"}>설정</Link> },
     {
@@ -82,7 +82,7 @@ export default function Header(): JSX.Element {
       <S.Wrapper>
         <S.Container>
           <S.Logo onClick={onClickMoveToPage("/")}>
-            <S.LogoIcon src="/logo.svg"/>
+            <S.LogoIcon src="/logo.svg" />
             <S.LogoTitle>도움닫기</S.LogoTitle>
           </S.Logo>
           <S.HeaderBox>
@@ -136,4 +136,3 @@ export default function Header(): JSX.Element {
     </>
   );
 }
-
