@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-
+//
 interface IFormData {
   email: string;
   password: string;
@@ -84,7 +84,9 @@ export default function Login(): JSX.Element {
         </S.SocialLoginWrap>
         <S.Footer>
           <S.JoinText>아직 도움닫기 회원이아니세요?</S.JoinText>
-          <S.JoinBtn onClick={onClickMoveToPage("/signup")}>회원가입 하기</S.JoinBtn>
+          <S.JoinBtn onClick={onClickMoveToPage("/signup")}>
+            회원가입 하기
+          </S.JoinBtn>
         </S.Footer>
       </S.Container>
     </S.Wrapper>
