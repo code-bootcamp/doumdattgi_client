@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+interface IPropsSelect {
+  isStatus: boolean;
+}
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -9,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 800px;
-`
+`;
 
 export const PageTitle = styled.div`
   font-size: 36px;
@@ -33,10 +37,11 @@ export const PageTab = styled.button`
   background-color: white;
   margin: 60px 0px 40px 0px;
   cursor: pointer;
-  :active {
+  :hover {
     color: black;
-    border-bottom: 3px solid black;
   }
+  color: ${(props: IPropsSelect) => (props.isStatus ? "black" : "#AAAAAA")};
+  border-bottom: 2px solid ${props => (props.isStatus ? "black" : "white")};
 `;
 
 export const List = styled.div`
