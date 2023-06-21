@@ -6,9 +6,6 @@ export default function Nav() {
   const router = useRouter();
 
   const clickCategory = (data: string) => () => {
-    console.log(data);
-    console.log("hehe");
-
     router.push({
       pathname: "/categoryList",
       query: { data }
@@ -38,9 +35,9 @@ export default function Nav() {
             <S.NavItem>문서・레포트</S.NavItem>
           </S.NavList>
         </S.NavListBox>
-        <Link href={"/구해요"}>
+        {/* <Link href={"/구해요"}>
           <S.NavItem>#구해요</S.NavItem>
-        </Link>
+        </Link> */}
       </S.Container>
     </S.Wrapper>
   );

@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { debounce } from "lodash";
 import { useForm } from "react-hook-form";
 import { IData } from "./index.types";
+import { fallback } from "../../../../commons/libraries/fallback";
 
 export default function Header(): JSX.Element {
   const router = useRouter();
@@ -119,11 +120,12 @@ export default function Header(): JSX.Element {
                   overlayClassName={"header"}
                 >
                   <Space>
-                    <Avatar
-                      size={44}
-                      style={{ cursor: "pointer", marginLeft: "14px" }}
-                      icon={<UserOutlined />}
-                      src={data?.fetchLoginUser?.user_profileImage}
+                    <S.Avatar
+                      onError={e => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = fallback;
+                      }}
+                      src={data?.fetchLoginUser?.user_profileImage ?? fallback}
                     />
                   </Space>
                 </Dropdown>

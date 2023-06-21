@@ -10,7 +10,6 @@ interface IProps {
 
 export default function WorkTimeDropBox(props: IProps) {
   const handleMenuClick: MenuProps["onClick"] = e => {
-    // console.log("click", e.key);
     props.setSelectedWorkDay(e.key);
   };
 

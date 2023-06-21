@@ -4,7 +4,7 @@ interface IButtonProps {
   isActive?: boolean;
   title?: string;
   onClick?: () => void;
-  type?: "button" | "submit" | "reset" | undefined
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 export const Button = styled.button`

@@ -9,6 +9,7 @@ export default function ProfileMyFavorite(): JSX.Element {
 
   const { onClickMoveToPage } = useMoveToPage();
 
+  
   return (
     <S.Wrapper>
       <S.WrapperRight>

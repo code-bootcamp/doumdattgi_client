@@ -9,13 +9,15 @@ import { CategoryObj } from "../../../../../commons/libraries/translate";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 
 interface IProps {
-  data: IFetchProductOutput
+  data: IFetchProductOutput;
 }
 
 export default function CardBox(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
   return (
-    <S.Wrapper onClick={onClickMoveToPage(`/${props.data?.product_product_id}`)}>
+    <S.Wrapper
+      onClick={onClickMoveToPage(`/${props.data?.product_product_id}`)}
+    >
       <Image
         src={`${props.data?.i_image_url}`}
         width={"100%"}

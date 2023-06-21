@@ -10,7 +10,7 @@ import { CategoryObj } from "../../../../../commons/libraries/translate";
 import CardBox from "../../cardBox/col4";
 import { useQueryFetchCategoryProduct } from "../../../hooks/queries/useQueryFetchCategoryProduct";
 import ListCardBox from "../../cardBox/list";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 
 export default function ProductList() {
@@ -22,7 +22,17 @@ export default function ProductList() {
     ? router.query.data[0]
     : router.query.data || "";
 
-  const { data, fetchMore } = useQueryFetchCategoryProduct(category);
+  const { data, fetchMore, refetch } = useQueryFetchCategoryProduct(category);
+
+  useEffect(() => {
+    refetch({
+      product_category: category,
+      page: 1,
+      pageSize: 10
+    });
+
+    console.log("카테고리 리페치");
+  }, [router.query.data]);
 
   // 카테고리 최신순, 과거순 정렬
   const [isRecent, setIsRecent] = useState(true);
@@ -96,9 +106,11 @@ export default function ProductList() {
         />
       </S.LengthBox>
       <S.ContentsBox loadMore={onLoadMore} pageStart={0} hasMore={true}>
-        {categoryList?.map(el => (
-          <ListCardBox data={el} />
-        ))}
+        <>
+          {categoryList?.map(el => (
+            <ListCardBox key={el.product_product_id} data={el} />
+          ))}
+        </>
       </S.ContentsBox>
     </S.Container>
   );

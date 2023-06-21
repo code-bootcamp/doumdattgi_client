@@ -13,7 +13,7 @@ const HIDDEN_HEADER = [
   "/recoveryResult/email/",
   "/editPassword/"
 ];
-const HIDDEN_NAV = ["/mypage/profile/" ];
+const HIDDEN_NAV = ["/mypage/profile/"];
 
 export default function Layout(props: any) {
   const router = useRouter();

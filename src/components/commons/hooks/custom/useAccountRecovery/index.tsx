@@ -35,10 +35,6 @@ export const useAccountRecovery = () => {
   });
 
   const onClickAuthPhone = async (data: IData) => {
-    console.log("ehehe");
-    console.log(data);
-    console.log("ehehe");
-
     try {
       await sendTokenSMS({
         variables: {
@@ -77,7 +73,7 @@ export const useAccountRecovery = () => {
           user_token: data.user_token ?? ""
         }
       });
-      console.log(result?.data);
+
       setUserEmail(result?.data?.checkValidTokenFindEmailBySMS ?? "");
       router.push("/recoveryResult/email");
     } catch (error) {

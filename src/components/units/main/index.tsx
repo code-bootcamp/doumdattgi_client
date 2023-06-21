@@ -8,11 +8,41 @@ import { useQueryFetchSellProduct } from "../../commons/hooks/queries/useQueryFe
 import CardBox4 from "../../commons/parts/cardBox/col4";
 import CardBox3 from "../../commons/parts/cardBox/col3";
 
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
+import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
+
 export default function MainPresenter() {
-  const { data } = useQueryFetchRandomProduct();
-  const { data: Products } = useQueryFetchProducts();
-  const { data: Newbie } = useQueryFetchNewbieProduct();
-  const { data: Sellers } = useQueryFetchSellProduct();
+  const router = useRouter();
+
+  const { data, refetch } = useQueryFetchRandomProduct();
+  const { data: Products, refetch: refetch2 } = useQueryFetchProducts();
+  const { data: Newbie, refetch: refetch3 } = useQueryFetchNewbieProduct();
+  const { data: Sellers, refetch: refetch4 } = useQueryFetchSellProduct();
+  const { data: loginInfo } = useQueryFetchLoginUser();
+
+  const { onClickMoveToPage } = useMoveToPage();
+
+  useEffect(() => {
+    if (router.asPath === "/") {
+      refetch();
+      refetch2();
+      refetch3();
+      refetch4();
+    }
+  }, [router.asPath]);
+
+  const goToSignUp = () => {
+    console.log(loginInfo);
+
+    if (loginInfo === undefined) {
+      router.push("/signup");
+    } else {
+      alert("이미 로그인한 상태입니다");
+      router.reload();
+    }
+  };
 
   return (
     <S.Wrapper>
@@ -24,33 +54,37 @@ export default function MainPresenter() {
           <S.Title>✨ 숨은 보석같은 게시글들</S.Title>
           <S.CardboxWrap>
             {data?.fetchRandomProduct.map(el => (
-              <CardBox4 data={el} />
+              <CardBox4 key={el.product_product_id} data={el} />
             ))}
           </S.CardboxWrap>
         </S.Section>
-        <S.AdBar></S.AdBar>
+        <S.AdBar>
+          <S.Ad src="/ad1.png" />
+        </S.AdBar>
         <S.Section>
           <S.Title>✨최신 게시글</S.Title>
           <S.CardboxWrap>
             {Products?.fetchAllProducts.map(el => (
-              <CardBox4 data={el} />
+              <CardBox4 key={el.product_product_id} data={el} />
             ))}
           </S.CardboxWrap>
         </S.Section>
-        <S.Section>
+        {/* <S.Section>
           <S.Title>지금 구하고 있는 구인글이에요</S.Title>
           <S.CardboxWrap>
             {Sellers?.fetchSellProduct.map(el => (
               <BarBox el={el} key={el.product_product_id} />
             ))}
           </S.CardboxWrap>
-        </S.Section>
-        <S.AdBar></S.AdBar>
+        </S.Section> */}
+        <S.AdBar>
+          <S.Ad src="/Frame 9.png" onClick={goToSignUp} />
+        </S.AdBar>
         <S.Section>
           <S.Title>🌱 신규 주니어의 첫 게시글</S.Title>
           <S.CardboxWrap>
             {Newbie?.fetchNewbieProduct.map(el => (
-              <CardBox3 data={el} />
+              <CardBox3 key={el.product_product_id} data={el} />
             ))}
           </S.CardboxWrap>
         </S.Section>

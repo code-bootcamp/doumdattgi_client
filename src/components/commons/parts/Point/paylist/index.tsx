@@ -7,7 +7,7 @@ import PayState from "./paylistState";
 
 export default function PayList(props: IPropsfetchUserPaymentInfo) {
   const router = useRouter();
-
+  //
   const arr = props.dataArr
     .filter(el => el.payment_status === "CANCEL")
     .map(el => el.payment_impUid);
