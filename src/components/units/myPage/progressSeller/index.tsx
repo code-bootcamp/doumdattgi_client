@@ -12,6 +12,7 @@ export default function ProgressSeller(): JSX.Element {
   const [isList, setIsList] = useState("");
   const router = useRouter();
   const { data, refetch } = useQueryFetchSellerWork();
+  const [isStatus, setIsStatus] = useState(false);
 
   const onClickList = (selected: string) => {
     setIsList(selected);
@@ -24,18 +25,11 @@ export default function ProgressSeller(): JSX.Element {
   };
 
   useEffect(() => {
-    const storedTab = localStorage.getItem("selectedTab");
-    if (storedTab) {
-      setIsList(storedTab);
-    }
+    setIsList("all");
     refetch();
   }, [router.asPath]);
 
   const renderPage = () => {
-    if (isList === "") {
-      return <ProgressSellerAll />;
-    }
-
     if (isList === "all") {
       return <ProgressSellerAll />;
     } else if (isList === "waiting") {
@@ -54,11 +48,36 @@ export default function ProgressSeller(): JSX.Element {
       <S.Container>
         <S.PageTitle>작업 진행 내역</S.PageTitle>
         <S.TabBox>
-          <S.PageTab onClick={() => onClickList("all")}>전체</S.PageTab>
-          <S.PageTab onClick={() => onClickList("waiting")}>대기중</S.PageTab>
-          <S.PageTab onClick={() => onClickList("progress")}>진행중</S.PageTab>
-          <S.PageTab onClick={() => onClickList("done")}>종료</S.PageTab>
-          <S.PageTab onClick={() => onClickList("refuse")}>거절</S.PageTab>
+          <S.PageTab
+            isStatus={isList === "all"}
+            onClick={() => onClickList("all")}
+          >
+            전체
+          </S.PageTab>
+          <S.PageTab
+            isStatus={isList === "waiting"}
+            onClick={() => onClickList("waiting")}
+          >
+            대기중
+          </S.PageTab>
+          <S.PageTab
+            isStatus={isList === "progress"}
+            onClick={() => onClickList("progress")}
+          >
+            진행중
+          </S.PageTab>
+          <S.PageTab
+            isStatus={isList === "done"}
+            onClick={() => onClickList("done")}
+          >
+            종료
+          </S.PageTab>
+          <S.PageTab
+            isStatus={isList === "refuse"}
+            onClick={() => onClickList("refuse")}
+          >
+            거절
+          </S.PageTab>
         </S.TabBox>
         {renderPage()}
       </S.Container>

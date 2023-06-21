@@ -28,8 +28,8 @@ export default function Header(): JSX.Element {
     {
       type: "divider"
     },
-    { label: <Link href={"/mypage/progressBuyer"}>작업 신청 내역</Link> },
-    { label: <Link href={"/mypage/progressSeller"}>작업자</Link> },
+    { label: <Link href={"/mypage/progressBuyer"}>의뢰 목록</Link> },
+    { label: <Link href={"/mypage/progressSeller"}>작업 목록</Link> },
     { label: <Link href={"/mypage/settings"}>설정</Link> },
     {
       type: "divider"
