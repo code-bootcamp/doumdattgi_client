@@ -86,7 +86,7 @@ export default function CreateProduct(props: IProps) {
               <S.Title>
                 {props.isEdit ? "게시글 수정하기" : "게시글 작성하기"}
               </S.Title>
-              <S.SelectToggle>
+              {/* <S.SelectToggle>
                 <S.Employee onClick={clickEmployee} isToggle={isToggle}>
                   일을 구해요
                 </S.Employee>
@@ -94,7 +94,7 @@ export default function CreateProduct(props: IProps) {
                 <S.Employer onClick={clickEmployer} isToggle={isToggle}>
                   사람을 구해요
                 </S.Employer>
-              </S.SelectToggle>
+              </S.SelectToggle> */}
             </S.Head>
             <S.Body>
               <S.Body_Top>
@@ -228,7 +228,7 @@ export default function CreateProduct(props: IProps) {
                     />
                   </S.Image>
                 </S.AttachedImg>
-                <S.BoardAddress>
+                {/* <S.BoardAddress>
                   <S.Theme>주소 입력</S.Theme>
                   <S.AddressBox>
                     <S.MapBox>
@@ -282,7 +282,7 @@ export default function CreateProduct(props: IProps) {
                       </S.AddressInput>
                     </S.SearchBox>
                   </S.AddressBox>
-                </S.BoardAddress>
+                </S.BoardAddress> */}
               </S.Body_Middle>
               <S.Body_Bottom>
                 <S.BtnBox>

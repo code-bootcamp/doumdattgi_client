@@ -103,8 +103,8 @@ export const useUser = () => {
           user_token: data.token
         }
       });
-      console.log(result);
-      if (result) {
+      console.log(result.data.checkValidTokenEMAIL);
+      if (result?.data?.checkValidTokenEMAIL) {
         setTime(0);
         setIsChecked(true);
         setIsActive(false);
@@ -163,7 +163,7 @@ export const useUser = () => {
 
       const isActive = except.includes(link);
 
-      console.log(isActive)
+      console.log(isActive);
 
       if (isActive) {
         void router.push("/");
@@ -236,3 +236,4 @@ export const useUser = () => {
     userTitle
   };
 };
+

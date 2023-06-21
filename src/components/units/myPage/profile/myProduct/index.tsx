@@ -6,13 +6,34 @@ import { fallback } from "../../../../../commons/libraries/fallback";
 import Tag from "../../../../commons/tag";
 
 export default function ProfileMyProduct(): JSX.Element {
-  const { data: myProduct } = useQueryFetchMyProduct();
+  const { data: myProduct, fetchMore } = useQueryFetchMyProduct();
+  console.log(myProduct)
 
   const { onClickMoveToPage } = useMoveToPage();
 
+    // 무한 스크롤 로직
+    const onLoadMore = () => {
+      if (myProduct === undefined) return;
+  
+      fetchMore({
+        variables: { 
+          page: Math.ceil((myProduct?.fetchMyProduct.length ?? 5) / 5) + 1,
+         },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (fetchMoreResult.fetchMyProduct === undefined) {
+            return { fetchMyProduct: [...prev.fetchMyProduct] };
+          }
+  
+          return {
+            fetchMyProduct: [...prev.fetchMyProduct, ...fetchMoreResult.fetchMyProduct],
+          };
+        },
+      });
+    };
+
   return (
     <S.Wrapper>
-      <S.WrapperRight>
+      <S.WrapperRight loadMore={onLoadMore} pageStart={0} hasMore={true} useWindow={false}>
         {myProduct?.fetchMyProduct[0] === undefined ? (
           <S.None>아직 게시물이 없습니당</S.None>
         ) : (
