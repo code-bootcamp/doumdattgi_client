@@ -10,8 +10,8 @@ import CardBox3 from "../../commons/parts/cardBox/col3";
 
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
-
 
 export default function MainPresenter() {
   const router = useRouter();
@@ -20,6 +20,9 @@ export default function MainPresenter() {
   const { data: Products, refetch: refetch2 } = useQueryFetchProducts();
   const { data: Newbie, refetch: refetch3 } = useQueryFetchNewbieProduct();
   const { data: Sellers, refetch: refetch4 } = useQueryFetchSellProduct();
+  const { data: loginInfo } = useQueryFetchLoginUser();
+
+  const { onClickMoveToPage } = useMoveToPage();
 
   useEffect(() => {
     if (router.asPath === "/") {
@@ -30,7 +33,16 @@ export default function MainPresenter() {
     }
   }, [router.asPath]);
 
-  const {onClickMoveToPage} = useMoveToPage()
+  const goToSignUp = () => {
+    console.log(loginInfo);
+
+    if (loginInfo === undefined) {
+      router.push("/signup");
+    } else {
+      alert("이미 로그인한 상태입니다");
+      router.reload();
+    }
+  };
 
   return (
     <S.Wrapper>
@@ -57,16 +69,16 @@ export default function MainPresenter() {
             ))}
           </S.CardboxWrap>
         </S.Section>
-        <S.Section>
+        {/* <S.Section>
           <S.Title>지금 구하고 있는 구인글이에요</S.Title>
           <S.CardboxWrap>
             {Sellers?.fetchSellProduct.map(el => (
               <BarBox el={el} key={el.product_product_id} />
             ))}
           </S.CardboxWrap>
-        </S.Section>
+        </S.Section> */}
         <S.AdBar>
-          <S.Ad src="/Frame 9.png" onClick={onClickMoveToPage("/signup")}/>
+          <S.Ad src="/Frame 9.png" onClick={goToSignUp} />
         </S.AdBar>
         <S.Section>
           <S.Title>🌱 신규 주니어의 첫 게시글</S.Title>
