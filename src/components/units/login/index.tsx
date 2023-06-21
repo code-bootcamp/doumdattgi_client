@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-//
+
 interface IFormData {
   email: string;
   password: string;
