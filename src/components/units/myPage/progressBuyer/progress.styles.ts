@@ -156,3 +156,10 @@ export const UserName = styled.div`
   font-size: 18px;
   color: #333333;
 `;
+
+export const ListNone = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+`;
