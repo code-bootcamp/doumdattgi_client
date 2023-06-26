@@ -109,9 +109,9 @@ export default function Header(): JSX.Element {
             )}
             {data && (
               <S.UserBox>
-                <S.ShuffleBtn>
+                {/* <S.ShuffleBtn>
                   <S.ShuffleIcon src="/chat.png" />
-                </S.ShuffleBtn>
+                </S.ShuffleBtn> */}
                 <Dropdown
                   menu={{ items }}
                   trigger={["click"]}

@@ -1,7 +1,7 @@
 import {
-  faEllipsisVertical,
   faSeedling,
-  faBookmark as Bookmark2
+  faBookmark as Bookmark2,
+  faX
 } from "@fortawesome/free-solid-svg-icons";
 import Slider from "../../commons/parts/slider";
 import * as S from "./styles";
@@ -26,6 +26,7 @@ import {
   FETCH_PICK_OR_NOT,
   useQueryFetchPickOrNot
 } from "../../commons/hooks/queries/useQueryFetchPickOrNot";
+import { useMutationDeleteLoginProduct } from "../../commons/hooks/mutations/useMutationDeleteLoginProduct";
 
 export default function Detail() {
   const router = useRouter();
@@ -41,6 +42,7 @@ export default function Detail() {
   const { imageSrc, userTitle } = useUser();
   // const [picked, setPicked] = useState(false);
   const [createPick] = useMutationcreatePick();
+  const [deleteLoginProduct] = useMutationDeleteLoginProduct();
 
   // fetch 한 이미지들을 담은 배열
   const ImgArr = data?.fetchDetailProduct.images.map(el => el.image_url) ?? [];
@@ -56,8 +58,6 @@ export default function Detail() {
   const slot2 = data?.fetchDetailProduct.user.slot.slot_second;
   const slot3 = data?.fetchDetailProduct.user.slot.slot_third;
 
-  console.log(slot1, slot2, slot3);
-
   const clickPick = async () => {
     const result = await createPick({
       variables: { product_id: router.query.id as string },
@@ -70,6 +70,20 @@ export default function Detail() {
         }
       ]
     });
+  };
+
+  const clickDelete = async () => {
+    try {
+      await deleteLoginProduct({
+        variables: {
+          product_id: router.query.id as string
+        }
+      });
+      alert("삭제가 완료되었습니다");
+      router.push("/");
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
   };
 
   return (
@@ -95,14 +109,14 @@ export default function Detail() {
                 ) : (
                   <S.Icon onClick={clickPick} icon={faBookmark} />
                 )}
-                <S.Icon icon={faEllipsisVertical} />
+                <S.Icon onClick={clickDelete} icon={faX} />
               </S.IconBox>
             </S.TitleWrap>
             <S.TagWrap>
-              <S.Tag>{data?.fetchDetailProduct.product_sub_category}</S.Tag>
+              <S.Tag>{data?.fetchDetailProduct?.product_sub_category}</S.Tag>
               <S.Tag>{Day}</S.Tag>
             </S.TagWrap>
-            <S.Remarks>{data?.fetchDetailProduct.product_summary}</S.Remarks>
+            <S.Remarks>{data?.fetchDetailProduct?.product_summary}</S.Remarks>
           </S.DetailBox>
           <S.DetailBox>
             <S.Button ImgArr={ImgArr}>
@@ -202,7 +216,7 @@ export default function Detail() {
       <S.Subtitle>이런 게시글은 어떠세요?</S.Subtitle>
       <S.CardBoxWrap>
         {random?.fetchRandomProduct.map(el => (
-          <CardBox data={el} />
+          <CardBox key={el.product_product_id} data={el} />
         ))}
       </S.CardBoxWrap>
     </S.Wrapper>

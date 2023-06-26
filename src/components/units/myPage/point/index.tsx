@@ -21,7 +21,7 @@ export default function PaymentPresenter(): JSX.Element {
   const [isRefund, setIsRefund] = useState(false);
   const [refundInfo, setRefundInfo] = useState(["", ""]);
   const [status, setStatus] = useState([
-    { title: "전체", key: 0, isSelected: false },
+    { title: "전체", key: 0, isSelected: true },
     { title: "충전내역", key: 1, isSelected: false },
     { title: "입금내역", key: 2, isSelected: false },
     { title: "의뢰요청", key: 3, isSelected: false },

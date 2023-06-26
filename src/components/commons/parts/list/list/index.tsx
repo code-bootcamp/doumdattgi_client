@@ -12,10 +12,14 @@ import { useQueryFetchCategoryProduct } from "../../../hooks/queries/useQueryFet
 import ListCardBox from "../../cardBox/list";
 import { useEffect, useState } from "react";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
+import { useQueryFetchLikeCategoryProduct } from "../../../hooks/queries/useQueryfetchLikeCategoryProduct";
 
 export default function ProductList() {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
+
+  const [isRecent, setIsRecent] = useState(true);
+  const [isLike, setIsLike] = useState(false);
 
   // router 들어가는 값 타입지정 (타입이 배열일 가능성)
   const category = Array.isArray(router.query.data)
@@ -23,29 +27,46 @@ export default function ProductList() {
     : router.query.data || "";
 
   const { data, fetchMore, refetch } = useQueryFetchCategoryProduct(category);
+  const { data: data2, refetch: refetch2 } =
+    useQueryFetchLikeCategoryProduct(category);
 
+  // 인기순이냐 아니냐에 따른 refetch 분리
   useEffect(() => {
-    refetch({
-      product_category: category,
-      page: 1,
-      pageSize: 10
-    });
-
-    console.log("카테고리 리페치");
-  }, [router.query.data]);
+    if (!isLike) {
+      refetch({
+        product_category: category,
+        page: 1,
+        pageSize: 10
+      });
+    } else {
+      refetch2({
+        product_category: category,
+        page: 1,
+        pageSize: 10
+      });
+    }
+  }, [router.query.data, isLike]);
 
   // 카테고리 최신순, 과거순 정렬
-  const [isRecent, setIsRecent] = useState(true);
   const categoryList = !isRecent
     ? [...(data?.fetchCategoryProduct || [])].reverse()
     : data?.fetchCategoryProduct;
 
+  const LikeList = data2?.fetchLikeCategoryProduct;
+
   const RecentOrNot = (value: string) => {
     if (value === "최신순") {
       setIsRecent(true);
+      setIsLike(false);
+    } else if (value === "인기순") {
+      setIsRecent(true);
+      setIsLike(true);
     } else if (value === "과거순") {
       setIsRecent(false);
+      setIsLike(false);
     }
+
+    console.log(value);
   };
 
   // 조회용 카테고리 Key값
@@ -77,6 +98,8 @@ export default function ProductList() {
     });
   };
 
+  console.log(categoryList);
+
   return (
     <S.Container>
       <S.CategoryBox>
@@ -107,9 +130,21 @@ export default function ProductList() {
       </S.LengthBox>
       <S.ContentsBox loadMore={onLoadMore} pageStart={0} hasMore={true}>
         <>
-          {categoryList?.map(el => (
-            <ListCardBox key={el.product_product_id} data={el} />
-          ))}
+          {!isLike
+            ? categoryList?.map(el => (
+                <ListCardBox
+                  key={el.product_product_id}
+                  data={el}
+                  isLike={isLike}
+                />
+              ))
+            : LikeList?.map(el => (
+                <ListCardBox
+                  key={el.product_product_id}
+                  data2={el}
+                  isLike={isLike}
+                />
+              ))}
         </>
       </S.ContentsBox>
     </S.Container>
