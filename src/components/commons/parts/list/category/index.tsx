@@ -13,7 +13,7 @@ export default function SideCategory() {
     : router.query.data || "";
 
   const isAllList = router.asPath.includes("all");
-
+  //
   const IT = [
     "UX기획",
     "웹",
@@ -83,7 +83,7 @@ export default function SideCategory() {
       <S.Title>{CategoryObj[BigCategory]}</S.Title>
       <S.DivideLine />
       <S.Ad>
-        <img src="/ad3 1.png"/>
+        <img src="/ad3 1.png" />
       </S.Ad>
       {!isAllList && (
         <S.SubCategoryBox>
