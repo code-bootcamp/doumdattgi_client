@@ -25,7 +25,6 @@ export const TabBox = styled.div`
   flex-direction: row;
   align-items: center;
   text-align: center;
-  line-height: 50px;
 `;
 
 export const PageTab = styled.button`
@@ -35,7 +34,7 @@ export const PageTab = styled.button`
   font-size: 20px;
   border: none;
   background-color: white;
-  margin: 60px 0px 40px 0px;
+  margin: 30px 0;
   cursor: pointer;
   :hover {
     color: black;
@@ -156,4 +155,11 @@ export const UserIcon = styled.img`
 export const UserName = styled.div`
   font-size: 18px;
   color: #333333;
+`;
+
+export const ListNone = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
 `;

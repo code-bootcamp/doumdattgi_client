@@ -256,6 +256,10 @@ export default function WorkAgreement(): JSX.Element {
                       취소할 수 있어요. 이 경우 환불 금액은 상호 협의한 금액에
                       따라요.
                     </S.ContentsIndex>
+                    <S.ContentsIndex>
+                      • '작업 완료 확정하기'를 누르지 않을 경우 3일 뒤에
+                      자동으로 확정이 이루어집니다.
+                    </S.ContentsIndex>
                   </S.Contents>
                   <S.Btn2
                     onClick={() => {
@@ -285,7 +289,9 @@ export default function WorkAgreement(): JSX.Element {
                 completed === "1970-1-1" ? (
                 <S.Box>
                   <S.Btn onClick={onClickRequestRefuse}>거절하기</S.Btn>
-                  <S.Btn onClick={onClickRequestAccept} className="accept">수락하기</S.Btn>
+                  <S.Btn onClick={onClickRequestAccept} className="accept">
+                    수락하기
+                  </S.Btn>
                 </S.Box>
               ) : (
                 <></>

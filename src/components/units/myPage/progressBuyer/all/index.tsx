@@ -10,6 +10,11 @@ export default function ProgressBuyerAll(): JSX.Element {
 
   return (
     <>
+      {data?.fetchBuyerRequest.length === 0 ? (
+        <S.ListNone>현재 신청한 의뢰가 없습니다.</S.ListNone>
+      ) : (
+        ""
+      )}
       {data?.fetchBuyerRequest.map(el => (
         <div
           key={el.request_id}

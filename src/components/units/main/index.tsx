@@ -11,7 +11,6 @@ import CardBox3 from "../../commons/parts/cardBox/col3";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
-import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 
 export default function MainPresenter() {
   const router = useRouter();
@@ -21,8 +20,6 @@ export default function MainPresenter() {
   const { data: Newbie, refetch: refetch3 } = useQueryFetchNewbieProduct();
   const { data: Sellers, refetch: refetch4 } = useQueryFetchSellProduct();
   const { data: loginInfo } = useQueryFetchLoginUser();
-
-  const { onClickMoveToPage } = useMoveToPage();
 
   useEffect(() => {
     if (router.asPath === "/") {
@@ -34,8 +31,6 @@ export default function MainPresenter() {
   }, [router.asPath]);
 
   const goToSignUp = () => {
-    console.log(loginInfo);
-
     if (loginInfo === undefined) {
       router.push("/signup");
     } else {
