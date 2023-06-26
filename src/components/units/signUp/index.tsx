@@ -147,3 +147,4 @@ export default function SignUp(): JSX.Element {
     </S.Wrapper>
   );
 }
+
