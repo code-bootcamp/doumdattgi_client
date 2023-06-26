@@ -50,6 +50,7 @@ export const useResetAccount = (isEditPassword: boolean) => {
     try {
       await resetPasswordSettingPage({
         variables: {
+          password: data.prevPassword,
           new_password: data.password
         }
       });

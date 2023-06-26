@@ -35,7 +35,13 @@ export default function CardBox(props: IProps) {
         <S.InfoBox>
           <Tag data={props.data?.product_product_workDay ?? ""} />
           <S.UserBox>
-            <Avatar size={24} src={`${props.data?.u_user_profileImage}`}/>
+            <S.Avatar
+                onError={e => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = fallback;
+                }}
+                src={props.data?.u_user_profileImage ?? fallback}
+              />
             <S.UserName>{props.data?.u_user_nickname}</S.UserName>
           </S.UserBox>
         </S.InfoBox>

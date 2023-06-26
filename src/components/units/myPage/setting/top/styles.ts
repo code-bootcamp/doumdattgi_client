@@ -21,11 +21,12 @@ export const AvatarWrap = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const Avatar = styled.div`
+export const Avatar = styled.img`
   width: 130px;
   height: 130px;
   background-color: #ccc;
   border-radius: 50%;
+  cursor: pointer;
 `;
 export const AvatarEdit = styled.button`
   width: 130px;
