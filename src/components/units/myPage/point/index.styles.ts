@@ -43,6 +43,9 @@ export const selectOption = styled.div`
   &:first-of-type {
     margin-left: 0;
   }
+  :hover {
+    color: black;
+  }
 `;
 
 export const HoldingBox = styled.div`

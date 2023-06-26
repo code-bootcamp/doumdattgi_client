@@ -8,9 +8,10 @@ import { useRequest } from "../../commons/hooks/custom/useSendRequest/index";
 import { useForm } from "react-hook-form";
 import { schemaCreateRequest } from "../../../commons/libraries/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ChangeEvent, useRef } from "react";
+import { ChangeEvent, useEffect, useRef } from "react";
 import { EditorInstance, EditorInstance2 } from "./index.types";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
+import { useQueryFetchUserPaymentInfo } from "../../commons/hooks/queries/useQueryFetchUserPaymentInfo";
 
 const CountUp = dynamic(
   async () => await import("../../commons/parts/countUp/intex"),
@@ -40,12 +41,20 @@ export default function Request(props: any): JSX.Element {
 
   const storage = globalThis?.sessionStorage;
   const link = storage?.getItem("prevPath") || "/";
-
   const { onClickWriteRequest, isTime, setIsTime, isSubmitting } = useRequest();
 
-  console.log(isSubmitting)
-
   const minimumWage = 9620;
+  const { data } = useQueryFetchUserPaymentInfo("");
+
+  const userPoint = data?.fetchPayments[0]?.user?.user_point || 0;
+
+  // ============== 포인트 부족 ===============
+  useEffect(() => {
+    if (userPoint < minimumWage || userPoint === 0) {
+      alert("포인트가 부족하여 충전 페이지로 이동합니다.");
+      router.push("/mypage/point");
+    }
+  }, [userPoint]);
 
   // =============== 의뢰서 작성 ===============
   const { register, handleSubmit, formState, setValue, trigger } =
@@ -109,7 +118,11 @@ export default function Request(props: any): JSX.Element {
               <ButtonHeight50px title="취소하기" />
             </Link>
             <S.Between />
-            <ButtonHeight50px title="신청하기" isActive={formState.isValid} disabled={isSubmitting} />
+            <ButtonHeight50px
+              title="신청하기"
+              isActive={formState.isValid}
+              disabled={isSubmitting}
+            />
           </S.BtnBox>
         </S.Container>
       </S.Wrapper>

@@ -11,7 +11,7 @@ export default function ProgressBuyerAll(): JSX.Element {
   return (
     <>
       {data?.fetchBuyerRequest.length === 0 ? (
-        <S.ListNone>현재 의뢰를 신청한 작업이 없습니다.</S.ListNone>
+        <S.ListNone>현재 신청한 의뢰가 없습니다.</S.ListNone>
       ) : (
         ""
       )}

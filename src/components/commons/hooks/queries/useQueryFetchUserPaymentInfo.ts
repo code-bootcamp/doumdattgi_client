@@ -1,8 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import {
-  IQuery,
-  IQueryFetchPickUserProductArgs
-} from "../../../../commons/types/generated/types";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export const FETCH_PAYMENTS = gql`
   query fetchPayments(
@@ -21,6 +18,9 @@ export const FETCH_PAYMENTS = gql`
       payment_status
       payment_type
       payment_createdAt
+      user {
+        user_point
+      }
     }
   }
 `;
