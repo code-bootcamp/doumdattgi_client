@@ -9,13 +9,14 @@ import { CategoryObj } from "../../../../../commons/libraries/translate";
 import {
   IFetchLikeCategoryOutput,
   IFetchProductOutput,
-  IFetchSubCategoryOutput
+  IFetchSubCategoryOutput,
+  IQueryFetchSubCategoryProductArgs
 } from "../../../../../commons/types/generated/types";
 
 interface IProps {
-  data?: IFetchProductOutput;
+  data?: IFetchProductOutput | IFetchSubCategoryOutput;
   data2?: IFetchLikeCategoryOutput;
-  isLike: boolean;
+  isLike?: boolean;
 }
 
 export default function ListCardBox(props: IProps) {
