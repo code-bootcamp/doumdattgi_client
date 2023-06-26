@@ -72,6 +72,33 @@ export type ICreateUserInput = {
   user_phone: Scalars['String'];
 };
 
+export type IFetchLikeCategoryOutput = {
+  __typename?: 'FetchLikeCategoryOutput';
+  image_url: Scalars['String'];
+  pick_count: Scalars['Float'];
+  product_product_category: Scalars['String'];
+  product_product_id: Scalars['String'];
+  product_product_sellOrBuy: Scalars['Boolean'];
+  product_product_title: Scalars['String'];
+  product_product_workDay: Scalars['String'];
+  u_user_nickname: Scalars['String'];
+  u_user_profileImage?: Maybe<Scalars['String']>;
+};
+
+export type IFetchLikeSubCategoryOutput = {
+  __typename?: 'FetchLikeSubCategoryOutput';
+  image_url: Scalars['String'];
+  pick_count: Scalars['Float'];
+  product_product_category: Scalars['String'];
+  product_product_id: Scalars['String'];
+  product_product_sellOrBuy: Scalars['Boolean'];
+  product_product_sub_category: Scalars['String'];
+  product_product_title: Scalars['String'];
+  product_product_workDay: Scalars['String'];
+  u_user_nickname: Scalars['String'];
+  u_user_profileImage?: Maybe<Scalars['String']>;
+};
+
 export type IFetchMyPickOutput = {
   __typename?: 'FetchMyPickOutput';
   i_image_url: Scalars['String'];
@@ -245,6 +272,7 @@ export type IMutationResetPasswordArgs = {
 
 export type IMutationResetPasswordSettingPageArgs = {
   new_password: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
@@ -352,11 +380,14 @@ export type IQuery = {
   fetchCategoryProduct: Array<IFetchProductOutput>;
   fetchComments: Array<IComment>;
   fetchDetailProduct: IProduct;
+  fetchLikeCategoryProduct: Array<IFetchLikeCategoryOutput>;
+  fetchLikeSubCategoryProduct: Array<IFetchLikeSubCategoryOutput>;
   fetchLoginUser: IUser;
   fetchMyProduct: Array<IProduct>;
   fetchNewbieProduct: Array<IFetchProductOutput>;
   fetchOneRequest: IRequest;
   fetchPayments: Array<IPayment>;
+  fetchPickOrNot: Scalars['Boolean'];
   fetchPickUserProduct: Array<IFetchMyPickOutput>;
   fetchProducts: Array<IFetchProductOutput>;
   fetchRandomProduct: Array<IFetchProductOutput>;
@@ -386,6 +417,20 @@ export type IQueryFetchDetailProductArgs = {
 };
 
 
+export type IQueryFetchLikeCategoryProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+  product_category: Scalars['String'];
+};
+
+
+export type IQueryFetchLikeSubCategoryProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+  product_sub_category: Scalars['String'];
+};
+
+
 export type IQueryFetchMyProductArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
@@ -401,6 +446,11 @@ export type IQueryFetchPaymentsArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
   payment_status?: InputMaybe<Scalars['String']>;
+};
+
+
+export type IQueryFetchPickOrNotArgs = {
+  product_id: Scalars['String'];
 };
 
 

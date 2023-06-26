@@ -50,7 +50,10 @@ export const Title = styled.h2`
   width: 370px;
 `;
 
-export const IconBox = styled.div``;
+export const IconBox = styled.div`
+  display: flex;
+`;
+
 export const Icon = styled(FontAwesomeIcon)`
   font-size: 24px;
   color: #bec3c7;
