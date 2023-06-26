@@ -6,16 +6,21 @@ import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
 import Tag from "../../../tag";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
-import { IFetchProductOutput, IFetchSearchProductOutput } from "../../../../../commons/types/generated/types";
+import {
+  IFetchProductOutput,
+  IFetchSearchProductOutput
+} from "../../../../../commons/types/generated/types";
 
 interface IProps {
-  data: IFetchProductOutput | IFetchSearchProductOutput
+  data: IFetchProductOutput | IFetchSearchProductOutput;
 }
 
 export default function CardBox(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
   return (
-    <S.Wrapper onClick={onClickMoveToPage(`/${props.data?.product_product_id}`)}>
+    <S.Wrapper
+      onClick={onClickMoveToPage(`/${props.data?.product_product_id}`)}
+    >
       <Image
         src={`${props.data?.i_image_url}`}
         width={"100%"}
@@ -36,7 +41,13 @@ export default function CardBox(props: IProps) {
         <S.InfoBox>
           <Tag data={props.data?.product_product_workDay} />
           <S.UserBox>
-            <Avatar size={24} src={`${props.data?.u_user_profileImage}`} />
+            <S.Avatar
+              onError={e => {
+                const target = e.target as HTMLImageElement;
+                target.src = fallback;
+              }}
+              src={props.data?.u_user_profileImage ?? fallback}
+            />
             <S.UserName>{props.data?.u_user_nickname}</S.UserName>
           </S.UserBox>
         </S.InfoBox>
@@ -44,4 +55,3 @@ export default function CardBox(props: IProps) {
     </S.Wrapper>
   );
 }
-

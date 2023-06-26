@@ -9,6 +9,7 @@ import {
   useSettings
 } from "../../../../commons/hooks/custom/useSettings";
 import { useForm } from "react-hook-form";
+import { fallback } from "../../../../../commons/libraries/fallback";
 
 export default function SettingsTop() {
   const { data } = useQueryFetchLoginUser();
@@ -26,7 +27,6 @@ export default function SettingsTop() {
     handleSubmit
   } = useSettings();
 
-
   return (
     <S.Wrapper>
       <S.SettingTop>
@@ -36,10 +36,12 @@ export default function SettingsTop() {
               <AvatarUpload fileList={fileList} setFileList={setFileList} />
             )}
             {!isAvatarEdit && (
-              <Avatar
-                size={130}
-                icon={<UserOutlined />}
-                src={data?.fetchLoginUser?.user_profileImage}
+              <S.Avatar
+                onError={e => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = fallback;
+                }}
+                src={data?.fetchLoginUser?.user_profileImage ?? fallback}
               />
             )}
             <S.AvatarEdit

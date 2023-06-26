@@ -53,7 +53,11 @@ export const schemaSignUp = yup.object({
       /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/,
       "올바른 휴대폰 번호를 입력해주세요."
     ),
-  name: yup.string().required("성함을 입력해주세요.")
+  name: yup
+    .string()
+    .required("성함을 입력해주세요.")
+    .min(2, "2 ~ 8자리 이내의 성함을 입력해주세요.")
+    .max(8, "2 ~ 8자리 이내의 성함을 입력해주세요.")
 });
 
 export const schemaCreate = yup.object({

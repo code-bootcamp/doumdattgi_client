@@ -97,12 +97,14 @@ export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
                 isActive={formState.isValid}
               />
             </S.SubmitBtn>
-            <S.Footer>
-              <S.JoinText>이미 아이디가 있으신가요?</S.JoinText>
-              <S.JoinBtn onClick={onClickMoveToPage("/login")}>
-                로그인
-              </S.JoinBtn>
-            </S.Footer>
+            {!props.isEditPassword && (
+              <S.Footer>
+                <S.JoinText>이미 아이디가 있으신가요?</S.JoinText>
+                <S.JoinBtn onClick={onClickMoveToPage("/login")}>
+                  로그인
+                </S.JoinBtn>
+              </S.Footer>
+            )}
           </form>
         )}
       </S.Container>
