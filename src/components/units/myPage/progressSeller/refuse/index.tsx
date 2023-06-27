@@ -10,7 +10,8 @@ export default function ProgressSellerRefuse(): JSX.Element {
 
   return (
     <>
-      {data?.fetchSellerWork.length === 0 ? (
+      {data?.fetchSellerWork.filter(item => item.request_isAccept === "REFUSE")
+        .length === 0 ? (
         <S.ListNone>현재 거절된 작업이 없습니다.</S.ListNone>
       ) : (
         ""
