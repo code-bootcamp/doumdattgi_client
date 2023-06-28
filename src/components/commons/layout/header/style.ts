@@ -119,3 +119,7 @@ export const SignUpBtn = styled.button`
   display: block;
   cursor: pointer;
 `;
+export const Logout = styled.span`
+  display: block;
+  width: 100%;
+`

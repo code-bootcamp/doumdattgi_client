@@ -14,7 +14,11 @@ import { useEffect, useState } from "react";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 import { useQueryFetchLikeCategoryProduct } from "../../../hooks/queries/useQueryfetchLikeCategoryProduct";
 
-export default function ProductList() {
+interface IPropsList {
+  isAll: boolean;
+}
+
+export default function ProductList(props: IPropsList) {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
 
@@ -101,19 +105,26 @@ export default function ProductList() {
   console.log(categoryList);
 
   return (
-    <S.Container>
+    <S.Container isAll={props.isAll}>
       <S.CategoryBox>
         <Link href="/categoryList/all">
           <S.CategoryTag>홈</S.CategoryTag>
         </Link>
-        <S.AngleRight icon={faAngleRight} />
-        <S.CategoryTag>{CategoryObj[CategoryTitle ?? category]}</S.CategoryTag>
-        <S.AngleRight icon={faAngleRight} />
+        {!props.isAll && (
+          <>
+            <S.AngleRight icon={faAngleRight} />
+            <S.CategoryTag>
+              {CategoryObj[CategoryTitle ?? category]}
+            </S.CategoryTag>
+            {/* <S.AngleRight icon={faAngleRight} /> */}
+          </>
+        )}
+
         {/* <S.CategoryTag>{Sub}</S.CategoryTag> */}
       </S.CategoryBox>
       <S.LengthBox>
         <S.LengthText>
-          {data?.fetchCategoryProduct?.length}개의 서비스
+          {data?.fetchCategoryProduct?.length ?? 0}개의 서비스
         </S.LengthText>
         <Select
           defaultValue="최신순"

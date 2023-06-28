@@ -2,8 +2,10 @@ import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InfiniteScroll from "react-infinite-scroller";
 
-export const Container = styled.div`
-  width: calc(1140px - 220px);
+export const Container = styled.div<{
+  isAll: boolean;
+}>`
+  width: ${props => (props.isAll ? "100%" : "calc(1140px - 220px)")};
   padding-left: 20px;
 `;
 

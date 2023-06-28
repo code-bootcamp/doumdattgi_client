@@ -35,7 +35,7 @@ export default function Header(): JSX.Element {
     {
       type: "divider"
     },
-    { label: <span onClick={onClickLogout}>로그아웃</span> }
+    { label: <S.Logout onClick={onClickLogout}>로그아웃</S.Logout> }
   ] as ItemType[];
 
   const clickRandomBoard = async () => {
