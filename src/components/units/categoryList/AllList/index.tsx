@@ -5,8 +5,10 @@ import SideCategory from "../../../commons/parts/list/category";
 export default function SubCategorys() {
   return (
     <S.Wrapper>
-      <SideCategory />
-      <ProductList />
+      <S.Container>
+        {/* <SideCategory /> */}
+        <ProductList isAll={true}/>
+      </S.Container>
     </S.Wrapper>
   );
 }

@@ -30,6 +30,7 @@ export const LengthBox = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  align-items: center;
   margin-top: 24px;
 `;
 

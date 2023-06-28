@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1140px;
-  margin: 0px auto;
   display: flex;
-  margin-top: 90px;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 150px;
+`;
+export const Container = styled.div`
+  width: 1140px;
+  display: flex;
+  justify-content: space-between;
 `;

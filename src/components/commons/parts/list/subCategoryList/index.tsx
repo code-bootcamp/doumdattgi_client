@@ -66,7 +66,7 @@ export default function SubProductList() {
       </S.CategoryBox>
       <S.LengthBox>
         <S.LengthText>
-          {data?.fetchSubCategoryProduct?.length}개의 서비스
+          {data?.fetchSubCategoryProduct?.length ?? 0}개의 서비스
         </S.LengthText>
         <Select
           defaultValue="최신순"
