@@ -84,3 +84,10 @@ export const ChargeBtn = styled.button`
   color: white;
   cursor: pointer;
 `;
+
+export const Nothing = styled.div`
+  margin-top: 25%;
+  text-align: center;
+  font-size: 16px;
+  color: #aaaaaa;
+`;
