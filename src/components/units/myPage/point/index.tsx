@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 
 export default function PaymentPresenter(): JSX.Element {
   const router = useRouter();
-
+  //
   const [isCancel, setIsCancel] = useRecoilState(ModalCancelState);
   const [refetches, setRefetch] = useRecoilState(refetchAtom);
 
