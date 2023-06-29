@@ -87,11 +87,11 @@ export default function Comment(props: ICommentProps): JSX.Element {
             >
               {user?.fetchLoginUser?.user_id !== el?.sender_id && (
                 <S.SenderIcon
-                  src={
-                    el?.user?.user_profileImage !== null
-                      ? el?.user?.user_profileImage
-                      : fallback
-                  }
+                  onError={e => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = fallback;
+                  }}
+                  src={el?.user?.user_profileImage ?? fallback}
                 />
               )}
               <div>

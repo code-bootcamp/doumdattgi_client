@@ -10,7 +10,8 @@ export default function ProgressSellerDone(): JSX.Element {
 
   return (
     <>
-      {data?.fetchSellerWork.length === 0 ? (
+      {data?.fetchSellerWork.filter(item => item.request_isAccept === "FINISH")
+        .length === 0 ? (
         <S.ListNone>현재 종료된 작업이 없습니다.</S.ListNone>
       ) : (
         ""

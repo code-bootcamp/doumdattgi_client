@@ -49,7 +49,8 @@ export default function PaymentPresenter(): JSX.Element {
   //  결제내역 refetch
   useEffect(() => {
     setRefetch(prev => ({ ...prev, login: loginRefetch, payment: payRefetch }));
-  }, [payRefetch]);
+    payRefetch({ page: 1, pageSize: 10, payment_status: "" });
+  }, [payRefetch, router.asPath]);
 
   // 환불요청
   const clickRefund = (value: IValueArgs) => () => {
@@ -80,8 +81,8 @@ export default function PaymentPresenter(): JSX.Element {
     );
     setPayState(TrnaslatePointSelect[selectedId]);
 
-    const status = TrnaslatePointSelect[selectedId];
-    await payRefetch({ page: 1, pageSize: 10, payment_status: status });
+    const state = TrnaslatePointSelect[selectedId];
+    await payRefetch({ page: 1, pageSize: 10, payment_status: state });
 
     // router.push({
     //   pathname: `/mypage/point/`,
@@ -146,20 +147,24 @@ export default function PaymentPresenter(): JSX.Element {
               <S.ChargeBtn onClick={clickModal}>포인트 충전</S.ChargeBtn>
             </S.CurrentHold>
           </S.HoldingBox>
-          <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
-            {data?.fetchPayments.map(el => (
-              <PayList
-                dataArr={dataArr}
-                clickRefund={clickRefund}
-                el={el}
-                key={el.payment_id}
-                payment_impUid={""}
-                payment_type={""}
-                payment_createdAt={""}
-                payment_amount={0}
-              />
-            )) ?? []}
-          </InfiniteScroll>
+          {data?.fetchPayments.length === 0 ? (
+            <S.Nothing>내역이 없습니다</S.Nothing>
+          ) : (
+            <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
+              {data?.fetchPayments.map(el => (
+                <PayList
+                  dataArr={dataArr}
+                  clickRefund={clickRefund}
+                  el={el}
+                  key={el.payment_id}
+                  payment_impUid={""}
+                  payment_type={""}
+                  payment_createdAt={""}
+                  payment_amount={0}
+                />
+              ))}
+            </InfiniteScroll>
+          )}
         </S.Container>
       </S.Wrapper>
     </>
