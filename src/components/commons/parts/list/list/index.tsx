@@ -25,7 +25,7 @@ export default function ProductList(props: IPropsList) {
   const [isRecent, setIsRecent] = useState(true);
   const [isLike, setIsLike] = useState(false);
 
-  // router 들어가는 값 타입지정 (타입이 배열일 가능성)
+  // router가 들어가는 값 타입지정 (타입이 배열일 가능성)
   const category = Array.isArray(router.query.data)
     ? router.query.data[0]
     : router.query.data || "";
