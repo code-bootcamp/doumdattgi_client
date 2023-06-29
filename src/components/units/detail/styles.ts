@@ -36,7 +36,7 @@ export const Category = styled.span`
 `;
 export const TitleWrap = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-top: 20px;
 `;
@@ -44,9 +44,9 @@ export const Title = styled.h2`
   font-size: 30px;
   line-height: 30px;
   font-weight: 700;
-  white-space: nowrap;
+  /* white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
   width: 370px;
 `;
 
@@ -90,6 +90,9 @@ export const Button = styled.div<{
   position: relative;
   padding-bottom: ${props => (props.ImgArr?.length >= 2 ? "90px" : "40px")};
 `;
+export const DeleteBtn = styled.div`
+  margin-bottom: 10px;
+`
 export const SlotBox = styled.div`
   position: absolute;
   width: 168px;

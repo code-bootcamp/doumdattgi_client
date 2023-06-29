@@ -66,7 +66,13 @@ export default function ListCardBox(props: IProps) {
             }
           />
           <S.UserBox>
-            <Avatar size={24} src={`${props.data?.u_user_profileImage}`} />
+            <S.Avatar
+              onError={e => {
+                const target = e.target as HTMLImageElement;
+                target.src = fallback;
+              }}
+              src={props.data?.u_user_profileImage ?? fallback}
+            />
             <S.UserName>
               {props.isLike
                 ? props.data2?.u_user_nickname
