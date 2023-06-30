@@ -37,7 +37,6 @@ export default function Detail() {
   const { data: loginData } = useQueryFetchLoginUser();
   const { data: random } = useQueryFetchRandomProduct();
   const { data: pick } = useQueryFetchPickOrNot(String(router.query.id));
-  console.log(pick?.fetchPickOrNot);
   const { imageSrc, userTitle } = useUser();
   // const [picked, setPicked] = useState(false);
   const [createPick] = useMutationcreatePick();
@@ -117,7 +116,7 @@ export default function Detail() {
                 ) : (
                   <S.Icon onClick={clickPick} icon={faBookmark} />
                 )}
-                <S.Icon onClick={clickDelete} icon={faX} />
+                {/* <S.Icon onClick={clickDelete} icon={faX} /> */}
               </S.IconBox>
             </S.TitleWrap>
             <S.TagWrap>
@@ -137,11 +136,24 @@ export default function Detail() {
                   </a>
                 </Link>
               ) : (
-                <Link href={`/${router.query.id}/edit`}>
-                  <a>
-                    <ButtonHeight50px title="수정하기" isYou={true} />
-                  </a>
-                </Link>
+                <>
+                  <S.DeleteBtn>
+                    <ButtonHeight50px
+                      title="삭제하기"
+                      isYou={true}
+                      onClick={clickDelete}
+                    />
+                  </S.DeleteBtn>
+                  <Link href={`/${router.query.id}/edit`}>
+                    <a>
+                      <ButtonHeight50px
+                        title="수정하기"
+                        isYou={true}
+                        isActive={true}
+                      />
+                    </a>
+                  </Link>
+                </>
               )}
               <S.SlotBox>
                 {writer === LoginUser ? (
@@ -176,7 +188,11 @@ export default function Detail() {
           )}
         </S.DetailContentsWrap>
         <S.DetailUserWrap>
-          <S.UserName>{data?.fetchDetailProduct.user.user_nickname}</S.UserName>
+          <S.UserName>
+            {data?.fetchDetailProduct.user.user_nickname === ""
+              ? data?.fetchDetailProduct.user.user_email
+              : data?.fetchDetailProduct.user.user_nickname}
+          </S.UserName>
           <S.UserAvatar />
           <S.UserContainer>
             <S.UserTimeWrap>
@@ -211,11 +227,15 @@ export default function Detail() {
               <S.PortfolioText>포트폴리오</S.PortfolioText>
             </S.PortfolioTitleBox>
             <S.PortfolioLink>
-              {data?.fetchDetailProduct.user.user_portfolio}
+              {data?.fetchDetailProduct.user?.user_portfolio === ""
+                ? "아직 등록한 포트폴리오 주소가 없습니다."
+                : data?.fetchDetailProduct.user?.user_portfolio}
             </S.PortfolioLink>
             <S.UserIntroduceTitle>소개</S.UserIntroduceTitle>
             <S.UserIntroduce>
-              {data?.fetchDetailProduct.user.user_introduce}
+              {data?.fetchDetailProduct.user.user_introduce === ""
+                ? "아직 등록한 소개가 없습니다."
+                : data?.fetchDetailProduct.user.user_introduce}
             </S.UserIntroduce>
           </S.UserContainer>
         </S.DetailUserWrap>

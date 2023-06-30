@@ -49,6 +49,13 @@ export const UserBox = styled.div`
     display: flex;
     align-items: center;
 `;
+export const Avatar = styled.img`
+  width: 24px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+`;
 export const UserName = styled.span`
     display: block;
     font-weight: 600;
