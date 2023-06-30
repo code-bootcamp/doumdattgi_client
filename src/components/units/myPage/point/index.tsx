@@ -151,18 +151,20 @@ export default function PaymentPresenter(): JSX.Element {
             <S.Nothing>내역이 없습니다</S.Nothing>
           ) : (
             <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
-              {data?.fetchPayments.map(el => (
-                <PayList
-                  dataArr={dataArr}
-                  clickRefund={clickRefund}
-                  el={el}
-                  key={el.payment_id}
-                  payment_impUid={""}
-                  payment_type={""}
-                  payment_createdAt={""}
-                  payment_amount={0}
-                />
-              ))}
+              <>
+                {data?.fetchPayments.map(el => (
+                  <PayList
+                    dataArr={dataArr}
+                    clickRefund={clickRefund}
+                    el={el}
+                    key={el.payment_id}
+                    payment_impUid={""}
+                    payment_type={""}
+                    payment_createdAt={""}
+                    payment_amount={0}
+                  />
+                ))}
+              </>
             </InfiniteScroll>
           )}
         </S.Container>

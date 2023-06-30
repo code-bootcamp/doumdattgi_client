@@ -9,8 +9,7 @@ import { CategoryObj } from "../../../../../commons/libraries/translate";
 import {
   IFetchLikeCategoryOutput,
   IFetchProductOutput,
-  IFetchSubCategoryOutput,
-  IQueryFetchSubCategoryProductArgs
+  IFetchSubCategoryOutput
 } from "../../../../../commons/types/generated/types";
 
 interface IProps {
@@ -71,7 +70,11 @@ export default function ListCardBox(props: IProps) {
                 const target = e.target as HTMLImageElement;
                 target.src = fallback;
               }}
-              src={props.data?.u_user_profileImage ?? fallback}
+              src={
+                props.isLike
+                  ? props.data2?.u_user_profileImage ?? fallback
+                  : props.data?.u_user_profileImage ?? fallback
+              }
             />
             <S.UserName>
               {props.isLike
