@@ -164,6 +164,7 @@ export default function PaymentPresenter(): JSX.Element {
                     clickRefund={clickRefund}
                     el={el}
                     key={el.payment_id}
+                    payAmount={el.payment_amount}
                     allAmount={allAmount ?? 0}
                     payment_impUid={""}
                     payment_type={""}
