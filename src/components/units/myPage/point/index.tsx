@@ -29,6 +29,7 @@ export default function PaymentPresenter(): JSX.Element {
     { title: "환불내역", key: 5, isSelected: false }
   ]);
   const [payState, setPayState] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   const { clickModal, openModal, setOpenModal } = UseModal();
   const { data: UserData, refetch: loginRefetch } = useQueryFetchLoginUser();
@@ -93,7 +94,8 @@ export default function PaymentPresenter(): JSX.Element {
 
   // 결제 내역 무한스크롤
   const onLoadMore = () => {
-    if (data === undefined) return;
+    if (data === undefined || loading) return;
+    setLoading(true);
 
     fetchMore({
       variables: {
