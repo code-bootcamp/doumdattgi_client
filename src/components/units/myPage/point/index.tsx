@@ -53,6 +53,9 @@ export default function PaymentPresenter(): JSX.Element {
     payRefetch({ page: 1, pageSize: 10, payment_status: "" });
   }, [payRefetch, router.asPath]);
 
+  // 총 보유 포인트
+  const allAmount = UserData?.fetchLoginUser?.user_point;
+
   // 환불요청
   const clickRefund = (value: IValueArgs) => () => {
     const Info = [...refundInfo];
@@ -161,6 +164,7 @@ export default function PaymentPresenter(): JSX.Element {
                     clickRefund={clickRefund}
                     el={el}
                     key={el.payment_id}
+                    allAmount={allAmount ?? 0}
                     payment_impUid={""}
                     payment_type={""}
                     payment_createdAt={""}
