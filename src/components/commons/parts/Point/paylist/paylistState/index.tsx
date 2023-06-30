@@ -26,7 +26,7 @@ interface IProps {
 export default function PayState(props: IProps) {
   const { data } = useQueryFetchUserCanceldPaymentInfo();
 
-  const refundState = props.allAmount <= props.payAmount;
+  const refundState = props.allAmount < props.payAmount;
 
   const Component = { key: <div></div> };
   const canceled = data?.fetchPayments.map((el: IProps) => el.payment_impUid);
