@@ -21,7 +21,10 @@ export default function PayList(props: IPropsfetchUserPaymentInfo) {
             <PayState
               el={props.el}
               arr={arr}
+              dataArr={props.dataArr}
+              allAmount={props.allAmount}
               clickRefund={props.clickRefund}
+              payAmount={props.payAmount}
               payment_impUid={""}
               payment_type={""}
               payment_createdAt={""}
