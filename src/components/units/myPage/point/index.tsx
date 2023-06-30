@@ -84,6 +84,7 @@ export default function PaymentPresenter(): JSX.Element {
     const state = TrnaslatePointSelect[selectedId];
     await payRefetch({ page: 1, pageSize: 10, payment_status: state });
 
+    //
     // router.push({
     //   pathname: `/mypage/point/`,
     //   query: { status }
