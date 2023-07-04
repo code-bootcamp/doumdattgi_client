@@ -26,6 +26,8 @@ export interface IPropsfetchUserPaymentInfo {
   clickRefund: (value: IValueArgs) => () => void;
   el: IPayment;
   key: string;
+  allAmount: number;
+  payAmount: number;
   payment_impUid: string;
   payment_type: string;
   payment_createdAt: string;

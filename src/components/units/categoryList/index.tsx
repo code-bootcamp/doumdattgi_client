@@ -7,7 +7,7 @@ export default function ListUnit() {
     <S.Wrapper>
       <S.Container>
         <SideCategory />
-        <ProductList isAll={false}/>
+        <ProductList isAll={false} />
       </S.Container>
     </S.Wrapper>
   );

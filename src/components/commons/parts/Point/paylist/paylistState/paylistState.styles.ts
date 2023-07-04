@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+interface IRefundProps {
+  isOkRefund: boolean;
+}
+
 export const ChargeDone = styled.div`
   width: 70px;
   height: 36px;
@@ -49,7 +53,8 @@ export const RefundBtn = styled.button`
   height: 36px;
   border-radius: 6px;
   border: none;
-  background-color: #ff6b6b;
+  background-color: ${(props: IRefundProps) =>
+    props.isOkRefund ? "#bdbdbd" : "#ff6b6b"};
   color: white;
   margin-left: 10px;
 `;

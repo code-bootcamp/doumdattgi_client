@@ -12,9 +12,9 @@ import ListCardBox from "../../cardBox/list";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 
 interface IProps {
-  data: IFetchProductOutput
+  data: IFetchProductOutput;
 }
-
+//
 export default function SubProductList() {
   const router = useRouter();
 

@@ -25,7 +25,7 @@ export default function ProductList(props: IPropsList) {
   const [isRecent, setIsRecent] = useState(true);
   const [isLike, setIsLike] = useState(false);
 
-  // router 들어가는 값 타입지정 (타입이 배열일 가능성)
+  // router가 들어가는 값 타입지정 (타입이 배열일 가능성)
   const category = Array.isArray(router.query.data)
     ? router.query.data[0]
     : router.query.data || "";
@@ -34,29 +34,23 @@ export default function ProductList(props: IPropsList) {
   const { data: data2, refetch: refetch2 } =
     useQueryFetchLikeCategoryProduct(category);
 
-  // 인기순이냐 아니냐에 따른 refetch 분리
+  // 인기순이냐 아니냐에 따라 refetch 분리
   useEffect(() => {
-    if (!isLike) {
-      refetch({
-        product_category: category,
-        page: 1,
-        pageSize: 10
-      });
-    } else {
+    if (isLike) {
       refetch2({
         product_category: category,
         page: 1,
         pageSize: 10
       });
     }
-  }, [router.query.data, isLike]);
+  }, [isLike]);
 
   // 카테고리 최신순, 과거순 정렬
   const categoryList = !isRecent
-    ? [...(data?.fetchCategoryProduct || [])].reverse()
-    : data?.fetchCategoryProduct;
+    ? data?.fetchCategoryProduct.reverse() || []
+    : data?.fetchCategoryProduct || [];
 
-  const LikeList = data2?.fetchLikeCategoryProduct;
+  const LikeList = data2?.fetchLikeCategoryProduct ?? [];
 
   const RecentOrNot = (value: string) => {
     if (value === "최신순") {
@@ -69,8 +63,6 @@ export default function ProductList(props: IPropsList) {
       setIsRecent(false);
       setIsLike(false);
     }
-
-    console.log(value);
   };
 
   // 조회용 카테고리 Key값
@@ -103,6 +95,7 @@ export default function ProductList(props: IPropsList) {
   };
 
   console.log(categoryList);
+  console.log(LikeList);
 
   return (
     <S.Container isAll={props.isAll}>
@@ -146,14 +139,14 @@ export default function ProductList(props: IPropsList) {
                 <ListCardBox
                   key={el.product_product_id}
                   data={el}
-                  isLike={isLike}
+                  isLike={false}
                 />
               ))
             : LikeList?.map(el => (
                 <ListCardBox
                   key={el.product_product_id}
                   data2={el}
-                  isLike={isLike}
+                  isLike={true}
                 />
               ))}
         </>
