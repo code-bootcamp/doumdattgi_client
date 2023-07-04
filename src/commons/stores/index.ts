@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 import { getAccessToken } from "../libraries/getAccessToken";
-import { IPayment } from "../types/generated/types";
+// import { IPayment } from "../types/generated/types";
 
 export const accessTokenState = atom({
   key: "accessTokenState",
@@ -31,5 +31,10 @@ export const userPhoneState = atom({
 
 export const userEmailState = atom({
   key: "userEmailState",
+  default: ""
+});
+
+export const selectServiceFromLanding = atom<string | null>({
+  key: "selectServiceFirstFromLanding",
   default: ""
 });
