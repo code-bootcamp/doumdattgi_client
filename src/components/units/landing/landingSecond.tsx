@@ -2,7 +2,6 @@ import * as S from "./styles";
 import { useInView } from "react-intersection-observer";
 import { useRecoilState } from "recoil";
 import { selectServiceFromLanding } from "../../../commons/stores";
-// import { Router } from "react-router-dom";
 import { useRouter } from "next/router";
 
 export default function LandingCategory(): JSX.Element {
