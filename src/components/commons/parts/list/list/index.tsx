@@ -34,7 +34,7 @@ export default function ProductList(props: IPropsList) {
   const { data: data2, refetch: refetch2 } =
     useQueryFetchLikeCategoryProduct(category);
 
-  // 인기순이냐 아니냐에 따라 refetch 분리
+  // 인기순, 인기순 아니냐에 따라 refetch 분리
   useEffect(() => {
     if (isLike) {
       refetch2({
