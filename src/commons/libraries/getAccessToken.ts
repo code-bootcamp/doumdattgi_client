@@ -14,10 +14,12 @@ export const getAccessToken = async (): Promise<string | undefined> => {
       { credentials: "include" }
     );
     const result: any = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
+
     const newAccessToken = result.restoreAccessToken;
 
     return newAccessToken;
   } catch (error: any) {
     console.log(error.message);
+    console.log("에러");
   }
 };
