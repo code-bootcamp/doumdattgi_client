@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled.div`
-  width: calc((100% - 40px) / 3);
+  width: calc((100% - 40px) / 4);
   background-color: #fff;
   border: 1px solid #dddfe3;
   border-radius: 6px;
