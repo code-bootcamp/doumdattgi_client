@@ -17,8 +17,6 @@ export default function ProgressSeller(): JSX.Element {
   const onClickList = (selected: string) => {
     setIsList(selected);
 
-    console.log(selected);
-
     refetch();
 
     localStorage.setItem("selectedTab", selected.toString());

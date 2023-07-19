@@ -13,7 +13,6 @@ interface IUseModalProps {
   handleCancel: () => void;
   handleOk: () => void;
 }
-//
 
 export default function UseModal(): IUseModalProps {
   const [openModal, setOpenModal] = useState(false);
