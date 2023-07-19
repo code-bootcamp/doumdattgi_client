@@ -1,11 +1,11 @@
-import * as S from "./styles";
-import { useQueryFetchMyProduct } from "../../../../commons/hooks/queries/useQueryfetchMyProduct";
-import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage/index";
-import { CategoryObj, Obj } from "../../../../../commons/libraries/translate";
-import { fallback } from "../../../../../commons/libraries/fallback";
+import * as S from "../styles";
 import Tag from "../../../../commons/tag";
+import { useQueryFetchMyProduct } from "../../../../commons/hooks/queries/useQueryfetchMyProduct";
+import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
+import { fallback } from "../../../../../commons/libraries/fallback";
+import { CategoryObj } from "../../../../../commons/libraries/translate";
 
-export default function ProfileMyProduct(): JSX.Element {
+export default function MileageList(): JSX.Element {
   const { data: myProduct, fetchMore } = useQueryFetchMyProduct();
 
   const { onClickMoveToPage } = useMoveToPage();
@@ -41,8 +41,10 @@ export default function ProfileMyProduct(): JSX.Element {
         hasMore={true}
         useWindow={false}
       >
-        {myProduct?.fetchMyProduct[0] === undefined ? (
-          <S.None>아직 게시물이 없습니당</S.None>
+        {myProduct?.fetchMyProduct.filter(
+          status => status.mileage?.mileage_status === "EXPENSE"
+        ).length === 0 ? (
+          <S.None>아직 서비스 이용권을 사용한 게시물이 없습니당</S.None>
         ) : (
           <>
             {myProduct?.fetchMyProduct.map(el => (

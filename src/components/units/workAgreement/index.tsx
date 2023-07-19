@@ -54,8 +54,6 @@ export default function WorkAgreement(): JSX.Element {
     refetch({ request_id: router.query.id as string });
   }, [isAccept]);
 
-  console.log(isAccept);
-
   return (
     <>
       <CommentDrawer data={data} />

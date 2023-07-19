@@ -66,8 +66,6 @@ export default function Request(props: any): JSX.Element {
   const onChangeContents = (data: IEditor): void => {
     const EditorInstance = editorRef.current?.getInstance() as EditorInstance2;
     const value = EditorInstance?.getHTML();
-
-    console.log(value);
     setValue("request_content", value === "<p><br></p>" ? "" : value);
     void trigger("request_content");
   };

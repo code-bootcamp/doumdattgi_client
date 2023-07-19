@@ -14,6 +14,13 @@ export type Scalars = {
   Upload: any;
 };
 
+export enum ICoupon_Type_Enum {
+  None = 'NONE',
+  OneDay = 'ONE_DAY',
+  SevenDays = 'SEVEN_DAYS',
+  ThreeDays = 'THREE_DAYS'
+}
+
 export type ICancelPaymentOutput = {
   __typename?: 'CancelPaymentOutput';
   payment_amount: Scalars['Int'];
@@ -159,6 +166,22 @@ export type IImage = {
   product: IProduct;
 };
 
+export enum IMileage_Status_Enum {
+  Expense = 'EXPENSE',
+  Income = 'INCOME'
+}
+
+export type IMileage = {
+  __typename?: 'Mileage';
+  mileage_coupon?: Maybe<ICoupon_Type_Enum>;
+  mileage_createdAt: Scalars['DateTime'];
+  mileage_id: Scalars['String'];
+  mileage_status: IMileage_Status_Enum;
+  payment_amount: Scalars['Int'];
+  product: IProduct;
+  user: IUser;
+};
+
 export type IMutation = {
   __typename?: 'Mutation';
   cancelPayment: ICancelPaymentOutput;
@@ -174,6 +197,7 @@ export type IMutation = {
   deleteUser: Scalars['Boolean'];
   login: Scalars['String'];
   logout: Scalars['String'];
+  purchaseCoupon: Scalars['Boolean'];
   requestAcceptRefuse: IRequest;
   requestProcess: Scalars['Boolean'];
   resetPassword: Scalars['Boolean'];
@@ -249,6 +273,12 @@ export type IMutationDeleteLoginProductArgs = {
 export type IMutationLoginArgs = {
   user_email: Scalars['String'];
   user_password: Scalars['String'];
+};
+
+
+export type IMutationPurchaseCouponArgs = {
+  coupon: Scalars['String'];
+  productId: Scalars['String'];
 };
 
 
@@ -353,7 +383,8 @@ export type IPick = {
 
 export type IProduct = {
   __typename?: 'Product';
-  images: Array<IImage>;
+  images?: Maybe<Array<IImage>>;
+  mileage?: Maybe<IMileage>;
   pick: Array<IPick>;
   product_category: IProduct_Category_Enum;
   product_deletedAt?: Maybe<Scalars['DateTime']>;
@@ -383,6 +414,8 @@ export type IQuery = {
   fetchLikeCategoryProduct: Array<IFetchLikeCategoryOutput>;
   fetchLikeSubCategoryProduct: Array<IFetchLikeSubCategoryOutput>;
   fetchLoginUser: IUser;
+  fetchMileageHistory: Array<IMileage>;
+  fetchMyNotCouponProduct: Array<IProduct>;
   fetchMyProduct: Array<IProduct>;
   fetchNewbieProduct: Array<IFetchProductOutput>;
   fetchOneRequest: IRequest;
@@ -558,12 +591,14 @@ export type IUpdateUserInfoInput = {
 
 export type IUser = {
   __typename?: 'User';
+  mileage: Array<IMileage>;
   payment: Array<IPayment>;
   product: Array<IProduct>;
   slot: ISlot;
   user_email: Scalars['String'];
   user_id: Scalars['String'];
   user_introduce?: Maybe<Scalars['String']>;
+  user_mileage: Scalars['Int'];
   user_name: Scalars['String'];
   user_nickname: Scalars['String'];
   user_password: Scalars['String'];
