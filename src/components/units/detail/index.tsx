@@ -42,6 +42,8 @@ export default function Detail() {
   const [createPick] = useMutationcreatePick();
   const [deleteLoginProduct] = useMutationDeleteLoginProduct();
 
+  const [isNotServer, setIsNotServer] = useState(false);
+
   // 주소 뒤에 임의값 입력할 경우 페이지 로드되는 것 방지
 
   useEffect(() => {
@@ -50,6 +52,11 @@ export default function Detail() {
       router.push("/");
     }
   }, [error]);
+
+  // SSR 관련 서버와 브라우저 간 렌더링 차이로 인한 에러이슈 해결 (임시방편)
+  useEffect(() => {
+    setIsNotServer(true);
+  }, []);
 
   // fetch 한 이미지들을 담은 배열
   const ImgArr = data?.fetchDetailProduct.images.map(el => el.image_url) ?? [];
@@ -177,7 +184,7 @@ export default function Detail() {
       <S.Container className="bottom">
         <S.DetailContentsWrap>
           <S.DetailTitle>상세 내용</S.DetailTitle>
-          {typeof window !== "undefined" && (
+          {isNotServer && (
             <S.DetailContents
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(
