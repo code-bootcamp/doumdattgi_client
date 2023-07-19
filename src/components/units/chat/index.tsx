@@ -7,8 +7,8 @@ export default function Chatting() {
         <S.ListBox>
           <S.ListTitle>메세지 목록</S.ListTitle>
           <S.MessageList>
-            {new Array(8).fill(1).map(el => (
-              <S.List>
+            {new Array(8).fill(1).map((el, idx) => (
+              <S.List key={idx}>
                 <S.ProfileImg src="/Ellipse 23.png" />
                 <S.InfoBox>
                   <S.NameAndDate>
