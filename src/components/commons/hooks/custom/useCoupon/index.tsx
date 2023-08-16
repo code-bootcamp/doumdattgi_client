@@ -11,6 +11,7 @@ export const useCoupon = () => {
   // 쿠폰을 적용할 게시글 선택
   const onClickTitle = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
+    console.log(event.target.value);
   };
 
   // 어떤 쿠폰 쓸건지 선택
@@ -20,7 +21,7 @@ export const useCoupon = () => {
 
   // 쿠폰 적용 후 api 요청
   const onClickSubmit = () => {
-    if (!selectedCoupon || !selectedOption) {
+    if (selectedCoupon && selectedOption) {
       try {
         const result = purchaseCoupon({
           variables: {
@@ -28,10 +29,13 @@ export const useCoupon = () => {
             productId: selectedOption
           }
         });
+        console.log(result);
         alert("쿠폰이 정상적으로 적용되었습니다.");
       } catch (error) {
         if (error instanceof Error) alert(error.message);
       }
+    } else {
+      alert("쿠폰 혹은 게시물을 선택해주세요");
     }
   };
 
@@ -39,6 +43,7 @@ export const useCoupon = () => {
     onClickTitle,
     onClickCoupon,
     onClickSubmit,
-    selectedOption
+    selectedOption,
+    selectedCoupon
   };
 };
