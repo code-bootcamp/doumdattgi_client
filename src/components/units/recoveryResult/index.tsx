@@ -10,7 +10,7 @@ interface IRecoveryResult {
   isEmail: boolean;
   isEditPassword?: boolean;
 }
-
+//
 export default function RecoveryResult(props: IRecoveryResult): JSX.Element {
   const {
     register,

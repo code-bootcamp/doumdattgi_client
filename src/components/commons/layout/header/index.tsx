@@ -32,6 +32,7 @@ export default function Header(): JSX.Element {
   const items: MenuProps["items"] = [
     { label: <Link href={"/mypage/profile"}>내 프로필</Link> },
     { label: <Link href={"/mypage/point"}>포인트</Link> },
+    { label: <Link href={"/mypage/mileage"}>마일리지</Link> },
     {
       type: "divider"
     },

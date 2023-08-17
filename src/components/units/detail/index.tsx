@@ -20,7 +20,7 @@ import { useQueryFetchUserSlot } from "../../commons/hooks/queries/useQueryfetch
 import { useUser } from "../../commons/hooks/custom/useUser/index";
 import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutationCreatePick";
 import CardBox from "../../commons/parts/cardBox/col4";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IProduct } from "../../../commons/types/generated/types";
 import {
   FETCH_PICK_OR_NOT,
@@ -34,15 +34,30 @@ export default function Detail() {
   const { onClickMoveToPage } = useMoveToPage();
 
   const id = String(router.query.id);
-  const { data } = useQueryFetchDetailProduct(id);
+  const { data, error } = useQueryFetchDetailProduct(id);
   const { data: loginData } = useQueryFetchLoginUser();
   const { data: random } = useQueryFetchRandomProduct();
-  const { data: slotData } = useQueryFetchUserSlot();
   const { data: pick } = useQueryFetchPickOrNot(String(router.query.id));
   const { imageSrc, userTitle } = useUser();
   // const [picked, setPicked] = useState(false);
   const [createPick] = useMutationcreatePick();
   const [deleteLoginProduct] = useMutationDeleteLoginProduct();
+
+  const [isNotServer, setIsNotServer] = useState(false);
+
+  // 주소 뒤에 임의값 입력할 경우 페이지 로드되는 것 방지
+
+  useEffect(() => {
+    if (error) {
+      alert("잘못된 접근입니다");
+      router.push("/");
+    }
+  }, [error]);
+
+  // SSR 관련 서버와 브라우저 간 렌더링 차이로 인한 에러이슈 해결 (임시방편)
+  useEffect(() => {
+    setIsNotServer(true);
+  }, []);
 
   // fetch 한 이미지들을 담은 배열
   const ImgArr = data?.fetchDetailProduct.images.map(el => el.image_url) ?? [];
@@ -195,7 +210,7 @@ export default function Detail() {
       <S.Container className="bottom">
         <S.DetailContentsWrap>
           <S.DetailTitle>상세 내용</S.DetailTitle>
-          {typeof window !== "undefined" && (
+          {isNotServer && (
             <S.DetailContents
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(

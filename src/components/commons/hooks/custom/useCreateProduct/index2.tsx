@@ -239,7 +239,8 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
         return { thumbnailImage: el.data?.uploadFile[0] ?? "", isMain: false };
       });
 
-      product_thumbnailImage[0].isMain = true;
+      if (product_thumbnailImage.length > 0)
+        product_thumbnailImage[0].isMain = true;
 
       const result = await createProduct({
         variables: {

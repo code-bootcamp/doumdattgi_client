@@ -1,6 +1,7 @@
 import * as S from "./paylistState.styles";
 import { IValueArgs } from "../../../../../units/myPage/point/index.types";
 import { useQueryFetchUserCanceldPaymentInfo } from "../../../../hooks/queries/useQueryFetchUserPaymentInfo";
+import { IPayment } from "../../../../../../commons/types/generated/types";
 
 interface IProps {
   el: {
@@ -15,7 +16,9 @@ interface IProps {
   payment_createdAt: string;
   payment_amount: number;
   payment_status?: string;
-
+  allAmount: number;
+  dataArr: IPayment[];
+  payAmount: number;
   arr: string[];
   clickRefund: (value: IValueArgs) => () => void;
 }
@@ -23,8 +26,9 @@ interface IProps {
 export default function PayState(props: IProps) {
   const { data } = useQueryFetchUserCanceldPaymentInfo();
 
-  const Component = { key: <div></div> };
+  const refundState = props.allAmount < props.payAmount;
 
+  const Component = { key: <div></div> };
   const canceled = data?.fetchPayments.map((el: IProps) => el.payment_impUid);
 
   if (
@@ -45,7 +49,11 @@ export default function PayState(props: IProps) {
   ) {
     Component["key"] = (
       <S.Box>
-        <S.RefundBtn onClick={props.clickRefund(props.el)}>
+        <S.RefundBtn
+          disabled={refundState}
+          isOkRefund={refundState}
+          onClick={props.clickRefund(props.el)}
+        >
           환불요청
         </S.RefundBtn>
         <S.ChargeDone>충전완료</S.ChargeDone>

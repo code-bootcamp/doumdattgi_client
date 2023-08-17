@@ -19,6 +19,10 @@ export const FETCH_MY_PRODUCT = gql`
         user_id
       }
       product_summary
+      mileage {
+        mileage_coupon
+        mileage_createAt
+      }
     }
   }
 `;

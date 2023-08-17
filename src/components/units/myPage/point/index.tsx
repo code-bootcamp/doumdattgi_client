@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 
 export default function PaymentPresenter(): JSX.Element {
   const router = useRouter();
-
+  //
   const [isCancel, setIsCancel] = useRecoilState(ModalCancelState);
   const [refetches, setRefetch] = useRecoilState(refetchAtom);
 
@@ -29,6 +29,7 @@ export default function PaymentPresenter(): JSX.Element {
     { title: "환불내역", key: 5, isSelected: false }
   ]);
   const [payState, setPayState] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   const { clickModal, openModal, setOpenModal } = UseModal();
   const { data: UserData, refetch: loginRefetch } = useQueryFetchLoginUser();
@@ -49,7 +50,11 @@ export default function PaymentPresenter(): JSX.Element {
   //  결제내역 refetch
   useEffect(() => {
     setRefetch(prev => ({ ...prev, login: loginRefetch, payment: payRefetch }));
-  }, [payRefetch]);
+    payRefetch({ page: 1, pageSize: 10, payment_status: "" });
+  }, [payRefetch, router.asPath]);
+
+  // 총 보유 포인트
+  const allAmount = UserData?.fetchLoginUser?.user_point;
 
   // 환불요청
   const clickRefund = (value: IValueArgs) => () => {
@@ -80,9 +85,10 @@ export default function PaymentPresenter(): JSX.Element {
     );
     setPayState(TrnaslatePointSelect[selectedId]);
 
-    const status = TrnaslatePointSelect[selectedId];
-    await payRefetch({ page: 1, pageSize: 10, payment_status: status });
+    const state = TrnaslatePointSelect[selectedId];
+    await payRefetch({ page: 1, pageSize: 10, payment_status: state });
 
+    //
     // router.push({
     //   pathname: `/mypage/point/`,
     //   query: { status }
@@ -91,7 +97,8 @@ export default function PaymentPresenter(): JSX.Element {
 
   // 결제 내역 무한스크롤
   const onLoadMore = () => {
-    if (data === undefined) return;
+    if (data === undefined || loading) return;
+    setLoading(true);
 
     fetchMore({
       variables: {
@@ -146,20 +153,28 @@ export default function PaymentPresenter(): JSX.Element {
               <S.ChargeBtn onClick={clickModal}>포인트 충전</S.ChargeBtn>
             </S.CurrentHold>
           </S.HoldingBox>
-          <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
-            {data?.fetchPayments.map(el => (
-              <PayList
-                dataArr={dataArr}
-                clickRefund={clickRefund}
-                el={el}
-                key={el.payment_id}
-                payment_impUid={""}
-                payment_type={""}
-                payment_createdAt={""}
-                payment_amount={0}
-              />
-            )) ?? []}
-          </InfiniteScroll>
+          {data?.fetchPayments.length === 0 ? (
+            <S.Nothing>내역이 없습니다</S.Nothing>
+          ) : (
+            <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
+              <>
+                {data?.fetchPayments.map(el => (
+                  <PayList
+                    dataArr={dataArr}
+                    clickRefund={clickRefund}
+                    el={el}
+                    key={el.payment_id}
+                    payAmount={el.payment_amount}
+                    allAmount={allAmount ?? 0}
+                    payment_impUid={""}
+                    payment_type={""}
+                    payment_createdAt={""}
+                    payment_amount={0}
+                  />
+                ))}
+              </>
+            </InfiniteScroll>
+          )}
         </S.Container>
       </S.Wrapper>
     </>

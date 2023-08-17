@@ -20,6 +20,7 @@ export const FETCH_LIKE_CATEGORY_PRODUCT = gql`
       product_product_category
       product_product_workDay
       u_user_nickname
+      u_user_profileImage
       image_url
     }
   }

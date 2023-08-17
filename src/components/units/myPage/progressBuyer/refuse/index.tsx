@@ -11,7 +11,9 @@ export default function ProgressBuyerRefuse(): JSX.Element {
 
   return (
     <>
-      {data?.fetchBuyerRequest.length === 0 ? (
+      {data?.fetchBuyerRequest.filter(
+        item => item.request_isAccept === "REFUSE"
+      ).length === 0 ? (
         <S.ListNone>현재 거절된 의뢰 신청이 없습니다.</S.ListNone>
       ) : (
         ""

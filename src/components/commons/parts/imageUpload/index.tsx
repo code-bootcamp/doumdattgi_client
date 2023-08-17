@@ -1,7 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload, UploadFile } from "antd";
 import { RcFile, UploadProps } from "antd/es/upload";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 interface IData {

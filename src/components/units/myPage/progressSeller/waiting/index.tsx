@@ -11,7 +11,9 @@ export default function ProgressSellerWaiting(): JSX.Element {
 
   return (
     <>
-      {data?.fetchSellerWork.length === 0 ? (
+      {data?.fetchSellerWork.filter(
+        item => item.request_isAccept === "WAITING"
+      ).length === 0 ? (
         <S.ListNone>현재 승인 대기중인 작업이 없습니다.</S.ListNone>
       ) : (
         ""

@@ -8,7 +8,6 @@ export default function ProfileMyProduct(props): JSX.Element {
   // 무한 스크롤 로직
   const onLoadMore = () => {
     // if (myProduct === undefined) return;
-
     // fetchMore({
     //   variables: {
     //     page: Math.ceil((myProduct?.fetchMyProduct.length ?? 5) / 5) + 1
@@ -17,7 +16,6 @@ export default function ProfileMyProduct(props): JSX.Element {
     //     if (fetchMoreResult.fetchMyProduct === undefined) {
     //       return { fetchMyProduct: [...prev.fetchMyProduct] };
     //     }
-
     //     return {
     //       fetchMyProduct: [
     //         ...prev.fetchMyProduct,
@@ -32,12 +30,14 @@ export default function ProfileMyProduct(props): JSX.Element {
   return (
     <S.Wrapper>
       <S.WrapperRight
+
         loadMore={props.onLoadMore}
         pageStart={1}
         hasMore={true}
         useWindow={false}
       >
         {props.data === undefined || props.data[0] === undefined ? (
+
           <S.None>아직 게시물이 없습니당</S.None>
         ) : (
           <>
