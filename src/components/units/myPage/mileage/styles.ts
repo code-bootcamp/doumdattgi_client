@@ -236,7 +236,7 @@ export const SubTitle2 = styled.div`
   line-height: 30px;
 `;
 
-export const WrapperRight = styled(InfiniteScroll)`
+export const WrapperBody = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;

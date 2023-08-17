@@ -49,9 +49,12 @@ export type ICreateCommentInput = {
 
 export type ICreateProductInput = {
   product_category: Scalars['String'];
+  product_date?: InputMaybe<Scalars['String']>;
   product_detailAddress?: InputMaybe<Scalars['String']>;
   product_endTime: Scalars['Int'];
   product_main_text: Scalars['String'];
+  product_minAmount?: InputMaybe<Scalars['String']>;
+  product_possibleAmount?: InputMaybe<Scalars['String']>;
   product_postNum?: InputMaybe<Scalars['String']>;
   product_roadAddress?: InputMaybe<Scalars['String']>;
   product_sellOrBuy: Scalars['Boolean'];
@@ -67,6 +70,7 @@ export type ICreateProductInput = {
 export type ICreateRequestInput = {
   product_id: Scalars['String'];
   request_content: Scalars['String'];
+  request_dueDate: Scalars['DateTime'];
   request_price: Scalars['Int'];
   request_title: Scalars['String'];
 };
@@ -123,6 +127,9 @@ export type IFetchMyPickOutput = {
 export type IFetchProductOutput = {
   __typename?: 'FetchProductOutput';
   i_image_url: Scalars['String'];
+  product_date?: Maybe<Scalars['String']>;
+  product_minAmount?: Maybe<Scalars['String']>;
+  product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_category: Scalars['String'];
   product_product_id: Scalars['String'];
   product_product_sellOrBuy: Scalars['Boolean'];
@@ -135,6 +142,9 @@ export type IFetchProductOutput = {
 export type IFetchSearchProductOutput = {
   __typename?: 'FetchSearchProductOutput';
   i_image_url: Scalars['String'];
+  product_date?: Maybe<Scalars['String']>;
+  product_minAmount?: Maybe<Scalars['String']>;
+  product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_category: Scalars['String'];
   product_product_id: Scalars['String'];
   product_product_sellOrBuy: Scalars['Boolean'];
@@ -148,6 +158,9 @@ export type IFetchSearchProductOutput = {
 export type IFetchSubCategoryOutput = {
   __typename?: 'FetchSubCategoryOutput';
   i_image_url: Scalars['String'];
+  product_date?: Maybe<Scalars['String']>;
+  product_minAmount?: Maybe<Scalars['String']>;
+  product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_category: Scalars['String'];
   product_product_id: Scalars['String'];
   product_product_sellOrBuy: Scalars['Boolean'];
@@ -383,15 +396,18 @@ export type IPick = {
 
 export type IProduct = {
   __typename?: 'Product';
-  images?: Maybe<Array<IImage>>;
+  images: Array<IImage>;
   mileage?: Maybe<IMileage>;
   pick: Array<IPick>;
   product_category: IProduct_Category_Enum;
+  product_date?: Maybe<Scalars['String']>;
   product_deletedAt?: Maybe<Scalars['DateTime']>;
   product_detailAddress?: Maybe<Scalars['String']>;
   product_endTime: Scalars['Int'];
   product_id: Scalars['String'];
   product_main_text: Scalars['String'];
+  product_minAmount?: Maybe<Scalars['String']>;
+  product_possibleAmount?: Maybe<Scalars['String']>;
   product_postNum?: Maybe<Scalars['String']>;
   product_roadAddress?: Maybe<Scalars['String']>;
   product_sellOrBuy: Scalars['Boolean'];
@@ -415,6 +431,7 @@ export type IQuery = {
   fetchLikeSubCategoryProduct: Array<IFetchLikeSubCategoryOutput>;
   fetchLoginUser: IUser;
   fetchMileageHistory: Array<IMileage>;
+  fetchMileageProductHistory: Array<IProduct>;
   fetchMyNotCouponProduct: Array<IProduct>;
   fetchMyProduct: Array<IProduct>;
   fetchNewbieProduct: Array<IFetchProductOutput>;
@@ -509,6 +526,7 @@ export type IQueryFetchSearchProductArgs = {
 export type IQueryFetchSellCategoryProductsArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
+  product_category: Scalars['String'];
 };
 
 
@@ -535,6 +553,7 @@ export type IRequest = {
   request_completedAt?: Maybe<Scalars['DateTime']>;
   request_content: Scalars['String'];
   request_createAt: Scalars['DateTime'];
+  request_dueDate: Scalars['DateTime'];
   request_id: Scalars['String'];
   request_isAccept: IRequest_Isaccept_Enum;
   request_price: Scalars['Int'];
@@ -568,9 +587,12 @@ export type IUpdateNicknameIntroduceInput = {
 
 export type IUpdateProductInput = {
   product_category?: InputMaybe<Scalars['String']>;
+  product_date?: InputMaybe<Scalars['String']>;
   product_detailAddress?: InputMaybe<Scalars['String']>;
   product_endTime?: InputMaybe<Scalars['Int']>;
   product_main_text?: InputMaybe<Scalars['String']>;
+  product_minAmount?: InputMaybe<Scalars['String']>;
+  product_possibleAmount?: InputMaybe<Scalars['String']>;
   product_postNum?: InputMaybe<Scalars['String']>;
   product_roadAddress?: InputMaybe<Scalars['String']>;
   product_sellOrBuy?: InputMaybe<Scalars['Boolean']>;
