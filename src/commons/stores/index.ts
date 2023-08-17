@@ -18,6 +18,14 @@ export const ModalCancelState = atom({
   key: "ModalCancel",
   default: false
 });
+export const navOpenState = atom({
+  key: "navOpen",
+  default: false
+});
+export const searchOpenState = atom({
+  key: "searchOpen",
+  default: false
+});
 
 export const refetchAtom = atom<{ login: () => void; payment: () => void }>({
   key: "refetchAtom",

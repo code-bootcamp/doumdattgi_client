@@ -60,7 +60,7 @@ function ImageUpload(props: any): JSX.Element {
     <>
       <Upload
         listType="picture-card"
-        onChange={handleChange}
+        onChange={props.onChangeThumbnailImage}
         onPreview={handlePreview}
         fileList={props.fileList}
       >

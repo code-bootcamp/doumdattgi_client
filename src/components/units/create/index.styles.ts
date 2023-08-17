@@ -60,36 +60,47 @@ export const Employer = styled.div`
 export const DivideLine = styled.div`
   border-left: 2px solid #111;
 `;
-
-export const Title = styled.span`
-  font-size: 36px;
+export const TitleBox = styled.div``;
+export const SubTitle = styled.h2`
+  margin-bottom: 14px;
 `;
-
+export const Title = styled.h1`
+  font-size: 36px;
+  font-weight: 600;
+`;
 export const Body = styled.div``;
 
 export const Body_Top = styled.div`
   margin-top: 30px;
   border-top: 2px solid #88b04b;
-  border-bottom: 1px solid #bbbbbb;
+  border-bottom: 1px solid #e5e7eb;
 `;
 
-export const InputBox = styled.div`
+export const InputWrap = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   position: relative;
   padding-top: 40px;
   &:last-of-type {
-    padding-bottom: 40px;
+    margin-bottom: 40px;
   }
 `;
-
+export const InputBox = styled.div`
+  width: calc(100% - 240px);
+  &.short {
+    width: 250px;
+  }
+`;
+export const ThemeBox = styled.div`
+  width: 240px;
+`;
 export const Theme = styled.span`
-  width: 280px;
+  /* width: 280px; */
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   font-size: 24px;
 `;
 
@@ -101,13 +112,15 @@ export const Required = styled.span`
 
 export const Input = styled.input`
   width: 100%;
-  height: 38px;
-  border-radius: 10px;
+  height: 40px;
+  border-radius: 6px;
   border: 1px solid #dbdbdb;
   padding-left: 10px;
   font-size: 14px;
 `;
-
+export const PriceBox = styled.div`
+  border-bottom: 1px solid #e5e7eb;
+`;
 export const Body_Middle = styled.div`
   /* height: 1659px; */
 `;
@@ -131,13 +144,13 @@ export const AvailableTime = styled.div`
   margin-top: 100px;
 `;
 
-export const SetTimeBox = styled.div`
-  width: 351px;
-  display: flex;
+export const TimeWrap = styled.div`
   margin-top: 20px;
-  flex-direction: row;
+  position: relative;
+`;
+export const TimeBox = styled.div`
+  display: flex;
   align-items: center;
-  justify-content: space-between;
 `;
 
 export const AttachedImg = styled.div`
@@ -149,6 +162,7 @@ export const AttachedImg = styled.div`
 
 export const Image = styled.div`
   margin-top: 20px;
+  position: relative;
 `;
 
 export const MapBox = styled.div`
@@ -212,9 +226,15 @@ export const BtnBox = styled.div`
 
 export const Error = styled.span`
   position: absolute;
-  top: 100%;
-  left: 230px;
+  top: calc(100% + 10px);
+  left: 240px;
   display: block;
   color: red;
   font-size: 16px;
+  &.contents {
+    left: 0;
+  }
+  &.subCategory {
+    left: 494px;
+  }
 `;

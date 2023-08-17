@@ -1,19 +1,29 @@
 import Link from "next/link";
 import * as S from "./styles";
 import { useRouter } from "next/router";
+import { useNav } from "../../hooks/custom/useNav";
+import { useRecoilState } from "recoil";
+import { navOpenState } from "../../../../commons/stores";
 
 export default function Nav() {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useRecoilState(navOpenState);
 
   const clickCategory = (data: string) => () => {
+    setIsOpen(prev => !prev);
     router.push({
       pathname: "/categoryList",
       query: { data }
     });
   };
 
+  const onClickSeek = () => {
+    setIsOpen(prev => !prev);
+    router.push("/seek");
+  };
+
   return (
-    <S.Wrapper>
+    <S.Wrapper isOpen={isOpen}>
       <S.Container>
         <S.NavListBox>
           <S.NavList onClick={clickCategory("IT")}>
@@ -35,9 +45,7 @@ export default function Nav() {
             <S.NavItem>문서・레포트</S.NavItem>
           </S.NavList>
         </S.NavListBox>
-        {/* <Link href={"/구해요"}>
-          <S.NavItem>#구해요</S.NavItem>
-        </Link> */}
+        <S.NavItem onClick={onClickSeek}>구해요</S.NavItem>
       </S.Container>
     </S.Wrapper>
   );

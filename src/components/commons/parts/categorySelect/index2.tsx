@@ -4,29 +4,19 @@ import { useEffect } from "react";
 import { ICategory2Props } from "./index.types";
 
 export default function Category2(props: ICategory2Props) {
-  useEffect(() => {
-    props.setCategorySelect(props.data?.product_category ?? "");
-    props.setCategoryArray(option[props.data?.product_category ?? "DESIGN"]);
-    // props.setOptionSelect(option[props.data?.product_category][0]);
-    if (
-      option[props.data?.product_category ?? "DESIGN"] &&
-      option[props.data?.product_category ?? "DESIGN"].length > 0
-    ) {
-      props.setOptionSelect(
-        option[props.data?.product_category ?? "DESIGN"][0]
-      );
-    }
-  }, [props.data]);
+  // useEffect(() => {
+  //   props.setCategorySelect(props.data?.product_category ?? "");
+  //   props.setCategoryArray(option[props.data?.product_category]);
 
-  const handleCategoryChange = (value: string) => {
-    props.setCategorySelect(value);
-    props.setCategoryArray(option[value]);
-    props.setOptionSelect(option[value][0]);
-  };
-
-  const onSecondCityChange = (value: string) => {
-    props.setOptionSelect(value);
-  };
+  //   // if (
+  //   //   option[props.data?.product_category ?? "DESIGN"] &&
+  //   //   option[props.data?.product_category ?? "DESIGN"].length > 0
+  //   // ) {
+  //   //   props.setOptionSelect(
+  //   //     option[props.data?.product_category ?? "DESIGN"][0]
+  //   //   );
+  //   // }
+  // }, [props.data]);
 
   return (
     <div
@@ -43,23 +33,23 @@ export default function Category2(props: ICategory2Props) {
               ? `${props.data?.product_category}`
               : "카테고리를 선택해주세요."
           }
-          style={{ marginRight: 5, width: "40%" }}
+          style={{ marginRight: 5, width: "250px" }}
           size={"large"}
-          onChange={handleCategoryChange}
+          onChange={props.onChangeCategory}
           options={category.map(category => ({
             label: category.label,
             value: category.value
           }))}
         />
         <Select
-          style={{ width: "100%" }}
+          style={{ width: "calc(100% - 250px)"}}
           size={"large"}
           value={
-            props.optionSelect !== "로고・브랜딩"
+            props.optionSelect
               ? `${props.optionSelect}`
               : "옵션을 선택해주세요."
           }
-          onChange={onSecondCityChange}
+          onChange={props.onChangeSubCategory}
           options={
             props.categoryArray &&
             props.categoryArray.map(option => ({

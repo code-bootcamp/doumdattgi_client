@@ -36,7 +36,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const uploadLink = createUploadLink({
     uri: "https://doumdattgi-server.com/graphql",
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: accessToken ? `Bearer ${accessToken}` : "",
       "X-Apollo-Operation-Name": "true"
     },
     credentials: "include"
@@ -55,7 +55,8 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
               operation.setContext({
                 headers: {
                   ...operation.getContext().headers,
-                  Authorization: `Bearer ${newAccessToken ?? ""}`
+                  Authorization: accessToken ? `Bearer ${accessToken}` : "",
+
                 }
               });
             })

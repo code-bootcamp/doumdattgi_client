@@ -1,9 +1,5 @@
 import styled from "@emotion/styled";
-
-export const CommentBoxWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -14,271 +10,275 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   width: 1140px;
 `;
-
-export const Category = styled.div`
-  margin-bottom: 15px;
+export const CategoryBox = styled.div`
+  display: flex;
 `;
-
-export const Title = styled.div`
+export const Category = styled.span`
+  display: flex;
+  color: #636363;
+  font-weight: 600;
+`;
+export const ChevronIcon = styled(FontAwesomeIcon)`
+  color: #636363;
+  margin: 0 8px;
+`;
+export const Title = styled.h1`
   font-size: 30px;
-  font-weight: 600px;
+  font-weight: 600;
+  margin-top: 12px;
 `;
-
-export const ProcessBox = styled.div`
-  height: 100px;
-  margin: 50px 0px;
+export const ProgressWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 40px;
 `;
-
-export const StatusBox = styled.div`
-  width: 40%;
+export const ProgressBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 `;
-
-export const Theme = styled.div``;
-
-export const Date = styled.div`
-  font-size: 14px;
-  color: #888888;
-  text-align: center;
-`;
-
-export const NoneCheck = styled.div`
+export const ProgressIcon = styled.div`
   width: 40px;
   height: 40px;
-  border-radius: 180px;
-  background-color: #cccccc;
-  border: none;
+  background: #ccc;
+  border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-`;
-
-export const Check = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 180px;
-  background-color: #c3b5fd;
-  border: none;
-  display: flex;
   align-items: center;
-  justify-content: center;
-`;
-
-export const CheckImage = styled.img`
-  width: 18px;
-  height: 20px;
-`;
-
-export const NoneLine = styled.div`
-  width: 100%;
-  height: 3px;
-  border: 2px solid #cccccc;
-  margin-top: 15px;
-`;
-
-export const Line = styled.div`
-  width: 100%;
-  height: 3px;
-  border: 2px solid #c9e2fe;
-  margin-top: 15px;
-`;
-
-export const StartWork = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 180px;
-  background-color: #c9e2fe;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Line1 = styled.div`
-  width: 100%;
-  height: 3px;
-  border: 2px solid #98d6a0;
-  margin-top: 15px;
-`;
-
-export const SendWork = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 180px;
-  background-color: #98d6a0;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Line2 = styled.div`
-  width: 100%;
-  height: 3px;
-  border: 2px solid #80d6cc;
-  margin-top: 15px;
-`;
-
-export const Complete = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 180px;
-  background-color: #80d6cc;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const ContentsDetail = styled.div`
-  width: 74px;
-  height: 26px;
-  border: 1px solid #929aa0;
-  border-radius: 6px;
-  font-size: 14px;
-  color: #929aa0;
-  background-color: #f6f7f9;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-`;
-
-export const Contents = styled.div`
-  background-color: #f6f7f9;
-  border-radius: 6px;
-  padding: 30px;
-`;
-
-export const PaymentBox = styled.div`
-  text-align: right;
-  margin: 50px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-export const Price = styled.span`
-  font-size: 40px;
-  font-weight: 500px;
-  margin-left: 10px;
-  display: block;
-  &:last-of-type {
-    margin-left: 0;
+  &.create {
+    background-color: #c3b5fd;
+  }
+  &.start {
+    background-color: #c9e2fe;
+  }
+  &.send {
+    background-color: #80d6cc;
+  }
+  &.finish {
+    background-color: #f1be80;
   }
 `;
-
-export const SpecialCharacter = styled.span`
-  font-size: 45px;
-  display: block;
-  margin-left: 10px;
-`;
-
-export const Box = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 100px;
-`;
-
-export const Between = styled.div`
-  width: 24px;
-`;
-
-export const UserBox = styled.div`
-  width: 588px;
-  height: 415px;
-  border: 1px solid #d4d4d8;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const User = styled.div`
+export const ProgressCheck = styled(FontAwesomeIcon)`
+  color: #fff;
   font-size: 20px;
-  font-weight: 600px;
 `;
-
-export const UserPic = styled.img`
-  width: 160px;
-  height: 160px;
-  margin: 20px 0px;
-  border-radius: 50%;
+export const ProgressTitle = styled.span`
+  font-weight: 600;
+  display: block;
+  margin-top: 16px;
 `;
-
-export const UserEmail = styled.div`
-  font-size: 16px;
-  color: #888888;
+export const ProgressDate = styled.span`
+  font-size: 14px;
+  color: #888;
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  line-height: 16px;
+`;
+export const ProgressBar = styled.div`
+  height: 3px;
+  width: calc((100% - (100px * 4)) / 3 - 20px);
+  background: #ccc;
+  margin: 18px 0;
+  padding: 0 3px;
+  &.create {
+    background-color: #c9e2fe;
+  }
+  &.start {
+    background-color: #80d6cc;
+  }
+  &.send {
+    background-color: #f1be80;
+  }
+`;
+export const ServiceWrap = styled.div`
+  padding: 0 32px;
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const ServiceTitle = styled.h2`
+  font-size: 24px;
+  font-weight: 600;
+`;
+export const TitleHighlight = styled.span`
+  font-weight: 600;
+  font-size: 24px;
+  color: #88b04b;
+  margin-right: 8px;
+`;
+export const ServiceBox = styled.div`
+  display: flex;
+`;
+export const AcceptBtn = styled.button`
+  color: #fff;
+  background: #88b04b;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 15px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  &.reject {
+    background: none;
+    color: #88b04b;
+    margin-right: 6px;
+  }
+`;
+export const StatusIcon = styled(FontAwesomeIcon)`
+  font-size: 30px;
+  &.check {
+    color: #389e0d;
+  }
+  &.waiting {
+    color: #0958d9;
+  }
+  &.refuse {
+    color: #cf1322;
+  }
+`;
+export const StatusText = styled.p`
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 8px;
+`;
+export const SectionWrap = styled.div`
+  padding: 32px;
+  border-radius: 6px;
+  background: #f6f7f9;
+  margin: 40px 0;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`;
+export const SectionBox = styled.div`
+  &:last-of-type {
+    margin-top: 40px;
+  }
+`;
+export const SectionTitle = styled.h3`
+  font-weight: 600;
+`;
+export const SectionFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
 `;
-
-export const Arrow = styled.img`
-  width: 128.5px;
-  height: 20.5px;
-  position: relative;
-  right: 50px;
-`;
-
-export const AcceptBox = styled.div`
-  width: 100%;
-  font-size: 50px;
-  font-weight: 500;
+export const SectionUserWrap = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 80px;
 `;
-
-export const Icon = styled.img`
+export const SectionUserIcon = styled.img`
   width: 60px;
   height: 60px;
-  margin-right: 10px;
+  border-radius: 50%;
+  border: 1px solid #eaecf0;
 `;
-
-export const Btn = styled.button`
-  width: 100%;
-  height: 60px;
+export const SectionUserBox = styled.div`
+  margin-left: 12px;
+`;
+export const SectionUserName = styled.span`
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+`;
+export const SectionUserEmail = styled.span`
+  display: block;
+  color: #888;
+  margin-top: 16px;
+`;
+export const MessageBtn = styled.button`
+  color: #fff;
+  background: #88b04b;
+  border: none;
   border-radius: 6px;
-  border: 2px solid #ccc;
-  color: #888888;
-  background-color: white;
+  padding: 12px 18px;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: 600px;
-  transition: all 0.2s ease-in-out;
-  margin-left: 10px;
-  font-weight: 500;
-  &:first-of-type {
-    margin-left: 0;
-  }
-  &.accept {
-    background-color: #88b04b;
-    color: #fff;
-    border: none;
-  }
+`;
+export const SectionContents = styled.p`
+  margin-top: 20px;
+  line-height: 24px;
+  color: #333;
+`;
+export const SectionWrapWhite = styled.div`
+  padding: 0 32px;
+  margin-bottom: 40px;
+`;
+export const SectionContent = styled.p`
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #333;
 `;
 
-export const ContentsIndex = styled.div`
-  margin: 24px 0px 16px 0px;
-`;
-
-export const Btn2 = styled.button`
+export const DivideLine = styled.div`
   width: 100%;
-  height: 60px;
-  border-radius: 6px;
-  border: 2px solid #ccc;
-  color: #888888;
-  background-color: white;
-  cursor: pointer;
-  margin-top: 60px;
+  height: 2px;
+  background-color: #88b04b;
+`;
+export const NoticeWrap = styled.div`
+  margin-top: 24px;
+`;
+export const NoticeText = styled.p`
+  font-size: 14px;
+  color: #333;
+  &:last-of-type {
+    margin-top: 16px;
+  }
+`;
+export const FinishBtn = styled.button`
+  color: #fff;
+  background: #88b04b;
   font-size: 20px;
-  font-weight: 600px;
-  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+  padding: 15px 0;
+  border-radius: 6px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+`;
+export const TradeWrap = styled.div`
+  display: flex;
+  margin-top: 50px;
+  position: relative;
+`;
+export const TradeBox = styled.div`
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #d4d4d8;
+  width: 100%;
+  &:last-of-type {
+    margin-left: 20px;
+  }
+`;
+export const TradeTitle = styled.span`
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+`;
+export const TradeUserIcon = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-top: 30px;
+`;
+export const TradeUserName = styled.p`
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+`;
+export const TradeUserEmail = styled.p`
+  color: #888;
+  margin-top: 14px;
+`;
+export const TradeIcon = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

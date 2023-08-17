@@ -24,7 +24,7 @@ function ToastEditor(props: any) {
   return (
     <>
       <Editor
-        placeholder="상품을 설명해주세요."
+        placeholder="내용을 설명해주세요."
         previewStyle="vertical"
         height="500px"
         initialEditType="wysiwyg"

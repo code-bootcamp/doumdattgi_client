@@ -2,7 +2,7 @@ import { LoginCheck } from "../../../src/commons/libraries/loginCheck";
 import CreateProduct from "../../../src/components/units/create/index2";
 
 function BoardWrite() {
-  return <CreateProduct isEdit={true}/>;
+  return <CreateProduct isEdit={true} sellOrBuy={true} />;
 }
 
-export default LoginCheck(BoardWrite)
+export default LoginCheck(BoardWrite);

@@ -47,10 +47,10 @@ export const List = styled.div`
   height: 120px;
   border: 1px solid #d0d2de;
   border-radius: 6px;
-  padding: 12px;
+  padding: 16px;
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   cursor: pointer;
 `;
 
@@ -58,10 +58,10 @@ export const ListRefuse = styled.div`
   height: 120px;
   border: 1px solid #d0d2de;
   border-radius: 6px;
-  padding: 12px;
+  padding: 16px;
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   cursor: pointer;
   background-color: #f8f8f8;
 `;

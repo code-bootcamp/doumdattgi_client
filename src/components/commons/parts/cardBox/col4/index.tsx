@@ -3,7 +3,7 @@ import * as S from "./style";
 import { fallback } from "../../../../../commons/libraries/fallback";
 import { getDate } from "../../../../../commons/libraries/getDate";
 import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
-import Tag from "../../../tag";
+import Tag from "../../../tag/category";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
@@ -38,13 +38,13 @@ export default function CardBox(props: IProps) {
         <S.InfoBox>
           <Tag data={props.data?.product_product_workDay ?? ""} />
           <S.UserBox>
-          <S.Avatar
-                onError={e => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = fallback;
-                }}
-                src={props.data?.u_user_profileImage ?? fallback}
-              />
+            <S.Avatar
+              onError={e => {
+                const target = e.target as HTMLImageElement;
+                target.src = fallback;
+              }}
+              src={props.data?.u_user_profileImage ?? fallback}
+            />
             <S.UserName>{props.data?.u_user_nickname}</S.UserName>
           </S.UserBox>
         </S.InfoBox>

@@ -14,6 +14,7 @@ import { IProps } from "./index.types";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { useRouter } from "next/router";
+import InputHeight40px from "../../commons/inputs/InputHeight40px";
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false
@@ -60,8 +61,13 @@ export default function CreateProduct(props: IProps) {
     address,
     zipcode,
 
-    isSubmitting
-  } = useCreateProduct2(props.isEdit);
+    isSubmitting,
+    onChangeCategory,
+    onChangeSubCategory,
+    onChangeWorkTime,
+    onChangeWorkDay,
+    onChangeThumbnailImage
+  } = useCreateProduct2(props.isEdit, props.sellOrBuy);
 
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
@@ -83,76 +89,114 @@ export default function CreateProduct(props: IProps) {
             }
           >
             <S.Head>
-              <S.Title>
-                {props.isEdit ? "게시글 수정하기" : "게시글 작성하기"}
-              </S.Title>
-              {/* <S.SelectToggle>
-                <S.Employee onClick={clickEmployee} isToggle={isToggle}>
-                  일을 구해요
-                </S.Employee>
-                <S.DivideLine />
-                <S.Employer onClick={clickEmployer} isToggle={isToggle}>
-                  사람을 구해요
-                </S.Employer>
-              </S.SelectToggle> */}
+              <S.TitleBox>
+                <S.SubTitle>재능을 발휘해 커리어를 발돋움 해보세요!</S.SubTitle>
+                <S.Title>
+                  {props.isEdit ? "서비스 수정하기" : "새 서비스 만들기"}
+                </S.Title>
+              </S.TitleBox>
             </S.Head>
             <S.Body>
               <S.Body_Top>
-                <S.InputBox>
-                  <S.Theme>
-                    게시글 제목
-                    <S.Required>*</S.Required>
-                  </S.Theme>
-                  <S.Input
-                    {...register("product_title")}
-                    defaultValue={data?.fetchDetailProduct?.product_title}
-                  />
-                  <S.Error>{formState.errors.product_title?.message}</S.Error>
-                </S.InputBox>
-                <S.InputBox>
-                  <S.Theme>
-                    카테고리 및 태그
-                    <S.Required>*</S.Required>
-                  </S.Theme>
-                  {props.isEdit && data && (
-                    <Category2
-                      categoryArray={categoryArray}
-                      setCategoryArray={setCategoryArray}
-                      categorySelect={categorySelect}
-                      setCategorySelect={setCategorySelect}
-                      optionSelect={optionSelect}
-                      setOptionSelect={setOptionSelect}
-                      data={data?.fetchDetailProduct}
+                <S.InputWrap>
+                  <S.ThemeBox>
+                    <S.Theme>
+                      서비스 제목
+                      <S.Required>*</S.Required>
+                    </S.Theme>
+                  </S.ThemeBox>
+                  <S.InputBox>
+                    <InputHeight40px
+                      register={register("product_title")}
+                      defaultValue={data?.fetchDetailProduct?.product_title}
                     />
-                  )}
-                  {!props.isEdit && (
-                    <Category2
-                      categoryArray={categoryArray}
-                      setCategoryArray={setCategoryArray}
-                      categorySelect={categorySelect}
-                      setCategorySelect={setCategorySelect}
-                      optionSelect={optionSelect}
-                      setOptionSelect={setOptionSelect}
-                      data={data?.fetchDetailProduct}
+                    <S.Error>{formState.errors.product_title?.message}</S.Error>
+                  </S.InputBox>
+                </S.InputWrap>
+                <S.InputWrap>
+                  <S.ThemeBox>
+                    <S.Theme>
+                      카테고리 및 태그
+                      <S.Required>*</S.Required>
+                    </S.Theme>
+                  </S.ThemeBox>
+                  <S.InputBox>
+                    {props.isEdit && data && (
+                      <Category2
+                        categoryArray={categoryArray}
+                        setCategoryArray={setCategoryArray}
+                        categorySelect={categorySelect}
+                        setCategorySelect={setCategorySelect}
+                        optionSelect={optionSelect}
+                        setOptionSelect={setOptionSelect}
+                        data={data?.fetchDetailProduct}
+                        onChangeCategory={onChangeCategory}
+                        onChangeSubCategory={onChangeSubCategory}
+                      />
+                    )}
+                    {!props.isEdit && (
+                      <Category2
+                        categoryArray={categoryArray}
+                        setCategoryArray={setCategoryArray}
+                        categorySelect={categorySelect}
+                        setCategorySelect={setCategorySelect}
+                        optionSelect={optionSelect}
+                        setOptionSelect={setOptionSelect}
+                        data={data?.fetchDetailProduct}
+                        onChangeCategory={onChangeCategory}
+                        onChangeSubCategory={onChangeSubCategory}
+                      />
+                    )}
+                  </S.InputBox>
+                  <S.Error>
+                    {formState.errors.product_category?.message}
+                  </S.Error>
+                  <S.Error className="subCategory">
+                    {formState.errors.product_sub_category?.message}
+                  </S.Error>
+                </S.InputWrap>
+                <S.InputWrap>
+                  <S.ThemeBox>
+                    <S.Theme>
+                      서비스 요약
+                      <S.Required>*</S.Required>
+                    </S.Theme>
+                  </S.ThemeBox>
+                  <S.InputBox>
+                    <InputHeight40px
+                      register={register("product_summary")}
+                      defaultValue={data?.fetchDetailProduct?.product_summary}
                     />
-                  )}
-                </S.InputBox>
-                <S.InputBox>
-                  <S.Theme>
-                    게시글 요약
-                    <S.Required>*</S.Required>
-                  </S.Theme>
-                  <S.Input
-                    {...register("product_summary")}
-                    defaultValue={data?.fetchDetailProduct?.product_summary}
-                  />
+                  </S.InputBox>
                   <S.Error>{formState.errors.product_summary?.message}</S.Error>
-                </S.InputBox>
+                </S.InputWrap>
               </S.Body_Top>
+              <S.PriceBox>
+                <S.InputWrap>
+                  <S.ThemeBox>
+                    <S.Theme>
+                      최소 신청 금액
+                      <S.Required>*</S.Required>
+                    </S.Theme>
+                  </S.ThemeBox>
+                  <S.InputBox className="short">
+                    <InputHeight40px
+                      register={register("product_minAmount")}
+                      defaultValue={
+                        data?.fetchDetailProduct?.product_minAmount ?? ""
+                      }
+                      placeholder="예) 10,000 P"
+                    />
+                    <S.Error>
+                      {formState.errors.product_minAmount?.message}
+                    </S.Error>
+                  </S.InputBox>
+                </S.InputWrap>
+              </S.PriceBox>
               <S.Body_Middle>
                 <S.BoardContent>
                   <S.Theme>
-                    게시글 내용
+                    서비스 내용
                     <S.Required>*</S.Required>
                   </S.Theme>
                   <S.EditorBox>
@@ -170,50 +214,59 @@ export default function CreateProduct(props: IProps) {
                         data={data?.fetchDetailProduct?.product_main_text}
                       />
                     )}
-                    <S.Error>
+                    <S.Error className="contents">
                       {formState.errors.product_main_text?.message}
                     </S.Error>
                   </S.EditorBox>
                 </S.BoardContent>
                 <S.AvailableTime>
                   <S.Theme>
-                    작업 가능 시간
+                    연락 가능 시간
                     <S.Required>*</S.Required>
                   </S.Theme>
-                  <S.SetTimeBox>
-                    {props.isEdit && data && (
-                      <>
-                        <WorkDay
-                          workDay={workDay}
-                          setWorkDay={setWorkDay}
-                          data={data?.fetchDetailProduct?.product_workDay}
-                        />
-                        <TimePick
-                          startTime={startTime}
-                          setStartTime={setStartTime}
-                          endTime={endTime}
-                          setEndTime={setEndTime}
-                          data={data?.fetchDetailProduct}
-                        />
-                      </>
-                    )}
-                    {!props.isEdit && (
-                      <>
-                        <WorkDay
-                          workDay={workDay}
-                          setWorkDay={setWorkDay}
-                          data={data?.fetchDetailProduct?.product_workDay}
-                        />
-                        <TimePick
-                          startTime={startTime}
-                          setStartTime={setStartTime}
-                          endTime={endTime}
-                          setEndTime={setEndTime}
-                          data={data?.fetchDetailProduct}
-                        />
-                      </>
-                    )}
-                  </S.SetTimeBox>
+                  <S.TimeWrap>
+                    <S.TimeBox>
+                      {props.isEdit && data && (
+                        <>
+                          <WorkDay
+                            workDay={workDay}
+                            setWorkDay={setWorkDay}
+                            data={data?.fetchDetailProduct?.product_workDay}
+                            onChangeWorkDay={onChangeWorkDay}
+                          />
+                          <TimePick
+                            startTime={startTime}
+                            setStartTime={setStartTime}
+                            endTime={endTime}
+                            setEndTime={setEndTime}
+                            data={data?.fetchDetailProduct}
+                            onChangeWorkTime={onChangeWorkTime}
+                          />
+                        </>
+                      )}
+                      {!props.isEdit && (
+                        <>
+                          <WorkDay
+                            workDay={workDay}
+                            setWorkDay={setWorkDay}
+                            data={data?.fetchDetailProduct?.product_workDay}
+                            onChangeWorkDay={onChangeWorkDay}
+                          />
+                          <TimePick
+                            startTime={startTime}
+                            setStartTime={setStartTime}
+                            endTime={endTime}
+                            setEndTime={setEndTime}
+                            data={data?.fetchDetailProduct}
+                            onChangeWorkTime={onChangeWorkTime}
+                          />
+                        </>
+                      )}
+                    </S.TimeBox>
+                    <S.Error className="contents">
+                      {formState.errors.product_startTime?.message}
+                    </S.Error>
+                  </S.TimeWrap>
                 </S.AvailableTime>
                 <S.AttachedImg>
                   <S.Theme>
@@ -225,7 +278,11 @@ export default function CreateProduct(props: IProps) {
                       fileList={fileList}
                       setFileList={setFileList}
                       data={data?.fetchDetailProduct?.images}
+                      onChangeThumbnailImage={onChangeThumbnailImage}
                     />
+                    <S.Error className="contents">
+                      {formState.errors.product_thumbnailImage?.message}
+                    </S.Error>
                   </S.Image>
                 </S.AttachedImg>
                 {/* <S.BoardAddress>

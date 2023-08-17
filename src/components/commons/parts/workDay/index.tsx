@@ -11,6 +11,7 @@ interface IWorkDay {
   data?: string;
   setWorkDay: (props: string) => void;
   workDay: string;
+  onChangeWorkDay?: (value: string) => void
 }
 
 export default function WorkDay(props: IWorkDay) {
@@ -18,15 +19,15 @@ export default function WorkDay(props: IWorkDay) {
     props.setWorkDay(props.data || "");
   }, [props.data]);
 
-  const handleChange = (value: string) => {
-    props.setWorkDay(value);
-  };
+  // const handleChange = (value: string) => {
+  //   props.setWorkDay(value);
+  // };
 
   return (
     <Select
       defaultValue={props.data ? `${props.data}` : "선택"}
       style={{ width: 120 }}
-      onChange={handleChange}
+      onChange={props.onChangeWorkDay}
       options={option}
       size="large"
     />

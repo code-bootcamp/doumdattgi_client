@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { REQUEST_ACCEPT_REFUSE } from "../../mutations/useMutationRequestAcceptRefuse";
 import { MouseEventHandler, useState } from "react";
+import { FETCH_ONE_REQUEST } from "../../queries/useQueryFetchOneRequest";
 
 // interface IMutationData {
 //   request_id: string;
@@ -23,7 +24,15 @@ export const useRequestAcceptRefuse = () => {
         variables: {
           acceptRefuse: "수락하기",
           request_id: router.query.id as string
-        }
+        },
+        refetchQueries: [
+          {
+            query: FETCH_ONE_REQUEST,
+            variables: {
+              request_id: router.query.id
+            }
+          }
+        ]
       });
       setIsOk(true);
       alert("의뢰가 수락되었습니다.");
@@ -41,7 +50,15 @@ export const useRequestAcceptRefuse = () => {
         variables: {
           acceptRefuse: "거절하기",
           request_id: router.query.id
-        }
+        },
+        refetchQueries: [
+          {
+            query: FETCH_ONE_REQUEST,
+            variables: {
+              request_id: router.query.id
+            }
+          }
+        ]
       });
       setIsRefuse(true);
       alert("의뢰가 거절되었습니다.");

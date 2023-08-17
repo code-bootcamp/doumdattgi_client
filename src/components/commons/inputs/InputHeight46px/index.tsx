@@ -10,7 +10,7 @@ interface IInputProps {
 export const Input = styled.input`
   width: 100%;
   height: 46px;
-  border-radius: 5px;
+  border-radius: 6px;
   border: 1px solid #dbdbdb;
   padding-left: 10px;
 `;

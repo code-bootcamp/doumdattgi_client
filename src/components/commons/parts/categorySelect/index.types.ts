@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 interface IData {
   product_category: string;
+  product_sub_category: string
 }
 
 export interface ICategory2Props {
@@ -11,11 +12,9 @@ export interface ICategory2Props {
   setCategorySelect: Dispatch<SetStateAction<string>>;
   optionSelect?: string;
   setOptionSelect: Dispatch<SetStateAction<string>>;
-  //   data?: IProduct;
-
-  //   setSelectedCategory: (value: string) => void;
-  //   setSelectedOptions: (value: string[]) => void;
   selectedCategory?: string | undefined;
   selectedOptions?: string[];
   data?: IData;
+  onChangeCategory?: (value: string) => void;
+  onChangeSubCategory?: (value: string) => void;
 }

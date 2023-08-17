@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { mq } from "../libraries/breakPoints";
 
 export const globalStyle = css`
   * {
@@ -9,8 +10,19 @@ export const globalStyle = css`
     font-family: "Arita-dotum";
     font-size: 16px;
     font-weight: 400;
-    color: #111;
     letter-spacing: -0.03em;
+
+    ${mq[1]} {
+      font-size: 15px;
+    }
+    ${mq[2]} {
+      font-size: 14px;
+    }
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
   }
 
   input {

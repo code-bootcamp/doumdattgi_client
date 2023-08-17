@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled.div`
-  width: calc((100% - 20px) / 2);
+  /* width: calc((100% - 20px) / 2); */
   border-radius: 6px;
   border: 1px solid #dddfe3;
   padding: 14px;
+  cursor: pointer;
 `;
 export const CategoryBox = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ export const CategoryBox = styled.div`
 `;
 
 export const Category = styled.span`
-  font-size: 14px;
+  font-size: 0.88em;
   display: block;
   font-weight: 500;
 `;
@@ -23,9 +24,9 @@ export const TitleBox = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 18px;
+  font-size: 1.13em;
   font-weight: 600;
-  line-height: 22px;
+  line-height: 1.38em;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -35,7 +36,8 @@ export const Title = styled.h2`
 `;
 
 export const Icon = styled(FontAwesomeIcon)`
-  font-size: 20px;
+  font-size: 1.25em;
+  color: #bec3c7;
 `;
 
 export const InfoBox = styled.div`
@@ -51,7 +53,7 @@ export const UserInfo = styled.div`
 `;
 
 export const NickName = styled.div`
-  font-size: 14px;
+  font-size: 0.88em;
   font-weight: 600;
   margin-left: 6px;
 `;

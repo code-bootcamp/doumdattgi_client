@@ -1,9 +1,8 @@
 import SliderComponent from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import { Image } from "antd";
 import { fallback } from "../../../../../commons/libraries/fallback";
+import { mq } from "../../../../../commons/libraries/breakPoints";
 
 const StyledSlider = styled(SliderComponent)`
   .slick-list {
@@ -54,11 +53,29 @@ const StyledSlider = styled(SliderComponent)`
   .slick-dots li.slick-active button:before {
     opacity: 1;
   }
+
+  ${mq[2]} {
+    .slick-prev:before,
+    .slick-next:before {
+      width: 60px;
+      height: 60px;
+    }
+    .slick-prev {
+      left: 20px;
+    }
+    .slick-next {
+      right: 20px;
+    }
+  }
 `;
 
 const Slide = styled.div`
   border-radius: 10px;
   overflow: hidden;
+
+  ${mq[2]} {
+    border-radius: 0;
+  }
 `;
 
 interface IProps {}

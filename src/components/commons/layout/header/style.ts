@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { SearchOutlined } from "@ant-design/icons";
+import { mq } from "../../../../commons/libraries/breakPoints";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled.header`
   width: 100%;
@@ -17,41 +19,120 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]}{
+    padding: 0 16px;
+  }
+`;
+export const NavIcon = styled.div`
+  display: none;
+  ${mq[2]} {
+    display: block;
+    height: 22px;
+    width: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  ${mq[3]} {
+    height: 16px;
+    width: 20px;
+  }
+`;
+export const line = styled.div`
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 10px;
+  background: #444;
+  transition: transform 0.2s ease-in-out;
+  &.line1 {
+    transform-origin: 0% 0%;
+    transform: ${props => (props.isOpen ? "rotate(45deg)" : "rotate(0)")};
+  }
+  &.line2 {
+    transform: ${props => (props.isOpen ? "scaleY(0)" : "scaleY(1)")};
+  }
+  &.line3 {
+    transform-origin: 0% 100%;
+    transform: ${props => (props.isOpen ? "rotate(-45deg)" : "rotate(0)")};
+  }
+  ${mq[3]} {
+    height: 2px;
+  }
+`;
+export const logoWrap = styled.div`
+  display: flex;
+  align-items: center;
 `;
 export const Logo = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+  ${mq[2]}{
+    margin-left: 10px;
+  }
 `;
 export const LogoIcon = styled.img`
   display: block;
   width: 36px;
   height: 36px;
+  ${mq[3]} {
+    width: 18px;
+    height: 18px;
+  }
 `;
 export const LogoTitle = styled.h1`
   font-size: 30px;
   line-height: 30px;
   font-weight: 600;
   margin-left: 5px;
+  ${mq[3]} {
+    font-size: 18px;
+  }
 `;
 export const HeaderBox = styled.div`
   display: flex;
   align-items: center;
 `;
+export const SearchWrap = styled.div`
+  ${mq[2]} {
+    display: ${props => (props.isOpen ? "block" : "none")};
+    width: 100%;
+    padding: 24px;
+    background: #fff;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    z-index: 9999;
+    border-bottom: 1px solid #e5e5e5;
+  }
+`;
 export const SearchBox = styled.div`
   width: 260px;
   position: relative;
+  ${mq[2]} {
+    /* display: none; */
+    width: 100%;
+  }
 `;
 
 export const SearchBtn = styled.button`
   display: none;
 `;
 
-export const SearchIcon = styled(SearchOutlined)`
+export const SearchIcon = styled(FontAwesomeIcon)`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 12px;
+`;
+export const SearchIcon768 = styled(FontAwesomeIcon)`
+  font-size: 20px;
 `;
 export const SearchInput = styled.input`
   width: 100%;
@@ -76,10 +157,25 @@ export const ShuffleBtn = styled.div`
   &:hover {
     background-color: #f3f3f3;
   }
+  &.loupe {
+    display: none;
+    ${mq[2]} {
+      display: flex;
+    }
+  }
+  ${mq[4]}{
+    margin-left: 0;
+  }
 `;
 export const ShuffleIcon = styled.img`
   display: block;
+  width: 20px;
+
+  ${mq[3]} {
+    width: 16px;
+  }
 `;
+
 export const Avatar = styled.img`
   cursor: pointer;
   margin-left: 14px;
@@ -118,8 +214,12 @@ export const SignUpBtn = styled.button`
   color: #fff;
   display: block;
   cursor: pointer;
+
+  ${mq[4]}{
+    padding: 10px;
+  }
 `;
 export const Logout = styled.span`
   display: block;
   width: 100%;
-`
+`;
