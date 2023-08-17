@@ -59,9 +59,15 @@ export const Icon = styled(FontAwesomeIcon)`
   color: #bec3c7;
   margin-left: 30px;
   cursor: pointer;
+  &:hover {
+    color: #fde047;
+  }
+  &.pick {
+    color: #fde047;
+  }
 `;
 export const TagWrap = styled.div`
-  margin-top: 40px;
+  margin-top: 30px;
 `;
 export const Tag = styled.span`
   font-size: 14px;
@@ -72,10 +78,16 @@ export const Tag = styled.span`
   background: #f6f7f9;
   border: 1px solid #929aa0;
   border-radius: 12px;
-  margin-left: 8px;
+  margin-left: 6px;
   &:first-of-type {
     margin-left: 0;
   }
+`;
+export const Price = styled.p`
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 24px;
+  letter-spacing: 0;
 `;
 export const Remarks = styled.p`
   font-size: 16px;
@@ -92,7 +104,18 @@ export const Button = styled.div<{
 `;
 export const DeleteBtn = styled.div`
   margin-bottom: 10px;
-`
+`;
+export const LineBtn = styled.button`
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+  border: 1px solid #88b04b;
+  background: #fff;
+  color: #88b04b;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+`;
 export const SlotBox = styled.div`
   position: absolute;
   width: 168px;
@@ -153,6 +176,9 @@ export const DetailUserWrap = styled.div`
   border: 1px solid #e0e1ea;
   height: 100%;
 `;
+export const UserNameBox = styled.div`
+  position: relative;
+`;
 export const UserName = styled.span`
   display: block;
   font-weight: 700;
@@ -161,7 +187,15 @@ export const UserName = styled.span`
   font-size: 18px;
   line-height: 18px;
 `;
-export const UserAvatar = styled.div``;
+export const UserAvatar = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #eaecf0;
+  position: absolute;
+  top: 50%;
+  right: 30px;
+`;
 export const UserContainer = styled.div`
   padding: 30px;
 `;
@@ -247,6 +281,8 @@ export const PortfolioLink = styled.span`
   display: inline-block;
   border-bottom: 1px solid #111;
   margin: 20px 0 0 26px;
+  cursor: pointer;
+  font-size: 14px;
 `;
 export const UserIntroduceTitle = styled.span`
   font-size: 18px;
@@ -268,8 +304,8 @@ export const Subtitle = styled.div`
 `;
 export const CardBoxWrap = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0 10px;
   margin-top: 20px;
 `;
 

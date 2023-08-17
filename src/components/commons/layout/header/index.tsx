@@ -13,6 +13,12 @@ import { debounce } from "lodash";
 import { useForm } from "react-hook-form";
 import { IData } from "./index.types";
 import { fallback } from "../../../../commons/libraries/fallback";
+import { Turn as Hamburger } from "hamburger-react";
+import { useNav } from "../../hooks/custom/useNav";
+import { useRecoilState } from "recoil";
+import { navOpenState, searchOpenState } from "../../../../commons/stores";
+import { SearchOutlined } from "@ant-design/icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header(): JSX.Element {
   const router = useRouter();
@@ -74,26 +80,48 @@ export default function Header(): JSX.Element {
   }, 1000);
 
   const searchKeyword = (data: IData) => {
-    console.log(data);
+    setIsOpen2(prev => !prev);
     getDebounce(data.keyword);
+  };
+
+  const [isOpen, setIsOpen] = useRecoilState(navOpenState);
+  const [isOpen2, setIsOpen2] = useRecoilState(searchOpenState);
+  const onClickNav = () => {
+    setIsOpen(prev => !prev);
+  };
+  const onClickSearch = () => {
+    setIsOpen2(prev => !prev);
   };
 
   return (
     <>
       <S.Wrapper>
         <S.Container>
-          <S.Logo onClick={onClickMoveToPage("/")}>
-            <S.LogoIcon src="/logo.svg" />
-            <S.LogoTitle>도움닫기</S.LogoTitle>
-          </S.Logo>
+          <S.logoWrap>
+            <S.NavIcon onClick={onClickNav}>
+              {/* <Hamburger toggle={setIsOpen} toggled={isOpen} size={30} /> */}
+              <S.line className="line1" isOpen={isOpen} />
+              <S.line className="line2" isOpen={isOpen} />
+              <S.line className="line3" isOpen={isOpen} />
+            </S.NavIcon>
+            <S.Logo onClick={onClickMoveToPage("/")}>
+              <S.LogoIcon src="/logo.svg" />
+              <S.LogoTitle>도움닫기</S.LogoTitle>
+            </S.Logo>
+          </S.logoWrap>
           <S.HeaderBox>
             <form onSubmit={handleSubmit(searchKeyword)}>
-              <S.SearchBox>
-                <S.SearchIcon />
-                <S.SearchInput {...register("keyword")} />
-                <S.SearchBtn type="submit"></S.SearchBtn>
-              </S.SearchBox>
+              <S.SearchWrap isOpen={isOpen2}>
+                <S.SearchBox isOpen={isOpen2}>
+                  <S.SearchIcon icon={faSearch} />
+                  <S.SearchInput {...register("keyword")} />
+                  <S.SearchBtn type="submit"></S.SearchBtn>
+                </S.SearchBox>
+              </S.SearchWrap>
             </form>
+            <S.ShuffleBtn onClick={onClickSearch} className="loupe">
+              <S.ShuffleIcon src="/loupe.png" />
+            </S.ShuffleBtn>
             <S.ShuffleBtn onClick={clickRandomBoard}>
               <S.ShuffleIcon src="/shuffle.png" />
             </S.ShuffleBtn>
@@ -109,9 +137,9 @@ export default function Header(): JSX.Element {
             )}
             {data && (
               <S.UserBox>
-                {/* <S.ShuffleBtn>
-                  <S.ShuffleIcon src="/chat.png" />
-                </S.ShuffleBtn> */}
+                <S.ShuffleBtn>
+                  <S.ShuffleIcon src="/chat-bubble.png" />
+                </S.ShuffleBtn>
                 <Dropdown
                   menu={{ items }}
                   trigger={["click"]}

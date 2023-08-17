@@ -7,6 +7,7 @@ import type {
 export const FETCH_MY_PRODUCT = gql`
   query fetchMyProduct($page: Float!, $pageSize: Float!) {
     fetchMyProduct(page: $page, pageSize: $pageSize) {
+      product_sellOrBuy
       product_id
       product_title
       product_category
@@ -29,7 +30,7 @@ export const useQueryFetchMyProduct = () => {
   >(FETCH_MY_PRODUCT, {
     variables: {
       page: 1,
-      pageSize: 5
+      pageSize: 4
     }
   });
 

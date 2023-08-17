@@ -7,7 +7,8 @@ interface IMutationData {
   product_id: string;
   request_title: string;
   request_content: string;
-  request_price: number;
+  request_price: string;
+  request_dueDate: string
 }
 
 export const useRequest = () => {
@@ -28,13 +29,14 @@ export const useRequest = () => {
             product_id: router.query.id,
             request_title: data.request_title,
             request_content: data.request_content,
-            request_price: Number(isTime)
+            request_price: Number(data.request_price),
+            request_dueDate: data.request_dueDate
           }
         }
       });
       alert("의뢰서 작성이 완료되었습니다.");
       setIsSubmitting(false);
-      void router.push(`/${router.query.id}`);
+      void router.push(`/${router.query.id}/workAgreement`);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);

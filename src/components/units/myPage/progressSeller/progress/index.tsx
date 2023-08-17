@@ -1,3 +1,4 @@
+import { fallback } from "../../../../../commons/libraries/fallback";
 import { getDateTime } from "../../../../../commons/libraries/getDate";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchSellerWork } from "../../../../commons/hooks/queries/useQueryFetchSellerWork";
@@ -32,7 +33,7 @@ export default function ProgressSellerProgressing(): JSX.Element {
                   <S.UserIcon
                     onError={e => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "/noimage.png";
+                      target.src = fallback;
                     }}
                     src={el.buyer_profileImage}
                   />

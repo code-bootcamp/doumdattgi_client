@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.header`
   width: 100%;
@@ -16,6 +17,14 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]}{
+    padding: 0 16px;
+  }
 `;
 export const Logo = styled.div`
   cursor: pointer;

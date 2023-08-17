@@ -5,24 +5,62 @@ import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage/index
 import { useQueryFetchUserSlot } from "../../../commons/hooks/queries/useQueryfetchUserSlot";
 import { useUser } from "../../../commons/hooks/custom/useUser/index";
 import ProfileMyProduct from "./myProduct";
-import ProfileMyFavorite from "./myFavorite";
-import { useState } from "react";
 import { fallback } from "../../../../commons/libraries/fallback";
+import { useQueryFetchMyProduct } from "../../../commons/hooks/queries/useQueryfetchMyProduct";
+import { useQueryFetchPickUserProduct } from "../../../commons/hooks/queries/useQueryFetchPickUserProduct";
+import { useEffect, useState } from "react";
 
 export default function Profile(): JSX.Element {
   const { data: login } = useQueryFetchLoginUser();
   const { data: slot } = useQueryFetchUserSlot();
+  const { data: myProduct, fetchMore, refetch } = useQueryFetchMyProduct();
+  const { data: myPick, fetchMore: myPickFetchMore } =
+    useQueryFetchPickUserProduct();
+
+  const mySell = myProduct?.fetchMyProduct.filter(
+    el => el.product_sellOrBuy === true
+  );
+  const myBuy = myProduct?.fetchMyProduct.filter(
+    el => el.product_sellOrBuy === false
+  );
+  const myPickList = myPick?.fetchPickUserProduct;
+  const [data, setData] = useState();
+  const [isSelectedTab, setIsSelectedTab] = useState(false);
+
   const { imageSrc, userTitle } = useUser();
   const { onClickMoveToPage } = useMoveToPage();
 
-  const [isList, setIsList] = useState(true);
+  useEffect(() => {
+    refetch({
+      page: 1,
+      pageSize: 5
+    });
+  }, []);
 
-  const onClickMoveToMyProduct = (): void => {
-    setIsList(true);
+  const onLoadMore = () => {
+    if (myProduct === undefined) return;
+
+    fetchMore({
+      variables: {
+        page: Math.ceil((myProduct?.fetchMyProduct.length ?? 5) / 5) + 1
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (fetchMoreResult.fetchMyProduct === undefined) {
+          return { fetchMyProduct: [...prev.fetchMyProduct] };
+        }
+
+        return {
+          fetchMyProduct: [
+            ...prev.fetchMyProduct,
+            ...fetchMoreResult.fetchMyProduct
+          ]
+        };
+      }
+    });
   };
 
-  const onClickMoveToMyFavorite = (): void => {
-    setIsList(false);
+  const onClickTabs = value => e => {
+    setData(value);
   };
 
   // 슬롯
@@ -40,7 +78,7 @@ export default function Profile(): JSX.Element {
               }}
               src={login?.fetchLoginUser?.user_profileImage ?? fallback}
             />
-            <S.UserName>{login?.fetchLoginUser?.user_name}</S.UserName>
+            <S.UserName>{login?.fetchLoginUser?.user_nickname}</S.UserName>
             <S.UserIntroduce>
               {login?.fetchLoginUser?.user_introduce}
             </S.UserIntroduce>
@@ -102,10 +140,11 @@ export default function Profile(): JSX.Element {
         <S.WrapperRight>
           <S.RightTitleBox>
             <div>
-              <S.ListBtn onClick={onClickMoveToMyProduct}>
-                게시글 목록
+              <S.ListBtn onClick={onClickTabs(mySell)}>
+                내 서비스 목록
               </S.ListBtn>
-              <S.ListBtn onClick={onClickMoveToMyFavorite}>
+              <S.ListBtn onClick={onClickTabs(myBuy)}>내 구인글 목록</S.ListBtn>
+              <S.ListBtn onClick={onClickTabs(myPickList ?? [])}>
                 찜한 글 목록
               </S.ListBtn>
             </div>
@@ -115,7 +154,12 @@ export default function Profile(): JSX.Element {
               </S.CreateLink>
             </Link>
           </S.RightTitleBox>
-          {isList ? <ProfileMyProduct /> : <ProfileMyFavorite />}
+          {/* {isList ? <ProfileMyProduct /> : <ProfileMyFavorite />} */}
+          <ProfileMyProduct
+            data={data ?? mySell}
+            onClickMoveToPage={onClickMoveToPage}
+            onLoadMore={onLoadMore}
+          />
         </S.WrapperRight>
       </S.Container>
     </S.Wrapper>

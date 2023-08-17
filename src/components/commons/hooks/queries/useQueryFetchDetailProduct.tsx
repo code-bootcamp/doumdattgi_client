@@ -31,6 +31,7 @@ export const FETCH_DETAIL_PRODUCT = gql`
       product_category
       product_sub_category
       product_summary
+      product_minAmount
       product_main_text
       product_sellOrBuy
       product_workDay
@@ -38,7 +39,9 @@ export const FETCH_DETAIL_PRODUCT = gql`
       product_endTime
       product_postNum
       product_roadAddress
-      product_detailAddress
+      product_detailAddress,
+      product_possibleAmount,
+      product_date
     }
   }
 `;

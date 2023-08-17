@@ -13,6 +13,7 @@ interface ITimePicker {
   setEndTime: (endTime: number) => void;
   startTime: number;
   endTime: number;
+  onChangeWorkTime?: (_: any, timeString: (string | any[])[]) => void
 }
 
 export default function TimePick(props: ITimePicker) {
@@ -21,17 +22,10 @@ export default function TimePick(props: ITimePicker) {
     props.setEndTime(Number(props.data?.product_endTime));
   }, [props.data]);
 
-  const onChange = (_: any, timeString: (string | any[])[]) => {
-    const startTime = timeString[0].slice(0, 2);
-    const endTime = timeString[1].slice(0, 2);
-    props.setStartTime(Number(startTime));
-    props.setEndTime(Number(endTime));
-  };
-
   return (
     <>
       <TimePicker.RangePicker
-        onChange={onChange}
+        onChange={props.onChangeWorkTime}
         showHour={true}
         showMinute={false}
         showSecond={false}

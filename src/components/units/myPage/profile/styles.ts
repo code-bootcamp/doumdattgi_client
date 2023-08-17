@@ -94,7 +94,7 @@ export const Slot = styled.div`
   color: #888;
   background-color: #fff;
   border: 2px solid #d9d9d9;
-  padding: 8px 30px;
+  padding: 8px 34px;
   border-radius: 6px;
 `;
 
@@ -186,7 +186,11 @@ export const ListBtn = styled.button`
   font-weight: 600;
   color: #929aa0;
   cursor: pointer;
-  &:last-of-type {
-    margin-left: 6px;
+  margin-left: 6px;
+  &:first-of-type {
+    margin-left: 0;
+  }
+  &.selected {
+    background-color: #111;
   }
 `;

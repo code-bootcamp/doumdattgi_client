@@ -24,6 +24,12 @@ export const FETCH_ONE_REQUEST = gql`
       request_startAt
       request_sendAt
       request_completedAt
+      request_dueDate
+      product {
+        product_title
+        product_category
+        product_sub_category
+      }
     }
   }
 `;

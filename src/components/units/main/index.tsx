@@ -11,6 +11,7 @@ import CardBox3 from "../../commons/parts/cardBox/col3";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
+import { useWindowSizeCustom } from "../../commons/hooks/custom/useResize";
 
 export default function MainPresenter() {
   const router = useRouter();
@@ -64,22 +65,22 @@ export default function MainPresenter() {
             ))}
           </S.CardboxWrap>
         </S.Section>
-        {/* <S.Section>
+        <S.Section>
           <S.Title>지금 구하고 있는 구인글이에요</S.Title>
-          <S.CardboxWrap>
+          <S.CardboxWrap className="buy">
             {Sellers?.fetchSellProduct.map(el => (
               <BarBox el={el} key={el.product_product_id} />
             ))}
           </S.CardboxWrap>
-        </S.Section> */}
+        </S.Section>
         <S.AdBar>
           <S.Ad src="/Frame 9.png" onClick={goToSignUp} />
         </S.AdBar>
         <S.Section>
           <S.Title>🌱 신규 주니어의 첫 게시글</S.Title>
-          <S.CardboxWrap>
+          <S.CardboxWrap className="newbie">
             {Newbie?.fetchNewbieProduct.map(el => (
-              <CardBox3 key={el.product_product_id} data={el} />
+              <CardBox4 key={el.product_product_id} data={el} />
             ))}
           </S.CardboxWrap>
         </S.Section>

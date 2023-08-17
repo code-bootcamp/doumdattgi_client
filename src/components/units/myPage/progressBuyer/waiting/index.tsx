@@ -2,6 +2,7 @@ import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
 import * as S from "../progress.styles";
 import { getDateTime } from "../../../../../commons/libraries/getDate";
 import { useQueryFetchBuyerRequest } from "../../../../commons/hooks/queries/useQueryFetchBuyerRequest";
+import { fallback } from "../../../../../commons/libraries/fallback";
 
 export default function ProgressBuyerWaiting(): JSX.Element {
   const { data } = useQueryFetchBuyerRequest();
@@ -32,7 +33,7 @@ export default function ProgressBuyerWaiting(): JSX.Element {
                   <S.UserIcon
                     onError={e => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "/noimage.png";
+                      target.src = fallback;
                     }}
                     src={el.seller_profileImage}
                   />

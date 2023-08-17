@@ -3,7 +3,7 @@ import * as S from "./style";
 import { fallback } from "../../../../../commons/libraries/fallback";
 import { getDate } from "../../../../../commons/libraries/getDate";
 import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
-import Tag from "../../../tag";
+import Tag from "../../../tag/category";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
 import {

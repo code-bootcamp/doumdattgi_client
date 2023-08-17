@@ -27,6 +27,7 @@ import {
   useQueryFetchPickOrNot
 } from "../../commons/hooks/queries/useQueryFetchPickOrNot";
 import { useMutationDeleteLoginProduct } from "../../commons/hooks/mutations/useMutationDeleteLoginProduct";
+import { fallback } from "../../../commons/libraries/fallback";
 
 export default function Detail() {
   const router = useRouter();
@@ -56,6 +57,11 @@ export default function Detail() {
   const slot1 = data?.fetchDetailProduct.user.slot.slot_first;
   const slot2 = data?.fetchDetailProduct.user.slot.slot_second;
   const slot3 = data?.fetchDetailProduct.user.slot.slot_third;
+
+  // 최소금액
+  const price = Number(data?.fetchDetailProduct?.product_minAmount)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   const clickPick = async () => {
     const result = await createPick({
@@ -93,18 +99,22 @@ export default function Detail() {
         </S.SliderBox>
         <S.DetailWrap>
           <S.DetailBox>
-            <S.Category>
+            {/* <S.Category>
               {
                 CategoryObj[
                   data?.fetchDetailProduct?.product_category ?? "DESIGN"
                 ]
               }
-            </S.Category>
+            </S.Category> */}
             <S.TitleWrap>
               <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
               <S.IconBox>
                 {pick?.fetchPickOrNot ? (
-                  <S.Icon onClick={clickPick} icon={Bookmark2} />
+                  <S.Icon
+                    onClick={clickPick}
+                    icon={Bookmark2}
+                    className="pick"
+                  />
                 ) : (
                   <S.Icon onClick={clickPick} icon={faBookmark} />
                 )}
@@ -112,9 +122,16 @@ export default function Detail() {
               </S.IconBox>
             </S.TitleWrap>
             <S.TagWrap>
+              <S.Tag>
+                {
+                  CategoryObj[
+                    data?.fetchDetailProduct?.product_category ?? "DESIGN"
+                  ]
+                }
+              </S.Tag>
               <S.Tag>{data?.fetchDetailProduct?.product_sub_category}</S.Tag>
-              <S.Tag>{Day}</S.Tag>
             </S.TagWrap>
+            <S.Price>{price} P ~</S.Price>
             <S.Remarks>{data?.fetchDetailProduct?.product_summary}</S.Remarks>
           </S.DetailBox>
           <S.DetailBox>
@@ -122,11 +139,20 @@ export default function Detail() {
               {slot3 ? (
                 <S.EnableBtn>현재 가능한 슬롯이 없습니다.</S.EnableBtn>
               ) : writer !== LoginUser || !writer || !LoginUser ? (
-                <Link href={`/${router.query.id}/request`}>
-                  <a>
-                    <ButtonHeight50px title="신청하기" isActive={true} />
-                  </a>
-                </Link>
+                <>
+                  <S.DeleteBtn>
+                    <Link href={`/${router.query.id}/request`}>
+                      <a>
+                        <S.LineBtn>신청서 작성하기</S.LineBtn>
+                      </a>
+                    </Link>
+                  </S.DeleteBtn>
+                  <Link href={`/${router.query.id}/request`}>
+                    <a>
+                      <ButtonHeight50px title="메세지 보내기" isActive={true} />
+                    </a>
+                  </Link>
+                </>
               ) : (
                 <>
                   <S.DeleteBtn>
@@ -180,17 +206,26 @@ export default function Detail() {
           )}
         </S.DetailContentsWrap>
         <S.DetailUserWrap>
-          <S.UserName>
-            {data?.fetchDetailProduct.user.user_nickname === ""
-              ? data?.fetchDetailProduct.user.user_email
-              : data?.fetchDetailProduct.user.user_nickname}
-          </S.UserName>
-          <S.UserAvatar />
+          <S.UserNameBox>
+            <S.UserName>
+              {data?.fetchDetailProduct.user.user_nickname === ""
+                ? data?.fetchDetailProduct.user.user_email
+                : data?.fetchDetailProduct.user.user_nickname}
+            </S.UserName>
+            <S.UserAvatar
+              onError={e => {
+                const target = e.target as HTMLImageElement;
+                target.src = fallback;
+              }}
+              src={data?.fetchDetailProduct.user?.user_profileImage ?? fallback}
+            />
+          </S.UserNameBox>
+
           <S.UserContainer>
             <S.UserTimeWrap>
               <S.TimeTitle>
                 <S.TimeIcon icon={faClock} />
-                <S.TimeText>작업 가능 시간</S.TimeText>
+                <S.TimeText>연락 가능 시간</S.TimeText>
               </S.TimeTitle>
               <S.UserTimeBox>
                 <S.UserTimeCategory>{Day}</S.UserTimeCategory>

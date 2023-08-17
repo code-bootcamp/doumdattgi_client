@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
-  generateBuildId: () => "doumdattgi-client"
+  generateBuildId: () => "doumdattgi-client",
+  compiler: {
+    emotion: true
+  }
 };
 
 module.exports = nextConfig;

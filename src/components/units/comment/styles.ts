@@ -133,11 +133,5 @@ export const Relode = styled.div`
 
 export const RotateIcon = styled(FontAwesomeIcon)`
   font-size: 24px;
-  animation: rotate_image 3s linear infinite;
-  transform-origin: 50% 50%;
-  @keyframes rotate_image {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+  color: #999;
 `;

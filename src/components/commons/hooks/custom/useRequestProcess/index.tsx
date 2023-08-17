@@ -1,7 +1,10 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { REQUEST_PROCESS } from "../../mutations/useMutationRequestProcess";
-import { useQueryFetchOneRequest } from "../../queries/useQueryFetchOneRequest";
+import {
+  FETCH_ONE_REQUEST,
+  useQueryFetchOneRequest
+} from "../../queries/useQueryFetchOneRequest";
 
 interface IMutationData {
   process: string;
@@ -23,7 +26,15 @@ export const useRequestProcess = () => {
         variables: {
           request_id: request_id,
           process: "작업 완료 확정하기"
-        }
+        },
+        refetchQueries: [
+          {
+            query: FETCH_ONE_REQUEST,
+            variables: {
+              request_id: router.query.id
+            }
+          }
+        ]
       });
       alert("작업 확정이 전달되었습니다.");
     } catch (error) {
@@ -40,7 +51,15 @@ export const useRequestProcess = () => {
         variables: {
           request_id: request_id,
           process: "작업 완료하기"
-        }
+        },
+        refetchQueries: [
+          {
+            query: FETCH_ONE_REQUEST,
+            variables: {
+              request_id: router.query.id
+            }
+          }
+        ]
       });
       alert("작업 완료가 전달되었습니다.");
     } catch (error) {
@@ -48,7 +67,6 @@ export const useRequestProcess = () => {
         alert(error.message);
       }
     }
-    router.reload();
   };
   return { onClickRequestProcessBuyer, onClickRequestProcessSeller };
 };

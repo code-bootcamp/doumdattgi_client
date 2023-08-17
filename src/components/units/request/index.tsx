@@ -12,6 +12,9 @@ import { ChangeEvent, useEffect, useRef } from "react";
 import { EditorInstance, EditorInstance2 } from "./index.types";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import { useQueryFetchUserPaymentInfo } from "../../commons/hooks/queries/useQueryFetchUserPaymentInfo";
+import { useQueryFetchDetailProduct } from "../../commons/hooks/queries/useQueryFetchDetailProduct";
+import InputHeight40px from "../../commons/inputs/InputHeight40px";
+import { DatePicker, DatePickerProps } from "antd";
 
 const CountUp = dynamic(
   async () => await import("../../commons/parts/countUp/intex"),
@@ -28,7 +31,8 @@ interface IFormData {
   product_id: string;
   request_title: string;
   request_content: string;
-  request_price: number;
+  request_price: string;
+  request_dueDate: string;
 }
 
 interface IEditor {
@@ -45,16 +49,17 @@ export default function Request(props: any): JSX.Element {
 
   const minimumWage = 9620;
   const { data } = useQueryFetchUserPaymentInfo("");
+  const { data: product } = useQueryFetchDetailProduct(`${router.query.id}`);
 
-  const userPoint = data?.fetchPayments[0]?.user?.user_point || 0;
+  const userPoint = data?.fetchPayments[0]?.user?.user_point ?? 0;
 
   // ============== 포인트 부족 ===============
   useEffect(() => {
-    if (userPoint < minimumWage || userPoint === 0) {
+    if (data !== undefined && userPoint < minimumWage) {
       alert("포인트가 부족하여 충전 페이지로 이동합니다.");
       router.push("/mypage/point");
     }
-  }, [userPoint]);
+  }, []);
 
   // =============== 의뢰서 작성 ===============
   const { register, handleSubmit, formState, setValue, trigger } =
@@ -72,46 +77,58 @@ export default function Request(props: any): JSX.Element {
     void trigger("request_content");
   };
 
-  // =============== 시간을 입력하면 지불 금액 계산 ===============
-
-  const onChangeTime = (event: ChangeEvent<HTMLInputElement>): void => {
-    const time = Number(event?.target.value);
-    setIsTime(String(time * minimumWage));
-    setValue("request_price", Number(time * minimumWage));
-    trigger("request_price");
+  const onChangeDate: DatePickerProps['onChange'] = (_, dateString) => {
+    setValue("request_dueDate", dateString)
   };
 
   return (
     <form onSubmit={handleSubmit(onClickWriteRequest)}>
       <S.Wrapper>
         <S.Container>
-          <S.Title>의뢰서 작성하기</S.Title>
+          <S.Title>
+            {product?.fetchDetailProduct?.user?.user_nickname}님의{" "}
+            <S.Highlight>
+              {product?.fetchDetailProduct?.product_title}
+            </S.Highlight>{" "}
+            서비스 의뢰서 작성하기
+          </S.Title>
+          <S.Desc>
+            신청을 위해 아래 폼을 채워주세요! <br />
+            최대한 상세히 채울수록 원하는 결과물을 받아볼 가능성이 높아진답니다.
+          </S.Desc>
           <S.DivideLine />
-          <S.ContentsBox>
-            <S.SubTitle>
-              의뢰 제안서<S.SubTitle2> *</S.SubTitle2>
-            </S.SubTitle>
-            <InputHeight50px register={register("request_title")} />
-            <S.SubTitle>
-              의뢰 내용
-              <S.SubTitle2> *</S.SubTitle2>
-            </S.SubTitle>
-            <Editor onChangeValue={onChangeContents} editorRef={editorRef} />
-          </S.ContentsBox>
           <S.SubTitle>
-            작업 요청 시간
+            의뢰 제목<S.SubTitle2> *</S.SubTitle2>
+          </S.SubTitle>
+          <InputHeight40px
+            register={register("request_title")}
+            placeholder="제목을 입력해주세요."
+          />
+          <S.SubTitle>
+            의뢰 내용
             <S.SubTitle2> *</S.SubTitle2>
           </S.SubTitle>
+          <S.EditorBox>
+            <Editor onChangeValue={onChangeContents} editorRef={editorRef} />
+          </S.EditorBox>
           <S.PaymentBox>
-            <S.PaymentIndex1>9,620원</S.PaymentIndex1>
-            <S.PaymentIndex2>X</S.PaymentIndex2>
-            <div>
-              <S.Time onChange={onChangeTime} />
-            </div>
-            <S.PaymentIndex2>시간</S.PaymentIndex2>
-            <S.PaymentIndex1>=</S.PaymentIndex1>
-            <S.PaymentIndex2>₩</S.PaymentIndex2>
-            <CountUp isTime={isTime} setIsTime={setIsTime} />
+            <S.SubTitle>
+              작업 요청 금액
+              <S.SubTitle2> *</S.SubTitle2>
+            </S.SubTitle>
+            <S.InputBox>
+              <InputHeight40px placeholder="예) 10,000 P" register={register("request_price")}/>
+            </S.InputBox>
+          </S.PaymentBox>
+          <S.PaymentBox>
+            <S.SubTitle>
+              필요 날짜
+              <S.SubTitle2> *</S.SubTitle2>
+            </S.SubTitle>
+            <S.InputBox>
+              {/* <InputHeight40px placeholder="예) 2023. 01. 01" /> */}
+              <DatePicker onChange={onChangeDate} size="large" showToday={false} format={"YYYY. MM. DD"}/>
+            </S.InputBox>
           </S.PaymentBox>
           <S.BtnBox>
             <Link href={link}>

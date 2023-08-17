@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled.div`
-  width: calc((100% - 60px) / 4);
+  /* width: calc((100% - 60px) / 4); */
   background-color: #fff;
   border: 1px solid #dddfe3;
   border-radius: 6px;
@@ -19,10 +19,10 @@ export const CategoryBox = styled.div`
 `;
 export const Category = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88em;
 `;
 export const Icon = styled(FontAwesomeIcon)`
-  font-size: 20px;
+  font-size: 1.25em;
   color: #bec3c7;
 `;
 export const Avatar = styled.img`
@@ -33,12 +33,11 @@ export const Avatar = styled.img`
   cursor: pointer;
 `;
 export const TitleBox = styled.div`
-    height: 50px;
+  height: 50px;
   margin-top: 8px;
-
 `;
 export const Title = styled.h2`
-  font-size: 18px;
+  font-size: 1.13em;
   font-weight: 600;
   line-height: 22px;
   overflow: hidden;
@@ -49,16 +48,16 @@ export const Title = styled.h2`
   word-wrap: break-word;
 `;
 export const InfoBox = styled.div`
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 export const UserBox = styled.div`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 `;
 export const UserName = styled.span`
-    display: block;
-    font-weight: 600;
-    font-size: 14px;
-    margin-left: 6px;
+  display: block;
+  font-weight: 600;
+  font-size: 0.88em;
+  margin-left: 6px;
 `;
