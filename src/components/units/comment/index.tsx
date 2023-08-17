@@ -30,7 +30,9 @@ export default function Comment(props: ICommentProps): JSX.Element {
 
   const [createComment] = useMutationCreateComment();
   const { data: user } = useQueryFetchLoginUser();
-  const { data: comment, refetch } = useQueryFetchComments(router.query.id as string);
+  const { data: comment, refetch } = useQueryFetchComments(
+    router.query.id as string
+  );
 
   const { register, setValue, trigger, handleSubmit, formState, resetField } =
     useForm({
@@ -38,7 +40,7 @@ export default function Comment(props: ICommentProps): JSX.Element {
       resolver: yupResolver(schemaCreateComment)
     });
 
-  const onClickCreateComment= async (data: ICommentForm) => {
+  const onClickCreateComment = async (data: ICommentForm) => {
     const request_id = props.data?.fetchOneRequest?.request_id || "";
     const sender_id = user?.fetchLoginUser?.user_id;
 
@@ -60,6 +62,7 @@ export default function Comment(props: ICommentProps): JSX.Element {
           }
         ]
       });
+
       resetField("text");
       console.log(result);
     } catch (error) {
