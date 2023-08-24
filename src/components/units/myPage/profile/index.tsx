@@ -20,12 +20,6 @@ import {
   IProduct
 } from "../../../../commons/types/generated/types";
 
-interface IValue {
-  myPickList?: any;
-  myBuy?: any[];
-  mySell?: any[];
-}
-
 export default function Profile(): JSX.Element {
   const { data: login } = useQueryFetchLoginUser();
   const { data: slot } = useQueryFetchUserSlot();
@@ -53,6 +47,7 @@ export default function Profile(): JSX.Element {
       page: 1,
       pageSize: 5
     });
+    setData(mySell)
   }, []);
 
   const onLoadMore = () => {
@@ -167,17 +162,17 @@ export default function Profile(): JSX.Element {
                 찜한 글 목록
               </S.ListBtn>
             </div>
-            <Link href={"/create"}>
-              <S.CreateLink>
-                <S.CreateIcon src="/pencil.png" />새 게시글 작성하기
-              </S.CreateLink>
-            </Link>
+
+            <S.CreateLink
+              onClick={onClickMoveToPage(
+                data === mySell ? "/create" : "/seek/create"
+              )}
+            >
+              <S.CreateIcon src="/pencil.png" />새 게시글 작성하기
+            </S.CreateLink>
           </S.RightTitleBox>
           {/* {isList ? <ProfileMyProduct /> : <ProfileMyFavorite />} */}
-          <ProfileMyProduct
-            data={data ?? mySell}
-            onLoadMore={onLoadMore}
-          />
+          <ProfileMyProduct data={data ?? mySell} onLoadMore={onLoadMore} />
         </S.WrapperRight>
       </S.Container>
     </S.Wrapper>
