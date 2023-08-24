@@ -165,7 +165,7 @@ export default function CreateProduct(props: IProps) {
                   <S.InputBox>
                     <InputHeight40px
                       register={register("product_summary")}
-                      defaultValue={data?.fetchDetailProduct?.product_summary}
+                      defaultValue={data?.fetchDetailProduct?.product_summary ?? ""}
                     />
                   </S.InputBox>
                   <S.Error>{formState.errors.product_summary?.message}</S.Error>

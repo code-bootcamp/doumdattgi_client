@@ -8,7 +8,7 @@ import Tag from "../../../commons/tag/category";
 import StatusTag from "../../../commons/tag/status";
 import { useQueryFetchSellCategoryProducts } from "../../../commons/hooks/queries/useQueryFetchSellCategoryProducts";
 import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { CategoryObj, CategoryObj2 } from "../../../../commons/libraries/translate";
 
 const category = {
@@ -66,7 +66,7 @@ export default function SeekList() {
     });
   };
 
-  const onChangeCategory = e => {
+  const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
     setCategoryTitle(e.target.value);
   };
 
@@ -157,3 +157,4 @@ export default function SeekList() {
     </S.Wrapper>
   );
 }
+

@@ -1,5 +1,5 @@
 import * as S from "../styles";
-import Tag from "../../../../commons/tag";
+import Tag from "../../../../commons/tag/category";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
 import { fallback } from "../../../../../commons/libraries/fallback";
 import { CategoryObj } from "../../../../../commons/libraries/translate";

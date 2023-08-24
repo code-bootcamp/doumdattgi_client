@@ -1,4 +1,4 @@
-export interface IUpdate {
+export interface ICreateSeek {
   product_title: string;
   product_summary: string;
   product_main_text: string;
@@ -17,10 +17,3 @@ export interface IUpdate {
   product_date: string
   product_possibleAmount: string
 }
-
-export const alternativeResultUrl = [
-  {
-    thumbnailImage: "",
-    isMain: true
-  }
-];
