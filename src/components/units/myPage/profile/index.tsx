@@ -8,7 +8,23 @@ import ProfileMyProduct from "./myProduct";
 import { fallback } from "../../../../commons/libraries/fallback";
 import { useQueryFetchMyProduct } from "../../../commons/hooks/queries/useQueryfetchMyProduct";
 import { useQueryFetchPickUserProduct } from "../../../commons/hooks/queries/useQueryFetchPickUserProduct";
-import { useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  MouseEventHandler,
+  SetStateAction,
+  useEffect,
+  useState
+} from "react";
+import {
+  IFetchMyPickOutput,
+  IProduct
+} from "../../../../commons/types/generated/types";
+
+interface IValue {
+  myPickList?: any;
+  myBuy?: any[];
+  mySell?: any[];
+}
 
 export default function Profile(): JSX.Element {
   const { data: login } = useQueryFetchLoginUser();
@@ -24,7 +40,9 @@ export default function Profile(): JSX.Element {
     el => el.product_sellOrBuy === false
   );
   const myPickList = myPick?.fetchPickUserProduct;
-  const [data, setData] = useState();
+  const [data, setData] = useState<
+    IProduct[] | IFetchMyPickOutput[] | undefined
+  >();
   const [isSelectedTab, setIsSelectedTab] = useState(false);
 
   const { imageSrc, userTitle } = useUser();
@@ -59,9 +77,10 @@ export default function Profile(): JSX.Element {
     });
   };
 
-  const onClickTabs = value => e => {
-    setData(value);
-  };
+  const onClickTabs =
+    (value: IProduct[] | IFetchMyPickOutput[] | undefined) => () => {
+      setData(value);
+    };
 
   // 슬롯
   const isAble = slot?.fetchUserSlot;
@@ -157,7 +176,6 @@ export default function Profile(): JSX.Element {
           {/* {isList ? <ProfileMyProduct /> : <ProfileMyFavorite />} */}
           <ProfileMyProduct
             data={data ?? mySell}
-            onClickMoveToPage={onClickMoveToPage}
             onLoadMore={onLoadMore}
           />
         </S.WrapperRight>

@@ -29,7 +29,7 @@ export const FETCH_SELL_PRODUCTS = gql`
   }
 `;
 
-export const useQueryFetchSellCategoryProducts = category => {
+export const useQueryFetchSellCategoryProducts = (category: string) => {
   const Query = useQuery<
     Pick<IQuery, "fetchSellCategoryProducts">,
     IQueryFetchSellCategoryProductsArgs

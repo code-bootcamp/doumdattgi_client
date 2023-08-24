@@ -43,7 +43,9 @@ export const NavIcon = styled.div`
     width: 20px;
   }
 `;
-export const line = styled.div`
+export const line = styled.div<{
+  isOpen: boolean
+}>`
   display: block;
   height: 3px;
   width: 100%;
@@ -99,7 +101,9 @@ export const HeaderBox = styled.div`
   display: flex;
   align-items: center;
 `;
-export const SearchWrap = styled.div`
+export const SearchWrap = styled.div<{
+  isOpen: boolean
+}>`
   ${mq[2]} {
     display: ${props => (props.isOpen ? "block" : "none")};
     width: 100%;
@@ -112,7 +116,9 @@ export const SearchWrap = styled.div`
     border-bottom: 1px solid #e5e5e5;
   }
 `;
-export const SearchBox = styled.div`
+export const SearchBox = styled.div<{
+  isOpen: boolean
+}>`
   width: 260px;
   position: relative;
   ${mq[2]} {

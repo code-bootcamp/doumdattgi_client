@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { mq } from "../../../../commons/libraries/breakPoints";
 
-export const Wrapper = styled.nav`
+export const Wrapper = styled.nav<{
+  isOpen: boolean
+}>`
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
