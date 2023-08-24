@@ -17,7 +17,6 @@ export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
 
   // 무한 스크롤 로직
-  const onLoadMore = () => {};
   console.log(props.data);
 
   return (
@@ -51,24 +50,32 @@ export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
                 "product_summary" in el
                   ? el.product_summary
                   : el.p_product_summary;
-              <S.RightListBox onClick={onClickMoveToPage(`/${productId}`)}>
-                <S.ListImage
-                  onError={e => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = fallback;
-                  }}
-                  src={imageUrl}
-                />
-                <S.RightDetailBox>
-                  <S.ListCategory>
-                    {CategoryObj[productCategory]}
-                  </S.ListCategory>
-                  <S.ListTitle>{productTitle}</S.ListTitle>
-                  <Tag data={productWorkDay} />
-                  <S.DivideLine />
-                  <S.Remarks>{productSummary}</S.Remarks>
-                </S.RightDetailBox>
-              </S.RightListBox>;
+              const moveToSeek =
+                "product_sellOrBuy" in el
+                  ? el.product_sellOrBuy
+                    ? `/${productId}`
+                    : `/seek/${productId}`
+                  : `/${productId}`;
+              return (
+                <S.RightListBox onClick={onClickMoveToPage(moveToSeek)}>
+                  <S.ListImage
+                    onError={e => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = fallback;
+                    }}
+                    src={imageUrl}
+                  />
+                  <S.RightDetailBox>
+                    <S.ListCategory>
+                      {CategoryObj[productCategory]}
+                    </S.ListCategory>
+                    <S.ListTitle>{productTitle}</S.ListTitle>
+                    <Tag data={productWorkDay} />
+                    <S.DivideLine />
+                    <S.Remarks>{productSummary}</S.Remarks>
+                  </S.RightDetailBox>
+                </S.RightListBox>
+              );
             })}
           </>
         )}
