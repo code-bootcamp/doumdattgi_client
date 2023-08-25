@@ -125,8 +125,6 @@ export type IFetchMyPickOutput = {
 };
 
 export type IFetchProductOutput = {
-  product_date: string;
-  product_possibleAmount: string;
   __typename?: 'FetchProductOutput';
   i_image_url: Scalars['String'];
   product_product_category: Scalars['String'];
@@ -420,7 +418,7 @@ export type IProduct = {
   product_sellOrBuy: Scalars['Boolean'];
   product_startTime: Scalars['Int'];
   product_sub_category: Scalars['String'];
-  product_summary: Maybe<Scalars['String']>;
+  product_summary?: Maybe<Scalars['String']>;
   product_title: Scalars['String'];
   product_workDay: IWorkday_Status_Enum;
   product_workTime?: Maybe<Scalars['Int']>;
