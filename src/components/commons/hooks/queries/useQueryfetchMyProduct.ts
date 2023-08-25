@@ -21,7 +21,7 @@ export const FETCH_MY_PRODUCT = gql`
       product_summary
       mileage {
         mileage_coupon
-        mileage_createAt
+        mileage_createdAt
       }
     }
   }
@@ -34,7 +34,7 @@ export const useQueryFetchMyProduct = () => {
   >(FETCH_MY_PRODUCT, {
     variables: {
       page: 1,
-      pageSize: 4
+      pageSize: 5
     }
   });
 

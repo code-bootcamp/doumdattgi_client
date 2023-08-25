@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import { ChangeEvent, SetStateAction, useEffect, useRef, useState } from "react";
 import {
   EditorInstance,
   EditorInstance2,
@@ -21,6 +21,7 @@ import { useMutationUploadFile } from "../../mutations/useMutationUploadFile";
 import { useMutationUpdateProduct } from "../../mutations/useMutationUpdateProduct";
 import { IUpdate } from "./index.types";
 import { option } from "../../../../../commons/libraries/category";
+import { ICreateSeek } from "../../../../units/seek/create/index.types";
 
 export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
   const router = useRouter();
@@ -68,7 +69,7 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
 
   const editorRef = useRef<EditorInstance>(null);
 
-  const { register, setValue, trigger, handleSubmit, formState } = useForm({
+  const { register, setValue, trigger, handleSubmit, formState } = useForm<IFormData | IUpdate | ICreateSeek>({
     mode: "onChange",
     resolver: yupResolver(sellOrBuy ? schemaCreate : schemaSeekCreate)
   });
@@ -103,8 +104,8 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
   };
 
   const onChangeWorkTime = (_: any, timeString: (string | any[])[]) => {
-    const startTime = timeString[0].slice(0, 2);
-    const endTime = timeString[1].slice(0, 2);
+    const startTime = Number(timeString[0].slice(0, 2));
+    const endTime = Number(timeString[1].slice(0, 2));
 
     setValue("product_startTime", startTime);
     void trigger("product_startTime");
@@ -128,8 +129,8 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
   };
 
   const onCompleteAddressSearch = (data: {
-    zonecode: SetStateAction<string>;
-    address: SetStateAction<string>;
+    zonecode: string
+    address: string
   }) => {
     setValue("product_postNum", data.zonecode);
     void trigger("product_postNum");
@@ -143,48 +144,48 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
 
   if (isEdit) {
     useEffect(() => {
-      setValue("product_title", data?.fetchDetailProduct?.product_title);
+      setValue("product_title", data?.fetchDetailProduct?.product_title ?? "");
 
       if (data) {
         setCategorySelect(data?.fetchDetailProduct?.product_category);
         setCategoryArray(option[data?.fetchDetailProduct?.product_category]);
         setOptionSelect(data?.fetchDetailProduct?.product_sub_category);
       }
-      setValue("product_category", data?.fetchDetailProduct?.product_category);
+      setValue("product_category", data?.fetchDetailProduct?.product_category ?? "");
       setValue(
         "product_sub_category",
-        data?.fetchDetailProduct?.product_sub_category
+        data?.fetchDetailProduct?.product_sub_category ?? ""
       );
 
-      setValue("product_summary", data?.fetchDetailProduct?.product_summary);
+      setValue("product_summary", data?.fetchDetailProduct?.product_summary ?? "");
 
       setValue(
         "product_minAmount",
-        data?.fetchDetailProduct?.product_minAmount
+        data?.fetchDetailProduct?.product_minAmount ?? ""
       );
 
       setValue(
         "product_main_text",
         data?.fetchDetailProduct?.product_main_text === "<p><br></p>"
           ? ""
-          : data?.fetchDetailProduct?.product_main_text
+          : data?.fetchDetailProduct?.product_main_text ?? ""
       );
 
-      setValue("product_workDay", data?.fetchDetailProduct?.product_workDay);
+      setValue("product_workDay", data?.fetchDetailProduct?.product_workDay ?? "");
       setValue(
         "product_startTime",
-        data?.fetchDetailProduct?.product_startTime
+        data?.fetchDetailProduct?.product_startTime ?? 0
       );
-      setValue("product_endTime", data?.fetchDetailProduct?.product_endTime);
+      setValue("product_endTime", data?.fetchDetailProduct?.product_endTime ?? 0);
 
-      setValue("product_postNum", data?.fetchDetailProduct?.product_postNum);
+      setValue("product_postNum", data?.fetchDetailProduct?.product_postNum ?? "");
       setValue(
         "product_roadAddress",
-        data?.fetchDetailProduct?.product_roadAddress
+        data?.fetchDetailProduct?.product_roadAddress ?? ""
       );
       setValue(
         "product_detailAddress",
-        data?.fetchDetailProduct?.product_detailAddress
+        data?.fetchDetailProduct?.product_detailAddress ?? ""
       );
 
       setValue("product_thumbnailImage", data?.fetchDetailProduct?.images);
@@ -195,27 +196,29 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
     setIsModalOpen(prev => !prev);
   };
 
-  const [disabledPossibleAmount, setDisabledPossibleAmount] = useState(false);
-  const [disabledDate, setDisabledDate] = useState(false);
 
-  const onChangePossibleAmount = e => {
-    if (e.target.value === "협의가능") {
-      setDisabledPossibleAmount(true);
-      setValue("product_possibleAmount", "협의가능");
-      void trigger("product_possibleAmount");
-    } else if (e.target.value === "직접입력") {
-      setDisabledPossibleAmount(false);
-      setValue("product_possibleAmount", "");
+
+  const [disabledPossibleAmount, setDisabledPossibleAmount] = useState(false)
+  const [disabledDate, setDisabledDate] = useState(false)
+
+  const onChangePossibleAmount = (e: ChangeEvent<HTMLInputElement>) => {
+    if(e.target.value === "협의가능"){
+      setDisabledPossibleAmount(true)
+      setValue("product_possibleAmount", "협의가능")
+      void trigger("product_possibleAmount")
+    } else if(e.target.value === "직접입력"){
+      setDisabledPossibleAmount(false)
+      setValue("product_possibleAmount", "")
     }
-  };
-  const onChangeDate = e => {
-    if (e.target.value === "협의가능") {
-      setDisabledDate(true);
-      setValue("product_date", "협의가능");
-      void trigger("product_date");
-    } else if (e.target.value === "직접입력") {
-      setDisabledDate(false);
-      setValue("product_date", "");
+  }
+  const onChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
+    if(e.target.value === "협의가능"){
+      setDisabledDate(true)
+      setValue("product_date", "협의가능")
+      void trigger("product_date")
+    } else if(e.target.value === "직접입력"){
+      setDisabledDate(false)
+      setValue("product_date", "")
     }
   };
   const onChangeDatePicker: DatePickerProps["onChange"] = (_, dateString) => {
@@ -269,7 +272,7 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
   };
 
   // =============== 게시글 수정 ===============
-  const onClickEditProduct = async (update: IUpdate) => {
+  const onClickEditProduct = async (update: IUpdate): Promise<void> => {
     console.log(update);
     let updateFile = fileList.filter(el => el.originFileObj !== undefined);
     let prevFile = fileList
@@ -323,8 +326,10 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
   };
 
   // =============== 구해요 게시글 작성 ===============
-  const onClickCreateSeek = async (data): Promise<void> => {
-    console.log(data);
+
+  const onClickCreateSeek = async (data: ICreateSeek): Promise<void> => {
+    console.log(data)
+
     try {
       const result = await createProduct({
         variables: {

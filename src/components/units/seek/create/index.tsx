@@ -18,7 +18,7 @@ const Editor = dynamic(
   }
 );
 
-export default function SeekCreate(props) {
+export default function SeekCreate(props: { isEdit: boolean; sellOrBuy: boolean; }) {
   const {
     data,
 

@@ -60,11 +60,11 @@ export type ICreateProductInput = {
   product_sellOrBuy: Scalars['Boolean'];
   product_startTime: Scalars['Int'];
   product_sub_category: Scalars['String'];
-  product_summary: Scalars['String'];
-  product_thumbnailImage: Array<IThumbnail>;
+  product_summary?: InputMaybe<Scalars['String']>;
+  product_thumbnailImage?: InputMaybe<Array<IThumbnail>>;
   product_title: Scalars['String'];
   product_workDay: Scalars['String'];
-  product_workTime: Scalars['Int'];
+  product_workTime?: InputMaybe<Scalars['Int']>;
 };
 
 export type ICreateRequestInput = {
@@ -125,14 +125,18 @@ export type IFetchMyPickOutput = {
 };
 
 export type IFetchProductOutput = {
+  product_date: string;
+  product_possibleAmount: string;
   __typename?: 'FetchProductOutput';
   i_image_url: Scalars['String'];
-  product_date?: Maybe<Scalars['String']>;
-  product_minAmount?: Maybe<Scalars['String']>;
-  product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_category: Scalars['String'];
+  product_product_createdAt: Scalars['DateTime'];
+  product_product_date?: Maybe<Scalars['String']>;
   product_product_id: Scalars['String'];
+  product_product_minAmount?: Maybe<Scalars['String']>;
+  product_product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_sellOrBuy: Scalars['Boolean'];
+  product_product_sub_category: Scalars['String'];
   product_product_title: Scalars['String'];
   product_product_workDay: Scalars['String'];
   u_user_nickname: Scalars['String'];
@@ -142,13 +146,15 @@ export type IFetchProductOutput = {
 export type IFetchSearchProductOutput = {
   __typename?: 'FetchSearchProductOutput';
   i_image_url: Scalars['String'];
-  product_date?: Maybe<Scalars['String']>;
-  product_minAmount?: Maybe<Scalars['String']>;
-  product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_category: Scalars['String'];
+  product_product_createdAt: Scalars['DateTime'];
+  product_product_date?: Maybe<Scalars['String']>;
   product_product_id: Scalars['String'];
+  product_product_minAmount?: Maybe<Scalars['String']>;
+  product_product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_sellOrBuy: Scalars['Boolean'];
-  product_product_summary: Scalars['String'];
+  product_product_sub_category: Scalars['String'];
+  product_product_summary?: Maybe<Scalars['String']>;
   product_product_title: Scalars['String'];
   product_product_workDay: Scalars['String'];
   u_user_nickname: Scalars['String'];
@@ -158,11 +164,12 @@ export type IFetchSearchProductOutput = {
 export type IFetchSubCategoryOutput = {
   __typename?: 'FetchSubCategoryOutput';
   i_image_url: Scalars['String'];
-  product_date?: Maybe<Scalars['String']>;
-  product_minAmount?: Maybe<Scalars['String']>;
-  product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_category: Scalars['String'];
+  product_product_createdAt: Scalars['DateTime'];
+  product_product_date?: Maybe<Scalars['String']>;
   product_product_id: Scalars['String'];
+  product_product_minAmount?: Maybe<Scalars['String']>;
+  product_product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_sellOrBuy: Scalars['Boolean'];
   product_product_sub_category: Scalars['String'];
   product_product_title: Scalars['String'];
@@ -413,10 +420,10 @@ export type IProduct = {
   product_sellOrBuy: Scalars['Boolean'];
   product_startTime: Scalars['Int'];
   product_sub_category: Scalars['String'];
-  product_summary: Scalars['String'];
+  product_summary: Maybe<Scalars['String']>;
   product_title: Scalars['String'];
   product_workDay: IWorkday_Status_Enum;
-  product_workTime: Scalars['Int'];
+  product_workTime?: Maybe<Scalars['Int']>;
   user: IUser;
 };
 
@@ -440,6 +447,7 @@ export type IQuery = {
   fetchPickOrNot: Scalars['Boolean'];
   fetchPickUserProduct: Array<IFetchMyPickOutput>;
   fetchProducts: Array<IFetchProductOutput>;
+  fetchRandomMileageProduct: Array<IProduct>;
   fetchRandomProduct: Array<IFetchProductOutput>;
   fetchSearchProduct: Array<IFetchSearchProductOutput>;
   fetchSellCategoryProducts: Array<IFetchProductOutput>;
@@ -513,6 +521,11 @@ export type IQueryFetchPickUserProductArgs = {
 export type IQueryFetchProductsArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
+};
+
+
+export type IQueryFetchRandomMileageProductArgs = {
+  category: Scalars['String'];
 };
 
 

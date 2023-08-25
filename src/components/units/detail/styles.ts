@@ -303,10 +303,11 @@ export const Subtitle = styled.div`
   margin-top: 50px;
 `;
 export const CardBoxWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 10px;
   margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px 20px;
 `;
 
 export const Preview = styled.div`

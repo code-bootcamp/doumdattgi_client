@@ -8,7 +8,17 @@ import ProfileMyProduct from "./myProduct";
 import { fallback } from "../../../../commons/libraries/fallback";
 import { useQueryFetchMyProduct } from "../../../commons/hooks/queries/useQueryfetchMyProduct";
 import { useQueryFetchPickUserProduct } from "../../../commons/hooks/queries/useQueryFetchPickUserProduct";
-import { useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  MouseEventHandler,
+  SetStateAction,
+  useEffect,
+  useState
+} from "react";
+import {
+  IFetchMyPickOutput,
+  IProduct
+} from "../../../../commons/types/generated/types";
 
 export default function Profile(): JSX.Element {
   const { data: login } = useQueryFetchLoginUser();
@@ -24,7 +34,9 @@ export default function Profile(): JSX.Element {
     el => el.product_sellOrBuy === false
   );
   const myPickList = myPick?.fetchPickUserProduct;
-  const [data, setData] = useState();
+  const [data, setData] = useState<
+    IProduct[] | IFetchMyPickOutput[] | undefined
+  >();
   const [isSelectedTab, setIsSelectedTab] = useState(false);
 
   const { imageSrc, userTitle } = useUser();
@@ -35,6 +47,7 @@ export default function Profile(): JSX.Element {
       page: 1,
       pageSize: 5
     });
+    setData(mySell)
   }, []);
 
   const onLoadMore = () => {
@@ -59,9 +72,10 @@ export default function Profile(): JSX.Element {
     });
   };
 
-  const onClickTabs = value => e => {
-    setData(value);
-  };
+  const onClickTabs =
+    (value: IProduct[] | IFetchMyPickOutput[] | undefined) => () => {
+      setData(value);
+    };
 
   // 슬롯
   const isAble = slot?.fetchUserSlot;
@@ -148,18 +162,17 @@ export default function Profile(): JSX.Element {
                 찜한 글 목록
               </S.ListBtn>
             </div>
-            <Link href={"/create"}>
-              <S.CreateLink>
-                <S.CreateIcon src="/pencil.png" />새 게시글 작성하기
-              </S.CreateLink>
-            </Link>
+
+            <S.CreateLink
+              onClick={onClickMoveToPage(
+                data === mySell ? "/create" : "/seek/create"
+              )}
+            >
+              <S.CreateIcon src="/pencil.png" />새 게시글 작성하기
+            </S.CreateLink>
           </S.RightTitleBox>
           {/* {isList ? <ProfileMyProduct /> : <ProfileMyFavorite />} */}
-          <ProfileMyProduct
-            data={data ?? mySell}
-            onClickMoveToPage={onClickMoveToPage}
-            onLoadMore={onLoadMore}
-          />
+          <ProfileMyProduct data={data ?? mySell} onLoadMore={onLoadMore} />
         </S.WrapperRight>
       </S.Container>
     </S.Wrapper>

@@ -21,15 +21,15 @@ export const FETCH_SELL_PRODUCTS = gql`
       product_product_category
       product_product_workDay
       product_product_sellOrBuy
-      product_possibleAmount
-      product_date
+      product_product_possibleAmount
+      product_product_date
       u_user_nickname
       u_user_profileImage
     }
   }
 `;
 
-export const useQueryFetchSellCategoryProducts = category => {
+export const useQueryFetchSellCategoryProducts = (category: string) => {
   const Query = useQuery<
     Pick<IQuery, "fetchSellCategoryProducts">,
     IQueryFetchSellCategoryProductsArgs

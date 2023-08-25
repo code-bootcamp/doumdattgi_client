@@ -2,7 +2,7 @@ import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
 import * as S from "./style";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { fallback } from "../../../../../commons/libraries/fallback";
-import Tag from "../../../tag";
+import Tag from "../../../tag/category";
 import { useQueryFetchMileageProductHistory } from "../../../hooks/queries/useQueryfetchMileageProductHistory";
 
 export default function MileageList(): JSX.Element {
@@ -22,7 +22,7 @@ export default function MileageList(): JSX.Element {
             <S.Icon icon={faBookmark} className="bookmark" />
           </S.TitleWrapper>
           <S.InfoBox>
-            <Tag />
+            <Tag data=""/>
             <S.UserBox>
               <S.Avatar
                 onError={e => {
