@@ -196,6 +196,8 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
     setIsModalOpen(prev => !prev);
   };
 
+
+
   const [disabledPossibleAmount, setDisabledPossibleAmount] = useState(false)
   const [disabledDate, setDisabledDate] = useState(false)
 
@@ -218,10 +220,10 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
       setDisabledDate(false)
       setValue("product_date", "")
     }
-  }
-  const onChangeDatePicker: DatePickerProps['onChange'] = (_, dateString) => {
-    setValue("product_date", dateString)
-    void trigger("product_date")
+  };
+  const onChangeDatePicker: DatePickerProps["onChange"] = (_, dateString) => {
+    setValue("product_date", dateString);
+    void trigger("product_date");
   };
 
   // =============== 게시글 작성 ===============
@@ -324,8 +326,10 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
   };
 
   // =============== 구해요 게시글 작성 ===============
+
   const onClickCreateSeek = async (data: ICreateSeek): Promise<void> => {
     console.log(data)
+
     try {
       const result = await createProduct({
         variables: {
@@ -340,18 +344,20 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
             product_endTime: 0,
             product_startTime: 0,
             product_summary: "",
-            product_thumbnailImage: [{thumbnailImage: "", isMain: true}],
+            product_thumbnailImage: [{ thumbnailImage: "", isMain: true }],
             product_workDay: "WEEKDAY",
             product_workTime: 0,
             product_postNum: data.product_postNum,
             product_roadAddress: data.product_roadAddress,
-            product_detailAddress: data.product_detailAddress,
+            product_detailAddress: data.product_detailAddress
           }
         }
       });
       // setIsSubmitting(false);
       alert("게시글 등록이 완료되었습니다.");
-      void router.push(`/seek/${result.data?.createProduct.product_id as string}`);
+      void router.push(
+        `/seek/${result.data?.createProduct.product_id as string}`
+      );
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

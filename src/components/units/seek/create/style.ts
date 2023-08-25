@@ -61,10 +61,10 @@ export const Employer = styled.div`
 export const DivideLine = styled.div`
   border-left: 2px solid #111;
 `;
-export const TitleBox = styled.div``
+export const TitleBox = styled.div``;
 export const SubTitle = styled.h2`
   margin-bottom: 14px;
-`
+`;
 export const Title = styled.h1`
   font-size: 36px;
   font-weight: 600;
@@ -74,7 +74,7 @@ export const Body = styled.div``;
 export const Body_Top = styled.div`
   margin-top: 30px;
   border-top: 2px solid #88b04b;
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid #e5e7eb;
 `;
 
 export const InputWrap = styled.div`
@@ -96,10 +96,10 @@ export const InputBox = styled.div`
   &.short {
     width: 220px;
   }
-`
+`;
 export const ThemeBox = styled.div`
   width: 240px;
-`
+`;
 export const Theme = styled.span`
   /* width: 280px; */
   display: flex;
@@ -123,10 +123,9 @@ export const Input = styled.input`
   font-size: 14px;
 `;
 export const PriceBox = styled.div`
-  border-bottom: 1px solid #E5E7EB;
-`
-export const Body_Middle = styled.div`
+  border-bottom: 1px solid #e5e7eb;
 `;
+export const Body_Middle = styled.div``;
 
 export const BoardContent = styled.div`
   display: flex;
@@ -171,11 +170,11 @@ export const MapBox = styled.div`
   height: 220px;
 `;
 export const MapDetail = styled.span`
-    display: block;
-    font-size: 14px;
-    margin-left: 20px;
-    color: #999;
-`
+  display: block;
+  font-size: 14px;
+  margin-left: 20px;
+  color: #999;
+`;
 
 export const BoardAddress = styled.div`
   margin-top: 50px;
@@ -251,14 +250,14 @@ export const Error = styled.span`
 `;
 export const RadioWrap = styled.div`
   position: relative;
-`
+`;
 export const RadioBox = styled.div`
-display: flex;
-align-items: center;
-&:last-of-type {
-  margin-top: 24px;
-}
-`
+  display: flex;
+  align-items: center;
+  &:last-of-type {
+    margin-top: 24px;
+  }
+`;
 export const Label = styled.label`
   display: flex;
   align-items: center;

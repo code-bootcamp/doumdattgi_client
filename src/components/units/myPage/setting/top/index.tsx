@@ -70,7 +70,7 @@ export default function SettingsTop() {
                     defaultValue={
                       data?.fetchLoginUser?.user_introduce !== ""
                         ? data?.fetchLoginUser?.user_introduce ?? ""
-                        : undefined
+                        : ""
                     }
                   ></S.Text>
                 </S.ProfileBox>

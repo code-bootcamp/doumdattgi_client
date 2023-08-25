@@ -10,7 +10,7 @@ import TimePick from "../../commons/parts/Timepicker/index2";
 import { useCreateProduct2 } from "../../commons/hooks/custom/useCreateProduct/index2";
 import AddressModal from "../../commons/hooks/custom/useAddress";
 import { useState } from "react";
-import { IProps } from "./index.types";
+import { IFormData, IProps } from "./index.types";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { useRouter } from "next/router";

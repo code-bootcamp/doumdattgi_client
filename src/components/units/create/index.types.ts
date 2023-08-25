@@ -17,6 +17,8 @@ export interface IFormData {
   product_postNum?: string;
   product_roadAddress?: string;
   product_detailAddress?: string;
+
+
   product_category: string
   product_sub_category: string
   product_workDay: string
@@ -26,10 +28,11 @@ export interface IFormData {
   product_thumbnailImage?: any
   product_date: string
   product_possibleAmount: string
+
 }
 
 export interface IProps {
   isEdit: boolean;
-  sellOrBuy: boolean
+  sellOrBuy: boolean;
   WorkDay?: string;
 }
