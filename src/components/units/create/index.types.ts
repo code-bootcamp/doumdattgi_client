@@ -17,15 +17,15 @@ export interface IFormData {
   product_postNum?: string;
   product_roadAddress?: string;
   product_detailAddress?: string;
-  product_category: string
-  product_sub_category: string
-  product_workDay: string
-  product_startTime: number
-  product_endTime: number
+  product_category: string;
+  product_sub_category: string;
+  product_workDay: string;
+  product_startTime: number;
+  product_endTime: number;
 }
 
 export interface IProps {
   isEdit: boolean;
-  sellOrBuy: boolean
+  sellOrBuy: boolean;
   WorkDay?: string;
 }

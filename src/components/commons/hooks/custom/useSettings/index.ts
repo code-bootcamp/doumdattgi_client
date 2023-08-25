@@ -58,12 +58,18 @@ export const useSettings = () => {
     if (data.user_introduce !== loginData?.fetchLoginUser.user_introduce) {
       NewVariables.updateNicknameIntroduceInput.user_introduce =
         data.user_introduce;
+    } else {
+      NewVariables.updateNicknameIntroduceInput.user_introduce =
+        loginData?.fetchLoginUser.user_introduce;
     }
 
     // 닉네임 부분을 수정했을 시 데이터 추가
     if (data.user_nickname !== loginData?.fetchLoginUser.user_nickname) {
       NewVariables.updateNicknameIntroduceInput.user_nickname =
         data.user_nickname;
+    } else {
+      NewVariables.updateNicknameIntroduceInput.user_nickname =
+        loginData?.fetchLoginUser.user_nickname;
     }
 
     try {
