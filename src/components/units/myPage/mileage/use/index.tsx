@@ -1,6 +1,6 @@
 import * as S from "../styles";
 import { useCoupon } from "../../../../commons/hooks/custom/useCoupon/index";
-import { useQueryFetchMyNotCouponProduct } from "../../../../commons/hooks/queries/useQueryfetchMyNotCouponProduct";
+import { useQueryFetchMyNotCouponProduct } from "../../../../commons/hooks/queries";
 
 export default function MileageUse(): JSX.Element {
   const { data } = useQueryFetchMyNotCouponProduct();
