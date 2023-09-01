@@ -1,6 +1,6 @@
 import * as S from "../styles";
 import { useCoupon } from "../../../../commons/hooks/custom/useCoupon/index";
-import { useQueryFetchMyNotCouponProduct } from "../../../../commons/hooks/queries";
+import { useQueryFetchMyNotCouponProduct } from "../../../../commons/hooks/queries/useQueryfetchMyNotCouponProduct";
 
 export default function MileageUse(): JSX.Element {
   const { data } = useQueryFetchMyNotCouponProduct();
@@ -19,7 +19,7 @@ export default function MileageUse(): JSX.Element {
         마일리지를 통해 일정 기간의 이용권을 구매할 수 있습니다.
       </S.Contents>
       <S.Contents>
-        이용권을 고매할 때, 노출하고 싶은 내 서비스를 선택할 수 있습니다.
+        이용권을 구매할 때, 노출하고 싶은 내 서비스를 선택할 수 있습니다.
       </S.Contents>
       <S.List value={selectedOption} onChange={onClickTitle}>
         <S.ListOption>게시글을 선택해주세요</S.ListOption>

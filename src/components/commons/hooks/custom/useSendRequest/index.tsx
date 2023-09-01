@@ -8,7 +8,7 @@ interface IMutationData {
   request_title: string;
   request_content: string;
   request_price: string;
-  request_dueDate: string
+  request_dueDate: string;
 }
 
 export const useRequest = () => {
@@ -21,6 +21,10 @@ export const useRequest = () => {
 
   // =============== 의뢰서 작성 기능 ===============
   const onClickWriteRequest = async (data: IMutationData) => {
+    console.log("ㅅㅂㅅㅂㅅㅂ");
+    console.log(data);
+    console.log("ㅅㅂㅅㅂㅅㅂ");
+
     try {
       setIsSubmitting(true);
       const result = await sendRequest({

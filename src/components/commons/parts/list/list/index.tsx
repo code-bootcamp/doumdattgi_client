@@ -47,7 +47,7 @@ export default function ProductList(props: IPropsList) {
 
   // 카테고리 최신순, 과거순 정렬
   const categoryList = !isRecent
-    ? data?.fetchCategoryProduct.reverse() || []
+    ? data?.fetchCategoryProduct.slice().reverse() || []
     : data?.fetchCategoryProduct || [];
 
   const LikeList = data2?.fetchLikeCategoryProduct ?? [];

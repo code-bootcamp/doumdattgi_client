@@ -37,7 +37,7 @@ export default function MileageList(): JSX.Element {
   return (
     <>
       {data?.fetchMileageProductHistory.length === 0 ? (
-        <S.ListNone>아직 서비스 이용권을 사용한 게시물이 없습니당</S.ListNone>
+        <S.ListNone>서비스 이용권을 사용한 게시물이 없습니다</S.ListNone>
       ) : (
         <>
           {data?.fetchMileageProductHistory.map(el => (

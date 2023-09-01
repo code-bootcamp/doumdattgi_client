@@ -35,7 +35,7 @@ export const useCoupon = () => {
         if (error instanceof Error) alert(error.message);
       }
     } else {
-      alert("쿠폰 혹은 게시물을 선택해주세요");
+      alert("사용할 쿠폰과 적용할 게시물을 선택해주세요");
     }
   };
 

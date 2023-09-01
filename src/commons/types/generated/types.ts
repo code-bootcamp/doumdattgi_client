@@ -143,15 +143,11 @@ export type IFetchProductOutput = {
 
 export type IFetchSearchProductOutput = {
   __typename?: 'FetchSearchProductOutput';
-  i_image_url: Scalars['String'];
+  image_url: Scalars['String'];
+  pick_count: Scalars['Float'];
   product_product_category: Scalars['String'];
-  product_product_createdAt: Scalars['DateTime'];
-  product_product_date?: Maybe<Scalars['String']>;
   product_product_id: Scalars['String'];
-  product_product_minAmount?: Maybe<Scalars['String']>;
-  product_product_possibleAmount?: Maybe<Scalars['String']>;
   product_product_sellOrBuy: Scalars['Boolean'];
-  product_product_sub_category: Scalars['String'];
   product_product_summary?: Maybe<Scalars['String']>;
   product_product_title: Scalars['String'];
   product_product_workDay: Scalars['String'];
@@ -437,6 +433,7 @@ export type IQuery = {
   fetchLoginUser: IUser;
   fetchMileageHistory: Array<IMileage>;
   fetchMileageProductHistory: Array<IProduct>;
+  fetchMyCategoryProduct: Array<IProduct>;
   fetchMyNotCouponProduct: Array<IProduct>;
   fetchMyProduct: Array<IProduct>;
   fetchNewbieProduct: Array<IFetchProductOutput>;
@@ -449,6 +446,7 @@ export type IQuery = {
   fetchRandomProduct: Array<IFetchProductOutput>;
   fetchSearchProduct: Array<IFetchSearchProductOutput>;
   fetchSellCategoryProducts: Array<IFetchProductOutput>;
+  fetchSellMyProduct: Array<IProduct>;
   fetchSellProduct: Array<IFetchProductOutput>;
   fetchSellerWork: Array<IRequest>;
   fetchSubCategoryProduct: Array<IFetchSubCategoryOutput>;
@@ -484,6 +482,13 @@ export type IQueryFetchLikeSubCategoryProductArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
   product_sub_category: Scalars['String'];
+};
+
+
+export type IQueryFetchMyCategoryProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+  product_category: Scalars['String'];
 };
 
 
@@ -538,6 +543,12 @@ export type IQueryFetchSellCategoryProductsArgs = {
   page: Scalars['Float'];
   pageSize: Scalars['Float'];
   product_category: Scalars['String'];
+};
+
+
+export type IQueryFetchSellMyProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
 };
 
 
@@ -639,6 +650,7 @@ export type IUser = {
   user_point: Scalars['Int'];
   user_portfolio?: Maybe<Scalars['String']>;
   user_profileImage?: Maybe<Scalars['String']>;
+  user_provider?: Maybe<Scalars['String']>;
   user_workRate: Scalars['Int'];
 };
 
