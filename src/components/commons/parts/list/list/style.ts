@@ -1,12 +1,18 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InfiniteScroll from "react-infinite-scroller";
+import { mq } from "../../../../../commons/libraries/breakPoints";
 
 export const Container = styled.div<{
   isAll: boolean;
 }>`
-  width: ${props => (props.isAll ? "100%" : "calc(1140px - 220px)")};
-  padding-left: 20px;
+  padding-left: ${props => (props.isAll ? "0" : "40px")};
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0;
+    padding-left: ${props => (props.isAll ? "0px" : "20px")};
+  }
 `;
 
 export const CategoryBox = styled.div`
@@ -35,11 +41,26 @@ export const LengthBox = styled.div`
   margin-top: 24px;
 `;
 
-export const ContentsBox = styled(InfiniteScroll)`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px 10px;
+export const ContentsBox = styled.div<{
+  isAll: boolean
+}>`
+  display: grid;
+  gap: 20px 10px;
   margin-top: 14px;
+  grid-template-columns: ${props => (props.isAll ? "1fr 1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr")};
+
+  ${mq[0]} {
+    grid-template-columns: ${props => (props.isAll ? "1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr")};
+  }
+  ${mq[1]} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  ${mq[2]} {
+    grid-template-columns: 1fr 1fr;
+  }
+  ${mq[3]} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const Contents = styled.div`

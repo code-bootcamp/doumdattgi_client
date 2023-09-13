@@ -4,6 +4,7 @@ import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import Tag from "../../../tag/category";
 import { Avatar } from "antd";
 import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
+import { fallback } from "../../../../../commons/libraries/fallback";
 
 interface IProps {
   el: {
@@ -20,7 +21,9 @@ export default function BarBox(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
 
   return (
-    <S.Wrapper onClick={onClickMoveToPage(`/seek/${props.el.product_product_id}`)}>
+    <S.Wrapper
+      onClick={onClickMoveToPage(`/seek/${props.el.product_product_id}`)}
+    >
       <S.CategoryBox>
         <S.Title>{props.el?.product_product_title}</S.Title>
         <S.Icon icon={faBookmark} />
@@ -28,7 +31,13 @@ export default function BarBox(props: IProps) {
       <S.InfoBox>
         <Tag data={props.el?.product_product_category} />
         <S.UserInfo>
-          <Avatar src={props.el?.u_user_profileImage} />
+          <S.Avatar
+            onError={e => {
+              const target = e.target as HTMLImageElement;
+              target.src = fallback;
+            }}
+            src={props.el?.u_user_profileImage ?? fallback}
+          />
           <S.NickName>{props.el?.u_user_nickname}</S.NickName>
         </S.UserInfo>
       </S.InfoBox>

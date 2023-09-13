@@ -10,6 +10,7 @@ import { CategoryObj } from "../../../../../commons/libraries/translate";
 import CardBox from "../../cardBox/col4";
 import ListCardBox from "../../cardBox/list";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
+import InfiniteScroll from "react-infinite-scroller";
 
 interface IProps {
   data: IFetchProductOutput;
@@ -80,11 +81,13 @@ export default function SubProductList() {
           ]}
         />
       </S.LengthBox>
-      <S.ContentsBox loadMore={onLoadMore} pageStart={0} hasMore={true}>
-        {data?.fetchSubCategoryProduct.map(el => (
-          <ListCardBox data={el} />
-        ))}
-      </S.ContentsBox>
+      <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
+        <S.ContentsBox>
+          {data?.fetchSubCategoryProduct.map(el => (
+            <CardBox data={el} />
+          ))}
+        </S.ContentsBox>
+      </InfiniteScroll>
     </S.Container>
   );
 }

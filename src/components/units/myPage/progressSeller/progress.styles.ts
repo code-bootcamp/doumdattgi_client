@@ -7,7 +7,7 @@ interface IPropsSelect {
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 50px 0 150px 0;
+  margin: 50px auto 0;
   min-height: 600px;
 `;
 

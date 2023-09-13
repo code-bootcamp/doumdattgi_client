@@ -2,22 +2,10 @@ import styled from "@emotion/styled";
 import InfiniteScroll from "react-infinite-scroller";
 
 export const Wrapper = styled.div`
-  /* width: 1200px; */
   display: flex;
   margin: 0px auto;
+  margin-top: 40px;
   justify-content: center;
-  height: 90vh;
-  overflow: auto;
-      &::-webkit-scrollbar{
-        background: #fff;
-        border-radius: 15px;
-        width: 10px;
-    }
-    &::-webkit-scrollbar-thumb{
-        background-color: #88b04b;
-        border-radius: 15px;
-        width: 5px;
-    }
 `;
 
 export const SubTitle = styled.div`
@@ -33,10 +21,20 @@ export const SubTitle = styled.div`
   line-height: 30px;
 `;
 
-export const WrapperRight = styled(InfiniteScroll)`
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
+export const WrapperRight = styled.div`
+  width: 100%;
+  height: 600px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    background: #fff;
+    border-radius: 15px;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #88b04b;
+    border-radius: 15px;
+    width: 5px;
+  }
 `;
 
 export const RightTitleBox = styled.div`
