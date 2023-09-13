@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 1000px;
-`
+`;
 
 export const Title = styled.h1`
   font-size: 30px;
@@ -20,12 +20,12 @@ export const Desc = styled.p`
   font-size: 14px;
   line-height: 18px;
   margin-top: 16px;
-` 
+`;
 export const Highlight = styled.span`
   font-size: 30px;
   font-weight: 600;
   color: #88b04b;
-`
+`;
 
 export const DivideLine = styled.div`
   border-top: 2px solid #88b04b;
@@ -45,15 +45,16 @@ export const SubTitle2 = styled.span`
 `;
 export const EditorBox = styled.div`
   height: 500px;
-`
-
-export const PaymentBox = styled.div`
-
 `;
 
+export const PaymentBox = styled.div``;
+
+export const InputWrap = styled.div`
+  position: relative;
+`;
 export const InputBox = styled.div`
   width: 250px;
-`
+`;
 
 export const PaymentIndex1 = styled.div`
   font-size: 60px;
@@ -83,4 +84,12 @@ export const BtnBox = styled.div`
 
 export const Between = styled.div`
   width: 24px;
+`;
+
+export const Error = styled.span`
+  display: block;
+  position: absolute;
+  top: calc(100% + 10px);
+  color: red;
+  font-size: 16px;
 `;

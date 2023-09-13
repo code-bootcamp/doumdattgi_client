@@ -57,3 +57,11 @@ export const NickName = styled.div`
   font-weight: 600;
   margin-left: 6px;
 `;
+
+export const Avatar = styled.img`
+  width: 24px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+`;

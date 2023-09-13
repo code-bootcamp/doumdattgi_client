@@ -14,7 +14,7 @@ export const FETCH_SEARCH_PRODUCT = gql`
       product_product_sellOrBuy
       u_user_nickname
       u_user_profileImage
-      i_image_url
+      image_url
       product_product_summary
     }
   }

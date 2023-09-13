@@ -46,3 +46,8 @@ export const selectServiceFromLanding = atom<string | null>({
   key: "selectServiceFirstFromLanding",
   default: ""
 });
+
+export const minAmountState = atom({
+  key: "requestMinAmount",
+  default: 0
+})

@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
-  margin-bottom: 150px;
-`;
+export const Wrapper = styled.div``;
 
 export const SettingTop = styled.div`
   width: 100%;

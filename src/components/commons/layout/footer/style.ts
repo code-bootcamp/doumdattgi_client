@@ -1,12 +1,28 @@
 import styled from "@emotion/styled";
 import { mq } from "../../../../commons/libraries/breakPoints";
+import { useRouter } from "next/router";
 
-export const Wrapper = styled.footer`
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid #bdbdbd;
-  background-color: #fafafa;
-`;
+export const useFooter = () => {
+  const router = useRouter();
+  const noMargin = ["/mypage/profile/"];
+  const isActive = noMargin.includes(router.asPath);
+
+  const Wrapper = styled.footer`
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #bdbdbd;
+    background-color: #fafafa;
+    margin-top: ${isActive ? "0" : "150px"};
+
+    ${mq[1]} {
+      margin-bottom: 100px;
+    }
+  `;
+
+  return {
+    Wrapper
+  }
+};
 
 export const Container = styled.div`
   width: 1140px;

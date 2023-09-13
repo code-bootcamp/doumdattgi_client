@@ -10,6 +10,7 @@ import { useQueryFetchSellCategoryProducts } from "../../../commons/hooks/querie
 import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
 import { ChangeEvent, useEffect, useState } from "react";
 import { CategoryObj, CategoryObj2 } from "../../../../commons/libraries/translate";
+import { getDate2 } from "../../../../commons/libraries/getDate";
 
 const category = {
   list: [
@@ -130,22 +131,22 @@ export default function SeekList() {
                     <S.RequireBox>
                       <S.Icon icon={faWonSign} />
                       <S.DetailTitle>가능 금액</S.DetailTitle>
-                      <S.DetailText>{el?.product_possibleAmount}</S.DetailText>
+                      <S.DetailText>{el?.product_product_possibleAmount}</S.DetailText>
                     </S.RequireBox>
                     <S.RequireBox className="require">
                       <S.Icon icon={faClock} />
                       <S.DetailTitle>필요 날짜</S.DetailTitle>
-                      <S.DetailText>{el?.product_date}</S.DetailText>
+                      <S.DetailText>{el?.product_product_date}</S.DetailText>
                     </S.RequireBox>
                   </S.FlexBox>
                   <S.TagBox>
                     <Tag data={el?.product_product_category} />
                     <S.Tag>
-                      <Tag data={el?.product_product_category} />
+                      <Tag data={el?.product_product_sub_category} />
                     </S.Tag>
                     <S.createdAt>
                       <S.Date>등록 일자</S.Date>
-                      <S.Date>2023. 07. 01</S.Date>
+                      <S.Date>{getDate2(el?.product_product_createdAt)}</S.Date>
                     </S.createdAt>
                   </S.TagBox>
                 </S.ListBox>
