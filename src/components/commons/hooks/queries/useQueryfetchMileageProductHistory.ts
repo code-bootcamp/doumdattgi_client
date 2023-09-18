@@ -18,6 +18,7 @@ export const FETCH_MILEAGE_PRODUCT_HISTORY = gql`
       mileage {
         mileage_id
         mileage_createdAt
+        mileage_coupon
       }
       product_startTime
       product_endTime

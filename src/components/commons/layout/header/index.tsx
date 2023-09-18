@@ -1,5 +1,5 @@
 import * as S from "./style";
-import { Avatar, Dropdown, Space, MenuProps } from "antd";
+import { Dropdown, Space, MenuProps } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useUser } from "../../hooks/custom/useUser";

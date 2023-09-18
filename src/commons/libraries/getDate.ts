@@ -22,3 +22,12 @@ export const getDateTime = (date: string) => {
   const min = String(_date.getMinutes()).padStart(2, "0");
   return `${yyyy} . ${mm} . ${dd} ${hh}:${min}`;
 };
+
+export const getDateTime2 = (time: number) => {
+  const day = Math.floor(time / 86400);
+  const hours = String(Math.floor((time % 86400) / 3600)).padStart(2, "0");
+  const min = String(Math.floor((time % 3600) / 60)).padStart(2, "0");
+  const sec = String(time % 60).padStart(2, "0");
+
+  return ` ${day}일 ${hours}시간 ${min}분 ${sec}초`;
+};

@@ -5,6 +5,16 @@ interface IPropsSelect {
   isStatus: boolean;
 }
 
+interface CouponProps {
+  el: {
+    select: string;
+    day: string;
+    price: string;
+  };
+  selectedCoupon: string;
+  onClick: () => void;
+}
+
 // mileage page
 export const Wrapper = styled.div`
   display: flex;
@@ -77,16 +87,16 @@ export const CouponWrapper = styled.div`
   margin: 50px 0px;
 `;
 
-export const Coupon = styled.button`
+export const Coupon = styled.button<CouponProps>`
   width: 254px;
   height: 330px;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid
+    ${props =>
+      props.el.select === props.selectedCoupon.split("&")[0]
+        ? "#88b04b"
+        : "#e5e7eb"};
   background-color: white;
-  :focus {
-    outline: 1px solid #88b04b;
-    border: 1px solid white;
-  }
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -114,30 +124,31 @@ export const CouponDetail = styled.div`
   font-size: 14px;
 `;
 
-export const List = styled.select`
-  width: 800px;
-  height: 60px;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  margin: 50px 0px 60px 0px;
-  padding: 0px 20px;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  appearance: none;
-`;
+// export const List = styled.select`
+//   width: 800px;
+//   height: 60px;
+//   border: 1px solid #e5e7eb;
+//   border-radius: 6px;
+//   margin: 50px 0px 60px 0px;
+//   padding: 0px 20px;
+//   display: flex;
+//   align-items: center;
+//   font-size: 18px;
+//   appearance: none;
+// `;
 
-export const ListOption = styled.option`
+export const BoardList = styled.div`
   width: 800px;
   height: 60px;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
-  margin: 50px 0px 60px 0px;
+  margin: 50px 0px 0px 0px;
   padding: 0px 20px;
   display: flex;
   align-items: center;
   font-size: 18px;
   background-color: white;
+  cursor: pointer;
 `;
 
 export const BtnBox = styled.div`
@@ -276,14 +287,36 @@ export const RightListBox = styled.div`
 
 export const RightDetailBox = styled.div`
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 `;
 
+export const DetailContents = styled.div`
+  width: calc(100% - 150px);
+`;
+
+export const MileageDay = styled.div`
+  width: 150px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const Day = styled.div`
+  font-size: 24px;
+  color: #88b04b;
+`;
+
+export const Time = styled.div``;
+
 export const ListImage = styled.img`
-  width: 260px;
+  width: 270px;
   height: 170px;
   border: 1px solid #e0e1ea;
   border-radius: 3px;
   margin-right: 24px;
+  overflow: auto;
 `;
 
 export const ListCategory = styled.div`

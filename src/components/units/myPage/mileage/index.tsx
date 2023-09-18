@@ -23,7 +23,7 @@ export default function Mileage(): JSX.Element {
   useEffect(() => {
     setIsList("use");
     // refetch();
-  }, [router.asPath]);
+  }, []);
 
   const renderPage = () => {
     if (isList === "use") {
