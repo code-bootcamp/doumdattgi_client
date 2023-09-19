@@ -8,7 +8,7 @@ interface IMutationData {
   request_title: string;
   request_content: string;
   request_price: string;
-  request_dueDate: string
+  request_dueDate: string;
 }
 
 export const useRequest = () => {

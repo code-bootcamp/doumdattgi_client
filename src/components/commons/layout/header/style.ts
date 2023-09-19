@@ -24,7 +24,7 @@ export const Container = styled.div`
     width: 100%;
     padding: 0 24px;
   }
-  ${mq[2]}{
+  ${mq[2]} {
     padding: 0 16px;
   }
 `;
@@ -44,7 +44,7 @@ export const NavIcon = styled.div`
   }
 `;
 export const line = styled.div<{
-  isOpen: boolean
+  isOpen: boolean;
 }>`
   display: block;
   height: 3px;
@@ -75,7 +75,7 @@ export const Logo = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  ${mq[2]}{
+  ${mq[2]} {
     margin-left: 10px;
   }
 `;
@@ -102,7 +102,7 @@ export const HeaderBox = styled.div`
   align-items: center;
 `;
 export const SearchWrap = styled.div<{
-  isOpen: boolean
+  isOpen: boolean;
 }>`
   ${mq[2]} {
     display: ${props => (props.isOpen ? "block" : "none")};
@@ -117,7 +117,7 @@ export const SearchWrap = styled.div<{
   }
 `;
 export const SearchBox = styled.div<{
-  isOpen: boolean
+  isOpen: boolean;
 }>`
   width: 260px;
   position: relative;
@@ -169,7 +169,7 @@ export const ShuffleBtn = styled.div`
       display: flex;
     }
   }
-  ${mq[4]}{
+  ${mq[4]} {
     margin-left: 0;
   }
 `;
@@ -221,7 +221,7 @@ export const SignUpBtn = styled.button`
   display: block;
   cursor: pointer;
 
-  ${mq[4]}{
+  ${mq[4]} {
     padding: 10px;
   }
 `;

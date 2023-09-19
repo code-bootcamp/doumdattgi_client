@@ -101,10 +101,10 @@ export default function Request(props: any): JSX.Element {
       <S.Wrapper>
         <S.Container>
           <S.Title>
-            {product?.fetchDetailProduct?.user?.user_nickname}님의{" "}
+            {product?.fetchDetailProduct?.user?.user_nickname}님의
             <S.Highlight>
               {product?.fetchDetailProduct?.product_title}
-            </S.Highlight>{" "}
+            </S.Highlight>
             서비스 의뢰서 작성하기
           </S.Title>
           <S.Desc>

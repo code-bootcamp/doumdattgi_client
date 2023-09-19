@@ -31,6 +31,7 @@ export const Wrapper = styled(Slider)`
     background-image: url("/prev.png");
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
   }
   .slick-next {
     right: -6px;
@@ -39,6 +40,7 @@ export const Wrapper = styled(Slider)`
     background-image: url("/next.png");
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
   }
 
   // 썸네일

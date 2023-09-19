@@ -8,6 +8,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();

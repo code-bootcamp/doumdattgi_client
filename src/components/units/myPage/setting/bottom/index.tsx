@@ -12,8 +12,10 @@ export default function SettingsBottom() {
   const { register, handleSubmit } = useForm<IpropsDetail>();
 
   const { isDetailEdit, clickEditDetail, clickSaveDetail } = useSettings();
+  const { onClickMoveToPage } = useMoveToPage();
 
-  const {onClickMoveToPage} = useMoveToPage()
+  // 소셜로그인 여부 체크
+  const isSocialLogin = data?.fetchLoginUser.user_provider;
 
   return (
     <S.Wrapper>
@@ -66,7 +68,9 @@ export default function SettingsBottom() {
                     <S.Categoty>포트폴리오 주소</S.Categoty>
                     {isDetailEdit ? (
                       <S.EditDetail
-                        defaultValue={data?.fetchLoginUser?.user_portfolio ?? ""}
+                        defaultValue={
+                          data?.fetchLoginUser?.user_portfolio ?? ""
+                        }
                         {...register("user_portfolio")}
                       />
                     ) : (
@@ -82,21 +86,26 @@ export default function SettingsBottom() {
                   나를 소개할 수 있는 포트폴리오 주소입니다.
                 </S.SettingListBtm>
               </S.SettingListBox>
-              <S.SettingListBox>
-                <S.SettingListTop>
-                  <S.SettingList>
-                    <S.Categoty>비밀번호</S.Categoty>
-                    <S.Contents>
-                      <S.PasswordEdit className="semiBold" onClick={onClickMoveToPage("/editPassword")}>
-                        비밀번호 변경하기
-                      </S.PasswordEdit>
-                    </S.Contents>
-                  </S.SettingList>
-                </S.SettingListTop>
-                <S.SettingListBtm>
-                  비밀번호를 변경할 수 있습니다.
-                </S.SettingListBtm>
-              </S.SettingListBox>
+              {isSocialLogin === "" && (
+                <S.SettingListBox>
+                  <S.SettingListTop>
+                    <S.SettingList>
+                      <S.Categoty>비밀번호</S.Categoty>
+                      <S.Contents>
+                        <S.PasswordEdit
+                          className="semiBold"
+                          onClick={onClickMoveToPage("/editPassword")}
+                        >
+                          비밀번호 변경하기
+                        </S.PasswordEdit>
+                      </S.Contents>
+                    </S.SettingList>
+                  </S.SettingListTop>
+                  <S.SettingListBtm>
+                    비밀번호를 변경할 수 있습니다.
+                  </S.SettingListBtm>
+                </S.SettingListBox>
+              )}
               <S.SettingListBox>
                 <S.SettingListTop>
                   <S.SettingList>

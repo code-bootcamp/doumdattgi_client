@@ -470,6 +470,13 @@ export type IQueryFetchMyCategoryProductArgs = {
   product_category: Scalars["String"];
 };
 
+export type IQueryFetchMyCategoryProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+  product_category: Scalars['String'];
+};
+
+
 export type IQueryFetchMyProductArgs = {
   page: Scalars["Float"];
   pageSize: Scalars["Float"];
@@ -519,6 +526,12 @@ export type IQueryFetchSellMyProductArgs = {
   page: Scalars["Float"];
   pageSize: Scalars["Float"];
 };
+
+export type IQueryFetchSellMyProductArgs = {
+  page: Scalars['Float'];
+  pageSize: Scalars['Float'];
+};
+
 
 export type IQueryFetchSubCategoryProductArgs = {
   page: Scalars["Float"];

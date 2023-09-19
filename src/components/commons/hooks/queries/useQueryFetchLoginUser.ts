@@ -16,6 +16,7 @@ export const FETCH_LOGIN_USER = gql`
       user_workRate
       user_point
       user_mileage
+      user_provider
     }
   }
 `;

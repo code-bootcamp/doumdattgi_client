@@ -100,6 +100,30 @@ export const globalStyle = css`
     width: 120px;
   }
 
+  /* 마일리지 게시판 선택  */
+
+  .board {
+    height: 250px;
+    overflow: scroll;
+  }
+
+  .board .ant-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .board .ant-dropdown-menu-item {
+    height: 50px;
+    margin: 0;
+  }
+
+  /* .board .ant-dropdown-menu-item div {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  } */
+
   /* 아바타 업로드 */
   &.ant-upload-wrapper.ant-upload-picture-circle-wrapper
     .ant-upload.ant-upload-select,
@@ -147,4 +171,3 @@ export const globalStyle = css`
     color: white;
   }
 `;
-
