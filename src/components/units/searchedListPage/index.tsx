@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { CategoryObj, Obj } from "../../../commons/libraries/translate";
 import { useRouter } from "next/router";
-import CardBox from "../../commons/parts/cardBox/col5";
+import CardBox from "../../commons/parts/cardBox/col4";
 import { Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -80,8 +80,7 @@ export default function SearchedPage() {
           <S.CategoryTag>{`${keyWord} 검색결과`}</S.CategoryTag>
           <S.RightHeader>
             <div>
-              {categoryList?.length}
-              개의 서비스
+              {data?.fetchSearchProduct?.length ?? 0}개의 서비스
             </div>
             <Select
               defaultValue="최신순"

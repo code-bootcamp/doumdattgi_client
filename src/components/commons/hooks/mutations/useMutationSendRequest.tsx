@@ -13,10 +13,7 @@ export const SEND_REQUEST = gql`
 `;
 
 export const useMutationSendRequest = () => {
-  const Mutation = useMutation<
-    Pick<IMutation, "sendRequest">,
-    IMutationSendRequestArgs
-  >(SEND_REQUEST);
+  const Mutation = useMutation(SEND_REQUEST);
 
   return Mutation;
 };

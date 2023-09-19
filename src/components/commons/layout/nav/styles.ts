@@ -7,6 +7,7 @@ export const Wrapper = styled.nav<{
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
+
   ${mq[2]} {
     display: ${(props) => props.isOpen ? "block" : "none"};
     position: absolute;

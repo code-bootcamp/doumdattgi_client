@@ -1,84 +1,23 @@
 import * as S from "./styles";
-import Link from "next/link";
-import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/useQueryFetchLoginUser";
-import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage/index";
-import { useQueryFetchUserSlot } from "../../../commons/hooks/queries/useQueryfetchUserSlot";
-import { useUser } from "../../../commons/hooks/custom/useUser/index";
 import ProfileMyProduct from "./myProduct";
 import { fallback } from "../../../../commons/libraries/fallback";
-import { useQueryFetchMyProduct } from "../../../commons/hooks/queries/useQueryfetchMyProduct";
-import { useQueryFetchPickUserProduct } from "../../../commons/hooks/queries/useQueryFetchPickUserProduct";
-import {
-  ChangeEvent,
-  MouseEventHandler,
-  SetStateAction,
-  useEffect,
-  useState
-} from "react";
-import {
-  IFetchMyPickOutput,
-  IProduct
-} from "../../../../commons/types/generated/types";
+import { useMyProduct } from "../../../commons/hooks/custom/useMyProduct";
+import ProfileMyPick from "./myFavorite";
 
 export default function Profile(): JSX.Element {
-  const { data: login } = useQueryFetchLoginUser();
-  const { data: slot } = useQueryFetchUserSlot();
-  const { data: myProduct, fetchMore, refetch } = useQueryFetchMyProduct();
-  const { data: myPick, fetchMore: myPickFetchMore } =
-    useQueryFetchPickUserProduct();
-
-  const mySell = myProduct?.fetchMyProduct.filter(
-    el => el.product_sellOrBuy === true
-  );
-  const myBuy = myProduct?.fetchMyProduct.filter(
-    el => el.product_sellOrBuy === false
-  );
-  const myPickList = myPick?.fetchPickUserProduct;
-  const [data, setData] = useState<
-    IProduct[] | IFetchMyPickOutput[] | undefined
-  >();
-  const [isSelectedTab, setIsSelectedTab] = useState(false);
-
-  const { imageSrc, userTitle } = useUser();
-  const { onClickMoveToPage } = useMoveToPage();
-
-  useEffect(() => {
-    refetch({
-      page: 1,
-      pageSize: 5
-    });
-    setData(mySell)
-  }, []);
-
-  const onLoadMore = () => {
-    if (myProduct === undefined) return;
-
-    fetchMore({
-      variables: {
-        page: Math.ceil((myProduct?.fetchMyProduct.length ?? 5) / 5) + 1
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (fetchMoreResult.fetchMyProduct === undefined) {
-          return { fetchMyProduct: [...prev.fetchMyProduct] };
-        }
-
-        return {
-          fetchMyProduct: [
-            ...prev.fetchMyProduct,
-            ...fetchMoreResult.fetchMyProduct
-          ]
-        };
-      }
-    });
-  };
-
-  const onClickTabs =
-    (value: IProduct[] | IFetchMyPickOutput[] | undefined) => () => {
-      setData(value);
-    };
-
-  // 슬롯
-  const isAble = slot?.fetchUserSlot;
+  const {
+    login,
+    imageSrc,
+    userTitle,
+    onClickMoveToPage,
+    isAble,
+    onClickTabs,
+    mySellProduct,
+    mySeekProduct,
+    myPick,
+    isPick,
+    isSeek,
+  } = useMyProduct();
 
   return (
     <S.Wrapper>
@@ -154,25 +93,29 @@ export default function Profile(): JSX.Element {
         <S.WrapperRight>
           <S.RightTitleBox>
             <div>
-              <S.ListBtn onClick={onClickTabs(mySell)}>
+              <S.ListBtn onClick={onClickTabs(false, false)}>
                 내 서비스 목록
               </S.ListBtn>
-              <S.ListBtn onClick={onClickTabs(myBuy)}>내 구인글 목록</S.ListBtn>
-              <S.ListBtn onClick={onClickTabs(myPickList ?? [])}>
+              <S.ListBtn onClick={onClickTabs(false, true)}>
+                내 구인글 목록
+              </S.ListBtn>
+              <S.ListBtn onClick={onClickTabs(true, false)}>
                 찜한 글 목록
               </S.ListBtn>
             </div>
-
             <S.CreateLink
-              onClick={onClickMoveToPage(
-                data === mySell ? "/create" : "/seek/create"
-              )}
+              onClick={onClickMoveToPage(isSeek ? "/seek/create" : "/create")}
             >
-              <S.CreateIcon src="/pencil.png" />새 게시글 작성하기
+              <S.CreateIcon src="/pencil.png" />
+              {isSeek ? "새 구인글 작성하기" : "새 서비스 작성하기"}
             </S.CreateLink>
           </S.RightTitleBox>
-          {/* {isList ? <ProfileMyProduct /> : <ProfileMyFavorite />} */}
-          <ProfileMyProduct data={data ?? mySell} onLoadMore={onLoadMore} />
+          {isPick && (
+            <ProfileMyPick data={myPick?.fetchPickUserProduct} />
+          )}
+          {!isPick && (
+            <ProfileMyProduct data={isSeek ? mySeekProduct?.fetchSellMyProduct : mySellProduct?.fetchMyProduct} isSeek={isSeek}/>
+          )}
         </S.WrapperRight>
       </S.Container>
     </S.Wrapper>

@@ -1,9 +1,18 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 50px 0 150px 0;
+  margin-top: 50px;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
 `;
 
 export const Container = styled.div`
@@ -50,10 +59,23 @@ export const RightHeader = styled.div`
 `;
 
 export const ContentsBox = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 30px 10px;
+  display: grid;
+  gap: 20px 10px;
+  margin-top: 14px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+  ${mq[0]} {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  ${mq[1]} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  ${mq[2]} {
+    grid-template-columns: 1fr 1fr;
+  }
+  ${mq[3]} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const Contents = styled.div`

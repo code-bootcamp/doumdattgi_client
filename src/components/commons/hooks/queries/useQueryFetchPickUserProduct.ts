@@ -28,7 +28,7 @@ export const useQueryFetchPickUserProduct = () => {
   >(FETCH_PICK_USER_PRODUCT, {
     variables: {
       page: 1,
-      pageSize: 5
+      pageSize: 4
     }
   });
 

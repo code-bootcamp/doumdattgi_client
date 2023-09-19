@@ -1,16 +1,24 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InfiniteScroll from "react-infinite-scroller";
+import { mq } from "../../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 50px;
-  margin-bottom: 150px;
 `;
 
 export const Container = styled.div`
   width: 1140px;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
 `;
 export const Header = styled.header`
   display: flex;
@@ -49,9 +57,14 @@ export const CreateIcon = styled.img`
 export const Body = styled.div`
   padding-top: 40px;
   display: flex;
+  justify-content: space-between;
 `;
 export const CategoryWrap = styled.div`
   width: 250px;
+
+  ${mq[1]} {
+    width: 180px;
+  }
 `;
 export const Category = styled.span`
   display: block;
@@ -90,6 +103,10 @@ export const Radio = styled.input`
 `;
 export const ListWrap = styled.div`
   width: calc(100% - 250px);
+
+  ${mq[1]} {
+    width: calc(100% - 180px);
+  }
 `;
 export const LengthBox = styled.div`
   display: flex;
@@ -142,7 +159,8 @@ export const DetailTitle = styled.span`
 `;
 export const DetailText = styled.span`
   display: block;
-  margin-left: 4px;
+  margin-left: 8px;
+  color: #73737A;
 `;
 export const Tag = styled.div`
   margin-left: 8px;

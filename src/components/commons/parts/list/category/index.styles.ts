@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   width: 200px;
@@ -7,8 +8,9 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h2`
   font-size: 22px;
+  line-height: 22px;
   font-weight: 500;
-  padding: 16px 0;
+  padding-bottom: 26px;
 `;
 
 export const DivideLine = styled.div`
@@ -21,11 +23,21 @@ export const Ad = styled.div`
   background-color: #ccc;
   border-radius: 6px;
   overflow: hidden;
+
+  ${mq[0]} {
+    height: 60px;
+  }
+  ${mq[2]} {
+    height: 60px;
+  }
 `;
 
-export const SubCategoryBox = styled.ul`
-
+export const AdImg = styled.img`
+  width: 100%;
+  height: 100%;
 `;
+
+export const SubCategoryBox = styled.ul``;
 
 export const SubCategory = styled.li`
   display: block;

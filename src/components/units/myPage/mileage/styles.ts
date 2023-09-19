@@ -19,7 +19,7 @@ interface CouponProps {
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 90px 0 150px 0;
+  margin: 90px auto 0;
   min-height: 600px;
 `;
 

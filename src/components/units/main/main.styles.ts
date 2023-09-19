@@ -6,11 +6,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 150px;
-
-  ${mq[1]} {
-    margin-bottom: 100px;
-  }
 `;
 
 export const Container = styled.div`

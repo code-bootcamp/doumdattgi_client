@@ -83,7 +83,7 @@ export default function SideCategory() {
       <S.Title>{CategoryObj[BigCategory]}</S.Title>
       <S.DivideLine />
       <S.Ad>
-        <img src="/ad3 1.png" />
+        <S.AdImg src="/ad3 1.png" />
       </S.Ad>
       {!isAllList && (
         <S.SubCategoryBox>

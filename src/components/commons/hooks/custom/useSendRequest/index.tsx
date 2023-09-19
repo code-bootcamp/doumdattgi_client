@@ -21,26 +21,44 @@ export const useRequest = () => {
 
   // =============== 의뢰서 작성 기능 ===============
   const onClickWriteRequest = async (data: IMutationData) => {
-    console.log("ㅅㅂㅅㅂㅅㅂ");
-    console.log(data);
-    console.log("ㅅㅂㅅㅂㅅㅂ");
+    // try {
+    //   // setIsSubmitting(true);
+    //   const result = await sendRequest({
+    //     variables: {
+    //       createRequestInput: {
+    //         product_id: router.query.id,
+    //         request_title: data.request_title,
+    //         request_content: data.request_content,
+    //         request_price: data.request_price,
+    //         request_dueDate: data.request_dueDate
+    //       }
+    //     }
+    //   });
+    //   alert("의뢰서 작성이 완료되었습니다.");
+    //   // setIsSubmitting(false);
+    //   console.log(result)
+    //   // void router.push(`/${result?.data?.sendRequest?.request_id}/workAgreement`);
+    // } catch (error) {
+    //   if (error instanceof Error) {
+    //     alert(error.message);
+    //   }
+    // }
+    // console.log(data)
 
     try {
-      setIsSubmitting(true);
       const result = await sendRequest({
         variables: {
           createRequestInput: {
             product_id: router.query.id,
             request_title: data.request_title,
             request_content: data.request_content,
-            request_price: Number(data.request_price),
+            request_price: data.request_price,
             request_dueDate: data.request_dueDate
           }
         }
       });
       alert("의뢰서 작성이 완료되었습니다.");
-      setIsSubmitting(false);
-      void router.push(`/${router.query.id}/workAgreement`);
+      console.log(result);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);

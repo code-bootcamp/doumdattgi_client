@@ -13,6 +13,7 @@ import ListCardBox from "../../cardBox/list";
 import { useEffect, useState } from "react";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 import { useQueryFetchLikeCategoryProduct } from "../../../hooks/queries/useQueryfetchLikeCategoryProduct";
+import InfiniteScroll from "react-infinite-scroller";
 
 interface IPropsList {
   isAll: boolean;
@@ -94,9 +95,6 @@ export default function ProductList(props: IPropsList) {
     });
   };
 
-  console.log(categoryList);
-  console.log(LikeList);
-
   return (
     <S.Container isAll={props.isAll}>
       <S.CategoryBox>
@@ -132,25 +130,19 @@ export default function ProductList(props: IPropsList) {
           onChange={RecentOrNot}
         />
       </S.LengthBox>
-      <S.ContentsBox loadMore={onLoadMore} pageStart={0} hasMore={true}>
-        <>
-          {!isLike
-            ? categoryList?.map(el => (
-                <ListCardBox
-                  key={el.product_product_id}
-                  data={el}
-                  isLike={false}
-                />
-              ))
-            : LikeList?.map(el => (
-                <ListCardBox
-                  key={el.product_product_id}
-                  data2={el}
-                  isLike={true}
-                />
-              ))}
-        </>
-      </S.ContentsBox>
+      <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
+        <S.ContentsBox isAll={props.isAll}>
+          <>
+            {!isLike
+              ? categoryList?.map(el => (
+                  <CardBox key={el.product_product_id} data={el} isLike={false} />
+                ))
+              : LikeList?.map(el => (
+                  <CardBox key={el.product_product_id} data2={el} isLike={true} />
+                ))}
+          </>
+        </S.ContentsBox>
+      </InfiniteScroll>
     </S.Container>
   );
 }
