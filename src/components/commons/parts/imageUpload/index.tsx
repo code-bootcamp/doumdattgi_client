@@ -59,7 +59,7 @@ function ImageUpload(props: any): JSX.Element {
 
   const uploadImage = (options: UploadRequestOption) => {
     const { onSuccess, file } = options;
-    onSuccess("Ok");
+    onSuccess?.("Ok");
   };
 
   return (
