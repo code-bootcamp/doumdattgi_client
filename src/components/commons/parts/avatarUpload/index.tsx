@@ -4,11 +4,6 @@ import { RcFile, UploadProps } from "antd/es/upload";
 import { useEffect, useState } from "react";
 import { UploadRequestOption } from "../../../../../node_modules/rc-upload/lib/interface";
 
-interface ICustomRequestOptions {
-  file: string | Blob | RcFile;
-  onSuccess: (body: Object) => void;
-}
-
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -55,7 +50,7 @@ function AvatarUpload(props: any): JSX.Element {
 
   const handleCancel = () => setPreviewOpen(false);
 
-  const uploadImage = async (options: UploadRequestOption) => {
+  const uploadImage = (options: UploadRequestOption) => {
     const { onSuccess, file } = options;
     onSuccess("Ok");
   };

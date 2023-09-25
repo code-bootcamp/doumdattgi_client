@@ -1,19 +1,14 @@
 import dynamic from "next/dynamic";
 import * as S from "./index.styles";
 import ImageUpload from "../../commons/parts/imageUpload";
-import Map from "../../commons/parts/map";
-import InputHeight38px from "../../commons/inputs/InputHeight38px";
-import ButtonHeight40px from "../../commons/buttons/ButtonHeight40px";
 import Category2 from "../../commons/parts/categorySelect/index2";
 import WorkDay from "../../commons/parts/workDay";
 import TimePick from "../../commons/parts/Timepicker/index2";
 import { useCreateProduct2 } from "../../commons/hooks/custom/useCreateProduct/index2";
 import AddressModal from "../../commons/hooks/custom/useAddress";
-import { useState } from "react";
-import { IFormData, IProps } from "./index.types";
+import { IProps } from "./index.types";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
-import { useRouter } from "next/router";
 import InputHeight40px from "../../commons/inputs/InputHeight40px";
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
@@ -48,7 +43,6 @@ export default function CreateProduct(props: IProps) {
 
     fileList,
     setFileList,
-    uploadImage,
 
     isModalOpen,
     setIsModalOpen,
@@ -67,7 +61,6 @@ export default function CreateProduct(props: IProps) {
   } = useCreateProduct2(props.isEdit, props.sellOrBuy);
 
   const { onClickMoveToPage } = useMoveToPage();
-  const router = useRouter();
 
   return (
     <>
@@ -162,7 +155,9 @@ export default function CreateProduct(props: IProps) {
                   <S.InputBox>
                     <InputHeight40px
                       register={register("product_summary")}
-                      defaultValue={data?.fetchDetailProduct?.product_summary ?? ""}
+                      defaultValue={
+                        data?.fetchDetailProduct?.product_summary ?? ""
+                      }
                     />
                   </S.InputBox>
                   <S.Error>{formState.errors.product_summary?.message}</S.Error>
@@ -276,68 +271,12 @@ export default function CreateProduct(props: IProps) {
                       setFileList={setFileList}
                       data={data?.fetchDetailProduct?.images}
                       onChangeThumbnailImage={onChangeThumbnailImage}
-                      uploadImage={uploadImage}
                     />
                     <S.Error className="contents">
                       {formState.errors.product_thumbnailImage?.message}
                     </S.Error>
                   </S.Image>
                 </S.AttachedImg>
-                {/* <S.BoardAddress>
-                  <S.Theme>주소 입력</S.Theme>
-                  <S.AddressBox>
-                    <S.MapBox>
-                      <Map
-                        address={
-                          address !== ""
-                            ? address
-                            : data?.fetchDetailProduct?.product_roadAddress
-                        }
-                      />
-                    </S.MapBox>
-                    <S.SearchBox>
-                      <S.ZipcodeWrap>
-                        <S.ZipcodeBox>
-                          <InputHeight38px
-                            value={
-                              zipcode !== ""
-                                ? zipcode
-                                : data?.fetchDetailProduct?.product_postNum ??
-                                  ""
-                            }
-                            disabled
-                          />
-                        </S.ZipcodeBox>
-                        <S.SearchBtn
-                          onClick={onClickAddressSearch}
-                          type="button"
-                        >
-                          우편번호 검색
-                        </S.SearchBtn>
-                      </S.ZipcodeWrap>
-                      <S.AddressInput>
-                        <InputHeight38px
-                          value={
-                            address !== ""
-                              ? address
-                              : data?.fetchDetailProduct?.product_roadAddress ??
-                                ""
-                          }
-                          disabled
-                        />
-                      </S.AddressInput>
-                      <S.AddressInput>
-                        <S.Input
-                          {...register("product_detailAddress")}
-                          defaultValue={
-                            data?.fetchDetailProduct?.product_detailAddress ??
-                            ""
-                          }
-                        />
-                      </S.AddressInput>
-                    </S.SearchBox>
-                  </S.AddressBox>
-                </S.BoardAddress> */}
               </S.Body_Middle>
               <S.Body_Bottom>
                 <S.BtnBox>

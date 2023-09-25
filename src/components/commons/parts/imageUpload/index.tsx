@@ -57,7 +57,7 @@ function ImageUpload(props: any): JSX.Element {
 
   const handleCancel = () => setPreviewOpen(false);
 
-  const uploadImage = async (options: UploadRequestOption) => {
+  const uploadImage = (options: UploadRequestOption) => {
     const { onSuccess, file } = options;
     onSuccess("Ok");
   };
