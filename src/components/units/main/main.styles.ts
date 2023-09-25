@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  overflow: hidden;
 `;
 
 export const Container = styled.div`
@@ -102,7 +103,12 @@ export const Ad = styled.img`
   display: block;
   width: 100%;
   height: auto;
+  
   ${mq[2]} {
+    width: auto;
+    height: 120px;
+  }
+  ${mq[3]} {
     width: auto;
     height: 100px;
   }

@@ -54,6 +54,14 @@ const StyledSlider = styled(SliderComponent)`
     opacity: 1;
   }
 
+  ${mq[0]} {
+    .slick-prev {
+      left: 20px;
+    }
+    .slick-next {
+      right: 20px;
+    }
+  }
   ${mq[2]} {
     .slick-prev:before,
     .slick-next:before {

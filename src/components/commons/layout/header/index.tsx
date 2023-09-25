@@ -89,9 +89,11 @@ export default function Header(): JSX.Element {
   const [isOpen2, setIsOpen2] = useRecoilState(searchOpenState);
   const onClickNav = () => {
     setIsOpen(prev => !prev);
+    setIsOpen2(false)
   };
   const onClickSearch = () => {
     setIsOpen2(prev => !prev);
+    setIsOpen(false)
   };
 
   return (

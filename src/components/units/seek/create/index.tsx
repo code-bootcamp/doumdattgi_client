@@ -10,6 +10,7 @@ import Category2 from "../../../commons/parts/categorySelect/index2";
 import InputHeight38px from "../../../commons/inputs/InputHeight38px";
 import Map from "../../../commons/parts/map";
 import { DatePicker } from "antd";
+import dayjs from "dayjs";
 
 const Editor = dynamic(
   async () => await import("../../../commons/parts/editor"),
@@ -18,13 +19,12 @@ const Editor = dynamic(
   }
 );
 
-export default function SeekCreate(props: { isEdit: boolean; sellOrBuy: boolean; }) {
+export default function SeekCreate(props: {
+  isEdit: boolean;
+  sellOrBuy: boolean;
+}) {
   const {
     data,
-
-    isToggle,
-    clickEmployee,
-    clickEmployer,
 
     editorRef,
     register,
@@ -34,6 +34,7 @@ export default function SeekCreate(props: { isEdit: boolean; sellOrBuy: boolean;
     onClickCreateProduct,
     onClickEditProduct,
     onClickCreateSeek,
+    onClickUpdateSeek,
 
     categoryArray,
     setCategoryArray,
@@ -52,6 +53,7 @@ export default function SeekCreate(props: { isEdit: boolean; sellOrBuy: boolean;
 
     disabledPossibleAmount,
     disabledDate,
+    disabledDateBefore,
 
     isSubmitting,
     onChangeCategory,
@@ -75,7 +77,7 @@ export default function SeekCreate(props: { isEdit: boolean; sellOrBuy: boolean;
           <form
             onSubmit={
               props.isEdit
-                ? handleSubmit(onClickEditProduct)
+                ? handleSubmit(onClickUpdateSeek)
                 : handleSubmit(onClickCreateSeek)
             }
           >
@@ -162,7 +164,12 @@ export default function SeekCreate(props: { isEdit: boolean; sellOrBuy: boolean;
                   <S.RadioWrap>
                     <S.RadioBox>
                       <S.Label>
-                        <S.Radio type="radio" name="price" defaultChecked onChange={onChangePossibleAmount} value={"직접입력"}/>
+                        <S.Radio
+                          type="radio"
+                          name="price"
+                          defaultChecked={props.isEdit ? disabledPossibleAmount : true}
+                          onChange={onChangePossibleAmount(false)}
+                        />
                       </S.Label>
                       <S.InputBox className="short">
                         <InputHeight40px
@@ -178,7 +185,12 @@ export default function SeekCreate(props: { isEdit: boolean; sellOrBuy: boolean;
                     </S.RadioBox>
                     <S.RadioBox>
                       <S.Label>
-                        <S.Radio type="radio" name="price" onChange={onChangePossibleAmount} value={"협의가능"}/>
+                        <S.Radio
+                          type="radio"
+                          name="price"
+                          onChange={onChangePossibleAmount(true)}
+                          defaultChecked={disabledPossibleAmount}
+                        />
                         금액의 조율이 가능해요.
                       </S.Label>
                     </S.RadioBox>
@@ -197,15 +209,40 @@ export default function SeekCreate(props: { isEdit: boolean; sellOrBuy: boolean;
                   <S.RadioWrap>
                     <S.RadioBox>
                       <S.Label>
-                        <S.Radio type="radio" name="date" defaultChecked onChange={onChangeDate} value={"직접입력"}/>
+                        <S.Radio
+                          type="radio"
+                          name="date"
+                          defaultChecked={props.isEdit ? disabledDate : true}
+                          onChange={onChangeDate(false)}
+                        />
                       </S.Label>
                       <S.InputBox className="short">
-                        <DatePicker onChange={onChangeDatePicker} size="large" showToday={false} format={"YYYY. MM. DD"} disabled={disabledDate}/>
+                        <DatePicker
+                          onChange={onChangeDatePicker}
+                          size="large"
+                          showToday={false}
+                          format={"YYYY. MM. DD"}
+                          disabled={disabledDate}
+                          disabledDate={disabledDateBefore}
+                          defaultValue={
+                            data?.fetchDetailProduct?.product_date ===
+                              undefined ||
+                            data?.fetchDetailProduct?.product_date ===
+                              "협의가능"
+                              ? undefined
+                              : dayjs(data?.fetchDetailProduct?.product_date)
+                          }
+                        />
                       </S.InputBox>
                     </S.RadioBox>
                     <S.RadioBox>
                       <S.Label>
-                        <S.Radio type="radio" name="date" onChange={onChangeDate} value={"협의가능"}/>
+                        <S.Radio
+                          type="radio"
+                          name="date"
+                          onChange={onChangeDate(true)}
+                          defaultChecked={disabledDate}
+                        />
                         날짜의 조율이 가능해요.
                       </S.Label>
                     </S.RadioBox>

@@ -1,18 +1,35 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { mq } from "../../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  overflow: hidden;
 `;
 
 export const Container = styled.div`
   width: 1140px;
   display: flex;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[1]} {
+    flex-direction: column;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
 `;
 export const ContentsWrap = styled.div`
-  width: 780px;
+  width: calc(100% - 320px);
+
+  ${mq[1]} {
+    width: 100%;
+  }
 `;
 export const TitleWrap = styled.div`
   padding-bottom: 40px;
@@ -108,16 +125,27 @@ export const MapBox = styled.div`
   margin-top: 30px;
 `;
 export const UserWrap = styled.div`
-  width: calc(100% - 780px);
+  width: 320px;
   padding-left: 40px;
+
+  ${mq[1]} {
+    width: 100%;
+    padding-left: 0;
+    margin-top: 50px;
+  }
 `;
 export const ButtonWrap = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 50px 0;
 `;
 export const ButtonBox = styled.div`
   width: 340px;
+  &.delete {
+    margin-bottom: 10px;
+  }
 `;
 export const ListWrap = styled.div`
   margin-top: 30px;

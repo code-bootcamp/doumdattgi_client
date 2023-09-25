@@ -17,6 +17,11 @@ export const Input = styled.input`
   border: 1px solid #dbdbdb;
   padding-left: 10px;
   font-size: 14px;
+  &:disabled {
+    cursor: not-allowed;
+    color: #b8b8b8;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
 `;
 
 export default function InputHeight40px(props: IInputProps): JSX.Element {

@@ -58,7 +58,7 @@ export default function MainPresenter() {
           <S.Ad src="/ad1.png" />
         </S.AdBar>
         <S.Section>
-          <S.Title>✨최신 게시글</S.Title>
+          <S.Title>최신 게시글</S.Title>
           <S.CardboxWrap>
             {Products?.fetchAllProducts.map(el => (
               <CardBox4 key={el.product_product_id} data={el} />

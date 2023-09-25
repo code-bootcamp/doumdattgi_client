@@ -13,13 +13,11 @@ import InfiniteScroll from "react-infinite-scroller";
 
 interface IMyProductProps {
   data: IFetchMyPickOutput[] | undefined;
-  //   onLoadMore: () => void;
 }
 
 export default function ProfileMyPick(props: IMyProductProps): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
   const { pickOnLoadMore } = useMyProduct();
-  console.log(props.data);
 
   return (
     <S.Wrapper>

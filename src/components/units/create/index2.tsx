@@ -24,10 +24,6 @@ export default function CreateProduct(props: IProps) {
   const {
     data,
 
-    isToggle,
-    clickEmployee,
-    clickEmployer,
-
     editorRef,
     register,
     handleSubmit,
