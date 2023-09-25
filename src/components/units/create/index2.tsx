@@ -48,6 +48,7 @@ export default function CreateProduct(props: IProps) {
 
     fileList,
     setFileList,
+    uploadImage,
 
     isModalOpen,
     setIsModalOpen,
@@ -275,6 +276,7 @@ export default function CreateProduct(props: IProps) {
                       setFileList={setFileList}
                       data={data?.fetchDetailProduct?.images}
                       onChangeThumbnailImage={onChangeThumbnailImage}
+                      uploadImage={uploadImage}
                     />
                     <S.Error className="contents">
                       {formState.errors.product_thumbnailImage?.message}

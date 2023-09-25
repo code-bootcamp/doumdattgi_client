@@ -52,6 +52,7 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
 
   // 이미지 state
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [uploadResult, setUploadResult] = useState("")
 
   // 주소 state
   const [isModalOpen, setIsModalOpen] = useState(false);

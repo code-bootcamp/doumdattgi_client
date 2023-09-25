@@ -5,8 +5,6 @@ import { Image } from "antd";
 import { fallback } from "../../../../commons/libraries/fallback";
 import * as S from "./styles";
 
-// const arr = ["/집가고싶다.jpg", "/그거이번주까지야.jpg", "/하루종일 폰만.jpg"];
-
 export default function SliderComponent(props: any) {
   const Slide = styled.div``;
 
@@ -42,7 +40,6 @@ export default function SliderComponent(props: any) {
           <Slide key={el}>
             <Image
               src={el}
-              //   src={`https://storage.googleapis.com/${el}`}
               alt=""
               fallback={fallback}
               width={640}

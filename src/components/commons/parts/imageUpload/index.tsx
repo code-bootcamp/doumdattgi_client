@@ -2,6 +2,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload, UploadFile } from "antd";
 import { RcFile, UploadProps } from "antd/es/upload";
 import { useEffect, useState } from "react";
+import { UploadRequestOption } from "../../../../../node_modules/rc-upload/lib/interface";
 
 interface IData {
   image_url: string;
@@ -56,6 +57,11 @@ function ImageUpload(props: any): JSX.Element {
 
   const handleCancel = () => setPreviewOpen(false);
 
+  const uploadImage = async (options: UploadRequestOption) => {
+    const { onSuccess, file } = options;
+    onSuccess("Ok");
+  };
+
   return (
     <>
       <Upload
@@ -63,6 +69,7 @@ function ImageUpload(props: any): JSX.Element {
         onChange={props.onChangeThumbnailImage}
         onPreview={handlePreview}
         fileList={props.fileList}
+        customRequest={uploadImage}
       >
         {props.fileList?.length >= 8 ? null : uploadButton}
       </Upload>

@@ -2,6 +2,12 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload, UploadFile } from "antd";
 import { RcFile, UploadProps } from "antd/es/upload";
 import { useEffect, useState } from "react";
+import { UploadRequestOption } from "../../../../../node_modules/rc-upload/lib/interface";
+
+interface ICustomRequestOptions {
+  file: string | Blob | RcFile;
+  onSuccess: (body: Object) => void;
+}
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -22,7 +28,6 @@ function AvatarUpload(props: any): JSX.Element {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
-
 
   // useEffect(() => {
   //   if (props.data !== undefined) {
@@ -50,6 +55,11 @@ function AvatarUpload(props: any): JSX.Element {
 
   const handleCancel = () => setPreviewOpen(false);
 
+  const uploadImage = async (options: UploadRequestOption) => {
+    const { onSuccess, file } = options;
+    onSuccess("Ok");
+  };
+
   return (
     <>
       <Upload
@@ -59,7 +69,7 @@ function AvatarUpload(props: any): JSX.Element {
         onChange={handleChange}
         onPreview={handlePreview}
         fileList={props.fileList}
-        customRequest={props.uploadImage}
+        customRequest={uploadImage}
       >
         {props.fileList.length === 1 ? null : uploadButton}
       </Upload>
