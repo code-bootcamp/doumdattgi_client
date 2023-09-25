@@ -24,7 +24,8 @@ export default function SettingsTop() {
     onClickEditProfile,
     clickEditIntroduce,
     register,
-    handleSubmit
+    handleSubmit,
+    uploadImage
   } = useSettings();
 
   return (
@@ -33,7 +34,7 @@ export default function SettingsTop() {
         <S.Container>
           <S.AvatarWrap>
             {isAvatarEdit && (
-              <AvatarUpload fileList={fileList} setFileList={setFileList} />
+              <AvatarUpload fileList={fileList} setFileList={setFileList} uploadImage={uploadImage} />
             )}
             {!isAvatarEdit && (
               <S.Avatar

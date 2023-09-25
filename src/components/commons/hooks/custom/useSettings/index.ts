@@ -19,6 +19,11 @@ export interface IpropsDetail {
   user_portfolio: string;
 }
 
+interface ICustomRequestOptions {
+  file: File;
+  onSuccess: (body: Object) => void;
+}
+
 export const useSettings = () => {
   const [updateNicknameIntroduce] = useMutationUpdateNicknameIntroduce();
   const [updateUserInfo] = useMutationUpdateUserInfo();
@@ -116,20 +121,33 @@ export const useSettings = () => {
   const [uploadFile] = useMutationUploadFile();
   const [updateProfileImage] = useMutationUpdateProfileImage();
 
-  console.log(fileList)
+  const [uploadResult, setUploadResult] = useState("");
+  console.log(uploadResult);
+
+  const uploadImage = async (options: ICustomRequestOptions) => {
+    const { onSuccess, file } = options;
+
+    try {
+      const result = await uploadFile({ variables: { files: file } });
+      onSuccess("Ok");
+      setUploadResult(result?.data?.uploadFile[0] ?? "");
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
 
   const onClickSubmitAvatar = async () => {
-    const urlResult = await Promise.all(
-      fileList.map(
-        async el => await uploadFile({ variables: { files: el.originFileObj } })
-      )
-    );
-    const resultUrl = urlResult[0]?.data?.uploadFile[0];
+    // const urlResult = await Promise.all(
+    //   fileList.map(
+    //     async el => await uploadFile({ variables: { files: el.originFileObj } })
+    //   )
+    // );
+    // const resultUrl = result?.data?.uploadFile[0];
 
     try {
       const result = await updateProfileImage({
         variables: {
-          user_url: resultUrl ?? ""
+          user_url: uploadResult ?? ""
         },
         refetchQueries: [
           {
@@ -137,7 +155,6 @@ export const useSettings = () => {
           }
         ]
       });
-      console.log(result);
       setIsAvatarEdit(prev => !prev);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
@@ -156,8 +173,7 @@ export const useSettings = () => {
           }
         ]
       });
-      console.log(result);
-      setFileList([])
+      setFileList([]);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -178,6 +194,7 @@ export const useSettings = () => {
     clickSaveDetail,
     isDetailEdit,
     register,
-    handleSubmit
+    handleSubmit,
+    uploadImage
   };
 };
