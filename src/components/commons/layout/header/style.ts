@@ -7,6 +7,7 @@ export const Wrapper = styled.header`
   width: 100%;
   background-color: #fff;
   padding: 7px 0;
+  overflow: hidden;
 `;
 export const DivideLine = styled.div`
   width: 100%;
@@ -30,6 +31,7 @@ export const Container = styled.div`
 `;
 export const NavIcon = styled.div`
   display: none;
+  cursor: pointer;
   ${mq[2]} {
     display: block;
     height: 22px;
@@ -84,8 +86,8 @@ export const LogoIcon = styled.img`
   width: 36px;
   height: 36px;
   ${mq[3]} {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
   }
 `;
 export const LogoTitle = styled.h1`
@@ -94,7 +96,7 @@ export const LogoTitle = styled.h1`
   font-weight: 600;
   margin-left: 5px;
   ${mq[3]} {
-    font-size: 18px;
+    font-size: 24px;
   }
 `;
 export const HeaderBox = styled.div`

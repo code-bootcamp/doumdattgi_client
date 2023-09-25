@@ -10,7 +10,7 @@ export default function Nav() {
   const [isOpen, setIsOpen] = useRecoilState(navOpenState);
 
   const clickCategory = (data: string) => () => {
-    setIsOpen(prev => !prev);
+    setIsOpen(false);
     router.push({
       pathname: "/categoryList",
       query: { data }
@@ -18,7 +18,7 @@ export default function Nav() {
   };
 
   const onClickSeek = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen(false);
     router.push("/seek");
   };
 

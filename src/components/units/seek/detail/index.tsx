@@ -11,13 +11,35 @@ import Map from "../../../commons/parts/map";
 import { useRouter } from "next/router";
 import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchDetailProduct } from "../../../commons/hooks/queries/useQueryFetchDetailProduct";
+import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/useQueryFetchLoginUser";
+import { useMutationDeleteLoginProduct } from "../../../commons/hooks/mutations/useMutationDeleteLoginProduct";
 
 export default function SeekDetail() {
   const router = useRouter();
   const { onClickMoveToPage } = useMoveToPage();
 
   const { data } = useQueryFetchDetailProduct(String(router.query.id));
-  console.log(data);
+  const { data: loginData } = useQueryFetchLoginUser();
+
+  const [deleteLoginProduct] = useMutationDeleteLoginProduct();
+
+  // 작성 글 ID와 로그인 유저 ID
+  const writer = data?.fetchDetailProduct.user.user_id;
+  const LoginUser = loginData?.fetchLoginUser.user_id;
+
+  const clickDelete = async () => {
+    try {
+      await deleteLoginProduct({
+        variables: {
+          product_id: router.query.id as string
+        }
+      });
+      alert("삭제가 완료되었습니다");
+      router.push("/seek/");
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
 
   return (
     <S.Wrapper>
@@ -85,17 +107,35 @@ export default function SeekDetail() {
                 {data?.fetchDetailProduct?.product_roadAddress}
               </S.MapAddress>
               <S.MapBox>
-                <Map 
-                  address={data?.fetchDetailProduct?.product_roadAddress}
-                />
+                <Map address={data?.fetchDetailProduct?.product_roadAddress} />
               </S.MapBox>
             </S.DetailMapWrap>
           )}
           <S.DivideLine />
           <S.ButtonWrap>
-            <S.ButtonBox>
-              <ButtonHeight50px title="지원하기" isActive={true} />
-            </S.ButtonBox>
+            {writer === LoginUser && (
+              <>
+                <S.ButtonBox className="delete">
+                  <ButtonHeight50px
+                    title="삭제하기"
+                    isYou={true}
+                    onClick={clickDelete}
+                  />
+                </S.ButtonBox>
+                <S.ButtonBox>
+                  <ButtonHeight50px
+                    title="수정하기"
+                    isActive={true}
+                    onClick={onClickMoveToPage(`/seek/${router.query.id}/edit`)}
+                  />
+                </S.ButtonBox>
+              </>
+            )}
+            {writer !== LoginUser && (
+              <S.ButtonBox>
+                <ButtonHeight50px title="지원하기" isActive={true} />
+              </S.ButtonBox>
+            )}
           </S.ButtonWrap>
           <S.DivideLine />
           <S.ListWrap>
@@ -136,9 +176,13 @@ export default function SeekDetail() {
                 const target = e.target as HTMLImageElement;
                 target.src = fallback;
               }}
-              src={data?.fetchDetailProduct?.user?.user_profileImage ?? fallback}
+              src={
+                data?.fetchDetailProduct?.user?.user_profileImage ?? fallback
+              }
             />
-            <S.UserName>{data?.fetchDetailProduct?.user?.user_nickname}</S.UserName>
+            <S.UserName>
+              {data?.fetchDetailProduct?.user?.user_nickname}
+            </S.UserName>
           </S.UserBox>
           <S.CreateBox>
             <S.CreateText>원하는 서비스를 직접 의뢰해보세요!</S.CreateText>
@@ -153,4 +197,3 @@ export default function SeekDetail() {
     </S.Wrapper>
   );
 }
-

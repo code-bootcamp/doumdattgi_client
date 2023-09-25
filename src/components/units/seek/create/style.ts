@@ -264,6 +264,7 @@ export const Label = styled.label`
 `;
 export const Radio = styled.input`
   appearance: none;
+  cursor: pointer;
   &::before {
     content: "";
     box-sizing: border-box;

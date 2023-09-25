@@ -18,7 +18,6 @@ interface IMyProductProps {
 
 export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
-  console.log(props.isSeek);
   const { sellOnLoadMore, seekOnLoadMore } = useMyProduct();
 
   return (
@@ -36,7 +35,7 @@ export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
             useWindow={false}
           >
             {props.data?.map(el => (
-              <S.RightListBox onClick={onClickMoveToPage(`/${el?.product_id}`)}>
+              <S.RightListBox onClick={onClickMoveToPage(`/${el?.product_id}`)} key={el?.product_id}>
                 <S.ListImage
                   onError={e => {
                     const target = e.target as HTMLImageElement;

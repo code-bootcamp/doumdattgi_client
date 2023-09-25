@@ -7,9 +7,9 @@ export const Container = styled.div<{
   isAll: boolean;
 }>`
   padding-left: ${props => (props.isAll ? "0" : "40px")};
+  width: ${props => (props.isAll ? "100%" : "calc(100% - 200px)")};
 
   ${mq[0]} {
-    width: 100%;
     padding: 0;
     padding-left: ${props => (props.isAll ? "0px" : "20px")};
   }

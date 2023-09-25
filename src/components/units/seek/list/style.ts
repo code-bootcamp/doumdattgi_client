@@ -128,17 +128,25 @@ export const ListBox = styled.div`
   border-bottom: 1px solid #d9d9d9;
   cursor: pointer;
   &:last-of-type {
-    border-bottom: none
+    border-bottom: none;
   }
 `;
 export const FlexBox = styled.div`
   display: flex;
+
+  ${mq[3]} {
+    flex-direction: column;
+  }
 `;
 export const RequireBox = styled.div`
   display: flex;
   margin-top: 24px;
   &.require {
     margin-left: 50px;
+
+    ${mq[3]} {
+      margin-left: 0;
+    }
   }
 `;
 export const TagBox = styled.div`
@@ -160,7 +168,7 @@ export const DetailTitle = styled.span`
 export const DetailText = styled.span`
   display: block;
   margin-left: 8px;
-  color: #73737A;
+  color: #73737a;
 `;
 export const Tag = styled.div`
   margin-left: 8px;

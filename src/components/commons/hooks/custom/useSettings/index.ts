@@ -116,6 +116,8 @@ export const useSettings = () => {
   const [uploadFile] = useMutationUploadFile();
   const [updateProfileImage] = useMutationUpdateProfileImage();
 
+  console.log(fileList)
+
   const onClickSubmitAvatar = async () => {
     const urlResult = await Promise.all(
       fileList.map(
@@ -155,6 +157,7 @@ export const useSettings = () => {
         ]
       });
       console.log(result);
+      setFileList([])
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
