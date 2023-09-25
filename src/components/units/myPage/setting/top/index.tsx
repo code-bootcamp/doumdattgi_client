@@ -1,14 +1,8 @@
 import AvatarUpload from "../../../../commons/parts/avatarUpload";
 import * as S from "./styles";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 import InputHeight50px from "../../../../commons/inputs/InputHeight50px";
 import { useQueryFetchLoginUser } from "../../../../commons/hooks/queries/useQueryFetchLoginUser";
-import {
-  IPropsIntroduceData,
-  useSettings
-} from "../../../../commons/hooks/custom/useSettings";
-import { useForm } from "react-hook-form";
+import { useSettings } from "../../../../commons/hooks/custom/useSettings";
 import { fallback } from "../../../../../commons/libraries/fallback";
 
 export default function SettingsTop() {
@@ -24,8 +18,7 @@ export default function SettingsTop() {
     onClickEditProfile,
     clickEditIntroduce,
     register,
-    handleSubmit,
-    uploadImage
+    handleSubmit
   } = useSettings();
 
   return (
@@ -34,7 +27,7 @@ export default function SettingsTop() {
         <S.Container>
           <S.AvatarWrap>
             {isAvatarEdit && (
-              <AvatarUpload fileList={fileList} setFileList={setFileList} uploadImage={uploadImage} />
+              <AvatarUpload fileList={fileList} setFileList={setFileList} />
             )}
             {!isAvatarEdit && (
               <S.Avatar
