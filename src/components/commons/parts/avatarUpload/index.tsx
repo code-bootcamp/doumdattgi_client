@@ -2,7 +2,6 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload, UploadFile } from "antd";
 import { RcFile, UploadProps } from "antd/es/upload";
 import { useEffect, useState } from "react";
-import { useMutationUploadFile } from "../../hooks/mutations/useMutationUploadFile";
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -24,18 +23,17 @@ function AvatarUpload(props: any): JSX.Element {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
 
-  const [uploadFile] = useMutationUploadFile();
 
-  useEffect(() => {
-    if (props.data !== undefined) {
-      let arr: any[] = [];
-      props.data.map((el: any) => {
-        let obj: any = { url: `https://storage.googleapis.com/${el}` };
-        arr.push(obj);
-      });
-      props.setFileList(arr);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (props.data !== undefined) {
+  //     let arr: any[] = [];
+  //     props.data.map((el: any) => {
+  //       let obj: any = { url: `https://storage.googleapis.com/${el}` };
+  //       arr.push(obj);
+  //     });
+  //     props.setFileList(arr);
+  //   }
+  // }, []);
 
   const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
     props.setFileList(newFileList);
@@ -61,6 +59,7 @@ function AvatarUpload(props: any): JSX.Element {
         onChange={handleChange}
         onPreview={handlePreview}
         fileList={props.fileList}
+        customRequest={props.uploadImage}
       >
         {props.fileList.length === 1 ? null : uploadButton}
       </Upload>
