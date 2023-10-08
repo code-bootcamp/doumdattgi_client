@@ -11,6 +11,7 @@ export const accessTokenState = atom({
   key: "accessTokenState",
   default: ""
 });
+
 export const restoreAccessTokenLoadable = selector({
   key: "restoreAccessTokenLoadable",
   get: async () => {
@@ -55,4 +56,4 @@ export const selectServiceFromLanding = atom<string | null>({
 export const minAmountState = atom({
   key: "requestMinAmount",
   default: 0
-})
+});
