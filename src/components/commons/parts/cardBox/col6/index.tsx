@@ -11,16 +11,21 @@ import { IProduct } from "../../../../../commons/types/generated/types";
 interface IProps {
   data?: IProduct;
   isLike?: boolean;
+  idx: number;
 }
 
 export default function CardBox(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
   return (
-    <S.Wrapper onClick={onClickMoveToPage(`/${props.data?.product_id}`)}>
+    <S.Wrapper
+      idx={props.idx}
+      onClick={onClickMoveToPage(`/${props.data?.product_id}`)}
+    >
       <Image
         src={`${props.data?.images[0].image_url}`}
         width={"100%"}
-        height={200}
+        height={180}
+        style={{ border: "1px solid #E3E4EC" }}
         fallback={fallback}
         preview={false}
       />

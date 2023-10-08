@@ -4,25 +4,45 @@ import { mq } from "../../../commons/libraries/breakPoints";
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
   margin-top: 50px;
-
-  border: 3px solid green;
+  width: 1140px;
 `;
 
 export const Upper = styled.div`
-  border: 3px solid black;
+  height: 395px;
+  padding-left: 40px;
+  background-color: #fafafa;
+  margin-bottom: 60px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
-export const Section = styled.section``;
+export const TitleSection = styled.section``;
 
-export const Title = styled.span``;
+export const Title = styled.span`
+  font-size: 20px;
+`;
 
-export const CardboxWrap = styled.div``;
+export const SubTitle = styled.span`
+  margin-left: 9px;
+  font-size: 12px;
+  color: #888;
+`;
+
+export const CardboxWrap = styled.div`
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
 
 export const Container = styled.div`
-  width: 1140px;
+  width: 220px;
   display: flex;
-  border: 2px solid blue;
+  justify-content: center;
 
   ${mq[0]} {
     width: 25%;
@@ -34,6 +54,5 @@ export const Container = styled.div`
 `;
 
 export const Container_Right = styled.div`
-  width: 100%;
-  border: 2px solid red;
+  width: calc(100% - 220px);
 `;

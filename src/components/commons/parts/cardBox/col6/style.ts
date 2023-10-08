@@ -1,16 +1,18 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Wrapper = styled.div`
-  /* width: calc((100% - 60px) / 4); */
+export const Wrapper = styled.div<{ idx: number }>`
+  width: calc((100% - 100px) / 3);
   background-color: #fff;
-  border: 1px solid #dddfe3;
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
+  margin-right: ${props => props.idx === 0 && "25px"};
+  margin-left: ${props => props.idx === 2 && "25px"};
 `;
 export const Container = styled.div`
   padding: 16px;
+  background-color: #fafafa;
 `;
 export const CategoryBox = styled.div`
   display: flex;
