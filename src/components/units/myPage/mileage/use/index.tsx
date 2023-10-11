@@ -4,11 +4,19 @@ import { useQueryFetchMyNotCouponProduct } from "../../../../commons/hooks/queri
 import { Dropdown, Space, MenuProps } from "antd";
 import { ItemType } from "antd/es/menu/hooks/useItems";
 import { MouseEvent, useState } from "react";
+import ButtonHeight60px from "../../../../commons/buttons/ButtonHeight60px";
 
 export default function MileageUse(): JSX.Element {
   const { data } = useQueryFetchMyNotCouponProduct();
-  const { onClickBoard, Board, onClickCoupon, onClickSubmit, selectedCoupon } =
-    useCoupon();
+  const {
+    onClickBoard,
+    Board,
+    onClickCoupon,
+    onClickSubmit,
+    selectedCoupon,
+    isBoardSelected,
+    isCouponSelected
+  } = useCoupon();
 
   // 현재 마일리지 적용 가능 게시글 목록
   const useMileageBoard = data?.fetchMyNotCouponProduct ?? [];
@@ -57,17 +65,6 @@ export default function MileageUse(): JSX.Element {
           </S.ListOption>
         ))}
       </S.List> */}
-
-      <Dropdown
-        menu={{ items }}
-        trigger={["click"]}
-        placement="bottomLeft"
-        overlayClassName={"board"}
-      >
-        <Space className="selectBoard">
-          <S.BoardList>{Board}</S.BoardList>
-        </Space>
-      </Dropdown>
       <S.CouponWrapper>
         {selectMileage.map(el => (
           <S.Coupon
@@ -78,14 +75,26 @@ export default function MileageUse(): JSX.Element {
           >
             <S.CouponImage />
             <S.CouponDetailWrapper>
-              <S.CouponDetail>{el.day}</S.CouponDetail>
-              <S.CouponDetail>{el.price}</S.CouponDetail>
+              <S.CouponDay>{el.day}</S.CouponDay>
+              <S.CouponPrice>{el.price}</S.CouponPrice>
             </S.CouponDetailWrapper>
           </S.Coupon>
         ))}
       </S.CouponWrapper>
+      <Dropdown menu={{ items }} trigger={["click"]}>
+        <Space className="selectBoard">
+          <S.BoardList>{Board}</S.BoardList>
+        </Space>
+      </Dropdown>
       <S.BtnBox>
-        <S.PurchaseBtn onClick={onClickSubmit}>구매하기</S.PurchaseBtn>
+        <S.PurchaseBtn
+          onClick={onClickSubmit}
+          disabled={!(isBoardSelected && isCouponSelected)}
+          isBoardSelected={isBoardSelected}
+          isCouponSelected={isCouponSelected}
+        >
+          구매하기
+        </S.PurchaseBtn>
       </S.BtnBox>
     </>
   );

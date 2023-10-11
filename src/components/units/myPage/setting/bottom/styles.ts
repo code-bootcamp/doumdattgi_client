@@ -107,11 +107,13 @@ export const Categoty = styled.span`
   line-height: 20px;
   font-weight: 600;
 `;
-export const Contents = styled.p`
+export const Contents = styled.p<{
+  data?: boolean
+}>`
   line-height: 18px;
   width: 570px;
-  font-size: ${(props: any) => (props.data !== "" ? "18px" : "16px")};
-  color: ${(props: any) => (props.data !== "" ? "#111" : "#aaa")};
+  font-size: ${(props: any) => (props.data ? "18px" : "16px")};
+  color: ${(props: any) => (props.data ? "#111" : "#aaa")};
 `;
 
 export const EditDetail = styled.input`

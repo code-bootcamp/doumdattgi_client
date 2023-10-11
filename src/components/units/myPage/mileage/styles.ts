@@ -19,7 +19,7 @@ interface CouponProps {
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 90px auto 0;
+  margin: 50px auto 0;
   min-height: 600px;
 `;
 
@@ -29,7 +29,7 @@ export const Container = styled.div`
 
 export const MainTitle = styled.div`
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 export const TabBox = styled.div`
@@ -55,18 +55,16 @@ export const CurrentMileage = styled.div`
   height: 180px;
   background-color: #f2f2f4;
   border-radius: 6px;
-  padding: 55px 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 20px;
   margin-bottom: 50px;
+  padding: 50px 30px;
 `;
-
-export const MileagePoint = styled.div`
+export const MileageText = styled.p`
+  font-size: 20px;
+`;
+export const MileagePoint = styled.p`
   font-size: 36px;
   margin-top: 14px;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 // mileage use page
@@ -91,11 +89,10 @@ export const Coupon = styled.button<CouponProps>`
   width: 254px;
   height: 330px;
   border-radius: 6px;
-  border: 1px solid
-    ${props =>
-      props.el.select === props.selectedCoupon.split("&")[0]
-        ? "#88b04b"
-        : "#e5e7eb"};
+  border: ${props =>
+    props.el.select === props.selectedCoupon.split("&")[0]
+      ? "2px solid #88b04b"
+      : "1px solid #e5e7eb"};
   background-color: white;
   cursor: pointer;
   display: flex;
@@ -104,7 +101,7 @@ export const Coupon = styled.button<CouponProps>`
 `;
 
 export const CouponImage = styled.div`
-  width: 252px;
+  width: 100%;
   height: 252px;
   background-color: #f4f4f5;
   border-radius: 6px 6px 0px 0px;
@@ -120,8 +117,11 @@ export const CouponDetailWrapper = styled.div`
   align-items: flex-start;
 `;
 
-export const CouponDetail = styled.div`
+export const CouponDay = styled.span`
   font-size: 14px;
+`;
+export const CouponPrice = styled.p`
+  font-size: 16px;
 `;
 
 // export const List = styled.select`
@@ -142,7 +142,6 @@ export const BoardList = styled.div`
   height: 60px;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
-  margin: 50px 0px 0px 0px;
   padding: 0px 20px;
   display: flex;
   align-items: center;
@@ -153,12 +152,16 @@ export const BoardList = styled.div`
 
 export const BtnBox = styled.div`
   width: 100%;
+  margin-top: 60px;
   display: flex;
   justify-content: center;
 `;
 
-export const PurchaseBtn = styled.button`
-  width: 348px;
+export const PurchaseBtn = styled.button<{
+  isBoardSelected: boolean;
+  isCouponSelected: boolean;
+}>`
+  width: 350px;
   height: 60px;
   display: flex;
   align-items: center;
@@ -166,11 +169,14 @@ export const PurchaseBtn = styled.button`
   font-size: 18px;
   border-radius: 6px;
   border: none;
-  cursor: pointer;
-  :hover {
-    background-color: #88b04b;
-    color: white;
-  }
+  cursor: ${props =>
+    props.isBoardSelected && props.isCouponSelected
+      ? "pointer"
+      : "not-allowed"};
+  background: ${props =>
+    props.isBoardSelected && props.isCouponSelected ? "#88b04b" : "#eee"};
+  color: ${props =>
+    props.isBoardSelected && props.isCouponSelected ? "#fff" : "#aaa"};
 `;
 
 export const ListNone = styled.div`
@@ -186,10 +192,10 @@ export const MileageList = styled.div`
   height: 120px;
   border: 1px solid #d7d7d7;
   border-radius: 6px;
-  padding: 25px 30px 20px 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 14px;
 `;
 
@@ -198,18 +204,19 @@ export const Header = styled.div`
   justify-content: space-between;
 `;
 
-export const HeaderTitle = styled.div`
+export const HeaderTitle = styled.p`
   font-size: 16px;
 `;
 
-export const HeaderDate = styled.div`
+export const HeaderDate = styled.span`
   font-size: 16px;
   color: #d7d7d7;
 `;
 
-export const BodyPoint = styled.div`
+export const BodyPoint = styled.p`
   font-size: 30px;
-  font-weight: 700;
+  line-height: 30px;
+  font-weight: 500;
 `;
 
 // mileage list page

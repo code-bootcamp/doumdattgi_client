@@ -33,7 +33,13 @@ export default function SettingsBottom() {
                         defaultValue={data?.fetchLoginUser?.user_name}
                       />
                     ) : (
-                      <S.Contents>{data?.fetchLoginUser?.user_name}</S.Contents>
+                      <S.Contents
+                        data={
+                          data?.fetchLoginUser?.user_name !== "" ? true : false
+                        }
+                      >
+                        {data?.fetchLoginUser?.user_name}
+                      </S.Contents>
                     )}
                   </S.SettingList>
                 </S.SettingListTop>
@@ -51,7 +57,11 @@ export default function SettingsBottom() {
                         {...register("user_email")}
                       />
                     ) : (
-                      <S.Contents>
+                      <S.Contents
+                        data={
+                          data?.fetchLoginUser?.user_email !== "" ? true : false
+                        }
+                      >
                         {data?.fetchLoginUser?.user_email}
                       </S.Contents>
                     )}
@@ -74,7 +84,13 @@ export default function SettingsBottom() {
                         {...register("user_portfolio")}
                       />
                     ) : (
-                      <S.Contents>
+                      <S.Contents
+                        data={
+                          data?.fetchLoginUser?.user_portfolio !== ""
+                            ? true
+                            : false
+                        }
+                      >
                         {data?.fetchLoginUser?.user_portfolio !== ""
                           ? data?.fetchLoginUser?.user_portfolio
                           : "포트폴리오 주소를 입력해주세요."}
@@ -91,7 +107,9 @@ export default function SettingsBottom() {
                   <S.SettingListTop>
                     <S.SettingList>
                       <S.Categoty>비밀번호</S.Categoty>
-                      <S.Contents>
+                      <S.Contents
+                        data={true}
+                      >
                         <S.PasswordEdit
                           className="semiBold"
                           onClick={onClickMoveToPage("/editPassword")}

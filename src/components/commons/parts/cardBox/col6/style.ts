@@ -3,15 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Image } from "antd";
 
 export const Wrapper = styled.div`
-  background-color: #fff;
-  border: 1px solid #dddfe3;
-  border-radius: 6px;
-  overflow: hidden;
+
 `;
 export const ImageBox = styled.div`
-  height: 200px;
+  height: 180px;
   overflow: hidden;
   cursor: pointer;
+  border: 1px solid #E3E4EC;
+  border-radius: 6px;
 `;
 export const Thumbnail = styled(Image)`
   transition: all 0.2s ease-in-out;
@@ -20,7 +19,7 @@ export const Thumbnail = styled(Image)`
   }
 `;
 export const Container = styled.div`
-  padding: 16px;
+  padding-top: 12px;
 `;
 export const CategoryBox = styled.div`
   display: flex;
@@ -52,7 +51,7 @@ export const TitleBox = styled.div`
   margin-top: 8px;
 `;
 export const Title = styled.h2`
-  display: -webkit-box;
+  display: inline-block;
   font-size: 1.13em;
   font-weight: 600;
   line-height: 22px;

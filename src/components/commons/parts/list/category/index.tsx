@@ -89,7 +89,7 @@ export default function SideCategory() {
         <S.SubCategoryBox>
           {filtering[BigCategory]?.map(el => (
             <S.SubCategory key={uuidv4()} onClick={clickSubCategory(el)}>
-              {`${el}`}
+              <S.SubCategoryItem>{`${el}`}</S.SubCategoryItem>
             </S.SubCategory>
           ))}
         </S.SubCategoryBox>

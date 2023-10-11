@@ -57,7 +57,7 @@ export default function Mileage(): JSX.Element {
           </S.Tab>
         </S.TabBox>
         <S.CurrentMileage>
-          보유 마일리지
+          <S.MileageText>보유 마일리지</S.MileageText>
           <S.MileagePoint>
             {data?.fetchLoginUser?.user_mileage.toLocaleString()} Ⓜ
           </S.MileagePoint>

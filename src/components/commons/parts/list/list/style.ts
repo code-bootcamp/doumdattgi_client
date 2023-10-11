@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import InfiniteScroll from "react-infinite-scroller";
 import { mq } from "../../../../../commons/libraries/breakPoints";
 
 export const Container = styled.div<{
@@ -42,15 +41,17 @@ export const LengthBox = styled.div`
 `;
 
 export const ContentsBox = styled.div<{
-  isAll: boolean
+  isAll: boolean;
 }>`
   display: grid;
   gap: 20px 10px;
   margin-top: 14px;
-  grid-template-columns: ${props => (props.isAll ? "1fr 1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr")};
+  grid-template-columns: ${props =>
+    props.isAll ? "1fr 1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr"};
 
   ${mq[0]} {
-    grid-template-columns: ${props => (props.isAll ? "1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr")};
+    grid-template-columns: ${props =>
+      props.isAll ? "1fr 1fr 1fr 1fr" : "1fr 1fr 1fr 1fr"};
   }
   ${mq[1]} {
     grid-template-columns: 1fr 1fr 1fr;
@@ -131,4 +132,50 @@ export const UserName = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const MileageWrap = styled.div`
+  padding: 30px 24px;
+  background: #fafafa;
+  margin-bottom: 60px;
+`;
+export const MileageTitleBox = styled.div`
+  display: flex;
+  align-items: end;
+
+  ${mq[3]} {
+    flex-direction: column;
+    align-items: baseline;
+  }
+`;
+export const MileageTitle = styled.h3`
+  font-size: 20px;
+  font-weight: 600;
+`;
+export const MileageSubTitle = styled.span`
+  display: block;
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #888;
+
+  ${mq[3]} {
+    margin-top: 6px;
+  }
+`;
+export const MileageBox = styled.div`
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+
+  ${mq[1]} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  ${mq[2]} {
+    grid-template-columns: 1fr 1fr;
+  }
+  ${mq[3]} {
+    grid-template-columns: 1fr;
+  }
 `;

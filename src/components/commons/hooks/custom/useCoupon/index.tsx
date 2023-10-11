@@ -15,6 +15,9 @@ export const useCoupon = () => {
   const [selectBoardId, setSelectBoardId] = useState("");
   const [selectedCoupon, setSelectedCoupon] = useState("");
 
+  const [isCouponSelected, setIsCouponSelected] = useState(false);
+  const [isBoardSelected, setIsBoardSelected] = useState(false);
+
   const [purchaseCoupon] = useMutation(PURCHASE_COUPON);
 
   // 쿠폰을 적용할 게시글 선택
@@ -22,12 +25,13 @@ export const useCoupon = () => {
     setSelectBoardId(e.currentTarget.id);
     const Title = e.currentTarget?.textContent;
     setBoard(Title ?? "게시글을 선택해주세요");
+    setIsBoardSelected(Title ? true : false);
   };
   // 어떤 쿠폰 쓸건지 선택
   const onClickCoupon = (price: string, point: number) => {
     const priceData = `${price}&${point}`;
 
-    console.log(priceData.split("&")[1]);
+    setIsCouponSelected(true);
     setSelectedCoupon(priceData);
   };
 
@@ -61,6 +65,8 @@ export const useCoupon = () => {
     onClickCoupon,
     onClickSubmit,
     selectBoardId,
-    selectedCoupon
+    selectedCoupon,
+    isBoardSelected,
+    isCouponSelected
   };
 };

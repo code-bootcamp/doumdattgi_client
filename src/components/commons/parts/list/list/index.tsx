@@ -8,12 +8,14 @@ import { useQueryfetchSubCategoryProduct } from "../../../hooks/queries/useQuery
 import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
 import CardBox from "../../cardBox/col4";
+import CardBox2 from "../../cardBox/col6";
 import { useQueryFetchCategoryProduct } from "../../../hooks/queries/useQueryFetchCategoryProduct";
 import ListCardBox from "../../cardBox/list";
 import { useEffect, useState } from "react";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 import { useQueryFetchLikeCategoryProduct } from "../../../hooks/queries/useQueryfetchLikeCategoryProduct";
 import InfiniteScroll from "react-infinite-scroller";
+import { useQueryFetchRandomMileageProduct } from "../../../hooks/queries/useQueryfetchRandomMileageProduct";
 
 interface IPropsList {
   isAll: boolean;
@@ -34,6 +36,7 @@ export default function ProductList(props: IPropsList) {
   const { data, fetchMore, refetch } = useQueryFetchCategoryProduct(category);
   const { data: data2, refetch: refetch2 } =
     useQueryFetchLikeCategoryProduct(category);
+  const { data: mileageProductData } = useQueryFetchRandomMileageProduct();
 
   // 인기순, 아니냐에 따라 refetch 분리
   useEffect(() => {
@@ -97,6 +100,17 @@ export default function ProductList(props: IPropsList) {
 
   return (
     <S.Container isAll={props.isAll}>
+      <S.MileageWrap>
+        <S.MileageTitleBox>
+          <S.MileageTitle>특별한 서비스들</S.MileageTitle>
+          <S.MileageSubTitle>마일리지 전용 영역</S.MileageSubTitle>
+        </S.MileageTitleBox>
+        <S.MileageBox>
+          {mileageProductData?.fetchRandomMileageProduct.map(el => (
+            <CardBox2 key={el.product_id} data={el} />
+          ))}
+        </S.MileageBox>
+      </S.MileageWrap>
       <S.CategoryBox>
         <Link href="/categoryList/all">
           <S.CategoryTag>홈</S.CategoryTag>
@@ -135,10 +149,18 @@ export default function ProductList(props: IPropsList) {
           <>
             {!isLike
               ? categoryList?.map(el => (
-                  <CardBox key={el.product_product_id} data={el} isLike={false} />
+                  <CardBox
+                    key={el.product_product_id}
+                    data={el}
+                    isLike={false}
+                  />
                 ))
               : LikeList?.map(el => (
-                  <CardBox key={el.product_product_id} data2={el} isLike={true} />
+                  <CardBox
+                    key={el.product_product_id}
+                    data2={el}
+                    isLike={true}
+                  />
                 ))}
           </>
         </S.ContentsBox>

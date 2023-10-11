@@ -81,7 +81,7 @@ export default function Header(): JSX.Element {
   }, 1000);
 
   const searchKeyword = (data: IData) => {
-    setIsOpen2(prev => !prev);
+    setIsOpen2(false);
     getDebounce(data.keyword);
   };
 

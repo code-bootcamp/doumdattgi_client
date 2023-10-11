@@ -41,8 +41,17 @@ export const SubCategoryBox = styled.ul``;
 
 export const SubCategory = styled.li`
   display: block;
+  cursor: pointer;
+  margin-top: 8px;
+`;
+export const SubCategoryItem = styled.span`
+  display: block;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  margin-top: 24px;
+  padding: 10px 6px;
+  border-radius: 6px;
+  transition: all 0.2s linear;
+  &:hover {
+    background: #f7f7f7;
+  }
 `;
