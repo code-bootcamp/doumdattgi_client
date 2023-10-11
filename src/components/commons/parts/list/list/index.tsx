@@ -38,6 +38,8 @@ export default function ProductList(props: IPropsList) {
     useQueryFetchLikeCategoryProduct(category);
   const { data: mileageProductData } = useQueryFetchRandomMileageProduct();
 
+  const { data: mileageProductData } = useQueryFetchRandomMileageProduct();
+
   // 인기순, 아니냐에 따라 refetch 분리
   useEffect(() => {
     if (isLike) {
@@ -124,7 +126,6 @@ export default function ProductList(props: IPropsList) {
             {/* <S.AngleRight icon={faAngleRight} /> */}
           </>
         )}
-
         {/* <S.CategoryTag>{Sub}</S.CategoryTag> */}
       </S.CategoryBox>
       <S.LengthBox>

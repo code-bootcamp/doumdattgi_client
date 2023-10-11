@@ -24,6 +24,11 @@ interface IProps {
 
 export default function CardBox(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
+
+  console.log("tdfsfq");
+  console.log(props.data2);
+  console.log("tdfsfq");
+
   return (
     <S.Wrapper>
       <S.ImageBox>
@@ -36,11 +41,16 @@ export default function CardBox(props: IProps) {
           onClick={onClickMoveToPage(`/${props.data?.product_product_id}`)}
         />
       </S.ImageBox>
-
       <S.Container>
         <S.CategoryBox>
           <S.Category>
-            {CategoryObj[props.data?.product_product_category ?? ""]}
+            {
+              CategoryObj[
+                (props.data?.product_product_category ||
+                  props.data2?.product_product_category) ??
+                  ""
+              ]
+            }
           </S.Category>
           <S.Icon icon={faBookmark} className="bookmark" />
         </S.CategoryBox>
@@ -52,16 +62,28 @@ export default function CardBox(props: IProps) {
           </S.Title>
         </S.TitleBox>
         <S.InfoBox>
-          <Tag data={props.data?.product_product_workDay ?? ""} />
+          <Tag
+            data={
+              (props.data?.product_product_workDay ||
+                props.data2?.product_product_workDay) ??
+              ""
+            }
+          />
           <S.UserBox>
             <S.Avatar
               onError={e => {
                 const target = e.target as HTMLImageElement;
                 target.src = fallback;
               }}
-              src={props.data?.u_user_profileImage ?? fallback}
+              src={
+                (props.data?.u_user_profileImage ||
+                  props.data2?.u_user_profileImage) ??
+                fallback
+              }
             />
-            <S.UserName>{props.data?.u_user_nickname}</S.UserName>
+            <S.UserName>
+              {props.data?.u_user_nickname ?? props.data2?.u_user_nickname}
+            </S.UserName>
           </S.UserBox>
         </S.InfoBox>
       </S.Container>

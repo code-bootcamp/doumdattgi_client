@@ -25,7 +25,6 @@ export default function CardBox(props: IProps) {
           onClick={onClickMoveToPage(`/${props.data?.product_id}`)}
         />
       </S.ImageBox>
-
       <S.Container>
         <S.CategoryBox>
           <S.Category>

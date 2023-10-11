@@ -14,6 +14,56 @@ export const Container = styled.div<{
   }
 `;
 
+export const Section = styled.section`
+  margin-top: 100px;
+  ${mq[1]} {
+    margin-top: 60px;
+  }
+  ${mq[3]} {
+    margin-top: 60px;
+  }
+`;
+
+export const Title = styled.span`
+  font-size: 1.25em;
+  font-weight: 600;
+`;
+
+export const CardboxWrap = styled.div`
+  margin-top: 20px;
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px 20px;
+  &.buy {
+    gap: 10px 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  &.newbie {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  ${mq[0]} {
+    gap: 10px 10px;
+  }
+  ${mq[2]} {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  ${mq[3]} {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    &.buy {
+      grid-template-columns: 1fr;
+    }
+    &.newbie {
+      grid-template-columns: 1fr;
+    }
+  }
+`;
+
 export const CategoryBox = styled.div`
   display: flex;
 `;
