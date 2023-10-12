@@ -25,10 +25,6 @@ interface IProps {
 export default function CardBox(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
 
-  console.log("tdfsfq");
-  console.log(props.data2);
-  console.log("tdfsfq");
-
   return (
     <S.Wrapper
       onClick={onClickMoveToPage(
