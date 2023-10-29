@@ -332,7 +332,7 @@ export default function SeekCreate(props: {
                   </S.Image>
                 </S.AttachedImg> */}
                 <S.BoardAddress>
-                  <S.Theme>
+                  <S.Theme className="map">
                     희망 지역 (선택)
                     <S.MapDetail>
                       신청자와 작업자가 대면하여 서비스를 주고 받는 경우, 주소를

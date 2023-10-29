@@ -1,14 +1,23 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { mq } from "../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 50px 0 150px 0;
+  margin-top: 50px;
 `;
 
 export const Container = styled.div`
   width: 1140px;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
 `;
 export const CategoryBox = styled.div`
   display: flex;
@@ -97,6 +106,12 @@ export const ServiceWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${mq[1]} {
+    padding: 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 export const ServiceTitle = styled.h2`
   font-size: 24px;
@@ -110,6 +125,9 @@ export const TitleHighlight = styled.span`
 `;
 export const ServiceBox = styled.div`
   display: flex;
+  ${mq[1]} {
+    margin-top: 16px;
+  }
 `;
 export const AcceptBtn = styled.button`
   color: #fff;
@@ -255,6 +273,9 @@ export const TradeBox = styled.div`
   &:last-of-type {
     margin-left: 20px;
   }
+  ${mq[3]} {
+    padding: 40px;
+  }
 `;
 export const TradeTitle = styled.span`
   display: block;
@@ -266,6 +287,11 @@ export const TradeUserIcon = styled.img`
   height: 120px;
   border-radius: 50%;
   margin-top: 30px;
+
+  ${mq[3]} {
+    width: 100px;
+    height: 100px;
+  }
 `;
 export const TradeUserName = styled.p`
   font-size: 18px;
@@ -281,4 +307,8 @@ export const TradeIcon = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  ${mq[3]} {
+    width: 100px;
+  }
 `;

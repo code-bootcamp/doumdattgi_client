@@ -17,7 +17,6 @@ export default function SliderComponent(props: any) {
       return (
         <Image
           src={imgsrc}
-          //   src={`https://storage.googleapis.com/${imgsrc}`}
           fallback={fallback}
           width={80}
           height={80}
@@ -37,15 +36,7 @@ export default function SliderComponent(props: any) {
     <>
       <S.Wrapper {...settings}>
         {arr?.map((el: string) => (
-          <Slide key={el}>
-            <Image
-              src={el}
-              alt=""
-              fallback={fallback}
-              width={640}
-              height={640}
-            />
-          </Slide>
+          <Image src={el} fallback={fallback} width="100%" height={640}/>
         ))}
       </S.Wrapper>
     </>

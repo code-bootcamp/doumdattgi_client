@@ -1,5 +1,8 @@
+import { LoginCheck } from "../../../src/commons/libraries/loginCheck";
 import Mileage from "../../../src/components/units/myPage/mileage";
 
-export default function MileagePage(): JSX.Element {
+function MileagePage(): JSX.Element {
   return <Mileage />;
 }
+
+export default LoginCheck(MileagePage)

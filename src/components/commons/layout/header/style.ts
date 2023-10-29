@@ -29,16 +29,19 @@ export const Container = styled.div`
     padding: 0 16px;
   }
 `;
-export const NavIcon = styled.div`
+export const NavIcon = styled.div<{
+  isProfile: boolean;
+}>`
   display: none;
   cursor: pointer;
+
   ${mq[2]} {
-    display: block;
     height: 22px;
     width: 28px;
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
+    display: ${props => (props.isProfile ? "none" : "flex")};
+    margin-right: 10px;
   }
   ${mq[3]} {
     height: 16px;
@@ -77,9 +80,6 @@ export const Logo = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  ${mq[2]} {
-    margin-left: 10px;
-  }
 `;
 export const LogoIcon = styled.img`
   display: block;

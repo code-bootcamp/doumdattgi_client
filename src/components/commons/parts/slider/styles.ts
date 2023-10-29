@@ -3,7 +3,7 @@ import Slider from "react-slick";
 
 export const Wrapper = styled(Slider)`
   .slick-list {
-    height: 640px;
+    max-height: 640px;
     border-radius: 6px;
     border: 1px solid #e0e1ea;
   }

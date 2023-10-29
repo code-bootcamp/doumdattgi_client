@@ -5,5 +5,4 @@ function BoardWrite() {
   return <CreateProduct isEdit={false} sellOrBuy={true} />;
 }
 
-// export default LoginCheck(BoardWrite)
-export default BoardWrite;
+export default LoginCheck(BoardWrite)

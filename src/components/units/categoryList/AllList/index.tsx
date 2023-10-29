@@ -5,7 +5,6 @@ export default function SubCategorys() {
   return (
     <S.Wrapper>
       <S.Container>
-        {/* <SideCategory /> */}
         <ProductList isAll={true} />
       </S.Container>
     </S.Wrapper>

@@ -27,18 +27,6 @@ interface IFormEmailValidate {
   token?: string;
 }
 
-// interface IUseUserReturn {
-//   onClickValidation: () => void;
-//   onClickSignUp: (data: IFormData) => void;
-//   onClickLogin: (data: IFormLoginData) => void;
-//   onClickLogout: () => void;
-//   onClickEditAvatar: () => void;
-//   isOn: boolean;
-//   sec: number;
-//   isActive: boolean;
-//   isAvatarEdit: boolean;
-// }
-
 const except = [
   "/signup/",
   "/accountRecovery/email/",
@@ -135,6 +123,8 @@ export const useUser = () => {
       if (error instanceof Error) alert(error.message);
     }
   };
+  const { returnUrl } = router.query;
+  console.log(router.asPath)
 
   // =============== 로그인 ===============
   const onClickLogin = async (data: IFormLoginData) => {
@@ -159,17 +149,13 @@ export const useUser = () => {
 
       // 로그인 성공 페이지로 이동하기
       const storage = globalThis?.sessionStorage;
-      const link = storage.getItem("prevPath") || "/";
+      const link = storage.getItem("prevPath");
 
-      const isActive = except.includes(link);
-
-      console.log(isActive);
-
-      if (isActive) {
-        void router.push("/");
-      } else {
-        void router.push(link);
+      if(link === "/signup/"){
+        void router.push("/")
       }
+      void router.push(`${link}`)
+
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

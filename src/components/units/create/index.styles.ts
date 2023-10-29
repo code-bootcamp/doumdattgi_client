@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../commons/libraries/breakPoints";
 
 interface IIsToggle {
   isToggle: boolean;
@@ -12,6 +13,14 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 1000px;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
 `;
 
 export const Head = styled.div`
@@ -85,11 +94,21 @@ export const InputWrap = styled.div`
   &:last-of-type {
     margin-bottom: 40px;
   }
+
+  ${mq[2]} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 export const InputBox = styled.div`
   width: calc(100% - 240px);
   &.short {
     width: 250px;
+  }
+
+  ${mq[2]} {
+    width: 100%;
+    margin-top: 10px;
   }
 `;
 export const ThemeBox = styled.div`

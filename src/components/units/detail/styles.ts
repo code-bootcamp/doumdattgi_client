@@ -1,11 +1,19 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IProduct } from "../../../commons/types/generated/types";
+import { mq } from "../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1140px;
   margin: 50px auto 0;
 
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
   .bottom {
     margin-top: 40px;
   }
@@ -14,20 +22,43 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+
+  ${mq[1]} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 export const SliderBox = styled.div<{
   ImgArr: string[];
 }>`
-  width: 640px;
+  position: relative;
+  width: 60%;
+  max-width: 640px;
   padding-bottom: ${props => (props.ImgArr?.length >= 2 ? "0" : "40px")};
+
+  ${mq[1]} {
+    width: 100%;
+  }
 `;
 export const DetailWrap = styled.div`
-  width: 460px;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 40px;
+
+  ${mq[1]} {
+    width: 100%;
+    margin-left: 0;
+  }
 `;
-export const DetailBox = styled.div``;
+export const DetailBox = styled.div`
+  ${mq[1]} {
+    &.detail-bottom {
+      margin-top: 30px;
+    }
+  }
+`;
 export const Category = styled.span`
   display: block;
   font-size: 16px;
@@ -42,12 +73,10 @@ export const TitleWrap = styled.div`
 `;
 export const Title = styled.h2`
   font-size: 30px;
-  line-height: 30px;
+  line-height: 36px;
   font-weight: 700;
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
-  width: 370px;
+  word-break: keep-all;
+  /* width: 370px; */
 `;
 
 export const IconBox = styled.div`
@@ -128,7 +157,7 @@ export const SlotText = styled.span`
   position: absolute;
   z-index: 999;
   left: 25px;
-  top: 10px;
+  top: 14px;
   font-weight: 600;
 `;
 export const SlotBg = styled.div`
@@ -154,7 +183,11 @@ export const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
 `;
 export const DetailContentsWrap = styled.div`
-  width: 640px;
+  width: 60%;
+
+  ${mq[1]} {
+    width: 100%;
+  }
 `;
 export const DetailTitle = styled.h3`
   font-size: 18px;
@@ -172,9 +205,16 @@ export const DetailContents = styled.p`
   }
 `;
 export const DetailUserWrap = styled.div`
-  width: 460px;
+  width: 40%;
+  margin-left: 40px;
   border: 1px solid #e0e1ea;
   height: 100%;
+
+  ${mq[1]} {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 40px;
+  }
 `;
 export const UserNameBox = styled.div`
   position: relative;
@@ -307,7 +347,11 @@ export const CardBoxWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 10px 20px;
+  gap: 20px 20px;
+
+  ${mq[2]} {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 export const Preview = styled.div`

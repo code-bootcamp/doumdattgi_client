@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../../../commons/libraries/breakPoints";
 
 export const TransferList = styled.div``;
 
@@ -8,6 +9,11 @@ export const TransactionInfo = styled.div`
   border-radius: 6px;
   margin: 16px 0px;
   padding: 20px 30px;
+
+
+  ${mq[1]} {
+    width: 100%;
+  }
 `;
 
 export const PayInfoBox = styled.div`

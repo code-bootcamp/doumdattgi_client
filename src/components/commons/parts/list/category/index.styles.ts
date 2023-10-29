@@ -10,7 +10,7 @@ export const Title = styled.h2`
   font-size: 22px;
   line-height: 22px;
   font-weight: 500;
-  padding-bottom: 26px;
+  padding-bottom: 20px;
 `;
 
 export const DivideLine = styled.div`
@@ -18,7 +18,8 @@ export const DivideLine = styled.div`
 `;
 
 export const Ad = styled.div`
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   height: 70px;
   background-color: #ccc;
   border-radius: 6px;

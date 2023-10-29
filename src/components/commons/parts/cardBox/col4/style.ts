@@ -53,7 +53,7 @@ export const TitleBox = styled.div`
 `;
 export const Title = styled.h2`
   display: -webkit-box;
-  font-size: 1.13em;
+  font-size: 1.06em;
   font-weight: 600;
   line-height: 22px;
   overflow: hidden;

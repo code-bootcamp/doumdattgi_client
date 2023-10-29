@@ -38,9 +38,27 @@ export default function MileageUse(): JSX.Element {
   const items: MenuProps["items"] = MileageBoardList as ItemType[];
 
   const selectMileage = [
-    { select: "ONE_DAY", day: "1일권", price: "5,000 Ⓜ", num: 5000 },
-    { select: "THREE_DAYS", day: "3일권", price: "10,000 Ⓜ", num: 10000 },
-    { select: "SEVEN_DAYS", day: "7일권", price: "20,000 Ⓜ", num: 20000 }
+    {
+      select: "ONE_DAY",
+      day: "1일권",
+      price: "5,000 Ⓜ",
+      num: 5000,
+      img: "/ticket1.png"
+    },
+    {
+      select: "THREE_DAYS",
+      day: "3일권",
+      price: "10,000 Ⓜ",
+      num: 10000,
+      img: "/ticket2.png"
+    },
+    {
+      select: "SEVEN_DAYS",
+      day: "7일권",
+      price: "20,000 Ⓜ",
+      num: 20000,
+      img: "/ticket3.png"
+    }
   ];
 
   return (
@@ -57,14 +75,6 @@ export default function MileageUse(): JSX.Element {
       <S.Contents>
         이용권을 구매할 때, 노출하고 싶은 내 서비스를 선택할 수 있습니다.
       </S.Contents>
-      {/* <S.List value={selectedOption} onChange={onClickTitle}>
-        <S.ListOption>게시글을 선택해주세요</S.ListOption>
-        {data?.fetchMyNotCouponProduct?.map(el => (
-          <S.ListOption key={el.product_id} value={el.product_id}>
-            {el.product_title}
-          </S.ListOption>
-        ))}
-      </S.List> */}
       <S.CouponWrapper>
         {selectMileage.map(el => (
           <S.Coupon
@@ -73,7 +83,9 @@ export default function MileageUse(): JSX.Element {
             key={el.select}
             onClick={() => onClickCoupon(el.select, el.num)}
           >
-            <S.CouponImage />
+            <S.CouponImageBox>
+              <S.CouponImage src={el.img} />
+            </S.CouponImageBox>
             <S.CouponDetailWrapper>
               <S.CouponDay>{el.day}</S.CouponDay>
               <S.CouponPrice>{el.price}</S.CouponPrice>
@@ -82,9 +94,7 @@ export default function MileageUse(): JSX.Element {
         ))}
       </S.CouponWrapper>
       <Dropdown menu={{ items }} trigger={["click"]}>
-        <Space className="selectBoard">
-          <S.BoardList>{Board}</S.BoardList>
-        </Space>
+        <S.BoardList>{Board}</S.BoardList>
       </Dropdown>
       <S.BtnBox>
         <S.PurchaseBtn
