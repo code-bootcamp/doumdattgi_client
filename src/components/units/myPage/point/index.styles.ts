@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../../commons/libraries/breakPoints";
 
 interface IPropsSelect {
   isSelect: boolean;
@@ -13,6 +14,14 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   width: 800px;
   min-height: 600px;
+  
+  ${mq[1]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[3]} {
+    padding: 0 16px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -34,7 +43,7 @@ export const selectOption = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 1.25em;
   color: ${(props: IPropsSelect) => (props.isSelect ? "black" : "#AAAAAA")};
   border-bottom: 2px solid ${props => (props.isSelect ? "black" : "white")};
   cursor: pointer;

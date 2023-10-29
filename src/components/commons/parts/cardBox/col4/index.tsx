@@ -24,44 +24,44 @@ interface IProps {
 
 export default function CardBox(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
+
+  console.log(props.data2)
   return (
     <S.Wrapper>
       <S.ImageBox>
         <S.Thumbnail
-          src={`${props.data?.i_image_url ?? props.data?.image_url}`}
+          src={`${props.data?.i_image_url ?? props.data2?.image_url}`}
           width={"100%"}
           height={200}
           fallback={fallback}
           preview={false}
-          onClick={onClickMoveToPage(`/${props.data?.product_product_id}`)}
+          onClick={onClickMoveToPage(`/${props.data?.product_product_id ?? props.data2?.product_product_id}`)}
         />
       </S.ImageBox>
-
       <S.Container>
         <S.CategoryBox>
           <S.Category>
-            {CategoryObj[props.data?.product_product_category ?? ""]}
+            {CategoryObj[props.data?.product_product_category ?? props.data2?.product_product_category ?? ""]}
           </S.Category>
-          <S.Icon icon={faBookmark} className="bookmark" />
         </S.CategoryBox>
         <S.TitleBox>
           <S.Title
-            onClick={onClickMoveToPage(`/${props.data?.product_product_id}`)}
+            onClick={onClickMoveToPage(`/${props.data?.product_product_id ?? props.data2?.product_product_id}`)}
           >
-            {props.data?.product_product_title}
+            {props.data?.product_product_title ?? props.data2?.product_product_title}
           </S.Title>
         </S.TitleBox>
         <S.InfoBox>
-          <Tag data={props.data?.product_product_workDay ?? ""} />
+          <Tag data={props.data?.product_product_sub_category ?? props.data2?.product_product_sub_category ?? ""} />
           <S.UserBox>
             <S.Avatar
               onError={e => {
                 const target = e.target as HTMLImageElement;
                 target.src = fallback;
               }}
-              src={props.data?.u_user_profileImage ?? fallback}
+              src={props.data?.u_user_profileImage ?? props.data2?.u_user_profileImage ?? fallback}
             />
-            <S.UserName>{props.data?.u_user_nickname}</S.UserName>
+            <S.UserName>{props.data?.u_user_nickname ?? props.data2?.u_user_nickname}</S.UserName>
           </S.UserBox>
         </S.InfoBox>
       </S.Container>

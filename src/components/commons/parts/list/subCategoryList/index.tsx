@@ -15,7 +15,7 @@ import { useQueryFetchRandomMileageProduct } from "../../../hooks/queries/useQue
 interface IProps {
   data: IFetchProductOutput;
 }
-//
+
 export default function SubProductList() {
   const router = useRouter();
 

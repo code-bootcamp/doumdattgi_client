@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   background-color: #fafafa;
@@ -7,6 +8,10 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 80px 0;
+
+  ${mq[3]} {
+    padding: 80px 16px;
+  }
 `;
 export const Container = styled.div`
   width: 520px;
@@ -14,8 +19,11 @@ export const Container = styled.div`
   padding: 80px;
   border-radius: 20px;
   background-color: #fff;
-  /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); */
   border: 1px solid #efefef;
+
+  ${mq[3]} {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h1`

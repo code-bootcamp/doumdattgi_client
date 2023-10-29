@@ -1,7 +1,7 @@
 import * as S from "./workAgreement.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
-import CommentDrawer from "../../commons/parts/commentDrawer";
+import CommentDrawer, { useDrawer } from "../../commons/parts/commentDrawer";
 import { useQueryFetchOneRequest } from "../../commons/hooks/queries/useQueryFetchOneRequest";
 import { useRouter } from "next/router";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
@@ -21,6 +21,8 @@ import {
   faCircleXmark
 } from "@fortawesome/free-regular-svg-icons";
 import { CategoryObj } from "../../../commons/libraries/translate";
+import { Drawer } from "antd";
+import Comment from "../comment";
 
 export default function WorkAgreement(): JSX.Element {
   const router = useRouter();
@@ -81,334 +83,30 @@ export default function WorkAgreement(): JSX.Element {
     refetch({ request_id: router.query.id as string });
   }, [isAccept]);
 
+  const { onClose, open, showDrawer } = useDrawer();
+
   return (
     <>
-      <CommentDrawer data={data} />
-      {/* <S.Wrapper>
-        <S.Container>
-          <S.Category>
-            {isRefuse === true || isAccept === "REFUSE" ? "거절됨" : <></>}
-            {isOk === true ||
-            (isAccept === "ACCEPT" &&
-              completed === "1970-1-1" &&
-              isDone === false)
-              ? "진행중"
-              : isAccept === "WAITING" &&
-                completed === "1970-1-1" &&
-                isRefuse === false
-              ? "대기중"
-              : ""}
-            {isDone === true ? (
-              "종료"
-            ) : completed !== "1970-1-1" ? (
-              "종료"
-            ) : (
-              <></>
-            )}
-          </S.Category>
-          <S.Title>{data?.fetchOneRequest?.request_title}</S.Title>
-          <S.ProcessBox>
-            <S.StatusBox>
-              <S.Check>
-                <S.CheckImage src="/check.png" />
-              </S.Check>
-              <S.Theme>신청</S.Theme>
-              <S.Date>
-                {getDateTime(data?.fetchOneRequest?.request_createAt)}
-              </S.Date>
-            </S.StatusBox>
-            <S.Line />
-            <S.StatusBox>
-              {isAccept === "REFUSE" ? (
-                <S.NoneCheck>
-                  <S.CheckImage src="/check.png" />
-                </S.NoneCheck>
-              ) : isOk === true ||
-                (isAccept === "ACCEPT" && start !== "1970-1-1") ||
-                isAccept === "FINISH" ||
-                isDone === true ||
-                completed !== "1970-1-1" ? (
-                <>
-                  <S.StartWork>
-                    <S.CheckImage src="/check.png" />
-                  </S.StartWork>
-                  <S.Theme>작업 시작</S.Theme>
-                  <S.Date>
-                    {getDateTime(data?.fetchOneRequest?.request_startAt)}
-                  </S.Date>
-                </>
-              ) : (
-                <>
-                  <S.NoneCheck>
-                    <S.CheckImage src="/check.png" />
-                  </S.NoneCheck>
-                </>
-              )}
-            </S.StatusBox>
-            {isAccept === "REFUSE" ? (
-              <S.NoneLine />
-            ) : start === "1970-1-1" ? (
-              <S.NoneLine />
-            ) : (
-              <S.Line1 />
-            )}
-            <S.StatusBox>
-              {send === "1970-1-1" ? (
-                <S.NoneCheck>
-                  <S.CheckImage src="/check.png" />
-                </S.NoneCheck>
-              ) : (
-                <>
-                  <S.SendWork>
-                    <S.CheckImage src="/check.png" />
-                  </S.SendWork>
-                  <S.Theme>작업물 전달</S.Theme>
-                  <S.Date>
-                    {getDateTime(data?.fetchOneRequest?.request_sendAt)}
-                  </S.Date>
-                </>
-              )}
-            </S.StatusBox>
-            {send === "1970-1-1" ? <S.NoneLine /> : <S.Line2 />}
-            <S.StatusBox>
-              {isDone === true ? (
-                <>
-                  <S.Complete>
-                    <S.CheckImage src="/check.png" />
-                  </S.Complete>
-                  <S.Theme>완료</S.Theme>
-                  <S.Date>
-                    {getDateTime(data?.fetchOneRequest?.request_completedAt)}
-                  </S.Date>
-                </>
-              ) : completed === "1970-1-1" ? (
-                <S.NoneCheck>
-                  <S.CheckImage src="/check.png" />
-                </S.NoneCheck>
-              ) : (
-                <>
-                  <S.Complete>
-                    <S.CheckImage src="/check.png" />
-                  </S.Complete>
-                  <S.Theme>완료</S.Theme>
-                  <S.Date>
-                    {getDateTime(data?.fetchOneRequest?.request_completedAt)}
-                  </S.Date>
-                </>
-              )}
-            </S.StatusBox>
-          </S.ProcessBox>
-          <S.ContentsDetail>신청 내용</S.ContentsDetail>
-          {isClient && (
-            <S.Contents
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  String(data?.fetchOneRequest?.request_content) ?? ""
-                )
-              }}
-            ></S.Contents>
-          )}
-
-          <S.PaymentBox>
-            <S.Price>9,620원</S.Price>
-            <S.SpecialCharacter> x </S.SpecialCharacter>
-            <S.Price>{`${time}시간`}</S.Price>
-            <S.SpecialCharacter> = </S.SpecialCharacter>
-            <S.SpecialCharacter> ₩ </S.SpecialCharacter>
-            <S.Price>{`${data?.fetchOneRequest?.request_price}원`}</S.Price>
-          </S.PaymentBox>
-          {data?.fetchOneRequest?.buyer_id === ID ? (
-            <>
-              {isAccept === "WAITING" && start === "1970-1-1" ? (
-                <S.AcceptBox>
-                  <FontAwesomeIcon
-                    icon={faSpinner}
-                    spin
-                    style={{ fontSize: "60px", marginRight: "10px" }}
-                  />
-                  수락 대기중
-                </S.AcceptBox>
-              ) : (
-                <></>
-              )}
-              {send === "1970-1-1" && isAccept === "ACCEPT" ? (
-                <>
-                  <S.AcceptBox>
-                    <FontAwesomeIcon
-                      icon={faSpinner}
-                      spin
-                      style={{ fontSize: "60px", marginRight: "10px" }}
-                    />
-                    작업 완료 대기중
-                  </S.AcceptBox>
-                </>
-              ) : (
-                <></>
-              )}
-              {isAccept === "REFUSE" ? (
-                <S.AcceptBox>
-                  <S.Icon src="/reject.png" />
-                  의뢰 거절
-                </S.AcceptBox>
-              ) : (
-                <></>
-              )}
-              {isDone === true ||
-              (create !== "1970-1-1" &&
-                start !== "1970-1-1" &&
-                send !== "1970-1-1" &&
-                completed !== "1970-1-1") ? (
-                <>
-                  <S.AcceptBox>
-                    <S.Icon src="/accept.png" />
-                    작업 확정 완료
-                  </S.AcceptBox>
-                </>
-              ) : send !== "1970-1-1" && completed === "1970-1-1" ? (
-                <>
-                  <S.AcceptBox>
-                    <S.Icon src="/accept.png" />
-                    작업물 전달 완료
-                  </S.AcceptBox>
-                  <S.Contents>
-                    작업 완료 확정 전, 꼭 확인해주세요.
-                    <S.ContentsIndex>
-                      • 작업물 전달은 이메일로 이루어집니다. 상대방의 이메일로
-                      올바르게 전송하였는지 확인해주세요.
-                    </S.ContentsIndex>
-                    <S.ContentsIndex>
-                      • 판매자와 신청자가 상호 협의한 경우 이미 시작한 작업을
-                      취소할 수 있어요. 이 경우 환불 금액은 상호 협의한 금액에
-                      따라요.
-                    </S.ContentsIndex>
-                    <S.ContentsIndex>
-                      • '작업 완료 확정하기'를 누르지 않을 경우 3일 뒤에
-                      자동으로 확정이 이루어집니다.
-                    </S.ContentsIndex>
-                  </S.Contents>
-                  <S.Btn2
-                    onClick={() => {
-                      onClickRequestProcessBuyer(), onClickRequestDone();
-                    }}
-                  >
-                    작업 완료 확정하기
-                  </S.Btn2>
-                </>
-              ) : (
-                <></>
-              )}
-            </>
-          ) : (
-            <></>
-          )}
-
-          {data?.fetchOneRequest?.seller_id === ID ? (
-            <>
-              {isRefuse === true || isAccept === "REFUSE" ? (
-                <S.AcceptBox>
-                  <S.Icon src="/reject.png" />
-                  의뢰 거절
-                </S.AcceptBox>
-              ) : isOk === false &&
-                isAccept === "WAITING" &&
-                completed === "1970-1-1" ? (
-                <S.Box>
-                  <S.Btn onClick={onClickRequestRefuse}>거절하기</S.Btn>
-                  <S.Btn onClick={onClickRequestAccept} className="accept">
-                    수락하기
-                  </S.Btn>
-                </S.Box>
-              ) : (
-                <></>
-              )}
-              {send !== "1970-1-1" && completed === "1970-1-1" ? (
-                <>
-                  <S.AcceptBox>
-                    <FontAwesomeIcon
-                      icon={faSpinner}
-                      spin
-                      style={{ fontSize: "60px", marginRight: "10px" }}
-                    />
-                    확정 대기중
-                  </S.AcceptBox>
-                </>
-              ) : isOk === true ||
-                (isAccept === "ACCEPT" && send === "1970-1-1") ? (
-                <>
-                  <S.AcceptBox>
-                    <S.Icon src="/accept.png" />
-                    의뢰 수락
-                  </S.AcceptBox>
-                  <S.Contents>
-                    작업 완료 전, 꼭 확인해주세요.
-                    <S.ContentsIndex>
-                      • 작업물 전달은 이메일로 이루어집니다. 상대방의 이메일로
-                      올바르게 전송하였는지 확인해주세요.
-                    </S.ContentsIndex>
-                    <S.ContentsIndex>
-                      • 판매자와 신청자가 상호 협의한 경우 이미 시작한 작업을
-                      취소할 수 있어요. 이 경우 환불 금액은 상호 협의한 금액에
-                      따라요.
-                    </S.ContentsIndex>
-                  </S.Contents>
-                  <S.Btn2 onClick={onClickRequestProcessSeller}>
-                    작업 완료하기
-                  </S.Btn2>
-                </>
-              ) : (
-                <></>
-              )}
-              {completed !== "1970-1-1" ? (
-                <>
-                  <S.AcceptBox>
-                    <S.Icon src="/accept.png" />
-                    의뢰 확정 완료
-                  </S.AcceptBox>
-                </>
-              ) : (
-                <></>
-              )}
-            </>
-          ) : (
-            <></>
-          )}
-          <S.Box>
-            <S.UserBox>
-              <S.User>작업자</S.User>
-              <S.UserPic
-                onError={e => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "/noimage.png";
-                }}
-                src={data?.fetchOneRequest?.seller_profileImage}
-              />
-              <S.User>{data?.fetchOneRequest?.seller_nickname}</S.User>
-              <S.UserEmail>{data?.fetchOneRequest?.seller_email}</S.UserEmail>
-            </S.UserBox>
-            <S.Between>
-              <S.Arrow src="/Vector 3.png" />
-              <S.Arrow src="/Vector 4.png" />
-            </S.Between>
-            <S.UserBox>
-              <S.User>신청자</S.User>
-              <S.UserPic
-                onError={e => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "/noimage.png";
-                }}
-                src={data?.fetchOneRequest?.buyer_profileImage}
-              />
-              <S.User>{data?.fetchOneRequest?.buyer_nickname}</S.User>
-              <S.UserEmail>{data?.fetchOneRequest?.buyer_email}</S.UserEmail>
-            </S.UserBox>
-          </S.Box>
-        </S.Container>
-      </S.Wrapper> */}
+      <Drawer
+        placement="left"
+        contentWrapperStyle={{
+          width: "400px"
+        }}
+        closable={false}
+        onClose={onClose}
+        open={open}
+      >
+        <Comment data={data} />
+      </Drawer>
       <S.Wrapper>
         <S.Container>
           <S.CategoryBox>
             <S.Category>
-              {CategoryObj[data?.fetchOneRequest?.product?.product_category ?? ""]}
+              {
+                CategoryObj[
+                  data?.fetchOneRequest?.product?.product_category ?? ""
+                ]
+              }
             </S.Category>
             <S.ChevronIcon icon={faChevronRight} />
             <S.Category>
@@ -422,24 +120,38 @@ export default function WorkAgreement(): JSX.Element {
                 <S.ProgressCheck icon={faCheck} />
               </S.ProgressIcon>
               <S.ProgressTitle>작업 신청</S.ProgressTitle>
-              <S.ProgressDate>{create} <br /> 완료</S.ProgressDate>
+              <S.ProgressDate>
+                {create} <br /> 완료
+              </S.ProgressDate>
             </S.ProgressBox>
             <S.ProgressBar className="create" />
             <S.ProgressBox>
               <S.ProgressIcon
                 className={
-                  data?.fetchOneRequest?.request_startAt ? refuse ? "refuse" : "start" : ""
+                  data?.fetchOneRequest?.request_startAt
+                    ? refuse
+                      ? "refuse"
+                      : "start"
+                    : ""
                 }
               >
                 <S.ProgressCheck icon={faCheck} />
               </S.ProgressIcon>
               <S.ProgressTitle>작업 {status[isAccept]}</S.ProgressTitle>
               {data?.fetchOneRequest?.request_startAt && (
-                <S.ProgressDate>{start} <br /> 완료</S.ProgressDate>
+                <S.ProgressDate>
+                  {start} <br /> 완료
+                </S.ProgressDate>
               )}
             </S.ProgressBox>
             <S.ProgressBar
-              className={data?.fetchOneRequest?.request_startAt ? refuse ? "refuse" : "start" : ""}
+              className={
+                data?.fetchOneRequest?.request_startAt
+                  ? refuse
+                    ? "refuse"
+                    : "start"
+                  : ""
+              }
             />
             <S.ProgressBox>
               <S.ProgressIcon
@@ -449,7 +161,9 @@ export default function WorkAgreement(): JSX.Element {
               </S.ProgressIcon>
               <S.ProgressTitle>작업물 전달</S.ProgressTitle>
               {data?.fetchOneRequest?.request_sendAt && (
-                <S.ProgressDate>{send} <br /> 완료</S.ProgressDate>
+                <S.ProgressDate>
+                  {send} <br /> 완료
+                </S.ProgressDate>
               )}
             </S.ProgressBox>
             <S.ProgressBar
@@ -465,13 +179,17 @@ export default function WorkAgreement(): JSX.Element {
               </S.ProgressIcon>
               <S.ProgressTitle>작업 완료</S.ProgressTitle>
               {data?.fetchOneRequest?.request_completedAt && (
-                <S.ProgressDate>{completed} <br /> 완료</S.ProgressDate>
+                <S.ProgressDate>
+                  {completed} <br /> 완료
+                </S.ProgressDate>
               )}
             </S.ProgressBox>
           </S.ProgressWrap>
           <S.ServiceWrap>
             <S.ServiceTitle>
-              <S.TitleHighlight>{data?.fetchOneRequest?.product?.product_title}</S.TitleHighlight>
+              <S.TitleHighlight>
+                {data?.fetchOneRequest?.product?.product_title}
+              </S.TitleHighlight>
               서비스 신청
             </S.ServiceTitle>
             <S.ServiceBox>
@@ -539,7 +257,7 @@ export default function WorkAgreement(): JSX.Element {
                     </S.SectionUserEmail>
                   </S.SectionUserBox>
                 </S.SectionUserWrap>
-                <S.MessageBtn>메세지하기</S.MessageBtn>
+                <S.MessageBtn onClick={showDrawer}>메세지하기</S.MessageBtn>
               </S.SectionFlex>
             </S.SectionBox>
             <S.SectionBox>

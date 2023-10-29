@@ -10,9 +10,8 @@ interface IProps {
   data?: Pick<IQuery, "fetchOneRequest"> | undefined;
 }
 
-export default function CommentDrawer(props: IProps) {
+export const useDrawer = () => {
   const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState<DrawerProps["placement"]>("left");
 
   const showDrawer = () => {
     setOpen(true);
@@ -22,19 +21,15 @@ export default function CommentDrawer(props: IProps) {
     setOpen(false);
   };
 
-  //   const onChange = (e: RadioChangeEvent) => {
-  //     setPlacement(e.target.value);
-  //   };
-
-  const CommentBtnStyle = {
-    width: "60px",
-    height: "150px",
-    backgroundColor: "#efefef",
-    borderRadius: "0px 25px 25px 0px",
-    border: "1px solid #bdbdbd"
-    // display: "flex",
-    // textAlign: "left",
+  return {
+    open,
+    showDrawer,
+    onClose
   };
+};
+
+export default function CommentDrawer(props: IProps) {
+  const { onClose, open, showDrawer } = useDrawer();
 
   return (
     <>
@@ -52,14 +47,13 @@ export default function CommentDrawer(props: IProps) {
         </S.ButtonWrap>
       </Space>
       <Drawer
-        placement={placement}
+        placement="left"
         contentWrapperStyle={{
           width: "400px"
         }}
         closable={false}
         onClose={onClose}
         open={open}
-        key={placement}
       >
         <Comment data={props.data} />
       </Drawer>

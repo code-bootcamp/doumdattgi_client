@@ -114,13 +114,6 @@ export default function Detail() {
         </S.SliderBox>
         <S.DetailWrap>
           <S.DetailBox>
-            {/* <S.Category>
-              {
-                CategoryObj[
-                  data?.fetchDetailProduct?.product_category ?? "DESIGN"
-                ]
-              }
-            </S.Category> */}
             <S.TitleWrap>
               <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
               <S.IconBox>
@@ -133,7 +126,6 @@ export default function Detail() {
                 ) : (
                   <S.Icon onClick={clickPick} icon={faBookmark} />
                 )}
-                {/* <S.Icon onClick={clickDelete} icon={faX} /> */}
               </S.IconBox>
             </S.TitleWrap>
             <S.TagWrap>
@@ -149,7 +141,7 @@ export default function Detail() {
             <S.Price>{price} P ~</S.Price>
             <S.Remarks>{data?.fetchDetailProduct?.product_summary}</S.Remarks>
           </S.DetailBox>
-          <S.DetailBox>
+          <S.DetailBox className="detail-bottom">
             <S.Button ImgArr={ImgArr}>
               {slot3 ? (
                 <S.EnableBtn>현재 가능한 슬롯이 없습니다.</S.EnableBtn>

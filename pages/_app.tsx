@@ -15,18 +15,15 @@ config.autoAddCss = false;
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
 
-  useEffect(() => storePathValues, [router.asPath]);
-
-  function storePathValues() {
+  useEffect(() => {
+    // 페이지가 변경될 때마다 현재 페이지 주소를 sessionStorage 저장
     const storage = globalThis?.sessionStorage;
-    if (!storage) return;
-    // .이전 페이지 세션 스토리지에 저장
     const prevPath: string | null = storage.getItem("currentPath");
     storage.setItem("prevPath", prevPath ?? "");
 
-    //  .현재 페이지 세션 스토리지에 저장
-    storage.setItem("currentPath", globalThis.location.pathname);
-  }
+    // 현재 페이지 세션 스토리지에 저장
+    storage.setItem("currentPath", router.asPath);
+  }, [router.asPath]);
 
   return (
     <RecoilRoot>

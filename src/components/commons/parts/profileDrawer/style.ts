@@ -1,44 +1,9 @@
 import styled from "@emotion/styled";
 import { mq } from "../../../../commons/libraries/breakPoints";
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-export const Container = styled.div`
-  width: 1140px;
-  display: flex;
-
-  ${mq[0]} {
-    width: 100%;
-    padding: 0 24px;
-  }
-  ${mq[2]} {
-    padding: 0 16px;
-  }
-`;
-
-export const ProfileDrawerBox = styled.div`
-  display: none;
-  ${mq[1]} {
-    display: block;
-  }
-`;
-
 export const WrapperLeft = styled.div`
-  width: 38%;
-  max-width: 390px;
-  padding: 90px 40px;
-  background-color: #fff;
-  box-shadow: 10px 0px 10px rgba(204, 204, 204, 0.25);
-
-  ${mq[0]} {
-    padding: 90px 24px 0 0;
-  }
-  ${mq[1]} {
-    display: none;
-  }
+  width: 100%;
+  padding-top: 50px;
 `;
 
 export const UserBox = styled.div`
@@ -101,8 +66,8 @@ export const PortfolioLink = styled.span`
   font-size: 16px;
   margin-top: 30px;
   border-bottom: 1px solid #000;
-  cursor: pointer;
   line-height: 20px;
+  cursor: pointer;
 `;
 export const SlotWrap = styled.div`
   padding-bottom: 60px;
@@ -172,84 +137,43 @@ export const StatisticsTitle = styled.div`
   text-align: center;
 `;
 
-// 오른쪽
-export const ProfileTitle = styled.h1`
+export const NavIcon = styled.div`
   display: none;
-  font-size: 36px;
-  margin-bottom: 30px;
-  font-weight: 600;
-  padding-left: 40px;
+  cursor: pointer;
+  position: absolute;
+  left: 24px;
+  top: 132px;
 
   ${mq[1]} {
     display: block;
-  }
-`;
-
-export const WrapperRight = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 90px 0px;
-  background-color: white;
-  margin-left: 40px;
-  width: 62%;
-
-  ${mq[1]} {
-    width: 100%;
-    margin-left: 0;
-    padding: 50px 0;
-  }
-`;
-
-export const RightTitleBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  ${mq[3]} {
+    height: 22px;
+    width: 28px;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-between;
+  }
+  ${mq[2]} {
+    left: 16px;
   }
 `;
-
-export const CreateLink = styled.div`
-  width: 180px;
-  height: 42px;
-  color: #ffffff;
-  background-color: black;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  ${mq[3]} {
-    margin-top: 10px;
+export const line = styled.div<{
+  isOpen: boolean;
+}>`
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 10px;
+  background: #444;
+  transition: transform 0.2s ease-in-out;
+  &.line1 {
+    transform-origin: 0% 0%;
+    transform: ${props => (props.isOpen ? "rotate(45deg)" : "rotate(0)")};
   }
-`;
-
-export const CreateIcon = styled.img`
-  width: 16px;
-  height: 16px;
-  margin-right: 5px;
-`;
-
-export const ListBtn = styled.button`
-  display: inline-block;
-  padding: 6px 8px;
-  background-color: #f6f7f9;
-  border: 1px solid #929aa0;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #929aa0;
-  cursor: pointer;
-  margin-left: 6px;
-  &:first-of-type {
-    margin-left: 0;
+  &.line2 {
+    transform: ${props => (props.isOpen ? "scaleY(0)" : "scaleY(1)")};
   }
-  &.selected {
-    background-color: #111;
+  &.line3 {
+    transform-origin: 0% 100%;
+    transform: ${props => (props.isOpen ? "rotate(-45deg)" : "rotate(0)")};
   }
 `;

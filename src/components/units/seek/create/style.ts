@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import exp from "constants";
+import { mq } from "../../../../commons/libraries/breakPoints";
 
 interface IIsToggle {
   isToggle: boolean;
@@ -13,6 +14,14 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 1000px;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
 `;
 
 export const Head = styled.div`
@@ -89,11 +98,21 @@ export const InputWrap = styled.div`
   &.radio {
     align-items: flex-start;
   }
+
+  ${mq[2]} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 export const InputBox = styled.div`
   width: calc(100% - 240px);
   &.short {
     width: 220px;
+  }
+
+  ${mq[2]} {
+    width: 100%;
+    margin-top: 10px;
   }
 `;
 export const ThemeBox = styled.div`
@@ -105,6 +124,13 @@ export const Theme = styled.span`
   flex-direction: row;
   align-items: center;
   font-size: 24px;
+
+  ${mq[2]} {
+    &.map {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 `;
 
 export const Required = styled.span`
@@ -167,12 +193,22 @@ export const Image = styled.div`
 export const MapBox = styled.div`
   width: 380px;
   height: 220px;
+
+  ${mq[2]} {
+    width: 100%;
+  }
 `;
 export const MapDetail = styled.span`
   display: block;
   font-size: 14px;
   margin-left: 20px;
   color: #999;
+  line-height: 18px;
+
+  ${mq[2]} {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 `;
 
 export const BoardAddress = styled.div`
@@ -188,11 +224,22 @@ export const AddressBox = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   margin-top: 20px;
+
+  ${mq[2]} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const SearchBox = styled.div`
   width: calc(100% - 380px);
   padding-left: 24px;
+
+  ${mq[2]} {
+    width: 100%;
+    padding-left: 0;
+    margin-top: 20px;
+  }
 `;
 
 export const ZipcodeWrap = styled.div`

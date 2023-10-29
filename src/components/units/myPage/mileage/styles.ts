@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import InfiniteScroll from "react-infinite-scroller";
+import { mq } from "../../../../commons/libraries/breakPoints";
 
 interface IPropsSelect {
   isStatus: boolean;
@@ -25,6 +26,14 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 800px;
+
+  ${mq[1]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[3]} {
+    padding: 0 16px;
+  }
 `;
 
 export const MainTitle = styled.div`
@@ -73,21 +82,24 @@ export const SubTitle = styled.div`
   margin-bottom: 16px;
 `;
 
-export const Contents = styled.div`
+export const Contents = styled.p`
   font-size: 14px;
+  line-height: 18px;
   color: #777777;
   margin-bottom: 5px;
+  word-break: keep-all;
 `;
 
 export const CouponWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
   margin: 50px 0px;
 `;
 
 export const Coupon = styled.button<CouponProps>`
-  width: 254px;
-  height: 330px;
+  /* width: 254px;
+  height: 330px; */
   border-radius: 6px;
   border: ${props =>
     props.el.select === props.selectedCoupon.split("&")[0]
@@ -100,11 +112,18 @@ export const Coupon = styled.button<CouponProps>`
   justify-content: space-between;
 `;
 
-export const CouponImage = styled.div`
+export const CouponImageBox = styled.div`
   width: 100%;
   height: 252px;
   background-color: #f4f4f5;
   border-radius: 6px 6px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const CouponImage = styled.img`
+  display: block;
+  width: 80%;
 `;
 
 export const CouponDetailWrapper = styled.div`
@@ -124,21 +143,8 @@ export const CouponPrice = styled.p`
   font-size: 16px;
 `;
 
-// export const List = styled.select`
-//   width: 800px;
-//   height: 60px;
-//   border: 1px solid #e5e7eb;
-//   border-radius: 6px;
-//   margin: 50px 0px 60px 0px;
-//   padding: 0px 20px;
-//   display: flex;
-//   align-items: center;
-//   font-size: 18px;
-//   appearance: none;
-// `;
-
 export const BoardList = styled.div`
-  width: 800px;
+  width: 100%;
   height: 60px;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
@@ -374,3 +380,7 @@ export const None = styled.div`
   justify-content: center;
   margin-top: 150px;
 `;
+
+export const MileageItem = styled.div`
+  padding: 6px 0;
+`

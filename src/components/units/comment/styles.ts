@@ -119,8 +119,8 @@ export const Arrow = styled.div`
   border: none;
 `;
 export const Relode = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: #fff;
   border-radius: 50%;
   box-shadow: 0px 0px 10px rgba(204, 204, 204, 0.5);
@@ -132,6 +132,6 @@ export const Relode = styled.div`
 `;
 
 export const RotateIcon = styled(FontAwesomeIcon)`
-  font-size: 24px;
-  color: #999;
+  font-size: 18px;
+  color: #333;
 `;

@@ -23,7 +23,6 @@ interface IPropsList {
 
 export default function ProductList(props: IPropsList) {
   const router = useRouter();
-  const { onClickMoveToPage } = useMoveToPage();
 
   const [isRecent, setIsRecent] = useState(true);
   const [isLike, setIsLike] = useState(false);
@@ -124,8 +123,6 @@ export default function ProductList(props: IPropsList) {
             {/* <S.AngleRight icon={faAngleRight} /> */}
           </>
         )}
-
-        {/* <S.CategoryTag>{Sub}</S.CategoryTag> */}
       </S.CategoryBox>
       <S.LengthBox>
         <S.LengthText>

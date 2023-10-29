@@ -94,6 +94,7 @@ export type IFetchLikeCategoryOutput = {
   image_url: Scalars["String"];
   pick_count: Scalars["Float"];
   product_product_category: Scalars["String"];
+  product_product_sub_category: Scalars["String"];
   product_product_id: Scalars["String"];
   product_product_sellOrBuy: Scalars["Boolean"];
   product_product_title: Scalars["String"];
@@ -161,12 +162,13 @@ export type IFetchSearchProductOutput = {
   product_product_workDay: Scalars["String"];
   u_user_nickname: Scalars["String"];
   u_user_profileImage?: Maybe<Scalars["String"]>;
+  product_product_sub_category: Scalars["String"];
 };
 
 export type IFetchSubCategoryOutput = {
   __typename?: "FetchSubCategoryOutput";
-  image_url: Scalars['String'];
-  i_image_url: Scalars['String'];
+  image_url: Scalars["String"];
+  i_image_url: Scalars["String"];
   product_product_category: Scalars["String"];
   product_product_createdAt: Scalars["DateTime"];
   product_product_date?: Maybe<Scalars["String"]>;

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../../commons/libraries/breakPoints";
 
 interface IPropsSelect {
   isStatus: boolean;
@@ -13,6 +14,14 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 800px;
+
+  ${mq[1]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[3]} {
+    padding: 0 16px;
+  }
 `;
 
 export const PageTitle = styled.div`

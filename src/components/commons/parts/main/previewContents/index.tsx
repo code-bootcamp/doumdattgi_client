@@ -26,7 +26,7 @@ export default function BarBox(props: IProps) {
     >
       <S.CategoryBox>
         <S.Title>{props.el?.product_product_title}</S.Title>
-        <S.Icon icon={faBookmark} />
+        {/* <S.Icon icon={faBookmark} /> */}
       </S.CategoryBox>
       <S.InfoBox>
         <Tag data={props.el?.product_product_category} />

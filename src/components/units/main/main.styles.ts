@@ -56,11 +56,11 @@ export const CardboxWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 10px 20px;
+  gap: 20px 10px;
   &.buy {
     gap: 10px 10px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr; */
   }
   &.newbie {
     grid-template-columns: 1fr 1fr 1fr;

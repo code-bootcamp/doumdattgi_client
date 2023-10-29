@@ -19,6 +19,7 @@ import { useRecoilState } from "recoil";
 import { navOpenState, searchOpenState } from "../../../../commons/stores";
 import { SearchOutlined } from "@ant-design/icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function Header(): JSX.Element {
   const router = useRouter();
@@ -87,22 +88,26 @@ export default function Header(): JSX.Element {
 
   const [isOpen, setIsOpen] = useRecoilState(navOpenState);
   const [isOpen2, setIsOpen2] = useRecoilState(searchOpenState);
+
   const onClickNav = () => {
     setIsOpen(prev => !prev);
-    setIsOpen2(false)
+    setIsOpen2(false);
   };
   const onClickSearch = () => {
     setIsOpen2(prev => !prev);
-    setIsOpen(false)
+    setIsOpen(false);
   };
+  const noMargin = ["/mypage/profile/"];
+  const isProfile = noMargin.includes(router.asPath);
+
+  console.log(isProfile);
 
   return (
     <>
       <S.Wrapper>
         <S.Container>
           <S.logoWrap>
-            <S.NavIcon onClick={onClickNav}>
-              {/* <Hamburger toggle={setIsOpen} toggled={isOpen} size={30} /> */}
+            <S.NavIcon onClick={onClickNav} isProfile={isProfile}>
               <S.line className="line1" isOpen={isOpen} />
               <S.line className="line2" isOpen={isOpen} />
               <S.line className="line3" isOpen={isOpen} />
@@ -140,9 +145,9 @@ export default function Header(): JSX.Element {
             )}
             {data && (
               <S.UserBox>
-                <S.ShuffleBtn>
+                {/* <S.ShuffleBtn>
                   <S.ShuffleIcon src="/chat-bubble.png" />
-                </S.ShuffleBtn>
+                </S.ShuffleBtn> */}
                 <Dropdown
                   menu={{ items }}
                   trigger={["click"]}

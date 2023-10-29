@@ -6,6 +6,7 @@ export const FETCH_MY_NOT_COUPON_PRODUCT = gql`
     fetchMyNotCouponProduct {
       product_id
       product_title
+      product_category
     }
   }
 `;

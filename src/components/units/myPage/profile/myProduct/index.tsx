@@ -28,14 +28,12 @@ export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
         </S.WrapperRight>
       ) : (
         <S.WrapperRight>
-          <InfiniteScroll
-            loadMore={props.isSeek ? seekOnLoadMore : sellOnLoadMore}
-            pageStart={0}
-            hasMore={true}
-            useWindow={false}
-          >
-            {props.data?.map(el => (
-              <S.RightListBox onClick={onClickMoveToPage(`/${el?.product_id}`)} key={el?.product_id}>
+          {props.data?.map(el => (
+            <S.RightListBox
+              onClick={onClickMoveToPage(`/${el?.product_id}`)}
+              key={el?.product_id}
+            >
+              {el?.product_sellOrBuy && (
                 <S.ListImage
                   onError={e => {
                     const target = e.target as HTMLImageElement;
@@ -43,18 +41,18 @@ export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
                   }}
                   src={el.images[0].image_url}
                 />
-                <S.RightDetailBox>
-                  <S.ListCategory>
-                    {CategoryObj[el.product_category]}
-                  </S.ListCategory>
-                  <S.ListTitle>{el?.product_title}</S.ListTitle>
-                  <Tag data={el.product_workDay} />
-                  <S.DivideLine />
-                  <S.Remarks>{el.product_summary}</S.Remarks>
-                </S.RightDetailBox>
-              </S.RightListBox>
-            ))}
-          </InfiniteScroll>
+              )}
+              <S.RightDetailBox isSell={el?.product_sellOrBuy}>
+                <S.ListCategory>
+                  {CategoryObj[el.product_category]}
+                </S.ListCategory>
+                <S.ListTitle>{el?.product_title}</S.ListTitle>
+                <Tag data={el.product_workDay} />
+                <S.DivideLine isSell={el?.product_sellOrBuy}/>
+                <S.Remarks>{el.product_summary}</S.Remarks>
+              </S.RightDetailBox>
+            </S.RightListBox>
+          ))}
         </S.WrapperRight>
       )}
     </S.Wrapper>

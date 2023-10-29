@@ -1,12 +1,17 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   background-color: #fafafa;
   width: 100%;
+  height: calc(100vh - 60px);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 0;
+
+  ${mq[3]} {
+    padding: 0 16px;
+  }
 `;
 
 export const Container = styled.div`
@@ -16,6 +21,10 @@ export const Container = styled.div`
   border-radius: 20px;
   background-color: #fff;
   border: 1px solid #efefef;
+
+  ${mq[3]} {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -40,7 +49,7 @@ export const Error = styled.span`
   position: absolute;
   display: block;
   font-size: 14px;
-  color: #E31C1C;
+  color: #e31c1c;
   top: calc(100% + 8px);
 `;
 
@@ -104,11 +113,11 @@ export const SocialLoginButton = styled.div`
 export const Footer = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 export const JoinText = styled.span`
   display: block;
   font-size: 14px;
-`
+`;
 
 export const JoinBtn = styled.span`
   display: block;
