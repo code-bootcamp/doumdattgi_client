@@ -380,3 +380,7 @@ export const None = styled.div`
   justify-content: center;
   margin-top: 150px;
 `;
+
+export const MileageItem = styled.div`
+  padding: 6px 0;
+`

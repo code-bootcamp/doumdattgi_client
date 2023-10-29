@@ -83,8 +83,8 @@ type OptionType = {
 };
 
 export const category = [
-  { label: "디자인", value: "DESIGN" },
   { label: "IT・프로그래밍", value: "IT" },
+  { label: "디자인", value: "DESIGN" },
   { label: "번역・통역", value: "TRANSLATE" },
   { label: "영상・방송", value: "VIDEO" },
   { label: "마케팅", value: "MARKETING" },

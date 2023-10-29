@@ -99,6 +99,11 @@ export const globalStyle = css`
   .header {
     width: 120px;
   }
+  /* 마일리지 드롭다운 */
+   .mileage .ant-dropdown-menu {
+    max-height: 300px;
+    overflow: auto;
+  }
 
   /* 마일리지 게시판 선택  */
 

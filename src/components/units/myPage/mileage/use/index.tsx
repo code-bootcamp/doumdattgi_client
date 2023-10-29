@@ -5,6 +5,8 @@ import { Dropdown, Space, MenuProps } from "antd";
 import { ItemType } from "antd/es/menu/hooks/useItems";
 import { MouseEvent, useState } from "react";
 import ButtonHeight60px from "../../../../commons/buttons/ButtonHeight60px";
+import { CategoryObj } from "../../../../../commons/libraries/translate";
+import { category } from "../../../../../commons/libraries/category";
 
 export default function MileageUse(): JSX.Element {
   const { data } = useQueryFetchMyNotCouponProduct();
@@ -21,19 +23,22 @@ export default function MileageUse(): JSX.Element {
   // 현재 마일리지 적용 가능 게시글 목록
   const useMileageBoard = data?.fetchMyNotCouponProduct ?? [];
 
-  const MileageBoardList = useMileageBoard.flatMap(el => [
-    {
-      label: (
-        <div id={el.product_id} onClick={onClickBoard}>
-          {el.product_title}
-        </div>
-      )
-    },
-    { type: "divider" }
-  ]);
+  const MileageBoardList = category.map(item => ({
+    type: "group",
+    label: item.label,
+    children: useMileageBoard
+      .filter(el => el.product_category === item.value)
+      .map(el => ({
+        label: (
+          <S.MileageItem id={el.product_id} onClick={onClickBoard}>
+            {el.product_title}
+          </S.MileageItem>
+        )
+      }))
+  }));
 
   // 이후 제일 마지막 밑줄은 삭제
-  MileageBoardList.pop();
+  // MileageBoardList.pop();
 
   const items: MenuProps["items"] = MileageBoardList as ItemType[];
 
@@ -93,7 +98,7 @@ export default function MileageUse(): JSX.Element {
           </S.Coupon>
         ))}
       </S.CouponWrapper>
-      <Dropdown menu={{ items }} trigger={["click"]}>
+      <Dropdown menu={{ items }} trigger={["click"]} overlayClassName="mileage">
         <S.BoardList>{Board}</S.BoardList>
       </Dropdown>
       <S.BtnBox>
