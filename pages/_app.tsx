@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { HelmetProvider } from "react-helmet-async";
+import TopButton from "../src/components/commons/hooks/custom/useMovetoTop";
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
@@ -33,6 +34,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           <HelmetProvider>
             <Global styles={globalStyle} />
             <Layout>
+              <TopButton />
               <Component {...pageProps} />
             </Layout>
           </HelmetProvider>

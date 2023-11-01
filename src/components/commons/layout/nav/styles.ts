@@ -7,6 +7,8 @@ export const Wrapper = styled.nav<{
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: center;
 
   ${mq[2]} {
     display: ${props => (props.isOpen ? "block" : "none")};
@@ -18,7 +20,6 @@ export const Wrapper = styled.nav<{
 `;
 export const Container = styled.div`
   width: 1140px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;

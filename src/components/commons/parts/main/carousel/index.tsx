@@ -75,6 +75,19 @@ const StyledSlider = styled(SliderComponent)`
       right: 20px;
     }
   }
+  ${mq[5]} {
+    .slick-prev:before,
+    .slick-next:before {
+      width: 60px;
+      height: 60px;
+    }
+    .slick-prev {
+      left: 20px;
+    }
+    .slick-next {
+      right: 20px;
+    }
+  }
 `;
 
 const Slide = styled.div`
