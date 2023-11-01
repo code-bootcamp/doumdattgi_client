@@ -7,6 +7,7 @@ export const FETCH_NEWBIE_PRODUCT = gql`
       product_product_id
       product_product_title
       product_product_category
+      product_product_sub_category
       product_product_workDay
       u_user_nickname
       u_user_profileImage

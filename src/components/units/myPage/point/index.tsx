@@ -11,6 +11,7 @@ import { IValueArgs } from "./index.types";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/useQueryFetchLoginUser";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
+import MetaTag from "../../../../commons/libraries/metaTag";
 
 export default function PaymentPresenter(): JSX.Element {
   const router = useRouter();
@@ -87,12 +88,6 @@ export default function PaymentPresenter(): JSX.Element {
 
     const state = TrnaslatePointSelect[selectedId];
     await payRefetch({ page: 1, pageSize: 10, payment_status: state });
-
-    //
-    // router.push({
-    //   pathname: `/mypage/point/`,
-    //   query: { status }
-    // });
   };
 
   // 결제 내역 무한스크롤
@@ -123,6 +118,13 @@ export default function PaymentPresenter(): JSX.Element {
 
   return (
     <>
+      <MetaTag
+        title={"도움닫기 | 나만의 포트폴리오"}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={`https://storage.googleapis.com/doumdattgi-storage/mainIcon.png`}
+        keywords={"나만의 포트폴리오"}
+        url={"https://doumdattgi.com"}
+      />
       <RefundPoint
         refundInfo={refundInfo}
         setIsRefund={setIsRefund}

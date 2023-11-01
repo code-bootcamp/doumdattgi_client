@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import exp from "constants";
+import { mq } from "../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -9,11 +9,21 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 1000px;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
 `;
 
 export const Title = styled.h1`
   font-size: 30px;
+  line-height: 34px;
   font-weight: 600;
+  word-break: keep-all;
 `;
 export const Desc = styled.p`
   color: #888;
@@ -25,6 +35,7 @@ export const Highlight = styled.span`
   font-size: 30px;
   font-weight: 600;
   color: #88b04b;
+  padding: 0 5px;
 `;
 
 export const DivideLine = styled.div`

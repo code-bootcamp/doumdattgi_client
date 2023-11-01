@@ -63,7 +63,6 @@ export default function Comment(props: ICommentProps): JSX.Element {
         ]
       });
       resetField("text");
-      console.log(result);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

@@ -1,9 +1,22 @@
 import styled from "@emotion/styled";
 import { mq } from "../../../../../commons/libraries/breakPoints";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.aside`
   width: 200px;
   font-size: 22px;
+
+  ${mq[0]}{
+    width: 190px;
+  }
+  ${mq[1]}{
+    width: 180px;
+  }
+  ${mq[2]}{
+    width: 160px;
+  }
+  ${mq[3]}{
+    width: 180px;
+  }
 `;
 
 export const Title = styled.h2`

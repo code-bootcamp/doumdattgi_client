@@ -6,6 +6,7 @@ import { useQueryFetchLoginUser } from "../../../../commons/hooks/queries/useQue
 import { useForm } from "react-hook-form";
 import * as S from "./styles";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
+import { useUser } from "../../../../commons/hooks/custom/useUser";
 
 export default function SettingsBottom() {
   const { data } = useQueryFetchLoginUser();
@@ -13,6 +14,7 @@ export default function SettingsBottom() {
 
   const { isDetailEdit, clickEditDetail, clickSaveDetail } = useSettings();
   const { onClickMoveToPage } = useMoveToPage();
+  const { onClickDeleteUser } = useUser();
 
   // 소셜로그인 여부 체크
   const isSocialLogin = data?.fetchLoginUser.user_provider;
@@ -123,7 +125,9 @@ export default function SettingsBottom() {
                 <S.SettingList>
                   <S.Categoty>회원 탈퇴</S.Categoty>
                   <S.Contents>
-                    <S.DeleteUser>회원 탈퇴</S.DeleteUser>
+                    <S.DeleteUser type="button" onClick={onClickDeleteUser}>
+                      회원 탈퇴
+                    </S.DeleteUser>
                   </S.Contents>
                 </S.SettingList>
               </S.SettingListTop>

@@ -11,6 +11,7 @@ export const FETCH_MY_PRODUCT = gql`
       product_id
       product_title
       product_category
+      product_sub_category
       product_workDay
       images {
         image_url

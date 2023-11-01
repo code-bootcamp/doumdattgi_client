@@ -67,32 +67,9 @@ export default function MileageList(): JSX.Element {
     };
   }, []);
 
-  // 무한 스크롤 로직
-  // const onLoadMore = () => {
-  //   if (data === undefined) return;
-
-  //   fetchMore({
-  //     variables: {
-  //       page: Math.ceil((data?.fetchMileageProductHistory.length ?? 5) / 5) + 1
-  //     },
-  //     updateQuery: (prev, { fetchMoreResult }) => {
-  //       if (fetchMoreResult.fetchMileageProductHistory === undefined) {
-  //         return { fetchMyProduct: [...prev.fetchMileageProductHistory] };
-  //       }
-
-  //       return {
-  //         fetchMyProduct: [
-  //           ...prev.fetchMileageProductHistory,
-  //           ...fetchMoreResult.fetchMileageProductHistory
-  //         ]
-  //       };
-  //     }
-  //   });
-  // };
-
   return (
     <>
-      {data?.fetchMileageProductHistory.length === 0 ? (
+      {data?.fetchMileageProductHistory === undefined ? (
         <S.ListNone>서비스 이용권을 사용한 게시물이 없습니다</S.ListNone>
       ) : (
         <>
@@ -107,17 +84,33 @@ export default function MileageList(): JSX.Element {
                         key={aa.Id}
                         onClick={onClickMoveToPage(`/${el.product_id}`)}
                       >
-                        <S.ListImage
-                          onError={e => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = fallback;
-                          }}
-                          src={
-                            el.images === undefined || el.images === null
-                              ? ""
-                              : el.images[0]?.image_url
-                          }
-                        />
+                        <S.ListImageBox>
+                          <>
+                            <S.MileageDay>
+                              <S.Day>
+                                {mileageInfo
+                                  ?.filter(a => a.Id === el.product_id)
+                                  .map(el => getCouponType(el.Coupon ?? ""))}
+                              </S.Day>
+                              <S.Time>
+                                {mileageInfo
+                                  ?.filter(a => a.Id === el.product_id)
+                                  .map(el => getDateTime2(el.time))}
+                              </S.Time>
+                            </S.MileageDay>
+                            <S.ListImage
+                              onError={e => {
+                                const target = e.target as HTMLImageElement;
+                                target.src = fallback;
+                              }}
+                              src={
+                                el.images === undefined || el.images === null
+                                  ? ""
+                                  : el.images[0]?.image_url
+                              }
+                            />
+                          </>
+                        </S.ListImageBox>
                         <S.RightDetailBox>
                           <S.DetailContents>
                             <S.ListCategory>
@@ -128,18 +121,6 @@ export default function MileageList(): JSX.Element {
                             <S.DivideLine />
                             <S.Remarks>{el.product_summary}</S.Remarks>
                           </S.DetailContents>
-                          <S.MileageDay>
-                            <S.Day>
-                              {mileageInfo
-                                ?.filter(a => a.Id === el.product_id)
-                                .map(el => getCouponType(el.Coupon ?? ""))}
-                            </S.Day>
-                            <S.Time>
-                              {mileageInfo
-                                ?.filter(a => a.Id === el.product_id)
-                                .map(el => getDateTime2(el.time))}
-                            </S.Time>
-                          </S.MileageDay>
                         </S.RightDetailBox>
                       </S.RightListBox>
                     )

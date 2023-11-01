@@ -28,6 +28,7 @@ import {
 } from "../../commons/hooks/queries/useQueryFetchPickOrNot";
 import { useMutationDeleteLoginProduct } from "../../commons/hooks/mutations/useMutationDeleteLoginProduct";
 import { fallback } from "../../../commons/libraries/fallback";
+import MetaTag from "../../../commons/libraries/metaTag";
 
 export default function Detail() {
   const router = useRouter();
@@ -48,7 +49,7 @@ export default function Detail() {
   // 주소 뒤에 임의값 입력할 경우 페이지 로드되는 것 방지
 
   useEffect(() => {
-    if (error) {
+    if (error?.message === "Cannot read property 'user' of null") {
       alert("잘못된 접근입니다");
       router.push("/");
     }
@@ -107,180 +108,194 @@ export default function Detail() {
   };
 
   return (
-    <S.Wrapper>
-      <S.Container>
-        <S.SliderBox ImgArr={ImgArr}>
-          <Slider ImgArr={ImgArr} />
-        </S.SliderBox>
-        <S.DetailWrap>
-          <S.DetailBox>
-            <S.TitleWrap>
-              <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
-              <S.IconBox>
-                {pick?.fetchPickOrNot ? (
-                  <S.Icon
-                    onClick={clickPick}
-                    icon={Bookmark2}
-                    className="pick"
-                  />
-                ) : (
-                  <S.Icon onClick={clickPick} icon={faBookmark} />
-                )}
-              </S.IconBox>
-            </S.TitleWrap>
-            <S.TagWrap>
-              <S.Tag>
-                {
-                  CategoryObj[
-                    data?.fetchDetailProduct?.product_category ?? "DESIGN"
-                  ]
-                }
-              </S.Tag>
-              <S.Tag>{data?.fetchDetailProduct?.product_sub_category}</S.Tag>
-            </S.TagWrap>
-            <S.Price>{price} P ~</S.Price>
-            <S.Remarks>{data?.fetchDetailProduct?.product_summary}</S.Remarks>
-          </S.DetailBox>
-          <S.DetailBox className="detail-bottom">
-            <S.Button ImgArr={ImgArr}>
-              {slot3 ? (
-                <S.EnableBtn>현재 가능한 슬롯이 없습니다.</S.EnableBtn>
-              ) : writer !== LoginUser || !writer || !LoginUser ? (
-                <>
-                  <S.DeleteBtn>
+    <>
+      <MetaTag
+        title={data?.fetchDetailProduct.product_title ?? ""}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={ImgArr[0]}
+        keywords={data?.fetchDetailProduct?.product_summary ?? ""}
+        url={`https://doumdattgi.com${router.asPath}`}
+      />
+      <S.Wrapper>
+        <S.Container>
+          <S.SliderBox ImgArr={ImgArr}>
+            <Slider ImgArr={ImgArr} />
+          </S.SliderBox>
+          <S.DetailWrap>
+            <S.DetailBox>
+              <S.TitleWrap>
+                <S.Title>{data?.fetchDetailProduct.product_title}</S.Title>
+                <S.IconBox>
+                  {pick?.fetchPickOrNot ? (
+                    <S.Icon
+                      onClick={clickPick}
+                      icon={Bookmark2}
+                      className="pick"
+                    />
+                  ) : (
+                    <S.Icon onClick={clickPick} icon={faBookmark} />
+                  )}
+                </S.IconBox>
+              </S.TitleWrap>
+              <S.TagWrap>
+                <S.Tag>
+                  {
+                    CategoryObj[
+                      data?.fetchDetailProduct?.product_category ?? "DESIGN"
+                    ]
+                  }
+                </S.Tag>
+                <S.Tag>{data?.fetchDetailProduct?.product_sub_category}</S.Tag>
+              </S.TagWrap>
+              <S.Price>{price} P ~</S.Price>
+              <S.Remarks>{data?.fetchDetailProduct?.product_summary}</S.Remarks>
+            </S.DetailBox>
+            <S.DetailBox className="detail-bottom">
+              <S.Button ImgArr={ImgArr}>
+                {slot3 ? (
+                  <S.EnableBtn>현재 가능한 슬롯이 없습니다.</S.EnableBtn>
+                ) : writer !== LoginUser || !writer || !LoginUser ? (
+                  <>
+                    <S.DeleteBtn>
+                      <Link href={`/${router.query.id}/request`}>
+                        <a>
+                          <S.LineBtn>신청서 작성하기</S.LineBtn>
+                        </a>
+                      </Link>
+                    </S.DeleteBtn>
                     <Link href={`/${router.query.id}/request`}>
                       <a>
-                        <S.LineBtn>신청서 작성하기</S.LineBtn>
+                        <ButtonHeight50px
+                          title="메세지 보내기"
+                          isActive={true}
+                        />
                       </a>
                     </Link>
-                  </S.DeleteBtn>
-                  <Link href={`/${router.query.id}/request`}>
-                    <a>
-                      <ButtonHeight50px title="메세지 보내기" isActive={true} />
-                    </a>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <S.DeleteBtn>
-                    <ButtonHeight50px
-                      title="삭제하기"
-                      isYou={true}
-                      onClick={clickDelete}
-                    />
-                  </S.DeleteBtn>
-                  <Link href={`/${router.query.id}/edit`}>
-                    <a>
-                      <ButtonHeight50px
-                        title="수정하기"
-                        isYou={true}
-                        isActive={true}
-                      />
-                    </a>
-                  </Link>
-                </>
-              )}
-              <S.SlotBox>
-                {writer === LoginUser ? (
-                  <></>
-                ) : slot3 ? (
-                  <></>
+                  </>
                 ) : (
                   <>
-                    <S.SlotText>
-                      현재 가능 슬롯 {!slot1 ? "3" : !slot2 ? "2" : "1"}개
-                    </S.SlotText>
-                    <S.SlotBg />
+                    <S.DeleteBtn>
+                      <ButtonHeight50px
+                        title="삭제하기"
+                        isYou={true}
+                        onClick={clickDelete}
+                      />
+                    </S.DeleteBtn>
+                    <Link href={`/${router.query.id}/edit`}>
+                      <a>
+                        <ButtonHeight50px
+                          title="수정하기"
+                          isYou={true}
+                          isActive={true}
+                        />
+                      </a>
+                    </Link>
                   </>
                 )}
-              </S.SlotBox>
-            </S.Button>
-          </S.DetailBox>
-        </S.DetailWrap>
-      </S.Container>
-      <S.DivideLine />
-      <S.Container className="bottom">
-        <S.DetailContentsWrap>
-          <S.DetailTitle>상세 내용</S.DetailTitle>
-          {isNotServer && (
-            <S.DetailContents
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  String(data?.fetchDetailProduct.product_main_text) ?? ""
-                )
-              }}
-            />
-          )}
-        </S.DetailContentsWrap>
-        <S.DetailUserWrap>
-          <S.UserNameBox>
-            <S.UserName>
-              {data?.fetchDetailProduct.user.user_nickname === ""
-                ? data?.fetchDetailProduct.user.user_email
-                : data?.fetchDetailProduct.user.user_nickname}
-            </S.UserName>
-            <S.UserAvatar
-              onError={e => {
-                const target = e.target as HTMLImageElement;
-                target.src = fallback;
-              }}
-              src={data?.fetchDetailProduct.user?.user_profileImage ?? fallback}
-            />
-          </S.UserNameBox>
+                <S.SlotBox>
+                  {writer === LoginUser ? (
+                    <></>
+                  ) : slot3 ? (
+                    <></>
+                  ) : (
+                    <>
+                      <S.SlotText>
+                        현재 가능 슬롯 {!slot1 ? "3" : !slot2 ? "2" : "1"}개
+                      </S.SlotText>
+                      <S.SlotBg />
+                    </>
+                  )}
+                </S.SlotBox>
+              </S.Button>
+            </S.DetailBox>
+          </S.DetailWrap>
+        </S.Container>
+        <S.DivideLine />
+        <S.Container className="bottom">
+          <S.DetailContentsWrap>
+            <S.DetailTitle>상세 내용</S.DetailTitle>
+            {isNotServer && (
+              <S.DetailContents
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(
+                    String(data?.fetchDetailProduct.product_main_text) ?? ""
+                  )
+                }}
+              />
+            )}
+          </S.DetailContentsWrap>
+          <S.DetailUserWrap>
+            <S.UserNameBox>
+              <S.UserName>
+                {data?.fetchDetailProduct.user.user_nickname === ""
+                  ? data?.fetchDetailProduct.user.user_email
+                  : data?.fetchDetailProduct.user.user_nickname}
+              </S.UserName>
+              <S.UserAvatar
+                onError={e => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = fallback;
+                }}
+                src={
+                  data?.fetchDetailProduct.user?.user_profileImage ?? fallback
+                }
+              />
+            </S.UserNameBox>
 
-          <S.UserContainer>
-            <S.UserTimeWrap>
-              <S.TimeTitle>
-                <S.TimeIcon icon={faClock} />
-                <S.TimeText>연락 가능 시간</S.TimeText>
-              </S.TimeTitle>
-              <S.UserTimeBox>
-                <S.UserTimeCategory>{Day}</S.UserTimeCategory>
-                <S.UserTime>{`${String(
-                  data?.fetchDetailProduct.product_startTime
-                ).padStart(2, "0")}:00 ~ ${String(
-                  data?.fetchDetailProduct.product_endTime
-                ).padStart(2, "0")}:00`}</S.UserTime>
-              </S.UserTimeBox>
-            </S.UserTimeWrap>
-            <S.UserWorkRateWrap>
-              <S.UserWorkRateBox>
-                <S.UserWorkRate>
-                  {data?.fetchDetailProduct.user.user_workRate} 건
-                </S.UserWorkRate>
-                <S.UserWorkText>총 작업 수</S.UserWorkText>
-              </S.UserWorkRateBox>
-              <S.VerticalLine />
-              <S.UserWorkRateBox>
-                <S.UserLevelIcon src={imageSrc} />
-                <S.UserWorkText>{userTitle}</S.UserWorkText>
-              </S.UserWorkRateBox>
-            </S.UserWorkRateWrap>
-            <S.PortfolioTitleBox>
-              <S.PortfolioIcon icon={faSeedling} />
-              <S.PortfolioText>포트폴리오</S.PortfolioText>
-            </S.PortfolioTitleBox>
-            <S.PortfolioLink>
-              {data?.fetchDetailProduct.user?.user_portfolio === ""
-                ? "아직 등록한 포트폴리오 주소가 없습니다."
-                : data?.fetchDetailProduct.user?.user_portfolio}
-            </S.PortfolioLink>
-            <S.UserIntroduceTitle>소개</S.UserIntroduceTitle>
-            <S.UserIntroduce>
-              {data?.fetchDetailProduct.user.user_introduce === ""
-                ? "아직 등록한 소개가 없습니다."
-                : data?.fetchDetailProduct.user.user_introduce}
-            </S.UserIntroduce>
-          </S.UserContainer>
-        </S.DetailUserWrap>
-      </S.Container>
-      <S.DivideLine className="bottom" />
-      <S.Subtitle>이런 게시글은 어떠세요?</S.Subtitle>
-      <S.CardBoxWrap>
-        {random?.fetchRandomProduct.map(el => (
-          <CardBox key={el.product_product_id} data={el} />
-        ))}
-      </S.CardBoxWrap>
-    </S.Wrapper>
+            <S.UserContainer>
+              <S.UserTimeWrap>
+                <S.TimeTitle>
+                  <S.TimeIcon icon={faClock} />
+                  <S.TimeText>연락 가능 시간</S.TimeText>
+                </S.TimeTitle>
+                <S.UserTimeBox>
+                  <S.UserTimeCategory>{Day}</S.UserTimeCategory>
+                  <S.UserTime>{`${String(
+                    data?.fetchDetailProduct.product_startTime
+                  ).padStart(2, "0")}:00 ~ ${String(
+                    data?.fetchDetailProduct.product_endTime
+                  ).padStart(2, "0")}:00`}</S.UserTime>
+                </S.UserTimeBox>
+              </S.UserTimeWrap>
+              <S.UserWorkRateWrap>
+                <S.UserWorkRateBox>
+                  <S.UserWorkRate>
+                    {data?.fetchDetailProduct.user.user_workRate} 건
+                  </S.UserWorkRate>
+                  <S.UserWorkText>총 작업 수</S.UserWorkText>
+                </S.UserWorkRateBox>
+                <S.VerticalLine />
+                <S.UserWorkRateBox>
+                  <S.UserLevelIcon src={imageSrc} />
+                  <S.UserWorkText>{userTitle}</S.UserWorkText>
+                </S.UserWorkRateBox>
+              </S.UserWorkRateWrap>
+              <S.PortfolioTitleBox>
+                <S.PortfolioIcon icon={faSeedling} />
+                <S.PortfolioText>포트폴리오</S.PortfolioText>
+              </S.PortfolioTitleBox>
+              <S.PortfolioLink>
+                {data?.fetchDetailProduct.user?.user_portfolio === ""
+                  ? "아직 등록한 포트폴리오 주소가 없습니다."
+                  : data?.fetchDetailProduct.user?.user_portfolio}
+              </S.PortfolioLink>
+              <S.UserIntroduceTitle>소개</S.UserIntroduceTitle>
+              <S.UserIntroduce>
+                {data?.fetchDetailProduct.user.user_introduce === ""
+                  ? "아직 등록한 소개가 없습니다."
+                  : data?.fetchDetailProduct.user.user_introduce}
+              </S.UserIntroduce>
+            </S.UserContainer>
+          </S.DetailUserWrap>
+        </S.Container>
+        <S.DivideLine className="bottom" />
+        <S.Subtitle>이런 게시글은 어떠세요?</S.Subtitle>
+        <S.CardBoxWrap>
+          {random?.fetchRandomProduct.map(el => (
+            <CardBox key={el.product_product_id} data={el} isRandom={true}/>
+          ))}
+        </S.CardBoxWrap>
+      </S.Wrapper>
+    </>
   );
 }

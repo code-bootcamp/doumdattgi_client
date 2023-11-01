@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { HelmetProvider } from "react-helmet-async";
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
@@ -26,16 +27,17 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   }, [router.asPath]);
 
   return (
-    <RecoilRoot>
-      <ApolloSetting>
-        <>
-          <Global styles={globalStyle} />
-
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </>
-      </ApolloSetting>
-    </RecoilRoot>
+    <>
+      <RecoilRoot>
+        <ApolloSetting>
+          <HelmetProvider>
+            <Global styles={globalStyle} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </HelmetProvider>
+        </ApolloSetting>
+      </RecoilRoot>
+    </>
   );
 }

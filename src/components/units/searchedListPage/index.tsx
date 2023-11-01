@@ -9,6 +9,7 @@ import { Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import MetaTag from "../../../commons/libraries/metaTag";
 
 export default function SearchedPage() {
   const router = useRouter();
@@ -21,7 +22,6 @@ export default function SearchedPage() {
     : router.query.word || "";
 
   const { data, fetchMore } = useQueryfetchSearchProduct(keyWord);
-  const { onClickMoveToPage } = useMoveToPage();
 
   const RecentOrNot = (value: string) => {
     if (value === "최신순") {
@@ -46,8 +46,7 @@ export default function SearchedPage() {
     (a, b) => b.pick_count - a.pick_count
   );
 
-  //
-  //
+  console.log(categoryList)
 
   const onLoadMore = () => {
     if (data === undefined) return;
@@ -74,40 +73,47 @@ export default function SearchedPage() {
   };
 
   return (
-    <S.Wrapper>
-      <S.Container>
-        <S.WrapperRight>
-          <S.CategoryTag>{`${keyWord} 검색결과`}</S.CategoryTag>
-          <S.RightHeader>
-            <div>
-              {data?.fetchSearchProduct?.length ?? 0}개의 서비스
-            </div>
-            <Select
-              defaultValue="최신순"
-              style={{ width: 100 }}
-              bordered={false}
-              suffixIcon={<FontAwesomeIcon icon={faAngleDown} />}
-              options={[
-                { value: "최신순", label: "최신순" },
-                { value: "인기순", label: "인기순" },
-                { value: "과거순", label: "과거순" }
-              ]}
-              onChange={RecentOrNot}
-            />
-          </S.RightHeader>
-          <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
-            <S.ContentsBox>
-              {!isLike
-                ? categoryList.map(el => (
-                    <CardBox key={el.product_product_id} data={el} />
-                  ))
-                : popularList.map(el => (
-                    <CardBox key={el.product_product_id} data={el} />
-                  ))}
-            </S.ContentsBox>
-          </InfiniteScroll>
-        </S.WrapperRight>
-      </S.Container>
-    </S.Wrapper>
+    <>
+      <MetaTag
+        title={"검색 | 도움닫기"}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={`https://storage.googleapis.com/doumdattgi-storage/mainIcon.png`}
+        keywords={"나만의 포트폴리오"}
+        url={"https://doumdattgi.com"}
+      />
+      <S.Wrapper>
+        <S.Container>
+          <S.WrapperRight>
+            <S.CategoryTag>{`${keyWord} 검색결과`}</S.CategoryTag>
+            <S.RightHeader>
+              <div>{data?.fetchSearchProduct?.length ?? 0}개의 서비스</div>
+              <Select
+                defaultValue="최신순"
+                style={{ width: 100 }}
+                bordered={false}
+                suffixIcon={<FontAwesomeIcon icon={faAngleDown} />}
+                options={[
+                  { value: "최신순", label: "최신순" },
+                  { value: "인기순", label: "인기순" },
+                  { value: "과거순", label: "과거순" }
+                ]}
+                onChange={RecentOrNot}
+              />
+            </S.RightHeader>
+            <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
+              <S.ContentsBox>
+                {!isLike
+                  ? categoryList.map(el => (
+                      <CardBox key={el.product_product_id} data2={el} />
+                    ))
+                  : popularList.map(el => (
+                      <CardBox key={el.product_product_id} data2={el} />
+                    ))}
+              </S.ContentsBox>
+            </InfiniteScroll>
+          </S.WrapperRight>
+        </S.Container>
+      </S.Wrapper>
+    </>
   );
 }

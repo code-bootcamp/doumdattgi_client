@@ -9,8 +9,13 @@ import StatusTag from "../../../commons/tag/status";
 import { useQueryFetchSellCategoryProducts } from "../../../commons/hooks/queries/useQueryFetchSellCategoryProducts";
 import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
 import { ChangeEvent, useEffect, useState } from "react";
-import { CategoryObj, CategoryObj2 } from "../../../../commons/libraries/translate";
+import {
+  CategoryObj,
+  CategoryObj2
+} from "../../../../commons/libraries/translate";
 import { getDate2 } from "../../../../commons/libraries/getDate";
+import MetaTag from "../../../../commons/libraries/metaTag";
+import { useRouter } from "next/router";
 
 const category = {
   list: [
@@ -27,19 +32,19 @@ const category = {
 
 export default function SeekList() {
   const [categoryTitle, setCategoryTitle] = useState("");
-  const { data, fetchMore, refetch } =
-    useQueryFetchSellCategoryProducts(CategoryObj2[categoryTitle]);
+  const { data, fetchMore, refetch } = useQueryFetchSellCategoryProducts(
+    CategoryObj2[categoryTitle]
+  );
   const { onClickMoveToPage } = useMoveToPage();
 
-    //  결제내역 refetch
-    useEffect(() => {
-      refetch({
-        product_category: CategoryObj2[categoryTitle] ?? "",
-        page: 1,
-        pageSize: 10
-      });
-    }, []);
-
+  //  결제내역 refetch
+  useEffect(() => {
+    refetch({
+      product_category: CategoryObj2[categoryTitle] ?? "",
+      page: 1,
+      pageSize: 10
+    });
+  }, []);
 
   // 무한 스크롤 로직
   const onLoadMore = () => {
@@ -67,95 +72,115 @@ export default function SeekList() {
     });
   };
 
-  const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
-    setCategoryTitle(e.target.value);
+  const router = useRouter();
+
+  const clickCategory = (data: string) => () => {
+    setCategoryTitle(data);
+    router.push({
+      pathname: "/seek",
+      query: { data }
+    });
   };
 
   return (
-    <S.Wrapper>
-      <S.Container>
-        <S.Header>
-          <S.TitleBox>
-            <S.SubTitle>원하는 서비스를 직접 의뢰해보세요!</S.SubTitle>
-            <S.Title>사람을 구해요</S.Title>
-          </S.TitleBox>
-          <Link href={"/seek/create"}>
-            <S.CreateLink>
-              <S.CreateIcon src="/pencil.png" />새 구인글 작성하기
-            </S.CreateLink>
-          </Link>
-        </S.Header>
-        <S.Body>
-          <S.CategoryWrap>
-            <S.Category>카테고리</S.Category>
-            {category.list.map(el => (
-              <S.CategoryBox>
-                <S.CategoryLabel>
-                  <S.Radio
-                    type="radio"
-                    name="category"
-                    defaultChecked={category.checked === el}
-                    value={el}
-                    onChange={onChangeCategory}
-                  />
-                  {el}
-                </S.CategoryLabel>
-              </S.CategoryBox>
-            ))}
-          </S.CategoryWrap>
-          <S.ListWrap>
-            <S.LengthBox>
-              <S.LengthText>
-                {data?.fetchSellCategoryProducts.length ?? 0}개의 서비스
-              </S.LengthText>
-              <Select
-                defaultValue="최신순"
-                style={{ width: 100 }}
-                suffixIcon={<FontAwesomeIcon icon={faAngleDown} />}
-                bordered={false}
-                options={[
-                  { value: "최신순", label: "최신순" },
-                  { value: "인기순", label: "인기순" },
-                  { value: "과거순", label: "과거순" }
-                ]}
-              />
-            </S.LengthBox>
-            <S.ContentsBox loadMore={onLoadMore} pageStart={0} hasMore={true}>
-              {data?.fetchSellCategoryProducts?.map(el => (
-                <S.ListBox
-                  onClick={onClickMoveToPage(`/seek/${el?.product_product_id}`)}
-                >
-                  <StatusTag status={true} />
-                  <S.ListTitle>{el?.product_product_title}</S.ListTitle>
-                  <S.FlexBox>
-                    <S.RequireBox>
-                      <S.Icon icon={faWonSign} />
-                      <S.DetailTitle>가능 금액</S.DetailTitle>
-                      <S.DetailText>{el?.product_product_possibleAmount}</S.DetailText>
-                    </S.RequireBox>
-                    <S.RequireBox className="require">
-                      <S.Icon icon={faClock} />
-                      <S.DetailTitle>필요 날짜</S.DetailTitle>
-                      <S.DetailText>{el?.product_product_date}</S.DetailText>
-                    </S.RequireBox>
-                  </S.FlexBox>
-                  <S.TagBox>
-                    <Tag data={el?.product_product_category} />
-                    <S.Tag>
-                      <Tag data={el?.product_product_sub_category} />
-                    </S.Tag>
-                    <S.createdAt>
-                      <S.Date>등록 일자</S.Date>
-                      <S.Date>{getDate2(el?.product_product_createdAt)}</S.Date>
-                    </S.createdAt>
-                  </S.TagBox>
-                </S.ListBox>
+    <>
+      <MetaTag
+        title={"검색 | 도움닫기"}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={`https://storage.googleapis.com/doumdattgi-storage/mainIcon.png`}
+        keywords={"나만의 포트폴리오"}
+        url={"https://doumdattgi.com"}
+      />
+      <S.Wrapper>
+        <S.Container>
+          <S.Header>
+            <S.TitleBox>
+              <S.SubTitle>원하는 서비스를 직접 의뢰해보세요!</S.SubTitle>
+              <S.Title>사람을 구해요</S.Title>
+            </S.TitleBox>
+            <Link href={"/seek/create"}>
+              <S.CreateLink>
+                <S.CreateIcon src="/pencil.png" />새 구인글 올리기
+              </S.CreateLink>
+            </Link>
+          </S.Header>
+          <S.Body>
+            <S.CategoryWrap>
+              <S.Category>카테고리</S.Category>
+              {category.list.map(el => (
+                <S.CategoryBox>
+                  <S.CategoryLabel>
+                    <S.Radio
+                      type="radio"
+                      name="category"
+                      defaultChecked={category.checked === el}
+                      value={el}
+                      onChange={clickCategory(el)}
+                    />
+                    {el}
+                  </S.CategoryLabel>
+                </S.CategoryBox>
               ))}
-            </S.ContentsBox>
-          </S.ListWrap>
-        </S.Body>
-      </S.Container>
-    </S.Wrapper>
+            </S.CategoryWrap>
+            <S.ListWrap>
+              <S.LengthBox>
+                <S.LengthText>
+                  {data?.fetchSellCategoryProducts.length ?? 0}개의 서비스
+                </S.LengthText>
+                <Select
+                  defaultValue="최신순"
+                  style={{ width: 100 }}
+                  suffixIcon={<FontAwesomeIcon icon={faAngleDown} />}
+                  bordered={false}
+                  options={[
+                    { value: "최신순", label: "최신순" },
+                    { value: "인기순", label: "인기순" },
+                    { value: "과거순", label: "과거순" }
+                  ]}
+                />
+              </S.LengthBox>
+              <S.ContentsBox loadMore={onLoadMore} pageStart={0} hasMore={true}>
+                {data?.fetchSellCategoryProducts?.map(el => (
+                  <S.ListBox
+                    onClick={onClickMoveToPage(
+                      `/seek/${el?.product_product_id}`
+                    )}
+                  >
+                    <StatusTag status={true} />
+                    <S.ListTitle>{el?.product_product_title}</S.ListTitle>
+                    <S.FlexBox>
+                      <S.RequireBox>
+                        <S.Icon icon={faWonSign} />
+                        <S.DetailTitle>가능 금액</S.DetailTitle>
+                        <S.DetailText>
+                          {el?.product_product_possibleAmount}
+                        </S.DetailText>
+                      </S.RequireBox>
+                      <S.RequireBox className="require">
+                        <S.Icon icon={faClock} />
+                        <S.DetailTitle>필요 날짜</S.DetailTitle>
+                        <S.DetailText>{el?.product_product_date}</S.DetailText>
+                      </S.RequireBox>
+                    </S.FlexBox>
+                    <S.TagBox>
+                      <Tag data={el?.product_product_category} />
+                      <S.Tag>
+                        <Tag data={el?.product_product_sub_category} />
+                      </S.Tag>
+                      <S.createdAt>
+                        <S.Date>등록 일자</S.Date>
+                        <S.Date>
+                          {getDate2(el?.product_product_createdAt)}
+                        </S.Date>
+                      </S.createdAt>
+                    </S.TagBox>
+                  </S.ListBox>
+                ))}
+              </S.ContentsBox>
+            </S.ListWrap>
+          </S.Body>
+        </S.Container>
+      </S.Wrapper>
+    </>
   );
 }
-

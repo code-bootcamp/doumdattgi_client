@@ -116,6 +116,8 @@ export const ServiceWrap = styled.div`
 export const ServiceTitle = styled.h2`
   font-size: 24px;
   font-weight: 600;
+  word-break: keep-all;
+  line-height: 28px;
 `;
 export const TitleHighlight = styled.span`
   font-weight: 600;

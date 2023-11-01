@@ -22,9 +22,5 @@ export const getAccessToken = async (): Promise<string | undefined> => {
     // 결과적으로 LoginCheck 기능이 동작하는데 문제는 없으나, getAccessToken 함수 로직은 에러가 발생하는 것으로 보임
 
     return newAccessToken;
-  } catch (error: any) {
-    console.log("이거 에러임");
-    console.log(error.message);
-    console.log("에러");
-  }
+  } catch (error: any) {}
 };

@@ -33,8 +33,11 @@ export default function ProductList(props: IPropsList) {
     : router.query.data || "";
 
   const { data, fetchMore, refetch } = useQueryFetchCategoryProduct(category);
-  const { data: data2, refetch: refetch2 } =
-    useQueryFetchLikeCategoryProduct(category);
+  const {
+    data: data2,
+    refetch: refetch2,
+    fetchMore: fetchmore2
+  } = useQueryFetchLikeCategoryProduct(category);
   const { data: mileageProductData } = useQueryFetchRandomMileageProduct();
 
   // 인기순, 아니냐에 따라 refetch 분리
@@ -97,6 +100,32 @@ export default function ProductList(props: IPropsList) {
     });
   };
 
+  // 인기순 무한 스크롤 로직
+  const onLoadMore2 = () => {
+    if (data === undefined) return;
+
+    fetchmore2({
+      variables: {
+        page:
+          Math.ceil((data2?.fetchLikeCategoryProduct?.length ?? 10) / 10) + 1
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (fetchMoreResult.fetchLikeCategoryProduct === undefined) {
+          return {
+            fetchLikeCategoryProduct: [...prev.fetchLikeCategoryProduct]
+          };
+        }
+
+        return {
+          fetchLikeCategoryProduct: [
+            ...prev.fetchLikeCategoryProduct,
+            ...fetchMoreResult.fetchLikeCategoryProduct
+          ]
+        };
+      }
+    });
+  };
+
   return (
     <S.Container isAll={props.isAll}>
       <S.MileageWrap>
@@ -104,7 +133,7 @@ export default function ProductList(props: IPropsList) {
           <S.MileageTitle>특별한 서비스들</S.MileageTitle>
           <S.MileageSubTitle>마일리지 전용 영역</S.MileageSubTitle>
         </S.MileageTitleBox>
-        <S.MileageBox>
+        <S.MileageBox isAll={props.isAll}>
           {mileageProductData?.fetchRandomMileageProduct.map(el => (
             <CardBox2 key={el.product_id} data={el} />
           ))}
@@ -120,7 +149,6 @@ export default function ProductList(props: IPropsList) {
             <S.CategoryTag>
               {CategoryObj[CategoryTitle ?? category]}
             </S.CategoryTag>
-            {/* <S.AngleRight icon={faAngleRight} /> */}
           </>
         )}
       </S.CategoryBox>
@@ -141,7 +169,11 @@ export default function ProductList(props: IPropsList) {
           onChange={RecentOrNot}
         />
       </S.LengthBox>
-      <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
+      <InfiniteScroll
+        loadMore={isLike ? onLoadMore2 : onLoadMore}
+        pageStart={0}
+        hasMore={true}
+      >
         <S.ContentsBox isAll={props.isAll}>
           <>
             {!isLike

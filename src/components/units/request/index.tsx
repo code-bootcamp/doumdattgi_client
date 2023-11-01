@@ -20,6 +20,7 @@ import dayjs from "dayjs";
 import { useRecoilState } from "recoil";
 import { minAmountState } from "../../../commons/stores";
 import { useSchema } from "../../../commons/libraries/schema";
+import MetaTag from "../../../commons/libraries/metaTag";
 
 const CountUp = dynamic(
   async () => await import("../../commons/parts/countUp/intex"),
@@ -98,6 +99,13 @@ export default function Request(props: any): JSX.Element {
 
   return (
     <form onSubmit={handleSubmit(onClickWriteRequest)}>
+      <MetaTag
+        title={"서비스 신청하기 | 도움닫기"}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={product?.fetchDetailProduct?.images[0].image_url ?? ""}
+        keywords={"나만의 포트폴리오"}
+        url={`https://doumdattgi.com${product?.fetchDetailProduct?.product_id}`}
+      />
       <S.Wrapper>
         <S.Container>
           <S.Title>

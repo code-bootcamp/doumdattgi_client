@@ -32,6 +32,7 @@ export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
             <S.RightListBox
               onClick={onClickMoveToPage(`/${el?.product_id}`)}
               key={el?.product_id}
+              isSell={el?.product_sellOrBuy}
             >
               {el?.product_sellOrBuy && (
                 <S.ListImage
@@ -43,12 +44,12 @@ export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
                 />
               )}
               <S.RightDetailBox isSell={el?.product_sellOrBuy}>
-                <S.ListCategory>
-                  {CategoryObj[el.product_category]}
-                </S.ListCategory>
                 <S.ListTitle>{el?.product_title}</S.ListTitle>
-                <Tag data={el.product_workDay} />
-                <S.DivideLine isSell={el?.product_sellOrBuy}/>
+                <S.TagBox>
+                  <Tag data={CategoryObj[el.product_category]} />
+                  <Tag data={el.product_sub_category} />
+                </S.TagBox>
+                <S.DivideLine isSell={el?.product_sellOrBuy} />
                 <S.Remarks>{el.product_summary}</S.Remarks>
               </S.RightDetailBox>
             </S.RightListBox>

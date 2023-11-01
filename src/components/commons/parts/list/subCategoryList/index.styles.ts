@@ -10,6 +10,16 @@ export const Container = styled.div`
   ${mq[0]} {
     padding: 0;
     padding-left: 20px;
+    width: calc(100% - 190px);
+  }
+  ${mq[1]} {
+    width: calc(100% - 180px);
+  }
+  ${mq[2]} {
+    width: calc(100% - 160px);
+  }
+  ${mq[3]} {
+    width: calc(100% - 180px);
   }
 `;
 
@@ -40,7 +50,7 @@ export const LengthBox = styled.div`
   margin-top: 24px;
 `;
 
-export const ContentsBox = styled.div`
+export const ContentsBox = styled.section`
   display: grid;
   gap: 10px 10px;
   margin-top: 14px;
@@ -127,7 +137,7 @@ export const UserName = styled.div`
   text-overflow: ellipsis;
 `;
 
-export const MileageWrap = styled.div`
+export const MileageWrap = styled.section`
   padding: 30px 24px;
   background: #fafafa;
   margin-bottom: 60px;
@@ -156,11 +166,13 @@ export const MileageSubTitle = styled.span`
     margin-top: 6px;
   }
 `;
-export const MileageBox = styled.div`
+export const MileageBox = styled.div<{
+  isAll?: boolean;
+}>`
   margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
+  gap: 20px 10px;
 
   ${mq[1]} {
     grid-template-columns: 1fr 1fr 1fr;
@@ -169,6 +181,6 @@ export const MileageBox = styled.div`
     grid-template-columns: 1fr 1fr;
   }
   ${mq[3]} {
-    grid-template-columns: 1fr;
+    grid-template-columns: ${props => (props.isAll ? "1fr 1fr" : "1fr")};
   }
 `;

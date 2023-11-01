@@ -6,6 +6,7 @@ import ProfileMyPick from "./myFavorite";
 import { Button, Drawer } from "antd";
 import { useState } from "react";
 import ProfileDrawer from "../../../commons/parts/profileDrawer";
+import MetaTag from "../../../../commons/libraries/metaTag";
 
 export default function Profile(): JSX.Element {
   const {
@@ -24,6 +25,13 @@ export default function Profile(): JSX.Element {
 
   return (
     <>
+      <MetaTag
+        title={"도움닫기 | 나만의 포트폴리오"}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={`https://storage.googleapis.com/doumdattgi-storage/mainIcon.png`}
+        keywords={"나만의 포트폴리오"}
+        url={"https://doumdattgi.com"}
+      />
       <S.ProfileDrawerBox>
         <ProfileDrawer />
       </S.ProfileDrawerBox>
@@ -115,7 +123,7 @@ export default function Profile(): JSX.Element {
                 onClick={onClickMoveToPage(isSeek ? "/seek/create" : "/create")}
               >
                 <S.CreateIcon src="/pencil.png" />
-                {isSeek ? "새 구인글 작성하기" : "새 서비스 작성하기"}
+                {isSeek ? "새 구인글 올리기" : "새 서비스 만들기"}
               </S.CreateLink>
             </S.RightTitleBox>
             {isPick && <ProfileMyPick data={myPick?.fetchPickUserProduct} />}

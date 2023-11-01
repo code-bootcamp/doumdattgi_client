@@ -10,6 +10,7 @@ import { IProps } from "./index.types";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import InputHeight40px from "../../commons/inputs/InputHeight40px";
+import MetaTag from "../../../commons/libraries/metaTag";
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false
@@ -68,6 +69,13 @@ export default function CreateProduct(props: IProps) {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         onCompleteAddressSearch={onCompleteAddressSearch}
+      />
+      <MetaTag
+        title={"새 서비스 만들기 | 나만의 포트폴리오"}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={`https://storage.googleapis.com/doumdattgi-storage/mainIcon.png`}
+        keywords={"나만의 포트폴리오"}
+        url={"https://doumdattgi.com"}
       />
       <S.Wrapper>
         <S.Container>

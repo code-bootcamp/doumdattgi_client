@@ -70,7 +70,7 @@ export default function Header(): JSX.Element {
 
       router.push(`/${MovePage}`);
     } catch (error) {
-      console.error(error);
+
     }
   };
 
@@ -99,8 +99,6 @@ export default function Header(): JSX.Element {
   };
   const noMargin = ["/mypage/profile/"];
   const isProfile = noMargin.includes(router.asPath);
-
-  console.log(isProfile);
 
   return (
     <>

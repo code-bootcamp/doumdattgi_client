@@ -9,6 +9,7 @@ import { fallback } from "../../../../../commons/libraries/fallback";
 interface IProps {
   el: {
     product_product_category: string;
+    product_product_sub_category: string;
     product_product_title: string;
     product_product_workDay: string;
     u_user_profileImage?: string | null;
@@ -26,10 +27,12 @@ export default function BarBox(props: IProps) {
     >
       <S.CategoryBox>
         <S.Title>{props.el?.product_product_title}</S.Title>
-        {/* <S.Icon icon={faBookmark} /> */}
       </S.CategoryBox>
       <S.InfoBox>
-        <Tag data={props.el?.product_product_category} />
+        <S.TagBox>
+          <Tag data={props.el?.product_product_category} />
+          <Tag data={props.el?.product_product_sub_category} />
+        </S.TagBox>
         <S.UserInfo>
           <S.Avatar
             onError={e => {

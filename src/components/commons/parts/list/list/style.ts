@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { mq } from "../../../../../commons/libraries/breakPoints";
 
-export const Container = styled.div<{
+export const Container = styled.main<{
   isAll: boolean;
 }>`
   padding-left: ${props => (props.isAll ? "0" : "40px")};
@@ -11,6 +11,15 @@ export const Container = styled.div<{
   ${mq[0]} {
     padding: 0;
     padding-left: ${props => (props.isAll ? "0px" : "20px")};
+  }
+  ${mq[1]} {
+    width: ${props => (props.isAll ? "100%" : "calc(100% - 180px)")};
+  }
+  ${mq[2]} {
+    width: ${props => (props.isAll ? "100%" : "calc(100% - 160px)")};
+  }
+  ${mq[3]} {
+    width: ${props => (props.isAll ? "100%" : "calc(100% - 180px)")};
   }
 `;
 
@@ -40,7 +49,7 @@ export const LengthBox = styled.div`
   margin-top: 24px;
 `;
 
-export const ContentsBox = styled.div<{
+export const ContentsBox = styled.section<{
   isAll: boolean;
 }>`
   display: grid;
@@ -60,7 +69,7 @@ export const ContentsBox = styled.div<{
     grid-template-columns: 1fr 1fr;
   }
   ${mq[3]} {
-    grid-template-columns: 1fr;
+    grid-template-columns: ${props => (props.isAll ? "1fr 1fr" : "1fr")};
   }
 `;
 
@@ -134,7 +143,7 @@ export const UserName = styled.div`
   text-overflow: ellipsis;
 `;
 
-export const MileageWrap = styled.div`
+export const MileageWrap = styled.section`
   padding: 30px 24px;
   background: #fafafa;
   margin-bottom: 60px;
@@ -163,19 +172,23 @@ export const MileageSubTitle = styled.span`
     margin-top: 6px;
   }
 `;
-export const MileageBox = styled.div`
+export const MileageBox = styled.div<{
+  isAll: boolean;
+  isRandom?: boolean;
+}>`
   margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
+  gap: 10px 20px;
 
   ${mq[1]} {
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
   }
   ${mq[2]} {
     grid-template-columns: 1fr 1fr;
   }
   ${mq[3]} {
-    grid-template-columns: 1fr;
+    grid-template-columns: ${props => (props.isAll ? "1fr 1fr" : "1fr")};
   }
 `;

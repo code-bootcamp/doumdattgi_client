@@ -8,6 +8,7 @@ import { useMutationLogout } from "../../mutations/useMutationLogout";
 import { useQueryFetchLoginUser } from "../../queries/useQueryFetchLoginUser";
 import { useMutationSendTokenEmail } from "../../mutations/useMutationSendTokenEmail";
 import { useMutationCheckEmail } from "../../mutations/useMutationCheckValidTokenEMAIL";
+import { useMutationDeleteUser } from "../../mutations/useMutaionDeleteUser";
 
 interface IFormData {
   email: string;
@@ -45,6 +46,7 @@ export const useUser = () => {
   const [sendTokenEmail] = useMutationSendTokenEmail();
   const [checkEmail] = useMutationCheckEmail();
   const [logout] = useMutationLogout();
+  const [deleteUser] = useMutationDeleteUser();
   const [isOn, setIsOn] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -76,7 +78,6 @@ export const useUser = () => {
           user_email: data.email
         }
       });
-      console.log(result);
     } catch (error) {
       setIsOn(false);
       setTime(0);
@@ -91,7 +92,6 @@ export const useUser = () => {
           user_token: data.token
         }
       });
-      console.log(result.data.checkValidTokenEMAIL);
       if (result?.data?.checkValidTokenEMAIL) {
         setTime(0);
         setIsChecked(true);
@@ -104,7 +104,6 @@ export const useUser = () => {
 
   // =============== 회원가입 ===============
   const onClickSignUp = async (data: IFormData) => {
-    console.log(data);
     try {
       const result = await createUser({
         variables: {
@@ -123,8 +122,6 @@ export const useUser = () => {
       if (error instanceof Error) alert(error.message);
     }
   };
-  const { returnUrl } = router.query;
-  console.log(router.asPath)
 
   // =============== 로그인 ===============
   const onClickLogin = async (data: IFormLoginData) => {
@@ -151,11 +148,10 @@ export const useUser = () => {
       const storage = globalThis?.sessionStorage;
       const link = storage.getItem("prevPath");
 
-      if(link === "/signup/"){
-        void router.push("/")
+      if (link === "/signup/") {
+        void router.push("/");
       }
-      void router.push(`${link}`)
-
+      void router.push(`${link}`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -168,6 +164,19 @@ export const useUser = () => {
       localStorage.removeItem("accessToken");
       alert("정상적으로 로그아웃 되었습니다.");
       router.reload();
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
+
+  const onClickDeleteUser = async () => {
+    try {
+      const result = confirm("정말 탈퇴 하시겠습니까?");
+      if (result) {
+        void deleteUser;
+        alert("정상적으로 회원 탈퇴 되었습니다. 이용해주셔서 감사합니다.");
+        router.push("/");
+      }
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -214,6 +223,7 @@ export const useUser = () => {
     onClickLogin,
     onClickLogout,
     onClickSendToken,
+    onClickDeleteUser,
     isOn,
     time,
     isActive,
@@ -222,4 +232,3 @@ export const useUser = () => {
     userTitle
   };
 };
-

@@ -40,7 +40,7 @@ export const SliderBox = styled.div<{
     width: 100%;
   }
 `;
-export const DetailWrap = styled.div`
+export const DetailWrap = styled.section`
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -182,7 +182,7 @@ export const SlotBg = styled.div`
 export const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
 `;
-export const DetailContentsWrap = styled.div`
+export const DetailContentsWrap = styled.section`
   width: 60%;
 
   ${mq[1]} {
@@ -204,7 +204,7 @@ export const DetailContents = styled.p`
     max-width: 100%;
   }
 `;
-export const DetailUserWrap = styled.div`
+export const DetailUserWrap = styled.aside`
   width: 40%;
   margin-left: 40px;
   border: 1px solid #e0e1ea;
@@ -342,13 +342,16 @@ export const Subtitle = styled.div`
   line-height: 20px;
   margin-top: 50px;
 `;
-export const CardBoxWrap = styled.div`
+export const CardBoxWrap = styled.section`
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 20px 20px;
+  gap: 10px;
 
+  ${mq[1]} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   ${mq[2]} {
     grid-template-columns: 1fr 1fr;
   }

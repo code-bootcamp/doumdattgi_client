@@ -8,6 +8,7 @@ export const FETCH_RANDOM_MILEAGE_PRODUCT = gql`
       product_title
       product_workDay
       product_category
+      product_sub_category
       user {
         user_nickname
         user_profileImage

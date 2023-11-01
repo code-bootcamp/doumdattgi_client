@@ -38,7 +38,6 @@ export const useResetAccount = (isEditPassword: boolean) => {
           new_password: data.password ?? ""
         }
       });
-      console.log(data);
       alert("정상적으로 비밀번호가 변경되었습니다.");
       router.push("/login");
     } catch (error) {
