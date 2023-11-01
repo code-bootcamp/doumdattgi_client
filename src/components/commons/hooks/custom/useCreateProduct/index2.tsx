@@ -324,6 +324,7 @@ export const useCreateProduct2 = (isEdit: boolean, sellOrBuy: boolean) => {
             product_category: update.product_category,
             product_sub_category: update.product_sub_category,
             product_summary: update.product_summary,
+            product_minAmount: update.product_minAmount,
             product_main_text: update.product_main_text,
             product_workDay: update.product_workDay,
             product_workTime: update.product_endTime - update.product_startTime,
