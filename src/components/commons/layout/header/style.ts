@@ -9,7 +9,7 @@ export const Wrapper = styled.header`
   padding: 7px 0;
   overflow: hidden;
   position: relative;
-  z-index: 99999;
+  z-index: 999;
 `;
 export const DivideLine = styled.div`
   width: 100%;
