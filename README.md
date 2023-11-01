@@ -114,8 +114,16 @@
 # 🖥️ 페이지 구성
 
 ## 메인 페이지
+![](https://velog.velcdn.com/images/cometes/post/d7fbf117-836f-4d7c-9ebf-93d1629be7c8/image.gif)
+
 ## 카테고리 별 페이지
-## 의뢰 신청 페이지
+![](https://velog.velcdn.com/images/cometes/post/82f58fc3-e849-4477-90c1-79c927ae416e/image.gif)
+
 ## 의뢰 거래 페이지
+![](https://velog.velcdn.com/images/cometes/post/5b1bbc3a-dd68-458b-98e0-6388ba7cf3f3/image.gif)
+
 ## 의뢰 댓글 페이지
+![](https://velog.velcdn.com/images/cometes/post/a129873e-8d98-4cda-8906-7bdec93d753e/image.gif)
+
 ## 마일리지 페이지
+![](https://velog.velcdn.com/images/cometes/post/8394500e-a415-4823-a1f5-e5e4558660f2/image.gif)
