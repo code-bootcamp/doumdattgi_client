@@ -1,0 +1,400 @@
+import styled from "@emotion/styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IProduct } from "../../../commons/types/generated/types";
+import { mq } from "../../../commons/libraries/breakPoints";
+
+export const Wrapper = styled.div`
+  width: 1140px;
+  margin: 50px auto 0;
+
+  ${mq[0]} {
+    width: 100%;
+    padding: 0 24px;
+  }
+  ${mq[2]} {
+    padding: 0 16px;
+  }
+  .bottom {
+    margin-top: 40px;
+  }
+`;
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  ${mq[1]} {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+export const SliderBox = styled.div<{
+  ImgArr: string[];
+}>`
+  position: relative;
+  width: 60%;
+  max-width: 640px;
+  padding-bottom: ${props => (props.ImgArr?.length >= 2 ? "0" : "40px")};
+
+  ${mq[1]} {
+    width: 100%;
+  }
+`;
+export const DetailWrap = styled.section`
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 40px;
+
+  ${mq[1]} {
+    width: 100%;
+    margin-left: 0;
+  }
+`;
+export const DetailBox = styled.div`
+  ${mq[1]} {
+    &.detail-bottom {
+      margin-top: 30px;
+    }
+  }
+`;
+export const Category = styled.span`
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 600;
+`;
+export const TitleWrap = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+export const Title = styled.h2`
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  word-break: keep-all;
+  /* width: 370px; */
+`;
+
+export const IconBox = styled.div`
+  display: flex;
+`;
+
+export const Icon = styled(FontAwesomeIcon)`
+  font-size: 24px;
+  color: #bec3c7;
+  margin-left: 30px;
+  cursor: pointer;
+  &:hover {
+    color: #fde047;
+  }
+  &.pick {
+    color: #fde047;
+  }
+`;
+export const TagWrap = styled.div`
+  margin-top: 30px;
+`;
+export const Tag = styled.span`
+  font-size: 14px;
+  line-height: 14px;
+  color: #929aa0;
+  font-weight: 600;
+  padding: 4px 10px;
+  background: #f6f7f9;
+  border: 1px solid #929aa0;
+  border-radius: 12px;
+  margin-left: 6px;
+  &:first-of-type {
+    margin-left: 0;
+  }
+`;
+export const Price = styled.p`
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 24px;
+  letter-spacing: 0;
+`;
+export const Remarks = styled.p`
+  font-size: 16px;
+  line-height: 20px;
+  color: #333;
+  margin-top: 30px;
+  word-break: break-word;
+`;
+export const Button = styled.div<{
+  ImgArr: string[];
+}>`
+  position: relative;
+  padding-bottom: ${props => (props.ImgArr?.length >= 2 ? "90px" : "40px")};
+`;
+export const DeleteBtn = styled.div`
+  margin-bottom: 10px;
+`;
+export const LineBtn = styled.button`
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+  border: 1px solid #88b04b;
+  background: #fff;
+  color: #88b04b;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+`;
+export const SlotBox = styled.div`
+  position: absolute;
+  width: 168px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+export const SlotText = styled.span`
+  display: block;
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+  left: 25px;
+  top: 14px;
+  font-weight: 600;
+`;
+export const SlotBg = styled.div`
+  width: 168px;
+  height: 42px;
+  background-color: #fff;
+  border-radius: 21px;
+  position: relative;
+  box-shadow: 0px 4px 5px rgba(204, 204, 204, 0.6);
+  &::after {
+    border-bottom: 8px solid #fff;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 0px solid transparent;
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`;
+export const DivideLine = styled.div`
+  border-bottom: 1px solid #d9d9d9;
+`;
+export const DetailContentsWrap = styled.section`
+  width: 60%;
+
+  ${mq[1]} {
+    width: 100%;
+  }
+`;
+export const DetailTitle = styled.h3`
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 600;
+`;
+export const DetailContents = styled.p`
+  width: 100%;
+  font-size: 16px;
+  line-height: 24px;
+  word-break: break-word;
+  margin-top: 30px;
+  img {
+    max-width: 100%;
+  }
+`;
+export const DetailUserWrap = styled.aside`
+  width: 40%;
+  margin-left: 40px;
+  border: 1px solid #e0e1ea;
+  height: 100%;
+
+  ${mq[1]} {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 40px;
+  }
+`;
+export const UserNameBox = styled.div`
+  position: relative;
+`;
+export const UserName = styled.span`
+  display: block;
+  font-weight: 700;
+  padding: 26px 30px;
+  background-color: #f0f1f6;
+  font-size: 18px;
+  line-height: 18px;
+`;
+export const UserAvatar = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #eaecf0;
+  position: absolute;
+  top: 50%;
+  right: 30px;
+`;
+export const UserContainer = styled.div`
+  padding: 30px;
+`;
+export const UserTimeWrap = styled.div``;
+export const TimeTitle = styled.div`
+  display: flex;
+`;
+export const TimeIcon = styled(FontAwesomeIcon)`
+  color: #111;
+`;
+export const TimeText = styled.span`
+  display: block;
+  margin-left: 6px;
+`;
+export const UserTimeBox = styled.div`
+  display: flex;
+  margin-top: 14px;
+  padding-left: 26px;
+`;
+export const UserTimeCategory = styled.span`
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  display: block;
+`;
+export const UserTime = styled.span`
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+  margin-left: 14px;
+`;
+export const UserWorkRateWrap = styled.div`
+  background-color: #f9f9fc;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 18px;
+  border-radius: 6px;
+  margin-top: 30px;
+`;
+export const UserWorkRateBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const UserWorkRate = styled.span`
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 600;
+  padding-bottom: 12px;
+`;
+export const VerticalLine = styled.div`
+  width: 1px;
+  height: 50px;
+  background: #e0e1ea;
+`;
+export const UserWorkText = styled.span`
+  display: block;
+  font-size: 14px;
+  line-height: 14px;
+  color: #9495a1;
+`;
+export const UserLevelBox = styled.div``;
+export const UserLevelIcon = styled.img`
+  width: 25px;
+  height: 32px;
+  padding-bottom: 4px;
+`;
+export const UserLevelText = styled.div``;
+export const PortfolioTitleBox = styled.div`
+  display: flex;
+  margin-top: 30px;
+`;
+export const PortfolioIcon = styled(FontAwesomeIcon)`
+  color: #111;
+`;
+export const PortfolioText = styled.span`
+  display: block;
+  margin-left: 6px;
+`;
+export const PortfolioLink = styled.span`
+  display: inline-block;
+  border-bottom: 1px solid #111;
+  margin: 20px 0 0 26px;
+  cursor: pointer;
+  font-size: 14px;
+`;
+export const UserIntroduceTitle = styled.span`
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 600;
+  display: block;
+  margin-top: 40px;
+`;
+export const UserIntroduce = styled.p`
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 14px;
+  color: #333;
+`;
+export const Subtitle = styled.div`
+  font-size: 20px;
+  line-height: 20px;
+  margin-top: 50px;
+`;
+export const CardBoxWrap = styled.section`
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+
+  ${mq[1]} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  ${mq[2]} {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+export const Preview = styled.div`
+  width: 285px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #bec3c7;
+  overflow: hidden;
+  cursor: pointer;
+`;
+
+export const PreviewImg = styled.img`
+  width: 285px;
+  height: 200px;
+`;
+
+export const EnableBtn = styled.div`
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+  border: none;
+  color: #929aa0;
+  background-color: #f6f7f9;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EnableSlotText = styled.span`
+  display: block;
+  width: 110%;
+  position: absolute;
+  z-index: 999;
+  left: 35px;
+  top: 15px;
+  font-weight: 600;
+`;
