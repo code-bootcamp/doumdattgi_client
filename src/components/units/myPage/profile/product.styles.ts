@@ -67,27 +67,31 @@ export const CreateIcon = styled.img`
   margin-right: 5px;
 `;
 
-export const RightListBox = styled.div`
+export const RightListBox = styled.div<{
+  isSell: boolean;
+}>`
   display: flex;
+  align-items: center;
   cursor: pointer;
-  margin-bottom: 24px;
+  margin-bottom: ${props => (!props.isSell ? "12px" : "24px")};
+
   ${mq[2]} {
-    margin-bottom: 16px;
+    margin-bottom: ${props => (!props.isSell ? "12px" : "16px")};
   }
 `;
 
 export const RightDetailBox = styled.div<{
   isSell: boolean;
 }>`
-  width: ${props => (!props.isSell ? "100%" : "calc(100% - 250px)")};
+  width: ${props => (!props.isSell ? "100%" : "calc(100% - 220px)")};
   padding: ${props => (!props.isSell ? "16px" : "0 0 0 16px")};
   border: ${props => (!props.isSell ? "1px solid #d9d9d9" : "none")};
   border-radius: 6px;
 `;
 
 export const ListImage = styled.img`
-  width: 250px;
-  height: 170px;
+  width: 220px;
+  height: 150px;
   border: 1px solid #e0e1ea;
   border-radius: 3px;
 `;
@@ -101,7 +105,7 @@ export const ListTitle = styled.div`
   font-size: 18px;
   word-break: keep-all;
   line-height: 22px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 `;
 
 export const ListDetail = styled.span`
@@ -116,6 +120,16 @@ export const ListDetail = styled.span`
   margin-right: 5px;
 `;
 
+export const TagBox = styled.div`
+  display: flex;
+  & div:last-of-type {
+    margin-left: 6px;
+  }
+  &.pick div {
+    margin-left: 0;
+  }
+`;
+
 export const DivideLine = styled.div<{
   isSell: boolean;
 }>`
@@ -124,7 +138,7 @@ export const DivideLine = styled.div<{
   display: ${props => (!props.isSell ? "none" : "block")};
 `;
 
-export const Remarks = styled.div`
+export const Remarks = styled.p`
   color: #888888;
   white-space: nowrap;
   overflow: hidden;

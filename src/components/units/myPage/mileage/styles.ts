@@ -292,44 +292,63 @@ export const CreateIcon = styled.img`
 `;
 
 export const RightListBox = styled.div`
-  width: 730px;
+  width: 100%;
   display: flex;
-  cursor: pointer;
   padding-bottom: 20px;
 `;
 
 export const RightDetailBox = styled.div`
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
+  width: calc(100% - 250px);
+  padding-left: 16px;
 `;
 
 export const DetailContents = styled.div`
-  width: calc(100% - 150px);
+  padding-top: 10px;
 `;
 
 export const MileageDay = styled.div`
-  width: 150px;
-  height: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: absolute;
+  z-index: 999;
+  bottom: 16px;
+  left: 16px;
 `;
 
-export const Day = styled.div`
-  font-size: 24px;
-  color: #88b04b;
+export const Day = styled.span`
+  font-size: 30px;
+  padding: 3px 6px;
+  color: #fff;
+  background-color: #88b04b;
+  display: inline-block;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
-export const Time = styled.div``;
+export const Time = styled.span`
+  color: #fff;
+  margin-top: 6px;
+  display: block;
+`;
+
+export const ListImageBox = styled.div`
+  position: relative;
+
+  &::after {
+    display: block;
+    content: "";
+    width: 250px;
+    height: 170px;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    border-radius: 6px;
+  }
+`;
 
 export const ListImage = styled.img`
-  width: 270px;
+  width: 250px;
   height: 170px;
   border: 1px solid #e0e1ea;
-  border-radius: 3px;
-  margin-right: 24px;
-  overflow: auto;
+  border-radius: 6px;
+  display: block;
 `;
 
 export const ListCategory = styled.div`
@@ -340,9 +359,7 @@ export const ListCategory = styled.div`
 export const ListTitle = styled.div`
   width: 440px;
   font-size: 18px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: keep-all;
   margin-bottom: 14px;
 `;
 
@@ -360,7 +377,7 @@ export const ListDetail = styled.span`
 
 export const DivideLine = styled.div`
   border-top: 1px solid #d9d9d9;
-  margin: 17px 0px;
+  margin: 16px 0px;
 `;
 
 export const Remarks = styled.div`
@@ -383,4 +400,4 @@ export const None = styled.div`
 
 export const MileageItem = styled.div`
   padding: 6px 0;
-`
+`;

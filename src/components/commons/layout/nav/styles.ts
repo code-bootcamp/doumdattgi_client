@@ -2,17 +2,18 @@ import styled from "@emotion/styled";
 import { mq } from "../../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.nav<{
-  isOpen: boolean
+  isOpen: boolean;
 }>`
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
-  overflow: hidden;
 
   ${mq[2]} {
-    display: ${(props) => props.isOpen ? "block" : "none"};
+    display: ${props => (props.isOpen ? "block" : "none")};
     position: absolute;
     z-index: 9999;
+    border-bottom: none;
+    box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.25);
   }
 `;
 export const Container = styled.div`

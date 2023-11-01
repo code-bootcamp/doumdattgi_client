@@ -31,6 +31,7 @@ export default function ProfileMyPick(props: IMyProductProps): JSX.Element {
             {props.data.map(el => (
               <S.RightListBox
                 onClick={onClickMoveToPage(`/${el?.p_product_id}`)}
+                isSell={!false}
               >
                 <S.ListImage
                   onError={e => {
@@ -40,11 +41,10 @@ export default function ProfileMyPick(props: IMyProductProps): JSX.Element {
                   src={el.i_image_url}
                 />
                 <S.RightDetailBox isSell={el?.p_product_sellOrBuy}>
-                  <S.ListCategory>
-                    {CategoryObj[el.p_product_category]}
-                  </S.ListCategory>
                   <S.ListTitle>{el?.p_product_title}</S.ListTitle>
-                  <Tag data={el.p_product_workDay} />
+                  <S.TagBox className="pick">
+                    <Tag data={CategoryObj[el.p_product_category]} />
+                  </S.TagBox>
                   <S.DivideLine isSell={el?.p_product_sellOrBuy} />
                   <S.Remarks>{el.p_product_summary}</S.Remarks>
                 </S.RightDetailBox>

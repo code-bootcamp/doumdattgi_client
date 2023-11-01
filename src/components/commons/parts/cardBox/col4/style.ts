@@ -1,12 +1,26 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Image } from "antd";
+import { mq } from "../../../../../commons/libraries/breakPoints";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{
+  isRandom?: boolean;
+}>`
   background-color: #fff;
   border: 1px solid #dddfe3;
   border-radius: 6px;
   overflow: hidden;
+
+  ${mq[1]} {
+    &:last-of-type {
+      display: ${props => (props.isRandom ? "none" : "block")};
+    }
+  }
+  ${mq[2]} {
+    &:last-of-type {
+      display: block
+    }
+  }
 `;
 export const ImageBox = styled.div`
   height: 200px;
@@ -20,7 +34,7 @@ export const Thumbnail = styled(Image)`
   }
 `;
 export const Container = styled.div`
-  padding: 16px;
+  padding: 12px;
 `;
 export const CategoryBox = styled.div`
   display: flex;
@@ -48,14 +62,14 @@ export const Avatar = styled.img`
   cursor: pointer;
 `;
 export const TitleBox = styled.div`
-  height: 50px;
   margin-top: 8px;
+  min-height: 36px;
 `;
 export const Title = styled.h2`
   display: -webkit-box;
-  font-size: 1.06em;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 22px;
+  line-height: 18px;
   overflow: hidden;
   cursor: pointer;
   text-overflow: ellipsis;
@@ -65,7 +79,11 @@ export const Title = styled.h2`
 `;
 export const InfoBox = styled.div`
   display: flex;
-  justify-content: space-between;
+  margin-top: 6px;
+  align-items: flex-end;
+`;
+export const TagBox = styled.div`
+  margin-left: 6px;
 `;
 export const UserBox = styled.div`
   display: flex;

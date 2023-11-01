@@ -8,7 +8,6 @@ import { useQueryFetchMileageProductHistory } from "../../../hooks/queries/useQu
 export default function MileageList(): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
   const { data } = useQueryFetchMileageProductHistory();
-  console.log(data);
 
   return (
     <>

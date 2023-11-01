@@ -32,7 +32,7 @@ export default function RefundPoint(props: IPropsRefund) {
 
       props.setIsRefund(false);
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 

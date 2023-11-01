@@ -18,16 +18,16 @@ interface IProps {
     | IFetchProductOutput
     | IFetchSubCategoryOutput
     | IFetchSearchProductOutput;
-  data2?: IFetchLikeCategoryOutput;
+  data2?: IFetchLikeCategoryOutput | IFetchSearchProductOutput;
   isLike?: boolean;
+  isRandom?: boolean;
 }
 
 export default function CardBox(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
 
-  console.log(props.data2)
   return (
-    <S.Wrapper>
+    <S.Wrapper isRandom={props.isRandom}>
       <S.ImageBox>
         <S.Thumbnail
           src={`${props.data?.i_image_url ?? props.data2?.image_url}`}
@@ -35,34 +35,62 @@ export default function CardBox(props: IProps) {
           height={200}
           fallback={fallback}
           preview={false}
-          onClick={onClickMoveToPage(`/${props.data?.product_product_id ?? props.data2?.product_product_id}`)}
+          onClick={onClickMoveToPage(
+            `/${
+              props.data?.product_product_id ?? props.data2?.product_product_id
+            }`
+          )}
         />
       </S.ImageBox>
       <S.Container>
         <S.CategoryBox>
-          <S.Category>
-            {CategoryObj[props.data?.product_product_category ?? props.data2?.product_product_category ?? ""]}
-          </S.Category>
-        </S.CategoryBox>
-        <S.TitleBox>
-          <S.Title
-            onClick={onClickMoveToPage(`/${props.data?.product_product_id ?? props.data2?.product_product_id}`)}
-          >
-            {props.data?.product_product_title ?? props.data2?.product_product_title}
-          </S.Title>
-        </S.TitleBox>
-        <S.InfoBox>
-          <Tag data={props.data?.product_product_sub_category ?? props.data2?.product_product_sub_category ?? ""} />
           <S.UserBox>
             <S.Avatar
               onError={e => {
                 const target = e.target as HTMLImageElement;
                 target.src = fallback;
               }}
-              src={props.data?.u_user_profileImage ?? props.data2?.u_user_profileImage ?? fallback}
+              src={
+                props.data?.u_user_profileImage ??
+                props.data2?.u_user_profileImage ??
+                fallback
+              }
             />
-            <S.UserName>{props.data?.u_user_nickname ?? props.data2?.u_user_nickname}</S.UserName>
+            <S.UserName>
+              {props.data?.u_user_nickname ?? props.data2?.u_user_nickname}
+            </S.UserName>
           </S.UserBox>
+        </S.CategoryBox>
+        <S.TitleBox>
+          <S.Title
+            onClick={onClickMoveToPage(
+              `/${
+                props.data?.product_product_id ??
+                props.data2?.product_product_id
+              }`
+            )}
+          >
+            {props.data?.product_product_title ??
+              props.data2?.product_product_title}
+          </S.Title>
+        </S.TitleBox>
+        <S.InfoBox>
+          <Tag
+            data={
+              props.data?.product_product_category ??
+              props.data2?.product_product_category ??
+              ""
+            }
+          />
+          <S.TagBox>
+            <Tag
+              data={
+                props.data?.product_product_sub_category ??
+                props.data2?.product_product_sub_category ??
+                ""
+              }
+            />
+          </S.TagBox>
         </S.InfoBox>
       </S.Container>
     </S.Wrapper>

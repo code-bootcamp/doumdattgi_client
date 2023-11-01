@@ -78,7 +78,6 @@ export const useSettings = () => {
         refetchQueries: [{ query: FETCH_LOGIN_USER }]
       });
 
-      console.log(result);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -92,7 +91,6 @@ export const useSettings = () => {
 
   const clickSaveDetail = async (data: IpropsDetail) => {
     setIsDetailEdit(prev => !prev);
-    console.log(data.user_name);
 
     try {
       const result = await updateUserInfo({
@@ -105,8 +103,6 @@ export const useSettings = () => {
         },
         refetchQueries: [{ query: FETCH_LOGIN_USER }]
       });
-
-      console.log(result);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

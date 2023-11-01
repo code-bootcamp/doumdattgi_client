@@ -58,7 +58,7 @@ export const RightHeader = styled.div`
   margin: 34px 0px 20px 0px;
 `;
 
-export const ContentsBox = styled.div`
+export const ContentsBox = styled.section`
   display: grid;
   gap: 20px 10px;
   margin-top: 14px;

@@ -56,11 +56,10 @@ export const CardboxWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 20px 10px;
+  gap: 10px;
   &.buy {
     gap: 10px 10px;
     grid-template-columns: 1fr 1fr;
-    /* grid-template-rows: 1fr 1fr; */
   }
   &.newbie {
     grid-template-columns: 1fr 1fr 1fr;
@@ -69,12 +68,15 @@ export const CardboxWrap = styled.div`
   ${mq[0]} {
     gap: 10px 10px;
   }
+  ${mq[1]} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   ${mq[2]} {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
   }
   ${mq[3]} {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     &.buy {
       grid-template-columns: 1fr;
@@ -103,7 +105,7 @@ export const Ad = styled.img`
   display: block;
   width: 100%;
   height: auto;
-  
+
   ${mq[2]} {
     width: auto;
     height: 120px;

@@ -73,8 +73,6 @@ export default function UsePayment(): IUsePayment {
 
         if (rsp.success) {
           // 결제 성공
-          console.log(rsp);
-
           const result = await createPayment({
             variables: {
               payment_impUid: rsp.imp_uid,

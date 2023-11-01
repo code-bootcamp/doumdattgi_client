@@ -47,6 +47,13 @@ export const InfoBox = styled.div`
   margin-top: 20px;
 `;
 
+export const TagBox = styled.div`
+  display: flex;
+  & div:last-of-type {
+    margin-left: 6px;
+  }
+`;
+
 export const UserInfo = styled.div`
   display: flex;
   align-items: center;

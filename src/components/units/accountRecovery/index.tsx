@@ -5,13 +5,14 @@ import { useState } from "react";
 import ButtonHeight42px from "../../commons/buttons/ButtonHeight42px";
 import { useAccountRecovery } from "../../commons/hooks/custom/useAccountRecovery";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
+import MetaTag from "../../../commons/libraries/metaTag";
 
 interface IFinding {
   isEmail: boolean;
 }
 
 export default function AccountRecovery(props: IFinding): JSX.Element {
-  const {onClickMoveToPage} = useMoveToPage()
+  const { onClickMoveToPage } = useMoveToPage();
   const {
     onClickAuthPhone,
     isValidateOpen,
@@ -24,6 +25,13 @@ export default function AccountRecovery(props: IFinding): JSX.Element {
 
   return (
     <>
+      <MetaTag
+        title={"검색 | 도움닫기"}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={`https://storage.googleapis.com/doumdattgi-storage/mainIcon.png`}
+        keywords={"나만의 포트폴리오"}
+        url={"https://doumdattgi.com"}
+      />
       <S.Wrapper>
         <S.Container>
           <form
@@ -59,20 +67,28 @@ export default function AccountRecovery(props: IFinding): JSX.Element {
                       register={register("user_token")}
                     />
                     <S.Button>
-                      <ButtonHeight42px title="인증하기" isActive={formState.isValid}/>
+                      <ButtonHeight42px
+                        title="인증하기"
+                        isActive={formState.isValid}
+                      />
                     </S.Button>
                   </S.AuthBody>
                 </S.AuthWrapper>
               </>
             ) : (
               <S.SubmitBtn>
-                <ButtonHeight50px title="전송하기" isActive={formState.isValid}/>
+                <ButtonHeight50px
+                  title="전송하기"
+                  isActive={formState.isValid}
+                />
               </S.SubmitBtn>
             )}
           </form>
           <S.Footer>
-          <S.JoinText>{props.isEmail ? "이메일이 " : "비밀번호가 "} 생각나셨나요?</S.JoinText>
-          <S.JoinBtn onClick={onClickMoveToPage("/login")}>로그인</S.JoinBtn>
+            <S.JoinText>
+              {props.isEmail ? "이메일이 " : "비밀번호가 "} 생각나셨나요?
+            </S.JoinText>
+            <S.JoinBtn onClick={onClickMoveToPage("/login")}>로그인</S.JoinBtn>
           </S.Footer>
         </S.Container>
       </S.Wrapper>

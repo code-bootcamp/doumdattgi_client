@@ -36,8 +36,7 @@ export const Title = styled.h1`
   font-weight: 600;
 `;
 export const CreateLink = styled.div`
-  width: 180px;
-  height: 42px;
+  padding: 13px 20px;
   color: #ffffff;
   background-color: black;
   border-radius: 6px;

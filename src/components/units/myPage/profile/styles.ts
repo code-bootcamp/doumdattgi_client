@@ -26,7 +26,7 @@ export const ProfileDrawerBox = styled.div`
   }
 `;
 
-export const WrapperLeft = styled.div`
+export const WrapperLeft = styled.aside`
   width: 38%;
   max-width: 390px;
   padding: 90px 40px;
@@ -213,8 +213,7 @@ export const RightTitleBox = styled.div`
 `;
 
 export const CreateLink = styled.div`
-  width: 180px;
-  height: 42px;
+  padding: 13px 20px;
   color: #ffffff;
   background-color: black;
   border-radius: 6px;

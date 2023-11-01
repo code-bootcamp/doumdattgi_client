@@ -29,7 +29,6 @@ export default function WorkAgreement(): JSX.Element {
 
   const { data, refetch } = useQueryFetchOneRequest(router.query.id as string);
   const { data: login } = useQueryFetchLoginUser();
-  console.log(data);
 
   // 작업 상태
   const status = {

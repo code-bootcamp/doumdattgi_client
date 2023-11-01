@@ -20,6 +20,7 @@ export const FETCH_CATEGORY_PRODUCT = gql`
       product_product_id
       product_product_title
       product_product_category
+      product_product_sub_category
       product_product_sellOrBuy
       product_product_workDay
       u_user_nickname

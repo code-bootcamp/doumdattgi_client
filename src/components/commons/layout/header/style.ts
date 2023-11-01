@@ -8,6 +8,8 @@ export const Wrapper = styled.header`
   background-color: #fff;
   padding: 7px 0;
   overflow: hidden;
+  position: relative;
+  z-index: 99999;
 `;
 export const DivideLine = styled.div`
   width: 100%;

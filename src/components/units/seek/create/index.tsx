@@ -11,6 +11,7 @@ import InputHeight38px from "../../../commons/inputs/InputHeight38px";
 import Map from "../../../commons/parts/map";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
+import MetaTag from "../../../../commons/libraries/metaTag";
 
 const Editor = dynamic(
   async () => await import("../../../commons/parts/editor"),
@@ -71,6 +72,13 @@ export default function SeekCreate(props: {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         onCompleteAddressSearch={onCompleteAddressSearch}
+      />
+      <MetaTag
+        title={"새 구인글 올리기 | 나만의 포트폴리오"}
+        description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
+        imgsrc={`https://storage.googleapis.com/doumdattgi-storage/mainIcon.png`}
+        keywords={"나만의 포트폴리오"}
+        url={"https://doumdattgi.com"}
       />
       <S.Wrapper>
         <S.Container>
@@ -167,7 +175,9 @@ export default function SeekCreate(props: {
                         <S.Radio
                           type="radio"
                           name="price"
-                          defaultChecked={props.isEdit ? disabledPossibleAmount : true}
+                          defaultChecked={
+                            props.isEdit ? disabledPossibleAmount : true
+                          }
                           onChange={onChangePossibleAmount(false)}
                         />
                       </S.Label>

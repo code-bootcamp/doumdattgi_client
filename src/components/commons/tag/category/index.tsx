@@ -1,16 +1,20 @@
 import styled from "@emotion/styled";
 import { Obj, CategoryObj } from "../../../../commons/libraries/translate";
+import { mq } from "../../../../commons/libraries/breakPoints";
 
 const Wrapper = styled.div`
-  display: inline-block;
+  display: flex;
   padding: 5px 8px;
   border: 1px solid #929aa0;
   border-radius: 14px;
   background-color: #f6f7f9;
+  word-break: keep-all;
+  text-align: center;
+  align-items: center;
 `;
 const Text = styled.span`
   color: #929aa0;
-  font-size: 14px;
+  font-size: 0.88em;
   font-weight: 600;
   display: block;
 `;
