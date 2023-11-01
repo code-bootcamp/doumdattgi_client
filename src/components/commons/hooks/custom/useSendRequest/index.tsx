@@ -34,6 +34,7 @@ export const useRequest = () => {
         }
       });
       alert("의뢰서 작성이 완료되었습니다.");
+      void router.push(`${result.data?.sendRequest.request_id}/workAgreement/`)
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
