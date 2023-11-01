@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { mq } from "../../../commons/libraries/breakPoints";
+import { mq, mq2 } from "../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.div`
   background-color: #fafafa;
@@ -7,16 +7,22 @@ export const Wrapper = styled.div`
   height: calc(100vh - 51px);
   display: flex;
   justify-content: center;
-  padding: 80px 0;
+  align-items: center;
 
   ${mq[3]} {
     padding: 80px 16px;
+  }
+  ${mq2}{
+    height: fit-content;
+    align-items: baseline;
+    padding: 80px 0;
   }
 `;
 
 export const Container = styled.div`
   margin: 0 auto;
   width: 520px;
+  height: fit-content;
   padding: 80px;
   border-radius: 20px;
   background-color: #fff;
