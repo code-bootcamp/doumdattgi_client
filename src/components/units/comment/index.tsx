@@ -87,21 +87,26 @@ export default function Comment(props: ICommentProps): JSX.Element {
               comment={el?.sender_id}
             >
               {user?.fetchLoginUser?.user_id !== el?.sender_id && (
-                <S.SenderIcon
-                  onError={e => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = fallback;
-                  }}
-                  src={el?.user?.user_profileImage ?? fallback}
-                />
+                <S.Sender>{el?.user?.user_nickname}</S.Sender>
               )}
-              <div>
+              <S.SendingBoxWrap>
                 {user?.fetchLoginUser?.user_id !== el?.sender_id && (
-                  <S.Sender>{el?.user?.user_nickname}</S.Sender>
+                  <S.SenderIcon
+                    onError={e => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = fallback;
+                    }}
+                    src={el?.user?.user_profileImage ?? fallback}
+                  />
                 )}
                 <S.ChatBox>{el.comment_text}</S.ChatBox>
-              </div>
-              <S.Date>{getDate(el.comment_createdAt)}</S.Date>
+              </S.SendingBoxWrap>
+              <S.Date
+                me={user?.fetchLoginUser?.user_id ?? ""}
+                comment={el?.sender_id}
+              >
+                {getDate(el.comment_createdAt)}
+              </S.Date>
             </S.SendingBox>
           ))}
         </S.WrapperBody>

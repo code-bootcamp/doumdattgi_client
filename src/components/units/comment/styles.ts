@@ -31,7 +31,6 @@ export const WrapperBody = styled.div`
     background: #fff;
     border-radius: 15px;
     width: 12px;
-
   }
   &::-webkit-scrollbar-thumb {
     background-color: #88b04b;
@@ -41,19 +40,24 @@ export const WrapperBody = styled.div`
 `;
 
 export const SendingBox = styled.div<{
-  me: string | undefined,
-  comment: string
+  me: string | undefined;
+  comment: string;
 }>`
   width: 100%;
   display: flex;
   ${props =>
     props.me === props.comment
       ? "flex-direction: row-reverse"
-      : "flex-direction: row"};
-  align-items: flex-end;
-  margin-top: 24px;
+      : "flex-direction: column"};
+  align-items: ${props =>
+    props.me === props.comment ? "flex-end" : "flex-start"};
+  margin-top: 12px;
   ${props =>
     props.me === props.comment ? "justify-content: flex-start" : null}
+`;
+
+export const SendingBoxWrap = styled.div`
+  display: flex;
 `;
 
 export const ReceivingBox = styled.div`
@@ -67,24 +71,29 @@ export const ReceivingBox = styled.div`
 
 export const Sender = styled.div`
   margin-bottom: 10px;
+  margin-left: 3px;
 `;
 
 export const SenderIcon = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 6px;
 `;
 
-export const Date = styled.div`
+export const Date = styled.span<{
+  me: string | undefined;
+  comment: string;
+}>`
   font-size: 14px;
-  margin: 0px 10px;
+  margin: ${props => (props.me === props.comment ? "0 8px 0 0" : "10px 0 0 50px")};
+  color: #888;
 `;
 
 export const ChatBox = styled.div`
   border-radius: 10px;
   padding: 10px;
-  background-color: #d9d9d9;
+  background-color: #ededed;
 `;
 
 export const WrapperFooter = styled.div`

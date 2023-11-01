@@ -13,7 +13,7 @@ export const Wrapper = styled.nav<{
   ${mq[2]} {
     display: ${props => (props.isOpen ? "block" : "none")};
     position: absolute;
-    z-index: 9999;
+    z-index: 998;
     border-bottom: none;
     box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.25);
   }

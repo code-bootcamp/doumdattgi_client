@@ -9,7 +9,7 @@ const StyledSlider = styled(SliderComponent)`
     height: 360px;
   }
   .slick-arrow {
-    z-index: 999;
+    z-index: 997;
     width: 80px;
     height: 80px;
   }
