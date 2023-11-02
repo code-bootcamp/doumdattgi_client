@@ -69,9 +69,7 @@ export default function Header(): JSX.Element {
       const MovePage = data?.fetchRandomProduct[num].product_product_id;
 
       router.push(`/${MovePage}`);
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
 
   const getDebounce = debounce(e => {
@@ -128,9 +126,6 @@ export default function Header(): JSX.Element {
             <S.ShuffleBtn onClick={onClickSearch} className="loupe">
               <S.ShuffleIcon src="/loupe.png" />
             </S.ShuffleBtn>
-            <S.ShuffleBtn onClick={clickRandomBoard}>
-              <S.ShuffleIcon src="/shuffle.png" />
-            </S.ShuffleBtn>
             {!data && (
               <S.LoginBox>
                 <S.LoginBtn onClick={onClickMoveToPage("/login")}>
@@ -146,6 +141,9 @@ export default function Header(): JSX.Element {
                 {/* <S.ShuffleBtn>
                   <S.ShuffleIcon src="/chat-bubble.png" />
                 </S.ShuffleBtn> */}
+                <S.ShuffleBtn onClick={clickRandomBoard}>
+                  <S.ShuffleIcon src="/shuffle.png" />
+                </S.ShuffleBtn>
                 <Dropdown
                   menu={{ items }}
                   trigger={["click"]}

@@ -18,7 +18,7 @@ export const Wrapper = styled.div<{
   }
   ${mq[2]} {
     &:last-of-type {
-      display: block
+      display: block;
     }
   }
 `;
@@ -34,8 +34,17 @@ export const Thumbnail = styled(Image)`
   }
 `;
 export const Container = styled.div`
+  height: 130px;
   padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  ${mq[3]} {
+    padding: 10px;
+  }
 `;
+export const TopSection = styled.div``;
 export const CategoryBox = styled.div`
   display: flex;
   align-items: center;

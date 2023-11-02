@@ -19,7 +19,9 @@ export const Container = styled.main<{
     width: ${props => (props.isAll ? "100%" : "calc(100% - 160px)")};
   }
   ${mq[3]} {
-    width: ${props => (props.isAll ? "100%" : "calc(100% - 180px)")};
+    width: 100%;
+    padding-left: 0;
+    margin-top: 24px;
   }
 `;
 
@@ -69,7 +71,10 @@ export const ContentsBox = styled.section<{
     grid-template-columns: 1fr 1fr;
   }
   ${mq[3]} {
-    grid-template-columns: ${props => (props.isAll ? "1fr 1fr" : "1fr")};
+    grid-template-columns: 1fr 1fr;
+  }
+  ${mq[4]} {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -179,7 +184,7 @@ export const MileageBox = styled.div<{
   margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px 20px;
+  gap: 20px 20px;
 
   ${mq[1]} {
     grid-template-columns: 1fr 1fr 1fr;
@@ -189,6 +194,9 @@ export const MileageBox = styled.div<{
     grid-template-columns: 1fr 1fr;
   }
   ${mq[3]} {
-    grid-template-columns: ${props => (props.isAll ? "1fr 1fr" : "1fr")};
+    grid-template-columns: 1fr 1fr
+  }
+  ${mq[4]} {
+    grid-template-columns: 1fr;
   }
 `;
