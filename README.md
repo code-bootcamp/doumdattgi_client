@@ -8,13 +8,16 @@
 
 <span style="color: #88b04b">도움닫기</span>는 이런 경험이 없거나 부족한 사람들에게 실제로 일할 수 있는 기회와 개인의 능력을 증명해 볼 수 있는 환경을 제공하며 <span style="color: #88b04b">사회의 첫 발을 내딛는 이들이 좀 더 높은 곳으로 도약하여 새로운 시작을 할 수 있도록 하는 성장지원 플랫폼</span>입니다.
 
+---
 # 배포 주소
 ### [도움닫기](https://www.doumdattgi.com/) https://www.doumdattgi.com/
 
+---
 # 📆 프로젝트 기간
 
 - 2023.05.01 ~ 2023.10.27
 
+---
 # 🛠 기술 스택
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=white)
@@ -34,11 +37,12 @@
 ![Reacthookform](https://img.shields.io/badge/reacthookform-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white)
 <br>
 
+---
 # 🧑‍💻 👩🏻‍💻 프로젝트 팀원 구성
  
- <img src="https://github.com/code-bootcamp/doumdattgi_client/assets/68831657/639c8323-171e-4e0d-be06-cb74213d8196" alt="단체 사진"/>
- <img src="https://github.com/code-bootcamp/doumdattgi_client/assets/68831657/ac537129-bd44-4f63-9185-435390a560ea" alt="프론트엔드 사진"/>
- <img src="https://github.com/code-bootcamp/doumdattgi_client/assets/68831657/a127d621-eb10-4066-99a8-fe23df2d222b" alt="백엔드 사진"/>
+![](https://velog.velcdn.com/images/cometes/post/08813667-eeca-4211-b7bb-902008c5f581/image.jpeg)
+![](https://velog.velcdn.com/images/cometes/post/0cdbf860-d03f-4a1c-a50d-e27fce2edfd2/image.png)
+![](https://velog.velcdn.com/images/cometes/post/a3dbd815-6790-434b-b2e6-a29110e9b446/image.png)
 
 ### Git 링크
  <table>
@@ -68,6 +72,7 @@
    </tr>
  </table>
 
+---
  # 💡 주요 기능
  ### 🎯 **로그인 및 회원가입 기능**
 
@@ -102,6 +107,7 @@
  - 구매자는 의뢰 수락, 완료를 현 진행상태를 통해 확인 가능
  - 거래 완료 시 플랫폼 이용에 도움이 되는 마일리지 적립 가능
 
+---
 # ❗️기술 키워드
 ### 컴포넌트 재사용
 ![](https://velog.velcdn.com/images/cometes/post/d4483e04-a825-4651-991a-7b152670c3aa/image.png)
@@ -111,6 +117,7 @@
 ![](https://velog.velcdn.com/images/cometes/post/c1cf5c0b-2e53-43b2-ba5f-5a8781795119/image.png)
 - Figma의 Prototype기능을 활용하여 각 페이지의 연결을 직관적이게 확인하였으며 효율적인 구조화가 가능하였습니다.
 
+---
 # 🖥️ 페이지 구성
 
 ## 메인 페이지
@@ -120,10 +127,12 @@
 ![](https://velog.velcdn.com/images/cometes/post/82f58fc3-e849-4477-90c1-79c927ae416e/image.gif)
 
 ## 의뢰 거래 페이지
-![](https://velog.velcdn.com/images/cometes/post/5b1bbc3a-dd68-458b-98e0-6388ba7cf3f3/image.gif)
+![](https://velog.velcdn.com/images/cometes/post/857d5810-4c71-40c0-af73-31bc6419514e/image.gif)
+
 
 ## 의뢰 댓글 페이지
 ![](https://velog.velcdn.com/images/cometes/post/a129873e-8d98-4cda-8906-7bdec93d753e/image.gif)
 
 ## 마일리지 페이지
 ![](https://velog.velcdn.com/images/cometes/post/8394500e-a415-4823-a1f5-e5e4558660f2/image.gif)
+

@@ -25,23 +25,25 @@ export default function CardBox(props: IProps) {
         />
       </S.ImageBox>
       <S.Container>
-        <S.CategoryBox>
-          <S.UserBox>
-            <S.Avatar
-              onError={e => {
-                const target = e.target as HTMLImageElement;
-                target.src = fallback;
-              }}
-              src={props.data?.user.user_profileImage ?? fallback}
-            />
-            <S.UserName>{props.data?.user.user_nickname}</S.UserName>
-          </S.UserBox>
-        </S.CategoryBox>
-        <S.TitleBox>
-          <S.Title onClick={onClickMoveToPage(`/${props.data?.product_id}`)}>
-            {props.data?.product_title}
-          </S.Title>
-        </S.TitleBox>
+        <S.TopSection>
+          <S.CategoryBox>
+            <S.UserBox>
+              <S.Avatar
+                onError={e => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = fallback;
+                }}
+                src={props.data?.user.user_profileImage ?? fallback}
+              />
+              <S.UserName>{props.data?.user.user_nickname}</S.UserName>
+            </S.UserBox>
+          </S.CategoryBox>
+          <S.TitleBox>
+            <S.Title onClick={onClickMoveToPage(`/${props.data?.product_id}`)}>
+              {props.data?.product_title}
+            </S.Title>
+          </S.TitleBox>
+        </S.TopSection>
         <S.InfoBox>
           <Tag data={CategoryObj[props.data?.product_category ?? ""]} />
           <S.TagBox>

@@ -43,37 +43,40 @@ export default function CardBox(props: IProps) {
         />
       </S.ImageBox>
       <S.Container>
-        <S.CategoryBox>
-          <S.UserBox>
-            <S.Avatar
-              onError={e => {
-                const target = e.target as HTMLImageElement;
-                target.src = fallback;
-              }}
-              src={
-                props.data?.u_user_profileImage ??
-                props.data2?.u_user_profileImage ??
-                fallback
-              }
-            />
-            <S.UserName>
-              {props.data?.u_user_nickname ?? props.data2?.u_user_nickname}
-            </S.UserName>
-          </S.UserBox>
-        </S.CategoryBox>
-        <S.TitleBox>
-          <S.Title
-            onClick={onClickMoveToPage(
-              `/${
-                props.data?.product_product_id ??
-                props.data2?.product_product_id
-              }`
-            )}
-          >
-            {props.data?.product_product_title ??
-              props.data2?.product_product_title}
-          </S.Title>
-        </S.TitleBox>
+        <S.TopSection>
+          <S.CategoryBox>
+            <S.UserBox>
+              <S.Avatar
+                onError={e => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = fallback;
+                }}
+                src={
+                  props.data?.u_user_profileImage ??
+                  props.data2?.u_user_profileImage ??
+                  fallback
+                }
+              />
+              <S.UserName>
+                {props.data?.u_user_nickname ?? props.data2?.u_user_nickname}
+              </S.UserName>
+            </S.UserBox>
+          </S.CategoryBox>
+          <S.TitleBox>
+            <S.Title
+              onClick={onClickMoveToPage(
+                `/${
+                  props.data?.product_product_id ??
+                  props.data2?.product_product_id
+                }`
+              )}
+            >
+              {props.data?.product_product_title ??
+                props.data2?.product_product_title}
+            </S.Title>
+          </S.TitleBox>
+        </S.TopSection>
+
         <S.InfoBox>
           <Tag
             data={

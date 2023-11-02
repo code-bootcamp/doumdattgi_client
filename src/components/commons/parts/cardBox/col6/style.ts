@@ -25,8 +25,17 @@ export const Thumbnail = styled(Image)`
   }
 `;
 export const Container = styled.div`
+  height: 130px;
   padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  ${mq[3]} {
+    padding: 10px;
+  }
 `;
+export const TopSection = styled.div``;
 export const CategoryBox = styled.div`
   display: flex;
   align-items: center;
@@ -57,15 +66,20 @@ export const TitleBox = styled.div`
   min-height: 36px;
 `;
 export const Title = styled.h2`
-  display: inline-block;
+  display: -webkit-box;
   font-size: 16px;
   font-weight: 600;
   line-height: 18px;
+  overflow: hidden;
   cursor: pointer;
-  word-break: keep-all;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
 `;
 export const InfoBox = styled.div`
   display: flex;
+  align-items: flex-end;
   margin-top: 12px;
 `;
 export const TagBox = styled.div`
