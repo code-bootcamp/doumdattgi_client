@@ -1,7 +1,6 @@
 import * as S from "./workAgreement.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
-import CommentDrawer, { useDrawer } from "../../commons/parts/commentDrawer";
 import { useQueryFetchOneRequest } from "../../commons/hooks/queries/useQueryFetchOneRequest";
 import { useRouter } from "next/router";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
@@ -24,6 +23,7 @@ import { CategoryObj } from "../../../commons/libraries/translate";
 import { Drawer } from "antd";
 import Comment from "../comment";
 import MetaTag from "../../../commons/libraries/metaTag";
+import { useDrawer } from "../../commons/hooks/custom/useDrawer";
 
 export default function WorkAgreement(): JSX.Element {
   const router = useRouter();
@@ -83,7 +83,7 @@ export default function WorkAgreement(): JSX.Element {
     refetch({ request_id: router.query.id as string });
   }, [isAccept]);
 
-  const { onClose, open, showDrawer } = useDrawer();
+  const { onClose, open, showDrawer, setOpen } = useDrawer();
 
   return (
     <>
@@ -103,7 +103,7 @@ export default function WorkAgreement(): JSX.Element {
         onClose={onClose}
         open={open}
       >
-        <Comment data={data} />
+        <Comment data={data} setOpen={setOpen} />
       </Drawer>
       <S.Wrapper>
         <S.Container>

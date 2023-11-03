@@ -47,7 +47,11 @@ export const schemaSignUp = yup.object({
     .string()
     .oneOf([yup.ref("password"), undefined], "비밀번호가 일치하지 않습니다.")
     .required("비밀번호 확인을 입력해주세요."),
-  nickname: yup.string().required("닉네임을 입력해주세요."),
+  nickname: yup
+    .string()
+    .required("닉네임을 입력해주세요.")
+    .min(2, "2 ~ 8자리 이내의 닉네임을 입력해주세요.")
+    .max(8, "2 ~ 8자리 이내의 닉네임을 입력해주세요."),
   phone: yup
     .string()
     .required("휴대폰 번호를 입력해주세요.")

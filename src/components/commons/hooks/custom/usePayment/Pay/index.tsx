@@ -32,12 +32,20 @@ interface IUserInfo {
   phone: string | undefined;
 }
 
-export default function UsePayment(): IUsePayment {
+export default function UsePayment() {
+  // 드롭박스 메뉴 목록
+  const MenuArr = ["5000", "10000", "30000", "50000", "100000"];
+
+  const [amount, setAmount] = useState(0);
   const [isSelect, setIsSelect] = useState("");
   const [, setIsCancel] = useRecoilState(ModalCancelState);
   const refetches = useRecoilValue(refetchAtom);
 
   const [createPayment] = useMutationcreatePayment();
+
+  const clickThis = (value: string) => {
+    setAmount(Number(value));
+  };
 
   const SelectOption = (e: ChangeEvent<HTMLInputElement>) => {
     setIsSelect(e.target.value);
@@ -63,7 +71,8 @@ export default function UsePayment(): IUsePayment {
               buyer_name: userInfo.name,
               buyer_tel: userInfo.phone,
               buyer_addr: "Sinsa-dong, Gangnam-gu, Seoul",
-              buyer_postcode: "01181"
+              buyer_postcode: "01181",
+              m_redirect_url: "/mypage/point/"
             },
             (rsp: IResponseProps) => {
               resolve(rsp);
@@ -94,5 +103,5 @@ export default function UsePayment(): IUsePayment {
       }
     };
 
-  return { SelectOption, isSelect, clickIniCis };
+  return { SelectOption, isSelect, clickIniCis, amount, MenuArr, clickThis };
 }

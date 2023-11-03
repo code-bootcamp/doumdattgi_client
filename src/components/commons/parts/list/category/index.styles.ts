@@ -72,7 +72,6 @@ export const SubCategoryItem = styled.a`
 
 export const NavWrapper = styled.div`
   display: none;
-  padding: 0 16px;
 
   ${mq[3]} {
     display: block;

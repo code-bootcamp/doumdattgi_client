@@ -37,26 +37,33 @@ export const Container = styled.div`
 `;
 
 export const MainTitle = styled.div`
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 30px;
 `;
 
-export const TabBox = styled.div`
+export const TabBox = styled.ul`
+  width: 100%;
   display: flex;
-  margin: 40px 0px;
+  flex-direction: row;
+  margin: 30px auto;
 `;
 
-export const Tab = styled.div`
-  width: 120px;
-  height: 30px;
+export const Tab = styled.li`
+  position: relative;
+  font-size: 18px;
+  padding: 0 20px;
+  height: 40px;
   display: flex;
-  justify-content: center;
-  font-size: 20px;
+  align-items: center;
   color: ${(props: IPropsSelect) => (props.isStatus ? "black" : "#aaaaaa")};
-  border-bottom: 2px solid ${props => (props.isStatus ? "black" : "none")};
   cursor: pointer;
-  :hover {
-    color: black;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: ${props => (props.isStatus ? "black" : "white")};
   }
 `;
 

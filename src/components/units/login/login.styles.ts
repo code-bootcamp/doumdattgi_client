@@ -10,9 +10,9 @@ export const Wrapper = styled.div`
   align-items: center;
 
   ${mq[3]} {
-    padding: 80px 16px;
+    padding: 50px 16px;
   }
-  ${mq2}{
+  ${mq2} {
     height: fit-content;
     align-items: baseline;
     padding: 80px 0;
@@ -30,6 +30,7 @@ export const Container = styled.div`
 
   ${mq[3]} {
     width: 100%;
+    padding: 80px 60px;
   }
 `;
 
@@ -61,6 +62,10 @@ export const Error = styled.span`
 
 export const SubmitBtn = styled.div`
   margin-top: 30px;
+
+  ${mq[3]}{
+    margin-top: 50px;
+  }
 `;
 
 export const FindingWrap = styled.div`
@@ -118,11 +123,13 @@ export const SocialLoginButton = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 `;
 export const JoinText = styled.span`
   display: block;
   font-size: 14px;
+  line-height: 18px;
+  word-break: keep-all;
 `;
 
 export const JoinBtn = styled.span`

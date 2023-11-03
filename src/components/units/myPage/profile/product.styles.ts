@@ -78,6 +78,11 @@ export const RightListBox = styled.div<{
   ${mq[2]} {
     margin-bottom: ${props => (!props.isSell ? "12px" : "16px")};
   }
+  ${mq[4]} {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: ${props => (!props.isSell ? "12px" : "40px")};
+  }
 `;
 
 export const RightDetailBox = styled.div<{
@@ -87,6 +92,11 @@ export const RightDetailBox = styled.div<{
   padding: ${props => (!props.isSell ? "16px" : "0 0 0 16px")};
   border: ${props => (!props.isSell ? "1px solid #d9d9d9" : "none")};
   border-radius: 6px;
+
+  ${mq[4]} {
+    width: 100%;
+    padding: ${props => (!props.isSell ? "16px" : "0")};
+  }
 `;
 
 export const ListImage = styled.img`
@@ -94,6 +104,12 @@ export const ListImage = styled.img`
   height: 150px;
   border: 1px solid #e0e1ea;
   border-radius: 3px;
+
+  ${mq[4]} {
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+  }
 `;
 
 export const ListCategory = styled.div`

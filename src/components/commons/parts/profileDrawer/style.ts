@@ -1,6 +1,21 @@
 import styled from "@emotion/styled";
 import { mq } from "../../../../commons/libraries/breakPoints";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+export const Close = styled.div`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 16px;
+  right: 16px;
+`;
+export const CloseIcon = styled(FontAwesomeIcon)`
+  font-size: 24px;
+  color: #333;
+`;
 export const WrapperLeft = styled.div`
   width: 100%;
   padding-top: 50px;
@@ -142,7 +157,7 @@ export const NavIcon = styled.div`
   cursor: pointer;
   position: absolute;
   left: 24px;
-  top: 132px;
+  top: 134px;
 
   ${mq[1]} {
     display: block;

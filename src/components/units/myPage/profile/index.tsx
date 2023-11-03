@@ -106,7 +106,18 @@ export default function Profile(): JSX.Element {
             </S.ContentWrap>
           </S.WrapperLeft>
           <S.WrapperRight>
-            <S.ProfileTitle>내 프로필</S.ProfileTitle>
+            <S.MobileTitleBox>
+              <S.ProfileTitle>내 프로필</S.ProfileTitle>
+              <S.CreateLink
+                className="mobile"
+                onClick={onClickMoveToPage(isSeek ? "/seek/create" : "/create")}
+              >
+                <S.CreateIcon src="/pencil.png" />
+                <S.CreateText>
+                  {isSeek ? "새 구인글 올리기" : "새 서비스 만들기"}
+                </S.CreateText>
+              </S.CreateLink>
+            </S.MobileTitleBox>
             <S.RightTitleBox>
               <div>
                 <S.ListBtn onClick={onClickTabs(false, false)}>
@@ -123,7 +134,9 @@ export default function Profile(): JSX.Element {
                 onClick={onClickMoveToPage(isSeek ? "/seek/create" : "/create")}
               >
                 <S.CreateIcon src="/pencil.png" />
-                {isSeek ? "새 구인글 올리기" : "새 서비스 만들기"}
+                <S.CreateText>
+                  {isSeek ? "새 구인글 올리기" : "새 서비스 만들기"}
+                </S.CreateText>
               </S.CreateLink>
             </S.RightTitleBox>
             {isPick && <ProfileMyPick data={myPick?.fetchPickUserProduct} />}

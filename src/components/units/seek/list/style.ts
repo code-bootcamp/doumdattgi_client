@@ -26,14 +26,18 @@ export const Header = styled.header`
   align-items: flex-end;
   padding-bottom: 30px;
   border-bottom: 2px solid #88b04b;
+
+  ${mq[3]} {
+    padding-bottom: 16px;
+  }
 `;
 export const TitleBox = styled.div``;
 export const SubTitle = styled.h2`
   margin-bottom: 14px;
 `;
 export const Title = styled.h1`
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 30px;
+  line-height: 40px;
 `;
 export const CreateLink = styled.div`
   padding: 13px 20px;
@@ -57,12 +61,27 @@ export const Body = styled.div`
   padding-top: 40px;
   display: flex;
   justify-content: space-between;
+
+  ${mq[3]} {
+    flex-direction: column;
+    padding-top: 0;
+  }
+`;
+export const MobileCategoryWrap = styled.div`
+  display: none;
+
+  ${mq[3]} {
+    display: block;
+  }
 `;
 export const CategoryWrap = styled.div`
   width: 250px;
 
   ${mq[1]} {
     width: 180px;
+  }
+  ${mq[3]} {
+    display: none;
   }
 `;
 export const Category = styled.span`
@@ -106,6 +125,9 @@ export const ListWrap = styled.div`
   ${mq[1]} {
     width: calc(100% - 180px);
   }
+  ${mq[3]} {
+    width: 100%;
+  }
 `;
 export const LengthBox = styled.div`
   display: flex;
@@ -121,37 +143,31 @@ export const ListTitle = styled.p`
   font-size: 18px;
   font-weight: 600;
   margin-top: 12px;
+  cursor: pointer;
 `;
 export const ListBox = styled.div`
   padding: 24px 0;
   border-bottom: 1px solid #d9d9d9;
-  cursor: pointer;
   &:last-of-type {
     border-bottom: none;
   }
 `;
 export const FlexBox = styled.div`
   display: flex;
-
-  ${mq[3]} {
-    flex-direction: column;
-  }
 `;
 export const RequireBox = styled.div`
   display: flex;
   margin-top: 24px;
+  cursor: pointer;
   &.require {
     margin-left: 50px;
-
-    ${mq[3]} {
-      margin-left: 0;
-    }
   }
 `;
 export const TagBox = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+  cursor: pointer;
 `;
 export const createdAt = styled.div`
   display: flex;

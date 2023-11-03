@@ -1,14 +1,14 @@
 import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Space } from "antd";
+import { Dropdown, Select, Space } from "antd";
 import * as S from "./index.styles";
 import Head from "next/head";
-import UseDropBox from "../../../hooks/custom/useDropbox/index";
 import UsePayment from "../../../hooks/custom/usePayment/Pay/index";
 import { useQueryFetchLoginUser } from "../../../hooks/queries/useQueryFetchLoginUser";
+import Script from "next/script";
 
 export default function ChargeDropBox(): JSX.Element {
-  const { items, amount } = UseDropBox();
-  const { clickIniCis, isSelect, SelectOption } = UsePayment();
+  const { SelectOption, isSelect, clickIniCis, amount, MenuArr, clickThis } =
+    UsePayment();
   const { data } = useQueryFetchLoginUser();
 
   const userInfo = {
@@ -23,23 +23,17 @@ export default function ChargeDropBox(): JSX.Element {
         <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
       </Head>
       <S.Body className="ChargeBox">
-        <S.Title>충전하실 금액을 선택해주세요!</S.Title>
-        <Dropdown
-          overlayClassName="ChargeDrop"
-          menu={{ items }}
-          trigger={["click"]}
-        >
-          <a
-            onClick={e => {
-              e.preventDefault();
-            }}
-          >
-            <Space>
-              {amount !== 0 ? amount : "포인트 선택"}
-              <DownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
+        <S.Title>포인트 충전하기</S.Title>
+        <Select
+          defaultValue={"포인트를 선택해주세요."}
+          style={{ marginRight: 5, width: "100%", height: "40px" }}
+          size="large"
+          onChange={clickThis}
+          options={MenuArr.map(el => ({
+            value: el,
+            label: `${el} 원`
+          }))}
+        />
         <S.OptionBox>
           <S.Option>
             <input

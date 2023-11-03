@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import AddressModal from "../../../commons/hooks/custom/useAddress";
-import { useCreateProduct2 } from "../../../commons/hooks/custom/useCreateProduct/index2";
+import { useCreateProduct2 } from "../../../commons/hooks/custom/useCreateProduct/index";
 import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
 import * as S from "./style";
 import InputHeight40px from "../../../commons/inputs/InputHeight40px";
 import dynamic from "next/dynamic";
 import ButtonHeight50px from "../../../commons/buttons/ButtonHeight50px";
-import Category2 from "../../../commons/parts/categorySelect/index2";
+import Category from "../../../commons/parts/categorySelect";
 import InputHeight38px from "../../../commons/inputs/InputHeight38px";
 import Map from "../../../commons/parts/map";
 import { DatePicker } from "antd";
@@ -127,7 +127,7 @@ export default function SeekCreate(props: {
                   </S.ThemeBox>
                   <S.InputBox>
                     {props.isEdit && data && (
-                      <Category2
+                      <Category
                         categoryArray={categoryArray}
                         setCategoryArray={setCategoryArray}
                         categorySelect={categorySelect}
@@ -140,7 +140,7 @@ export default function SeekCreate(props: {
                       />
                     )}
                     {!props.isEdit && (
-                      <Category2
+                      <Category
                         categoryArray={categoryArray}
                         setCategoryArray={setCategoryArray}
                         categorySelect={categorySelect}

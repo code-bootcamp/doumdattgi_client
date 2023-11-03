@@ -16,7 +16,6 @@ export default function RefundPoint(props: IPropsRefund) {
     props.setIsRefund(false);
   };
 
-  // const status = router.query.status === undefined ? "" : router.query.status;
 
   const GotoRefund = async () => {
     try {
@@ -38,13 +37,15 @@ export default function RefundPoint(props: IPropsRefund) {
 
   return (
     <Modal
-      className="RefundModal"
       open={props.isRefund}
       onCancel={cancelRefund}
       footer={null}
     >
       <S.Page>
-        <S.Title>정말로 환불하시겠습니까?</S.Title>
+        <S.Title>포인트 환불하기</S.Title>
+        <S.RefundText>
+          환불 신청 시 즉시 직접 환불 처리되며 환불 신청 금액만큼 포인트가 차감됩니다.
+        </S.RefundText>
         <S.RefundBtn onClick={GotoRefund}>환불하기</S.RefundBtn>
       </S.Page>
     </Modal>

@@ -10,7 +10,6 @@ export const TransactionInfo = styled.div`
   margin: 16px 0px;
   padding: 20px 30px;
 
-
   ${mq[1]} {
     width: 100%;
   }
@@ -19,13 +18,18 @@ export const TransactionInfo = styled.div`
 export const PayInfoBox = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const PayInfo = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  ${mq[3]} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const Company = styled.span`
@@ -37,6 +41,10 @@ export const Date = styled.span`
   font-family: "Arita-dotum4.0";
   font-size: 16px;
   color: #d7d7d7;
+
+  ${mq[3]} {
+    margin-top: 10px;
+  }
 `;
 
 export const TransactInfo = styled.div`
@@ -60,7 +68,7 @@ export const Point = styled.span`
 `;
 
 export const Amount = styled.span`
-display: block;
+  display: block;
   font-size: 30px;
 `;
 export const Box = styled.div`

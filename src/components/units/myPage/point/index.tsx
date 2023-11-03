@@ -23,11 +23,11 @@ export default function PaymentPresenter(): JSX.Element {
   const [refundInfo, setRefundInfo] = useState(["", ""]);
   const [status, setStatus] = useState([
     { title: "전체", key: 0, isSelected: true },
-    { title: "충전내역", key: 1, isSelected: false },
-    { title: "입금내역", key: 2, isSelected: false },
-    { title: "의뢰요청", key: 3, isSelected: false },
-    { title: "의뢰취소", key: 4, isSelected: false },
-    { title: "환불내역", key: 5, isSelected: false }
+    { title: "충전 내역", key: 1, isSelected: false },
+    { title: "입금 내역", key: 2, isSelected: false },
+    { title: "의뢰 요청", key: 3, isSelected: false },
+    { title: "의뢰 취소", key: 4, isSelected: false },
+    { title: "환불 내역", key: 5, isSelected: false }
   ]);
   const [payState, setPayState] = useState<string>("");
   const [loading, setLoading] = useState(false);
@@ -69,16 +69,16 @@ export default function PaymentPresenter(): JSX.Element {
   };
 
   const TrnaslatePointSelect: { [key: string]: string } = {
-    전체: "",
-    충전내역: "PAYMENT",
-    입금내역: "SELL",
-    의뢰요청: "REQUEST",
-    의뢰취소: "REFUND",
-    환불내역: "CANCEL"
+    "전체": "",
+    "충전 내역": "PAYMENT",
+    "입금 내역": "SELL",
+    "의뢰 요청": "REQUEST",
+    "의뢰 취소": "REFUND",
+    "환불 내역": "CANCEL"
   };
 
   // 포인트 내역 네비게이션 바 선택 체크
-  const selectState = async (e: MouseEvent<HTMLDivElement>) => {
+  const selectState = async (e: MouseEvent<HTMLLIElement>) => {
     const selectedId = e.currentTarget.id;
 
     setStatus(prev =>
@@ -146,6 +146,11 @@ export default function PaymentPresenter(): JSX.Element {
               </S.selectOption>
             ))}
           </S.SelectBar>
+        </S.Container>
+        {/* <S.SelectWrap> */}
+
+        {/* </S.SelectWrap> */}
+        <S.Container>
           <S.HoldingBox>
             <S.HoldTitle>보유포인트</S.HoldTitle>
             <S.CurrentHold>

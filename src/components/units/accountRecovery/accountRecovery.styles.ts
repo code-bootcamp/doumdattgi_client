@@ -25,6 +25,7 @@ export const Container = styled.div`
 
   ${mq[3]} {
     width: 100%;
+    padding: 80px 60px;
   }
 `;
 
@@ -37,6 +38,7 @@ export const SubTitle = styled.div`
   font-size: 14px;
   line-height: 18px;
   margin-top: 30px;
+  word-break: keep-all;
 `;
 
 export const SignupBox = styled.div`

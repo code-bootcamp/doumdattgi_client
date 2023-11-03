@@ -1,7 +1,6 @@
 import {
   faSeedling,
-  faBookmark as Bookmark2,
-  faX
+  faBookmark as Bookmark2
 } from "@fortawesome/free-solid-svg-icons";
 import Slider from "../../commons/parts/slider";
 import * as S from "./styles";
@@ -10,18 +9,14 @@ import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useQueryFetchDetailProduct } from "../../commons/hooks/queries/useQueryFetchDetailProduct";
-import PreviewContents from "../../commons/parts/main/previewContents";
 import { useQueryFetchRandomProduct } from "../../commons/hooks/queries/useQueryFetchRandomProduct";
 import DOMPurify from "dompurify";
 import { Obj, CategoryObj } from "../../../commons/libraries/translate";
-import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/useQueryFetchLoginUser";
-import { useQueryFetchUserSlot } from "../../commons/hooks/queries/useQueryfetchUserSlot";
 import { useUser } from "../../commons/hooks/custom/useUser/index";
 import { useMutationcreatePick } from "../../commons/hooks/mutations/useMutationCreatePick";
-import CardBox from "../../commons/parts/cardBox/col4";
+import CardBox from "../../commons/parts/cardBox/card";
 import { useEffect, useState } from "react";
-import { IProduct } from "../../../commons/types/generated/types";
 import {
   FETCH_PICK_OR_NOT,
   useQueryFetchPickOrNot
@@ -32,7 +27,6 @@ import MetaTag from "../../../commons/libraries/metaTag";
 
 export default function Detail() {
   const router = useRouter();
-  const { onClickMoveToPage } = useMoveToPage();
 
   const id = String(router.query.id);
   const { data, error } = useQueryFetchDetailProduct(id);
@@ -292,7 +286,7 @@ export default function Detail() {
         <S.Subtitle>이런 게시글은 어떠세요?</S.Subtitle>
         <S.CardBoxWrap>
           {random?.fetchRandomProduct.map(el => (
-            <CardBox key={el.product_product_id} data={el} isRandom={true}/>
+            <CardBox key={el.product_product_id} data={el} isRandom={true} />
           ))}
         </S.CardBoxWrap>
       </S.Wrapper>

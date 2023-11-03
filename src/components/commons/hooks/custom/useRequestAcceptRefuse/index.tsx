@@ -1,13 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { REQUEST_ACCEPT_REFUSE } from "../../mutations/useMutationRequestAcceptRefuse";
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import { FETCH_ONE_REQUEST } from "../../queries/useQueryFetchOneRequest";
 
-// interface IMutationData {
-//   request_id: string;
-//   onClick: () => MouseEventHandler<HTMLButtonElement>;
-// }
 
 export const useRequestAcceptRefuse = () => {
   const router = useRouter();

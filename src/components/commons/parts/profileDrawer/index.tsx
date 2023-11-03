@@ -4,6 +4,7 @@ import { useState } from "react";
 import * as S from "./style";
 import { fallback } from "../../../../commons/libraries/fallback";
 import { useMyProduct } from "../../hooks/custom/useMyProduct";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProfileDrawer() {
   const { login, imageSrc, userTitle, onClickMoveToPage, isAble } =
@@ -38,6 +39,9 @@ export default function ProfileDrawer() {
         }}
       >
         <S.WrapperLeft>
+          <S.Close onClick={onClose}>
+            <S.CloseIcon icon={faXmark} className="x" />
+          </S.Close>
           <S.UserBox>
             <S.UserIcon
               onError={e => {

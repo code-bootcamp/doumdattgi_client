@@ -14,9 +14,14 @@ export const WrapperHeader = styled.div`
   padding: 24px 0px 0px 24px;
 `;
 
-export const Close = styled.img`
-  width: 25px;
-  height: 25px;
+export const Close = styled.div`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 24px;
 `;
 
 export const WrapperBody = styled.div`
@@ -143,4 +148,8 @@ export const Relode = styled.div`
 export const RotateIcon = styled(FontAwesomeIcon)`
   font-size: 18px;
   color: #333;
+
+  &.x {
+    font-size: 20px;
+  }
 `;

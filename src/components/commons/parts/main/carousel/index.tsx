@@ -7,6 +7,10 @@ import { mq } from "../../../../../commons/libraries/breakPoints";
 const StyledSlider = styled(SliderComponent)`
   .slick-list {
     height: 360px;
+
+    ${mq[3]}{
+      height: auto;
+    }
   }
   .slick-arrow {
     z-index: 997;
@@ -38,6 +42,7 @@ const StyledSlider = styled(SliderComponent)`
     background-repeat: no-repeat;
     background-position: center;
   }
+
   // 캐러셀 도트
   .slick-dots {
     bottom: 20px;
@@ -90,18 +95,32 @@ const StyledSlider = styled(SliderComponent)`
   }
 `;
 
+const FullBanner = styled.div`
+  ${mq[3]} {
+    display: none;
+  }
+`;
+const MobileBanner = styled.div`
+  display: none;
+
+  ${mq[3]} {
+    display: block;
+  }
+`;
+
 const Slide = styled.div`
   border-radius: 10px;
   overflow: hidden;
+  &.mobile {
+    /* aspect-ratio: 4 / 3; */
+  }
 
   ${mq[2]} {
     border-radius: 0;
   }
 `;
 
-interface IProps {}
-
-export default function Slider(props: IProps) {
+export default function Slider() {
   const settings = {
     arrows: true,
     autoplay: true,
@@ -112,19 +131,42 @@ export default function Slider(props: IProps) {
     slidesToScroll: 1
   };
   return (
-    <StyledSlider {...settings}>
-      {["/banner1.png", "/banner2.png", "/banner3.png"].map(el => (
-        <Slide key={el}>
-          <Image
-            src={`${el}`}
-            alt=""
-            fallback={fallback}
-            width={1200}
-            height={360}
-            preview={false}
-          />
-        </Slide>
-      ))}
-    </StyledSlider>
+    <>
+      <FullBanner>
+        <StyledSlider {...settings}>
+          {["/banner1.png", "/banner2.png", "/banner3.png"].map(el => (
+            <Slide key={el}>
+              <Image
+                src={`${el}`}
+                alt=""
+                fallback={fallback}
+                width={1200}
+                height={360}
+                preview={false}
+              />
+            </Slide>
+          ))}
+        </StyledSlider>
+      </FullBanner>
+      <MobileBanner className="mobile">
+        <StyledSlider className="mobile" {...settings}>
+          {[
+            "/mobileBanner1.png",
+            "/mobileBanner2.png",
+            "/mobileBanner3.png"
+          ].map(el => (
+            <Slide key={el} className="mobile">
+              <Image
+                src={`${el}`}
+                alt=""
+                fallback={fallback}
+                width={"100%"}
+                preview={false}
+              />
+            </Slide>
+          ))}
+        </StyledSlider>
+      </MobileBanner>
+    </>
   );
 }

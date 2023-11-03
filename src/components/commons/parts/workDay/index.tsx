@@ -19,10 +19,6 @@ export default function WorkDay(props: IWorkDay) {
     props.setWorkDay(props.data || "");
   }, [props.data]);
 
-  // const handleChange = (value: string) => {
-  //   props.setWorkDay(value);
-  // };
-
   return (
     <Select
       defaultValue={props.data ? `${props.data}` : "선택"}

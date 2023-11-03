@@ -113,6 +113,7 @@ export default function Header(): JSX.Element {
               <S.LogoTitle>도움닫기</S.LogoTitle>
             </S.Logo>
           </S.logoWrap>
+          
           <S.HeaderBox>
             <form onSubmit={handleSubmit(searchKeyword)}>
               <S.SearchWrap isOpen={isOpen2}>
