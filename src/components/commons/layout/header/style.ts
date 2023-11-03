@@ -7,7 +7,6 @@ export const Wrapper = styled.header`
   width: 100%;
   background-color: #fff;
   padding: 7px 0;
-  overflow: hidden;
   position: relative;
   z-index: 999;
 `;

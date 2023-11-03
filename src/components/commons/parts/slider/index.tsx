@@ -6,7 +6,9 @@ import { fallback } from "../../../../commons/libraries/fallback";
 import * as S from "./styles";
 
 export default function SliderComponent(props: any) {
-  const Slide = styled.div``;
+  const Slide = styled.div`
+    aspect-ratio: 1 / 1;
+  `;
 
   // fetch 로 가져온 이미지 배열
   const arr = props.ImgArr;
@@ -18,10 +20,8 @@ export default function SliderComponent(props: any) {
         <Image
           src={imgsrc}
           fallback={fallback}
-          width={80}
-          height={80}
           preview={false}
-          style={{ borderRadius: "3px", border: "1px solid #E0E1EA" }}
+          style={{ aspectRatio: "1 / 1" }}
         />
       );
     },
@@ -36,7 +36,13 @@ export default function SliderComponent(props: any) {
     <>
       <S.Wrapper {...settings}>
         {arr?.map((el: string) => (
-          <Image src={el} fallback={fallback} width="100%" height={640}/>
+          <Slide>
+            <Image
+              src={el}
+              fallback={fallback}
+              style={{ aspectRatio: "1 / 1" }}
+            />
+          </Slide>
         ))}
       </S.Wrapper>
     </>

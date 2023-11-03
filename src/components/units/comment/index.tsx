@@ -1,4 +1,4 @@
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useMutationCreateComment } from "../../commons/hooks/mutations/useMutationCreateComment";
 import InputHeight50px from "../../commons/inputs/InputHeight50px";
 import * as S from "./styles";
@@ -12,13 +12,14 @@ import {
 import { useRouter } from "next/router";
 import { getDate } from "../../../commons/libraries/getDate";
 import { fallback } from "../../../commons/libraries/fallback";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faRotateRight, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { IQuery } from "../../../commons/types/generated/types";
+import { Dispatch, SetStateAction } from "react";
 
 interface ICommentProps {
   data: Pick<IQuery, "fetchOneRequest"> | undefined;
   text?: string;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 interface ICommentForm {
@@ -74,12 +75,19 @@ export default function Comment(props: ICommentProps): JSX.Element {
     });
   };
 
+  const onClickClose = () => {
+    props.setOpen(false);
+  };
+
   return (
     <>
       <S.Wrapper>
         <S.Relode onClick={onClickRelode}>
           <S.RotateIcon icon={faRotateRight} />
         </S.Relode>
+        <S.Close onClick={onClickClose}>
+          <S.RotateIcon icon={faXmark} className="x"/>
+        </S.Close>
         <S.WrapperBody>
           {comment?.fetchComments?.map(el => (
             <S.SendingBox

@@ -6,11 +6,11 @@ import { Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQueryfetchSubCategoryProduct } from "../../../hooks/queries/useQueryFetchSubCategoryProduct";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
-import CardBox from "../../cardBox/col4";
-import CardBox2 from "../../cardBox/col6";
+import CardBox from "../../cardBox/card";
 import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 import InfiniteScroll from "react-infinite-scroller";
 import { useQueryFetchRandomMileageProduct } from "../../../hooks/queries/useQueryfetchRandomMileageProduct";
+import MileageWrap from "../mileage";
 
 interface IProps {
   data: IFetchProductOutput;
@@ -57,17 +57,7 @@ export default function SubProductList() {
   };
   return (
     <S.Container>
-      <S.MileageWrap>
-        <S.MileageTitleBox>
-          <S.MileageTitle>특별한 서비스들</S.MileageTitle>
-          <S.MileageSubTitle>마일리지 전용 영역</S.MileageSubTitle>
-        </S.MileageTitleBox>
-        <S.MileageBox>
-          {mileageProductData?.fetchRandomMileageProduct.map(el => (
-            <CardBox2 key={el.product_id} data={el} />
-          ))}
-        </S.MileageBox>
-      </S.MileageWrap>
+      <MileageWrap isAll={false} />
       <S.CategoryBox>
         <Link href="/categoryList/all">
           <S.CategoryTag>홈</S.CategoryTag>

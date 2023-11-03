@@ -3,9 +3,6 @@ import { useCoupon } from "../../../../commons/hooks/custom/useCoupon/index";
 import { useQueryFetchMyNotCouponProduct } from "../../../../commons/hooks/queries/useQueryfetchMyNotCouponProduct";
 import { Dropdown, Space, MenuProps } from "antd";
 import { ItemType } from "antd/es/menu/hooks/useItems";
-import { MouseEvent, useState } from "react";
-import ButtonHeight60px from "../../../../commons/buttons/ButtonHeight60px";
-import { CategoryObj } from "../../../../../commons/libraries/translate";
 import { category } from "../../../../../commons/libraries/category";
 
 export default function MileageUse(): JSX.Element {

@@ -4,18 +4,15 @@ import Link from "next/link";
 import { faAngleDown, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useQueryfetchSubCategoryProduct } from "../../../hooks/queries/useQueryFetchSubCategoryProduct";
-import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
-import CardBox from "../../cardBox/col4";
-import CardBox2 from "../../cardBox/col6";
+import CardBox from "../../cardBox/card";
+import CardBox2 from "../../cardBox/mileage";
 import { useQueryFetchCategoryProduct } from "../../../hooks/queries/useQueryFetchCategoryProduct";
-import ListCardBox from "../../cardBox/list";
 import { useEffect, useState } from "react";
-import { IFetchProductOutput } from "../../../../../commons/types/generated/types";
 import { useQueryFetchLikeCategoryProduct } from "../../../hooks/queries/useQueryfetchLikeCategoryProduct";
 import InfiniteScroll from "react-infinite-scroller";
 import { useQueryFetchRandomMileageProduct } from "../../../hooks/queries/useQueryfetchRandomMileageProduct";
+import MileageWrap from "../mileage";
 
 interface IPropsList {
   isAll: boolean;
@@ -128,17 +125,7 @@ export default function ProductList(props: IPropsList) {
 
   return (
     <S.Container isAll={props.isAll}>
-      <S.MileageWrap>
-        <S.MileageTitleBox>
-          <S.MileageTitle>특별한 서비스들</S.MileageTitle>
-          <S.MileageSubTitle>마일리지 전용 영역</S.MileageSubTitle>
-        </S.MileageTitleBox>
-        <S.MileageBox isAll={props.isAll}>
-          {mileageProductData?.fetchRandomMileageProduct.map(el => (
-            <CardBox2 key={el.product_id} data={el} />
-          ))}
-        </S.MileageBox>
-      </S.MileageWrap>
+      <MileageWrap isAll={props.isAll} />
       <S.CategoryBox>
         <Link href="/categoryList/all">
           <S.CategoryTag>홈</S.CategoryTag>

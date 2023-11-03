@@ -173,11 +173,17 @@ export const StatisticsTitle = styled.div`
 `;
 
 // 오른쪽
+export const MobileTitleBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+`;
+
 export const ProfileTitle = styled.h1`
   display: none;
-  font-size: 36px;
-  margin-bottom: 30px;
-  font-weight: 600;
+  font-size: 30px;
+  line-height: 40px;
   padding-left: 40px;
 
   ${mq[1]} {
@@ -202,7 +208,6 @@ export const WrapperRight = styled.div`
 
 export const RightTitleBox = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
@@ -213,27 +218,38 @@ export const RightTitleBox = styled.div`
 `;
 
 export const CreateLink = styled.div`
-  padding: 13px 20px;
-  color: #ffffff;
+  padding: 12px 20px;
   background-color: black;
   border-radius: 6px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
   cursor: pointer;
 
+  &.mobile {
+    display: none;
+    margin-top: 0;
+  }
+
   ${mq[3]} {
-    margin-top: 10px;
+    display: none;
+    &.mobile {
+      display: flex;
+      margin-top: 0;
+    }
   }
 `;
-
+export const CreateText = styled.span`
+  display: inline-block;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 16px;
+`;
 export const CreateIcon = styled.img`
   width: 16px;
   height: 16px;
   margin-right: 5px;
+  display: inline-block;
 `;
-
 export const ListBtn = styled.button`
   display: inline-block;
   padding: 6px 8px;

@@ -5,6 +5,7 @@ import LayoutFooter from "./footer/index";
 import Header2 from "./header2";
 import styled from "@emotion/styled";
 import { Fragment } from "react";
+import LineBanner from "../parts/lineBanner";
 
 const HIDDEN_HEADER = [
   "/signup/",
@@ -37,6 +38,7 @@ export default function Layout(props: any) {
           <>
             {!isNavActive ? (
               <>
+                <LineBanner />
                 <Header />
                 <Nav />
               </>

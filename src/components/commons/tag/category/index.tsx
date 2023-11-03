@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { Obj, CategoryObj } from "../../../../commons/libraries/translate";
-import { mq } from "../../../../commons/libraries/breakPoints";
 
 const Wrapper = styled.div`
   display: flex;

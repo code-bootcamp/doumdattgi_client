@@ -24,17 +24,6 @@ function AvatarUpload(props: any): JSX.Element {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
 
-  // useEffect(() => {
-  //   if (props.data !== undefined) {
-  //     let arr: any[] = [];
-  //     props.data.map((el: any) => {
-  //       let obj: any = { url: `https://storage.googleapis.com/${el}` };
-  //       arr.push(obj);
-  //     });
-  //     props.setFileList(arr);
-  //   }
-  // }, []);
-
   const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
     props.setFileList(newFileList);
   };

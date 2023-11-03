@@ -1,42 +1,44 @@
-// import { Space, TimePicker } from "antd";
-// import dayjs from "dayjs";
-// import customParseFormat from "dayjs/plugin/customParseFormat";
-// import { RangeValue } from "../../../../../node_modules/rc-picker/lib/interface";
+import { TimePicker } from "antd";
+import { useEffect } from "react";
+import dayjs from "dayjs";
 
-// interface IWorkingTimePicker {
-//   setSelectedWorkTime: (time: [string, string]) => void;
-//   selectedWorkTime: string[];
-// }
+interface IProduct {
+  product_startTime: number;
+  product_endTime: number;
+}
 
-// export default function WorkingTimePicker(props: IWorkingTimePicker) {
-//   dayjs.extend(customParseFormat);
+interface ITimePicker {
+  data?: IProduct;
+  setStartTime: (startTime: number) => void;
+  setEndTime: (endTime: number) => void;
+  startTime: number;
+  endTime: number;
+  onChangeWorkTime?: (_: any, timeString: (string | any[])[]) => void
+}
 
-//   // 작업 시작시간, 종료시간 연산
-//   const checkValue = (
-//     e: RangeValue<dayjs.Dayjs>,
-//     timeString: [string, string]
-//   ) => {
-//     if (!e || !timeString) return;
+export default function TimePick(props: ITimePicker) {
+  useEffect(() => {
+    props.setStartTime(Number(props.data?.product_startTime));
+    props.setEndTime(Number(props.data?.product_endTime));
+  }, [props.data]);
 
-//     const startTime = Number(timeString[0].slice(0, 2));
-//     const FinishTime = Number(timeString[1].slice(0, 2));
-
-//     // const result = String(Math.abs(startTime - FinishTime));
-
-//     props.setSelectedWorkTime([String(startTime), String(FinishTime)]);
-//   };
-
-//   return (
-//     <Space direction="vertical">
-//       <TimePicker.RangePicker
-//         // format="HH:mm"
-//         // defaultValue={[dayjs("13", "HH"), dayjs("12", "HH")]}
-//         showHour={true}
-//         showMinute={false}
-//         showSecond={false}
-//         onChange={checkValue}
-//         style={{ width: "230px", height: "42px" }}
-//       />
-//     </Space>
-//   );
-// }
+  return (
+    <>
+      <TimePicker.RangePicker
+        onChange={props.onChangeWorkTime}
+        showHour={true}
+        showMinute={false}
+        showSecond={false}
+        size="large"
+        style={{ marginLeft: "10px" }}
+        popupStyle={{ width: "200px" }}
+        defaultValue={
+          props?.data && [
+            dayjs(`${props?.data?.product_startTime}:00`, "HH:mm"),
+            dayjs(`${props?.data?.product_endTime}:00`, "HH:mm")
+          ]
+        }
+      />
+    </>
+  );
+}

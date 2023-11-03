@@ -4,7 +4,7 @@ export default function useMoveToSubCategory() {
   const router = useRouter();
 
   const clickSubCategory2 = (sub: string) => {
-    router.push({
+    void router.push({
       pathname: `/categoryList/subCategoryList/${router.query.data}`,
       query: { sub }
     });

@@ -1,20 +1,20 @@
 import styled from "@emotion/styled";
 
 export const Page = styled.div`
-  height: 265.54px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 40px;
 `;
 
-export const Title = styled.span`
-  font-size: 34px;
+export const Title = styled.p`
+  font-size: 20px;
+  font-weight: 600;
 `;
-
+export const RefundText = styled.p`
+  margin-top: 10px;
+`
 export const RefundBtn = styled.button`
-  width: 300px;
-  height: 50px;
+  width: 100%;
+  height: 40px;
   border-radius: 6px;
   border: none;
   background-color: black;

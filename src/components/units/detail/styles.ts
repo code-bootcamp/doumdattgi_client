@@ -23,7 +23,7 @@ export const Container = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 
-  ${mq[1]} {
+  ${mq[2]} {
     flex-direction: column;
     align-items: center;
   }
@@ -36,7 +36,7 @@ export const SliderBox = styled.div<{
   max-width: 640px;
   padding-bottom: ${props => (props.ImgArr?.length >= 2 ? "0" : "40px")};
 
-  ${mq[1]} {
+  ${mq[2]} {
     width: 100%;
   }
 `;
@@ -48,6 +48,9 @@ export const DetailWrap = styled.section`
   margin-left: 40px;
 
   ${mq[1]} {
+    margin-left: 30px;
+  }
+  ${mq[2]} {
     width: 100%;
     margin-left: 0;
   }

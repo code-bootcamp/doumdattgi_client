@@ -1,12 +1,94 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
+export const current = () => {
+  const [location, setLocation] = useState<
+    { latitude: number; longitude: number } | string
+  >("");
+
+  useMemo(() => {
+    if (typeof window !== "undefined") {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src =
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=8cc8689fa2c5a1bf91028ae908ace285&libraries=services";
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        window.kakao.maps.load(() => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+          }
+
+          function success(position: any) {
+            setLocation({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            });
+          }
+
+          function error() {
+            setLocation({
+              latitude: 37.483034,
+              longitude: 126.902435
+            });
+            console.log("위치 받기 실패");
+          }
+        });
+      };
+    }
+  }, []);
+
+  return location;
+};
+
 export default function Map(props: any) {
-  const lat = props.lat ?? 33.450701;
-  const lng = props.lng ?? 126.570667;
+  const location: any = current();
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=8cc8689fa2c5a1bf91028ae908ace285&libraries=services";
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        if (typeof location !== "string") {
+          const container = document.getElementById("map");
+          const options = {
+            center: new window.kakao.maps.LatLng(
+              location.latitude,
+              location.longitude
+            ),
+            level: 2
+          };
+
+          var map = new window.kakao.maps.Map(
+            container as HTMLElement,
+            options
+          );
+
+          const markerPosition = new window.kakao.maps.LatLng(
+            location.latitude,
+            location.longitude
+          );
+
+          var marker = new window.kakao.maps.Marker({
+            map: map,
+            position: markerPosition
+          });
+          // 마커가 지도 위에 표시되도록 설정합니다
+          map.setCenter(markerPosition);
+
+          map.setDraggable(false);
+          map.setZoomable(false);
+        }
+      });
+    };
+  }, [location]);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -85,11 +167,12 @@ export default function Map(props: any) {
           }
         );
         // 마우스 드래그로 지도 이동 가능여부를 설정합니다
-        map.setDraggable(true);
-        map.setZoomable(true);
+        map.setDraggable(false);
+        map.setZoomable(false);
       });
     };
   }, [props.address]);
+
   return (
     <>
       <div id="map" style={{ width: "100%", height: "100%" }}></div>

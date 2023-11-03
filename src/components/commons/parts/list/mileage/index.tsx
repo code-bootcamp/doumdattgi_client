@@ -1,39 +1,32 @@
-import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
 import * as S from "./style";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import { fallback } from "../../../../../commons/libraries/fallback";
-import Tag from "../../../tag/category";
-import { useQueryFetchMileageProductHistory } from "../../../hooks/queries/useQueryfetchMileageProductHistory";
+import CardBox from "../../cardBox/mileage";
+import { useQueryFetchRandomMileageProduct } from "../../../hooks/queries/useQueryfetchRandomMileageProduct";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-export default function MileageList(): JSX.Element {
-  const { onClickMoveToPage } = useMoveToPage();
-  const { data } = useQueryFetchMileageProductHistory();
+interface MileageListProps {
+  isAll: boolean;
+}
+
+export default function MileageWrap(props: MileageListProps): JSX.Element {
+  const { data, refetch } = useQueryFetchRandomMileageProduct();
+  const router = useRouter();
+
+  useEffect(() => {
+    refetch();
+  }, [router.asPath]);
 
   return (
-    <>
-      <S.Wrapper>
-        <S.Title>특별한 서비스들</S.Title>
-        <S.Container>
-          <S.ImageBox />
-          <S.Category>디자인</S.Category>
-          <S.TitleWrapper>
-            <S.PostTitle>제목</S.PostTitle>
-            <S.Icon icon={faBookmark} className="bookmark" />
-          </S.TitleWrapper>
-          <S.InfoBox>
-            <Tag data=""/>
-            <S.UserBox>
-              <S.Avatar
-                onError={e => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = fallback;
-                }}
-              />
-              <S.UserName>김우렬</S.UserName>
-            </S.UserBox>
-          </S.InfoBox>
-        </S.Container>
-      </S.Wrapper>
-    </>
+    <S.MileageWrap>
+      <S.MileageTitleBox>
+        <S.MileageTitle>특별한 서비스들</S.MileageTitle>
+        <S.MileageSubTitle>마일리지 전용 영역</S.MileageSubTitle>
+      </S.MileageTitleBox>
+      <S.MileageBox isAll={props.isAll}>
+        {data?.fetchRandomMileageProduct.map(el => (
+          <CardBox key={el.product_id} data={el} />
+        ))}
+      </S.MileageBox>
+    </S.MileageWrap>
   );
 }

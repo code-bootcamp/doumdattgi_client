@@ -49,6 +49,7 @@ export const Contents = styled.p<{
   data?: boolean;
 }>`
   line-height: 18px;
+  word-break: keep-all;
   width: calc(100% - 200px);
   font-size: ${(props: any) => (props.data ? "18px" : "16px")};
   color: ${(props: any) => (props.data ? "#111" : "#aaa")};
@@ -59,13 +60,17 @@ export const Contents = styled.p<{
 `;
 
 export const EditDetail = styled.input`
-  width: 570px;
+  width: calc(100% - 200px);
   height: 35px;
   padding-left: 5px;
   font-size: 18px;
   line-height: 18px;
   border: 2px solid #dbdbdb;
   border-radius: 6px;
+
+  ${mq[2]} {
+    width: calc(100% - 180px);
+  }
 `;
 
 export const PasswordEdit = styled.span`
@@ -95,7 +100,6 @@ export const EditBtnWrap = styled.div`
   margin-top: 60px;
 `;
 export const EditBtn = styled.button`
-  width: 165px;
   border: none;
   color: #fff;
   border-radius: 6px;
@@ -103,12 +107,12 @@ export const EditBtn = styled.button`
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
-  padding: 13px 0;
+  padding: 12px 40px;
   cursor: pointer;
 `;
 
 export const SaveBtn = styled.button`
-  width: 165px;
+  width: 50%;
   border: none;
   color: #fff;
   border-radius: 6px;
@@ -116,11 +120,11 @@ export const SaveBtn = styled.button`
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
-  padding: 13px 0;
+  padding: 12px 0;
 `;
 
 export const CancelBtn = styled.button`
-  width: 165px;
+  width: 50%;
   border: none;
   color: #fff;
   border-radius: 6px;
@@ -128,6 +132,6 @@ export const CancelBtn = styled.button`
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
-  margin-right: 14px;
-  padding: 13px 0;
+  margin-right: 10px;
+  padding: 12px 0;
 `;

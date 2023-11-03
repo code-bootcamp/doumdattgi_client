@@ -22,7 +22,7 @@ export const Container = styled.div`
     width: 100%;
     padding: 0 24px;
   }
-  ${mq[2]}{
+  ${mq[2]} {
     padding: 0 16px;
   }
 `;
@@ -36,10 +36,19 @@ export const LogoIcon = styled.img`
   display: block;
   width: 36px;
   height: 36px;
-`
+
+  ${mq[3]} {
+    width: 24px;
+    height: 24px;
+  }
+`;
 export const LogoTitle = styled.h1`
   font-size: 30px;
   line-height: 30px;
   font-weight: 600;
   margin-left: 5px;
+
+  ${mq[3]} {
+    font-size: 24px;
+  }
 `;

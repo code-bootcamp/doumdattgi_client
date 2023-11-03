@@ -1,6 +1,6 @@
 import Link from "next/link";
 import * as S from "./style";
-import { Select } from "antd";
+import { ConfigProvider, Select, Tabs } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faWonSign } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
@@ -8,11 +8,8 @@ import Tag from "../../../commons/tag/category";
 import StatusTag from "../../../commons/tag/status";
 import { useQueryFetchSellCategoryProducts } from "../../../commons/hooks/queries/useQueryFetchSellCategoryProducts";
 import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
-import { ChangeEvent, useEffect, useState } from "react";
-import {
-  CategoryObj,
-  CategoryObj2
-} from "../../../../commons/libraries/translate";
+import { useEffect, useState } from "react";
+import { CategoryObj2 } from "../../../../commons/libraries/translate";
 import { getDate2 } from "../../../../commons/libraries/getDate";
 import MetaTag from "../../../../commons/libraries/metaTag";
 import { useRouter } from "next/router";
@@ -32,10 +29,24 @@ const category = {
 
 export default function SeekList() {
   const [categoryTitle, setCategoryTitle] = useState("");
+  const [isRecent, setIsRecent] = useState(true);
   const { data, fetchMore, refetch } = useQueryFetchSellCategoryProducts(
     CategoryObj2[categoryTitle]
   );
   const { onClickMoveToPage } = useMoveToPage();
+
+  const RecentOrNot = (value: string) => {
+    if (value === "최신순") {
+      setIsRecent(true);
+    } else if (value === "과거순") {
+      setIsRecent(false);
+    }
+  };
+
+  // 카테고리 최신순, 과거순 정렬
+  const categoryList = !isRecent
+    ? data?.fetchSellCategoryProducts.slice().reverse() || []
+    : data?.fetchSellCategoryProducts || [];
 
   //  결제내역 refetch
   useEffect(() => {
@@ -81,6 +92,13 @@ export default function SeekList() {
       query: { data }
     });
   };
+  const clickCategory2 = (data: string) => {
+    setCategoryTitle(data);
+    router.push({
+      pathname: "/seek",
+      query: { data }
+    });
+  };
 
   return (
     <>
@@ -104,6 +122,26 @@ export default function SeekList() {
               </S.CreateLink>
             </Link>
           </S.Header>
+          <S.MobileCategoryWrap>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "#88b04b"
+                }
+              }}
+            >
+              <Tabs
+                activeKey={
+                  router.query.data ? `${router.query.data}` : category.list[0]
+                }
+                items={category.list.map(el => ({
+                  key: el,
+                  label: el
+                }))}
+                onChange={clickCategory2}
+              />
+            </ConfigProvider>
+          </S.MobileCategoryWrap>
           <S.Body>
             <S.CategoryWrap>
               <S.Category>카테고리</S.Category>
@@ -134,22 +172,28 @@ export default function SeekList() {
                   bordered={false}
                   options={[
                     { value: "최신순", label: "최신순" },
-                    { value: "인기순", label: "인기순" },
                     { value: "과거순", label: "과거순" }
                   ]}
+                  onChange={RecentOrNot}
                 />
               </S.LengthBox>
               <S.ContentsBox loadMore={onLoadMore} pageStart={0} hasMore={true}>
-                {data?.fetchSellCategoryProducts?.map(el => (
-                  <S.ListBox
-                    onClick={onClickMoveToPage(
-                      `/seek/${el?.product_product_id}`
-                    )}
-                  >
+                {categoryList?.map(el => (
+                  <S.ListBox>
                     <StatusTag status={true} />
-                    <S.ListTitle>{el?.product_product_title}</S.ListTitle>
+                    <S.ListTitle
+                      onClick={onClickMoveToPage(
+                        `/seek/${el?.product_product_id}`
+                      )}
+                    >
+                      {el?.product_product_title}
+                    </S.ListTitle>
                     <S.FlexBox>
-                      <S.RequireBox>
+                      <S.RequireBox
+                        onClick={onClickMoveToPage(
+                          `/seek/${el?.product_product_id}`
+                        )}
+                      >
                         <S.Icon icon={faWonSign} />
                         <S.DetailTitle>가능 금액</S.DetailTitle>
                         <S.DetailText>
@@ -162,7 +206,11 @@ export default function SeekList() {
                         <S.DetailText>{el?.product_product_date}</S.DetailText>
                       </S.RequireBox>
                     </S.FlexBox>
-                    <S.TagBox>
+                    <S.TagBox
+                      onClick={onClickMoveToPage(
+                        `/seek/${el?.product_product_id}`
+                      )}
+                    >
                       <Tag data={el?.product_product_category} />
                       <S.Tag>
                         <Tag data={el?.product_product_sub_category} />

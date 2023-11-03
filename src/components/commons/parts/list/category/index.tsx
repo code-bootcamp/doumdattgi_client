@@ -14,7 +14,7 @@ export default function SideCategory() {
     : router.query.data || "";
 
   const isAllList = router.asPath.includes("all");
-  //
+
   const IT = [
     "UX기획",
     "웹",
@@ -90,7 +90,7 @@ export default function SideCategory() {
         <S.Title>{CategoryObj[BigCategory]}</S.Title>
         <S.DivideLine />
         <S.Ad>
-          <S.AdImg src="/ad3 1.png" />
+          <S.AdImg src="/ad3.png" />
         </S.Ad>
         {!isAllList && (
           <S.SubCategoryBox>
@@ -107,32 +107,24 @@ export default function SideCategory() {
       <S.NavWrapper>
         <S.NavTitle>{CategoryObj[BigCategory]}</S.NavTitle>
         <S.DivideLine />
-        {/* <S.NavBox>
-          {filtering[BigCategory]?.map(el => (
-            <S.NavList key={uuidv4()} tab={currentTab}>
-              <S.NavItem
-                href="/"
-                onClick={clickSubCategory(el)}
-              >{`${el}`}</S.NavItem>
-            </S.NavList>
-          ))}
-        </S.NavBox> */}
         <ConfigProvider
           theme={{
             token: {
-              colorPrimary: "#88b04b",
-              
+              colorPrimary: "#88b04b"
             }
           }}
         >
-          <Tabs
-            defaultActiveKey="1"
-            items={items}
-            onChange={clickSubCategory2}
-          />
+          {items && (
+            <Tabs
+              activeKey={
+                router.query.sub ? `${router.query.sub}` : items[0].key
+              }
+              items={items}
+              onChange={clickSubCategory2}
+            />
+          )}
         </ConfigProvider>
       </S.NavWrapper>
-      {/* <S.NavDivideLine /> */}
     </>
   );
 }
