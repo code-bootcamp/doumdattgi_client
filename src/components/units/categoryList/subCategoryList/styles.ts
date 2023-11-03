@@ -18,4 +18,7 @@ export const Container = styled.div`
   ${mq[2]} {
     padding: 0 16px;
   }
+  ${mq[3]} {
+    flex-direction: column;
+  }
 `;

@@ -7,7 +7,8 @@ interface IPropsSelect {
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin: 50px auto 0;
   min-height: 600px;
 `;
@@ -24,32 +25,49 @@ export const Container = styled.div`
   }
 `;
 
-export const PageTitle = styled.div`
-  font-size: 36px;
-  font-weight: 600;
+export const PageTitle = styled.h1`
+  font-size: 30px;
 `;
 
-export const TabBox = styled.div`
+export const TabBox = styled.ul`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  text-align: center;
+  margin: 30px auto;
+
+  ${mq[3]} {
+    width: 100%;
+    white-space: nowrap;
+    overflow-y: inherit;
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    margin: 30px auto;
+  }
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;
 
-export const PageTab = styled.button`
-  width: 120px;
-  height: 50px;
-  color: #aaaaaa;
-  font-size: 20px;
-  border: none;
-  background-color: white;
-  margin: 30px 0;
-  cursor: pointer;
-  :hover {
-    color: black;
-  }
+export const PageTab = styled.li`
+  position: relative;
+  font-size: 18px;
+  padding: 0 20px;
+  height: 40px;
+  display: flex;
+  align-items: center;
   color: ${(props: IPropsSelect) => (props.isStatus ? "black" : "#AAAAAA")};
-  border-bottom: 2px solid ${props => (props.isStatus ? "black" : "white")};
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: ${props => (props.isStatus ? "black" : "white")};
+  }
 `;
 
 export const List = styled.div`

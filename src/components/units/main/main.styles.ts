@@ -62,6 +62,7 @@ export const CardboxWrap = styled.div`
     grid-template-columns: 1fr 1fr;
   }
   &.newbie {
+    gap: 10px 16px;
     grid-template-columns: 1fr 1fr 1fr;
   }
 
@@ -70,10 +71,16 @@ export const CardboxWrap = styled.div`
   }
   ${mq[1]} {
     grid-template-columns: 1fr 1fr 1fr;
+    &.newbie {
+      gap: 10px 12px;
+    }
   }
   ${mq[2]} {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
+    &.newbie {
+      gap: 10px 10px;
+    }
   }
   ${mq[3]} {
     grid-template-columns: 1fr 1fr;
@@ -82,8 +89,11 @@ export const CardboxWrap = styled.div`
       grid-template-columns: 1fr;
     }
     &.newbie {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
     }
+  }
+  ${mq[4]} {
+    grid-template-columns: 1fr;
   }
 `;
 

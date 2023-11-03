@@ -5,17 +5,17 @@ export const Wrapper = styled.aside`
   width: 200px;
   font-size: 22px;
 
-  ${mq[0]}{
+  ${mq[0]} {
     width: 190px;
   }
-  ${mq[1]}{
+  ${mq[1]} {
     width: 180px;
   }
-  ${mq[2]}{
+  ${mq[2]} {
     width: 160px;
   }
-  ${mq[3]}{
-    width: 180px;
+  ${mq[3]} {
+    display: none;
   }
 `;
 
@@ -58,7 +58,7 @@ export const SubCategory = styled.li`
   cursor: pointer;
   margin-top: 8px;
 `;
-export const SubCategoryItem = styled.span`
+export const SubCategoryItem = styled.a`
   display: block;
   font-size: 14px;
   font-weight: 600;
@@ -69,3 +69,57 @@ export const SubCategoryItem = styled.span`
     background: #f7f7f7;
   }
 `;
+
+export const NavWrapper = styled.div`
+  display: none;
+
+  ${mq[3]} {
+    display: block;
+  }
+`;
+export const NavTitle = styled.h2`
+  font-size: 22px;
+  line-height: 22px;
+  font-weight: 500;
+  padding-bottom: 20px;
+`;
+export const NavBox = styled.ul`
+  width: 100%;
+  white-space: nowrap;
+  overflow-y: inherit;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  background-color: #fff;
+`;
+export const NavDivideLine = styled.div`
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #e5e5e5;
+`;
+export const NavList = styled.li<{
+  tab: string;
+  el: string;
+}>`
+  position: relative;
+  padding: 0 12px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+
+  ${props => (props.tab === props.el ? "" : "")}
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: ${props => (props.tab ? "3px" : "")};
+    width: 100%;
+    background-color: #88b04b;
+  }
+`;
+export const NavItem = styled.a`
+  display: block;
+  line-height: 50px;
+`

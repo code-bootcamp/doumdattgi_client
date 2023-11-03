@@ -1,14 +1,11 @@
 import dynamic from "next/dynamic";
-import ButtonHeight70px from "../../commons/buttons/ButtonHeight70px";
-import InputHeight50px from "../../commons/inputs/InputHeight50px";
 import * as S from "./styles";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useRequest } from "../../commons/hooks/custom/useSendRequest/index";
 import { useForm } from "react-hook-form";
-// import { schemaCreateRequest } from "../../../commons/libraries/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ChangeEvent, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { EditorInstance, EditorInstance2 } from "./index.types";
 import ButtonHeight50px from "../../commons/buttons/ButtonHeight50px";
 import { useQueryFetchUserPaymentInfo } from "../../commons/hooks/queries/useQueryFetchUserPaymentInfo";
@@ -21,13 +18,6 @@ import { useRecoilState } from "recoil";
 import { minAmountState } from "../../../commons/stores";
 import { useSchema } from "../../../commons/libraries/schema";
 import MetaTag from "../../../commons/libraries/metaTag";
-
-const CountUp = dynamic(
-  async () => await import("../../commons/parts/countUp/intex"),
-  {
-    ssr: false
-  }
-);
 
 const Editor = dynamic(async () => await import("../../commons/parts/editor"), {
   ssr: false

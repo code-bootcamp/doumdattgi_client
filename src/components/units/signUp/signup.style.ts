@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   padding: 80px 0;
 
   ${mq[3]} {
-    padding: 80px 16px;
+    padding: 50px 16px;
   }
 `;
 export const Container = styled.div`
@@ -23,6 +23,7 @@ export const Container = styled.div`
 
   ${mq[3]} {
     width: 100%;
+    padding: 80px 60px;
   }
 `;
 
@@ -68,6 +69,8 @@ export const AuthBtn = styled.button<{
 
 export const SubTitleDetail = styled.div`
   color: #818a91;
+  word-break: keep-all;
+  line-height: 18px;
   font-size: 14px;
   margin-bottom: 16px;
 `;

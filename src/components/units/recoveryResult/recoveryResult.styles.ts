@@ -26,6 +26,7 @@ export const Container = styled.div`
 
   ${mq[3]} {
     width: 100%;
+    padding: 80px 60px;
   }
 `;
 
@@ -41,7 +42,7 @@ export const SubTitle = styled.span`
 `;
 
 export const SignupBox = styled.div`
-  margin-top: 30px;
+  margin-top: 40px;
   position: relative;
 `;
 

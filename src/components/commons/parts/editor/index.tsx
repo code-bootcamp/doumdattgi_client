@@ -7,19 +7,9 @@ import "tui-editor-plugin-font-size/dist/tui-editor-plugin-font-size.css";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import { useMutationUploadFile } from "../../hooks/mutations/useMutationUploadFile";
-import { useEffect } from "react";
-import { useState } from "react";
 
 function ToastEditor(props: any) {
   const [uploadFile] = useMutationUploadFile();
-
-  // useEffect(() => {
-  //   // 1. DB에서 가져온 HTML이라고 가정
-  //   const htmlString = props.data
-
-  //   // 2. Editor DOM 내용에 HTML 주입
-  //   props.editorRef.current?.getInstance().setHTML(htmlString);
-  // }, [props.data]);
 
   return (
     <>

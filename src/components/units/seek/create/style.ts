@@ -74,8 +74,8 @@ export const SubTitle = styled.h2`
   margin-bottom: 14px;
 `;
 export const Title = styled.h1`
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
 `;
 export const Body = styled.div``;
 
@@ -83,13 +83,16 @@ export const Body_Top = styled.div`
   margin-top: 30px;
   border-top: 2px solid #88b04b;
   border-bottom: 1px solid #e5e7eb;
+
+  ${mq[3]}{
+    margin-top: 16px;
+  }
 `;
 
 export const InputWrap = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-between; */
   position: relative;
   margin-top: 40px;
   &:last-of-type {
@@ -119,7 +122,6 @@ export const ThemeBox = styled.div`
   width: 240px;
 `;
 export const Theme = styled.span`
-  /* width: 280px; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -272,7 +274,7 @@ export const Body_Bottom = styled.div`
 export const BtnBox = styled.div`
   width: 50%;
   &:last-of-type {
-    padding-left: 14px;
+    padding-left: 10px;
   }
 `;
 

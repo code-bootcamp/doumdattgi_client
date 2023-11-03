@@ -1,14 +1,19 @@
 import { Modal } from "antd";
+import { Dispatch, SetStateAction } from "react";
 import DaumPostcodeEmbed from "react-daum-postcode";
 
 interface Address {
-  isModalOpen: JSX.Element;
-  setIsModalOpen: any;
-  address: string;
-  zonecode: string;
+  isModalOpen?: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+  address?: string;
+  zonecode?: string;
+  onCompleteAddressSearch?: (data: {
+    zonecode: string;
+    address: string;
+  }) => void;
 }
 
-export default function AddressModal(props: any) {
+export default function AddressModal(props: Address) {
   const handleOk = () => {
     props.setIsModalOpen(false);
   };
@@ -16,12 +21,6 @@ export default function AddressModal(props: any) {
   const handleCancel = () => {
     props.setIsModalOpen(false);
   };
-
-  // const onCompleteAddressSearch = (data: Address): void => {
-  //   // props.setAddress(data.address);
-  //   // props.setZipcode(data.zonecode);
-  //   props.setIsModalOpen(prev => !prev);
-  // };
 
   return (
     <>

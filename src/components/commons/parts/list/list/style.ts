@@ -9,6 +9,7 @@ export const Container = styled.main<{
   width: ${props => (props.isAll ? "100%" : "calc(100% - 200px)")};
 
   ${mq[0]} {
+    width: ${props => (props.isAll ? "100%" : "calc(100% - 190px)")};
     padding: 0;
     padding-left: ${props => (props.isAll ? "0px" : "20px")};
   }
@@ -19,7 +20,9 @@ export const Container = styled.main<{
     width: ${props => (props.isAll ? "100%" : "calc(100% - 160px)")};
   }
   ${mq[3]} {
-    width: ${props => (props.isAll ? "100%" : "calc(100% - 180px)")};
+    width: 100%;
+    padding-left: 0;
+    margin-top: 24px;
   }
 `;
 
@@ -69,7 +72,13 @@ export const ContentsBox = styled.section<{
     grid-template-columns: 1fr 1fr;
   }
   ${mq[3]} {
-    grid-template-columns: ${props => (props.isAll ? "1fr 1fr" : "1fr")};
+    grid-template-columns: 1fr 1fr;
+  }
+  ${mq[4]} {
+    grid-template-columns: 1fr;
+  }
+  ${mq[6]} {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 
@@ -141,54 +150,4 @@ export const UserName = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-export const MileageWrap = styled.section`
-  padding: 30px 24px;
-  background: #fafafa;
-  margin-bottom: 60px;
-`;
-export const MileageTitleBox = styled.div`
-  display: flex;
-  align-items: end;
-
-  ${mq[3]} {
-    flex-direction: column;
-    align-items: baseline;
-  }
-`;
-export const MileageTitle = styled.h3`
-  font-size: 20px;
-  font-weight: 600;
-`;
-export const MileageSubTitle = styled.span`
-  display: block;
-  margin-left: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #888;
-
-  ${mq[3]} {
-    margin-top: 6px;
-  }
-`;
-export const MileageBox = styled.div<{
-  isAll: boolean;
-  isRandom?: boolean;
-}>`
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px 20px;
-
-  ${mq[1]} {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-  }
-  ${mq[2]} {
-    grid-template-columns: 1fr 1fr;
-  }
-  ${mq[3]} {
-    grid-template-columns: ${props => (props.isAll ? "1fr 1fr" : "1fr")};
-  }
 `;

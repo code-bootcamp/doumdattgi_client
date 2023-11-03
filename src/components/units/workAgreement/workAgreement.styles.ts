@@ -112,6 +112,9 @@ export const ServiceWrap = styled.div`
     flex-direction: column;
     align-items: flex-start;
   }
+  ${mq[4]}{
+    padding: 0;
+  }
 `;
 export const ServiceTitle = styled.h2`
   font-size: 24px;
@@ -278,6 +281,12 @@ export const TradeBox = styled.div`
   ${mq[3]} {
     padding: 40px;
   }
+  ${mq[4]} {
+    padding: 24px;
+    &:last-of-type {
+    margin-left: 12px;
+  }
+  }
 `;
 export const TradeTitle = styled.span`
   display: block;
@@ -312,5 +321,8 @@ export const TradeIcon = styled.img`
 
   ${mq[3]} {
     width: 100px;
+  }
+  ${mq[4]} {
+    width: 80px;
   }
 `;

@@ -3,17 +3,18 @@ import * as S from "./index.styles";
 import useMoveToSubCategory from "../../../hooks/custom/usemoveSubcategory";
 import { v4 as uuidv4 } from "uuid";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
+import { ConfigProvider, Tabs } from "antd";
 
 export default function SideCategory() {
   const router = useRouter();
-  const { clickSubCategory } = useMoveToSubCategory();
+  const { clickSubCategory, clickSubCategory2 } = useMoveToSubCategory();
 
   const BigCategory = Array.isArray(router.query.data)
     ? router.query.data[0]
     : router.query.data || "";
 
   const isAllList = router.asPath.includes("all");
-  //
+
   const IT = [
     "UX기획",
     "웹",
@@ -78,22 +79,52 @@ export default function SideCategory() {
     DOCUMENT: DOCUMENT
   };
 
+  const items = filtering[BigCategory]?.map(el => ({
+    key: el,
+    label: el
+  }));
+
   return (
-    <S.Wrapper>
-      <S.Title>{CategoryObj[BigCategory]}</S.Title>
-      <S.DivideLine />
-      <S.Ad>
-        <S.AdImg src="/ad3 1.png" />
-      </S.Ad>
-      {!isAllList && (
-        <S.SubCategoryBox>
-          {filtering[BigCategory]?.map(el => (
-            <S.SubCategory key={uuidv4()} onClick={clickSubCategory(el)}>
-              <S.SubCategoryItem>{`${el}`}</S.SubCategoryItem>
-            </S.SubCategory>
-          ))}
-        </S.SubCategoryBox>
-      )}
-    </S.Wrapper>
+    <>
+      <S.Wrapper>
+        <S.Title>{CategoryObj[BigCategory]}</S.Title>
+        <S.DivideLine />
+        <S.Ad>
+          <S.AdImg src="/ad3.png" />
+        </S.Ad>
+        {!isAllList && (
+          <S.SubCategoryBox>
+            {filtering[BigCategory]?.map(el => (
+              <S.SubCategory key={uuidv4()}>
+                <S.SubCategoryItem
+                  onClick={clickSubCategory(el)}
+                >{`${el}`}</S.SubCategoryItem>
+              </S.SubCategory>
+            ))}
+          </S.SubCategoryBox>
+        )}
+      </S.Wrapper>
+      <S.NavWrapper>
+        <S.NavTitle>{CategoryObj[BigCategory]}</S.NavTitle>
+        <S.DivideLine />
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#88b04b"
+            }
+          }}
+        >
+          {items && (
+            <Tabs
+              activeKey={
+                router.query.sub ? `${router.query.sub}` : items[0].key
+              }
+              items={items}
+              onChange={clickSubCategory2}
+            />
+          )}
+        </ConfigProvider>
+      </S.NavWrapper>
+    </>
   );
 }

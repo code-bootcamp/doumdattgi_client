@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { CategoryObj, Obj } from "../../../commons/libraries/translate";
 import { useRouter } from "next/router";
-import CardBox from "../../commons/parts/cardBox/col4";
+import CardBox from "../../commons/parts/cardBox/card";
 import { Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -45,8 +45,6 @@ export default function SearchedPage() {
   const popularList = [...(data?.fetchSearchProduct ?? [])].sort(
     (a, b) => b.pick_count - a.pick_count
   );
-
-  console.log(categoryList)
 
   const onLoadMore = () => {
     if (data === undefined) return;
