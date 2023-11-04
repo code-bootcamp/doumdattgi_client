@@ -18,7 +18,6 @@ export default function CardBox(props: IProps) {
         <S.Thumbnail
           src={`${props.data?.images[0].image_url}`}
           width={"100%"}
-          height={150}
           fallback={fallback}
           preview={false}
           onClick={onClickMoveToPage(`/${props.data?.product_id}`)}

@@ -70,9 +70,6 @@ export const ContentsBox = styled.section`
   ${mq[4]} {
     grid-template-columns: 1fr;
   }
-  ${mq[6]} {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 `;
 
 export const Contents = styled.div`

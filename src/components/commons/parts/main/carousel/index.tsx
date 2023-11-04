@@ -8,7 +8,7 @@ const StyledSlider = styled(SliderComponent)`
   .slick-list {
     height: 360px;
 
-    ${mq[3]}{
+    ${mq[7]}{
       height: auto;
     }
   }
@@ -96,14 +96,14 @@ const StyledSlider = styled(SliderComponent)`
 `;
 
 const FullBanner = styled.div`
-  ${mq[3]} {
+  ${mq[7]} {
     display: none;
   }
 `;
 const MobileBanner = styled.div`
   display: none;
 
-  ${mq[3]} {
+  ${mq[7]} {
     display: block;
   }
 `;

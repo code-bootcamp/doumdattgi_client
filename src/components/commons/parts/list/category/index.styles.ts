@@ -33,17 +33,10 @@ export const DivideLine = styled.div`
 export const Ad = styled.div`
   margin-top: 20px;
   margin-bottom: 10px;
-  height: 70px;
   background-color: #ccc;
   border-radius: 6px;
   overflow: hidden;
-
-  ${mq[0]} {
-    height: 60px;
-  }
-  ${mq[2]} {
-    height: 60px;
-  }
+  aspect-ratio: 5 / 2;
 `;
 
 export const AdImg = styled.img`
