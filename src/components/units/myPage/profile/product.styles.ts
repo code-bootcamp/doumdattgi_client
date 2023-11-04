@@ -38,7 +38,8 @@ export const WrapperRight = styled.div`
 
   ${mq[1]} {
     height: auto;
-    min-height: 400px;
+    min-height: 600px;
+    padding-right: 0;
   }
 `;
 
@@ -72,7 +73,6 @@ export const RightListBox = styled.div<{
 }>`
   display: flex;
   align-items: center;
-  cursor: pointer;
   margin-bottom: ${props => (!props.isSell ? "12px" : "24px")};
 
   ${mq[2]} {
@@ -88,27 +88,67 @@ export const RightListBox = styled.div<{
 export const RightDetailBox = styled.div<{
   isSell: boolean;
 }>`
-  width: ${props => (!props.isSell ? "100%" : "calc(100% - 220px)")};
+  width: ${props => (!props.isSell ? "100%" : "70%")};
   padding: ${props => (!props.isSell ? "16px" : "0 0 0 16px")};
   border: ${props => (!props.isSell ? "1px solid #d9d9d9" : "none")};
   border-radius: 6px;
 
+  ${mq[0]} {
+    width: ${props => (!props.isSell ? "100%" : "65%")};
+  }
+  ${mq[1]} {
+    width: ${props => (!props.isSell ? "100%" : "70%")};
+  }
+  ${mq[2]} {
+    width: ${props => (!props.isSell ? "100%" : "65%")};
+  }
+  ${mq[3]} {
+    width: ${props => (!props.isSell ? "100%" : "60%")};
+  }
   ${mq[4]} {
     width: 100%;
-    padding: ${props => (!props.isSell ? "16px" : "0")};
+    padding: ${props => (!props.isSell ? "16px" : "0 16px")};
+  }
+`;
+export const ListImageBox = styled.div`
+  overflow: hidden;
+  width: 30%;
+
+  ${mq[0]} {
+    width: 35%;
+  }
+  ${mq[1]} {
+    width: 30%;
+  }
+  ${mq[2]} {
+    width: 35%;
+  }
+  ${mq[3]} {
+    width: 40%;
+  }
+  ${mq[4]} {
+    width: 100%;
+    margin-bottom: 12px;
   }
 `;
 
 export const ListImage = styled.img`
-  width: 220px;
-  height: 150px;
+  cursor: pointer;
+  width: 100%;
+  min-height: 140px;
+  display: block;
   border: 1px solid #e0e1ea;
   border-radius: 3px;
+  aspect-ratio: 4 / 3;
+
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
 
   ${mq[4]} {
     width: 100%;
     height: auto;
-    margin-bottom: 12px;
   }
 `;
 
@@ -122,6 +162,11 @@ export const ListTitle = styled.div`
   word-break: keep-all;
   line-height: 22px;
   margin-bottom: 16px;
+  cursor: pointer;
+
+  ${mq[3]} {
+    font-size: 16px;
+  }
 `;
 
 export const ListDetail = styled.span`
@@ -138,6 +183,7 @@ export const ListDetail = styled.span`
 
 export const TagBox = styled.div`
   display: flex;
+  cursor: pointer;
   & div:last-of-type {
     margin-left: 6px;
   }
@@ -150,7 +196,7 @@ export const DivideLine = styled.div<{
   isSell: boolean;
 }>`
   border-top: 1px solid #d9d9d9;
-  margin: 17px 0px;
+  margin: 16px 0px;
   display: ${props => (!props.isSell ? "none" : "block")};
 `;
 
@@ -159,6 +205,7 @@ export const Remarks = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 `;
 
 export const None = styled.div`

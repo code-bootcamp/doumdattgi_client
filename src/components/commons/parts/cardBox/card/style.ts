@@ -33,9 +33,9 @@ export const ImageBox = styled.div`
   cursor: pointer;
 `;
 export const Thumbnail = styled(Image)`
-  transition: all 0.2s ease-in-out;
   max-height: 200px;
   aspect-ratio: 4 / 3;
+  transition: all 0.2s ease-in-out;
   &:hover {
     transform: scale(1.2);
   }

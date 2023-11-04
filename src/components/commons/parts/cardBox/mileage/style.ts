@@ -20,6 +20,7 @@ export const ImageBox = styled.div`
 `;
 export const Thumbnail = styled(Image)`
   transition: all 0.2s ease-in-out;
+  aspect-ratio: 4 / 3;
   &:hover {
     transform: scale(1.2);
   }

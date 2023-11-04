@@ -121,7 +121,7 @@ export const Coupon = styled.button<CouponProps>`
 
 export const CouponImageBox = styled.div`
   width: 100%;
-  height: 252px;
+  aspect-ratio: 1 / 1;
   background-color: #f4f4f5;
   border-radius: 6px 6px 0px 0px;
   display: flex;
@@ -135,7 +135,6 @@ export const CouponImage = styled.img`
 
 export const CouponDetailWrapper = styled.div`
   width: 100%;
-  height: calc(100% - 252px);
   padding: 19px 20px;
   display: flex;
   flex-direction: column;
@@ -235,7 +234,6 @@ export const BodyPoint = styled.p`
 // mileage list page
 
 export const Wrapper2 = styled.div`
-  /* width: 1200px; */
   display: flex;
   margin: 0px auto;
   justify-content: center;
@@ -301,17 +299,36 @@ export const CreateIcon = styled.img`
 export const RightListBox = styled.div`
   width: 100%;
   display: flex;
-  padding-bottom: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+
+  ${mq[2]} {
+    margin-bottom: 16px;
+  }
+  ${mq[4]} {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
 `;
 
 export const RightDetailBox = styled.div`
-  width: calc(100% - 250px);
+  width: 70%;
   padding-left: 16px;
+
+  ${mq[2]} {
+    width: 60%;
+  }
+  ${mq[3]} {
+    width: 60%;
+  }
+  ${mq[4]} {
+    width: 100%;
+    padding: 0 16px;
+  }
 `;
 
-export const DetailContents = styled.div`
-  padding-top: 10px;
-`;
+export const DetailContents = styled.div``;
 
 export const MileageDay = styled.div`
   position: absolute;
@@ -321,7 +338,7 @@ export const MileageDay = styled.div`
 `;
 
 export const Day = styled.span`
-  font-size: 30px;
+  font-size: 24px;
   padding: 3px 6px;
   color: #fff;
   background-color: #88b04b;
@@ -337,25 +354,49 @@ export const Time = styled.span`
 
 export const ListImageBox = styled.div`
   position: relative;
+  overflow: hidden;
+  width: 30%;
 
   &::after {
     display: block;
     content: "";
-    width: 250px;
-    height: 170px;
+    width: 100%;
+    aspect-ratio: 4 / 3;
     background-color: rgba(0, 0, 0, 0.3);
     position: absolute;
     top: 0;
-    border-radius: 6px;
+    border-radius: 3px;
+  }
+
+  ${mq[2]} {
+    width: 40%;
+  }
+  ${mq[3]} {
+    width: 40%;
+  }
+  ${mq[4]} {
+    width: 100%;
+    margin-bottom: 12px;
   }
 `;
 
 export const ListImage = styled.img`
-  width: 250px;
-  height: 170px;
-  border: 1px solid #e0e1ea;
-  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
   display: block;
+  border: 1px solid #e0e1ea;
+  border-radius: 3px;
+  aspect-ratio: 4 / 3;
+
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  ${mq[4]} {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const ListCategory = styled.div`
@@ -364,10 +405,15 @@ export const ListCategory = styled.div`
 `;
 
 export const ListTitle = styled.div`
-  width: 440px;
   font-size: 18px;
   word-break: keep-all;
-  margin-bottom: 14px;
+  line-height: 22px;
+  margin-bottom: 16px;
+  cursor: pointer;
+
+  ${mq[3]} {
+    font-size: 16px;
+  }
 `;
 
 export const ListDetail = styled.span`
@@ -382,18 +428,24 @@ export const ListDetail = styled.span`
   margin-right: 5px;
 `;
 
+export const TagBox = styled.div`
+  display: flex;
+  & div:last-of-type {
+    margin-left: 6px;
+  }
+`;
+
 export const DivideLine = styled.div`
   border-top: 1px solid #d9d9d9;
   margin: 16px 0px;
 `;
 
 export const Remarks = styled.div`
-  width: 440px;
-  /* height: 36px; */
   color: #888888;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 `;
 
 export const None = styled.div`

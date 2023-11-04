@@ -44,6 +44,7 @@ export const Title = styled.p`
   color: #111;
   font-size: 18px;
   font-weight: 600;
+  word-break: keep-all;
 `;
 export const LinkWrap = styled.div`
   display: flex;
@@ -73,6 +74,7 @@ export const CloseText = styled.p`
   cursor: pointer;
   font-size: 14px;
   color: #111;
+  word-break: keep-all;
 `;
 export const CloseIcon = styled(FontAwesomeIcon)`
   padding: 8px;
