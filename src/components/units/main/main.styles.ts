@@ -92,9 +92,9 @@ export const CardboxWrap = styled.div`
       grid-template-columns: 1fr 1fr;
     }
   }
-  ${mq[4]} {
+  /* ${mq[4]} {
     grid-template-columns: 1fr;
-  }
+  } */
 `;
 
 export const AdBar = styled.div`
