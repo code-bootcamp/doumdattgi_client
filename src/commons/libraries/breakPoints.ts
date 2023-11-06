@@ -6,4 +6,4 @@ export const mq = breakpoints.map(
   bp => `@media screen and (max-width: ${bp}px)`
 );
 // 로그인 페이지 높이 제한
-export const mq2 = `@media screen and (max-height: 765px)`;
+export const mq2 = `@media screen and (max-height: 800px)`;
