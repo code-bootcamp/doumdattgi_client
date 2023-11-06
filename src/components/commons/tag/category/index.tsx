@@ -27,6 +27,7 @@ const Text = styled.span`
   font-size: 0.88em;
   font-weight: 600;
   display: block;
+  white-space: nowrap;
 `;
 // for subcategory overflow
 const Text2 = styled.span`
