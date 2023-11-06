@@ -14,23 +14,21 @@ export const Wrapper = styled.div`
   }
 `;
 export const Container = styled.div`
-  width: 520px;
+  width: 400px;
   border: none;
-  padding: 80px;
+  padding: 60px;
   border-radius: 20px;
   background-color: #fff;
   border: 1px solid #efefef;
 
-  ${mq[3]} {
-    width: 100%;
-    padding: 80px 60px;
+  ${mq[4]} {
+    padding: 50px 60px;
   }
 `;
 
 export const Title = styled.h1`
   font-size: 36px;
   margin-bottom: 30px;
-  font-weight: 600;
 `;
 
 export const SignupWrap = styled.div`

@@ -16,24 +16,21 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 520px;
+  width: 400px;
   border: none;
-  padding: 80px;
+  padding: 60px;
   border-radius: 20px;
   background-color: #fff;
-  /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); */
   border: 1px solid #efefef;
 
-  ${mq[3]} {
-    width: 100%;
-    padding: 80px 60px;
+  ${mq[4]} {
+    padding: 50px 60px;
   }
 `;
 
 export const Title = styled.h1`
   font-size: 36px;
   margin-bottom: 50px;
-  font-weight: 600;
 `;
 
 export const SubTitle = styled.span`
