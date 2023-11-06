@@ -30,6 +30,7 @@ export const Container = styled.div`
 
   ${mq[4]} {
     width: 100%;
+    padding: 50px 60px;
   }
 `;
 

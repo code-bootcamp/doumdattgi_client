@@ -190,6 +190,8 @@ export const DetailContentsWrap = styled.section`
 
   ${mq[1]} {
     width: 100%;
+    margin-bottom: 50px;
+    min-height: 100px;
   }
 `;
 export const DetailTitle = styled.h3`
