@@ -73,20 +73,6 @@ export const ContentsBox = styled.div`
   ${mq[3]} {
     grid-template-columns: 1fr 1fr;
   }
-  /* ${mq[4]} {
-    grid-template-columns: 1fr;
-  } */
-`;
-
-export const Contents = styled.div`
-  width: 221px;
-  height: 300px;
-  border: 1px solid #bec3c7;
-  border-radius: 6px;
-  margin-bottom: 50px;
-  margin-left: 17px;
-
-  cursor: pointer;
 `;
 
 export const ImageBox = styled.img`

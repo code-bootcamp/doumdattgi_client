@@ -44,8 +44,8 @@ export default function CardBox(props: IProps) {
           </S.TitleBox>
         </S.TopSection>
         <S.InfoBox>
-          <Tag data={CategoryObj[props.data?.product_category ?? ""]} />
           <S.TagBox>
+            <Tag data={CategoryObj[props.data?.product_category ?? ""]} />
             <Tag data={props.data?.product_sub_category ?? ""} />
           </S.TagBox>
         </S.InfoBox>
