@@ -26,15 +26,10 @@ export const Thumbnail = styled(Image)`
   }
 `;
 export const Container = styled.div`
-  height: 130px;
   padding-top: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  ${mq[3]} {
-    padding: 10px;
-  }
 `;
 export const TopSection = styled.div``;
 export const CategoryBox = styled.div`
@@ -68,7 +63,7 @@ export const TitleBox = styled.div`
 `;
 export const Title = styled.h2`
   display: -webkit-box;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 600;
   line-height: 18px;
   overflow: hidden;
@@ -81,10 +76,14 @@ export const Title = styled.h2`
 export const InfoBox = styled.div`
   display: flex;
   align-items: flex-end;
-  margin-top: 12px;
+  margin-top: 8px;
 `;
 export const TagBox = styled.div`
-  margin-left: 6px;
+  display: flex;
+  width: 100%;
+  & div:last-of-type {
+    margin-left: 4px;
+  }
 `;
 export const UserBox = styled.div`
   display: flex;

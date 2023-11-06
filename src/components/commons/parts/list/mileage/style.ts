@@ -6,6 +6,10 @@ export const MileageWrap = styled.section`
   padding: 30px 24px;
   background: #fafafa;
   margin-bottom: 60px;
+
+  ${mq[3]} {
+    padding: 24px 16px;
+  }
 `;
 export const MileageTitleBox = styled.div`
   display: flex;
@@ -50,7 +54,4 @@ export const MileageBox = styled.div<{
   ${mq[3]} {
     grid-template-columns: 1fr 1fr;
   }
-  /* ${mq[4]} {
-    grid-template-columns: 1fr;
-  } */
 `;

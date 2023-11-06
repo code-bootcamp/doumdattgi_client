@@ -41,7 +41,6 @@ export const Thumbnail = styled(Image)`
   }
 `;
 export const Container = styled.div`
-  height: 130px;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -91,14 +90,19 @@ export const Title = styled.h2`
   text-overflow: ellipsis;
   -webkit-line-clamp: 2; /* 라인수 */
   -webkit-box-orient: vertical;
+  word-wrap: break-word;
 `;
 export const InfoBox = styled.div`
   display: flex;
-  margin-top: 6px;
+  margin-top: 8px;
   align-items: flex-end;
 `;
 export const TagBox = styled.div`
-  margin-left: 6px;
+  display: flex;
+  width: 100%;
+  & div:last-of-type {
+    margin-left: 4px;
+  }
 `;
 export const UserBox = styled.div`
   display: flex;
