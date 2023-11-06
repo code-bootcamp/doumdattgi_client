@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   ${mq2} {
     height: fit-content;
     align-items: baseline;
-    padding: 80px 0;
+    padding: 16px;
   }
 `;
 
