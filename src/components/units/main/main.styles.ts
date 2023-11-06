@@ -84,7 +84,6 @@ export const CardboxWrap = styled.div`
   }
   ${mq[3]} {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
     &.buy {
       grid-template-columns: 1fr;
     }
@@ -93,12 +92,17 @@ export const CardboxWrap = styled.div`
     }
   }
   ${mq[4]} {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    &.buy {
+      grid-template-columns: 1fr;
+    }
+    &.newbie {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 `;
 
 export const AdBar = styled.div`
-  /* height: 150px; */
   background-color: #ccc;
   margin-top: 100px;
   border-radius: 6px;

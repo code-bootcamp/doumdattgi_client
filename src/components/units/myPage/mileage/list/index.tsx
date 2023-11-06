@@ -80,11 +80,10 @@ export default function MileageList(): JSX.Element {
                   aa =>
                     aa.time > 0 &&
                     aa.Id === el.product_id && (
-                      <S.RightListBox
-                        key={aa.Id}
-                        onClick={onClickMoveToPage(`/${el.product_id}`)}
-                      >
-                        <S.ListImageBox>
+                      <S.RightListBox key={aa.Id}>
+                        <S.ListImageBox
+                          onClick={onClickMoveToPage(`/${el.product_id}`)}
+                        >
                           <>
                             <S.MileageDay>
                               <S.Day>
@@ -103,21 +102,21 @@ export default function MileageList(): JSX.Element {
                                 const target = e.target as HTMLImageElement;
                                 target.src = fallback;
                               }}
-                              src={
-                                el.images === undefined || el.images === null
-                                  ? ""
-                                  : el.images[0]?.image_url
-                              }
+                              src={el.images[0]?.image_url}
                             />
                           </>
                         </S.ListImageBox>
                         <S.RightDetailBox>
                           <S.DetailContents>
-                            <S.ListCategory>
-                              {CategoryObj[el.product_category]}
-                            </S.ListCategory>
-                            <S.ListTitle>{el.product_title}</S.ListTitle>
-                            <Tag data={el.product_workDay} />
+                            <S.ListTitle
+                              onClick={onClickMoveToPage(`/${el.product_id}`)}
+                            >
+                              {el.product_title}
+                            </S.ListTitle>
+                            <S.TagBox>
+                              <Tag data={CategoryObj[el.product_category]} />
+                              <Tag data={el.product_sub_category} />
+                            </S.TagBox>
                             <S.DivideLine />
                             <S.Remarks>{el.product_summary}</S.Remarks>
                           </S.DetailContents>

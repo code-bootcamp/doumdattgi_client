@@ -51,8 +51,14 @@ export const LengthBox = styled.div`
   align-items: center;
   margin-top: 24px;
 `;
+export const ContentsWrap = styled.section`
+  min-height: 400px;
 
-export const ContentsBox = styled.section`
+  ${mq[3]} {
+    min-height: 200px;
+  }
+`;
+export const ContentsBox = styled.div`
   display: grid;
   gap: 10px 10px;
   margin-top: 14px;
@@ -67,23 +73,6 @@ export const ContentsBox = styled.section`
   ${mq[3]} {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq[4]} {
-    grid-template-columns: 1fr;
-  }
-  ${mq[6]} {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-`;
-
-export const Contents = styled.div`
-  width: 221px;
-  height: 300px;
-  border: 1px solid #bec3c7;
-  border-radius: 6px;
-  margin-bottom: 50px;
-  margin-left: 17px;
-
-  cursor: pointer;
 `;
 
 export const ImageBox = styled.img`

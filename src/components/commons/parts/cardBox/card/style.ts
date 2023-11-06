@@ -33,15 +33,14 @@ export const ImageBox = styled.div`
   cursor: pointer;
 `;
 export const Thumbnail = styled(Image)`
-  transition: all 0.2s ease-in-out;
   max-height: 200px;
   aspect-ratio: 4 / 3;
+  transition: all 0.2s ease-in-out;
   &:hover {
     transform: scale(1.2);
   }
 `;
 export const Container = styled.div`
-  height: 130px;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -83,7 +82,7 @@ export const TitleBox = styled.div`
 `;
 export const Title = styled.h2`
   display: -webkit-box;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 600;
   line-height: 18px;
   overflow: hidden;
@@ -95,11 +94,15 @@ export const Title = styled.h2`
 `;
 export const InfoBox = styled.div`
   display: flex;
-  margin-top: 6px;
+  margin-top: 8px;
   align-items: flex-end;
 `;
 export const TagBox = styled.div`
-  margin-left: 6px;
+  display: flex;
+  width: 100%;
+  & div:last-of-type {
+    margin-left: 4px;
+  }
 `;
 export const UserBox = styled.div`
   display: flex;

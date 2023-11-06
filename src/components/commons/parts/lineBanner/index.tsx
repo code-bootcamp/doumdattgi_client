@@ -20,7 +20,6 @@ export default function LineBanner() {
     date.setDate(date.getDate() + days);
     return date;
   };
-  console.log(appCookies["BANNER_EXPIRES"]);
   const closeBannerUntilExpires = () => {
     if (isChecked) {
       if (!appCookies) return;
@@ -34,7 +33,6 @@ export default function LineBanner() {
 
   useEffect(() => {
     if (appCookies["BANNER_EXPIRES"]) return;
-    console.log(appCookies["BANNER_EXPIRES"]);
     setHasCookie(false);
   }, []);
 
