@@ -10,6 +10,7 @@ import { useMoveToPage } from "../../commons/hooks/custom/useMoveToPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import MetaTag from "../../../commons/libraries/metaTag";
+import { useEffect, useState } from "react";
 
 interface IFormData {
   email: string;
@@ -25,8 +26,20 @@ export default function Login(): JSX.Element {
     mode: "onChange"
   });
 
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const resizeListener = () => {
+      setInnerWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", resizeListener);
+  });
+
+  console.log("innerWidth", innerWidth);
+
   return (
     <>
+    <div>{`현재 넓이는 ${innerWidth}입니다`}</div>
       <MetaTag
         title={"도움닫기 | 나만의 포트폴리오"}
         description={"도움닫기에서 나만의 포트폴리오를 쌓아보세요."}
