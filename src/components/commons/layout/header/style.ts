@@ -113,7 +113,7 @@ export const SearchWrap = styled.div<{
     padding: 24px;
     background: #fff;
     position: absolute;
-    top: 62px;
+    top: calc(100% + 1px);
     left: 0;
     z-index: 9999;
     border-bottom: 1px solid #e5e5e5;

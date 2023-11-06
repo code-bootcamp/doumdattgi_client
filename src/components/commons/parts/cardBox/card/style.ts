@@ -83,7 +83,7 @@ export const TitleBox = styled.div`
 `;
 export const Title = styled.h2`
   display: -webkit-box;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 600;
   line-height: 18px;
   overflow: hidden;
@@ -91,7 +91,6 @@ export const Title = styled.h2`
   text-overflow: ellipsis;
   -webkit-line-clamp: 2; /* 라인수 */
   -webkit-box-orient: vertical;
-  word-wrap: break-word;
 `;
 export const InfoBox = styled.div`
   display: flex;

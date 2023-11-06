@@ -50,7 +50,7 @@ export const MileageBox = styled.div<{
   ${mq[3]} {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq[4]} {
+  /* ${mq[4]} {
     grid-template-columns: 1fr;
-  }
+  } */
 `;

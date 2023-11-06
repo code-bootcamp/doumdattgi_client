@@ -84,11 +84,13 @@ export default function SubProductList() {
         />
       </S.LengthBox>
       <InfiniteScroll loadMore={onLoadMore} pageStart={0} hasMore={true}>
-        <S.ContentsBox>
-          {data?.fetchSubCategoryProduct.map(el => (
-            <CardBox data={el} key={el?.product_product_id} />
-          ))}
-        </S.ContentsBox>
+        <S.ContentsWrap>
+          <S.ContentsBox>
+            {data?.fetchSubCategoryProduct.map(el => (
+              <CardBox data={el} key={el?.product_product_id} />
+            ))}
+          </S.ContentsBox>
+        </S.ContentsWrap>
       </InfiniteScroll>
     </S.Container>
   );

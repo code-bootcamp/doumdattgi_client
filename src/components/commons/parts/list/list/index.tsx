@@ -6,7 +6,6 @@ import { Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CategoryObj } from "../../../../../commons/libraries/translate";
 import CardBox from "../../cardBox/card";
-import CardBox2 from "../../cardBox/mileage";
 import { useQueryFetchCategoryProduct } from "../../../hooks/queries/useQueryFetchCategoryProduct";
 import { useEffect, useState } from "react";
 import { useQueryFetchLikeCategoryProduct } from "../../../hooks/queries/useQueryfetchLikeCategoryProduct";
@@ -161,8 +160,8 @@ export default function ProductList(props: IPropsList) {
         pageStart={0}
         hasMore={true}
       >
-        <S.ContentsBox isAll={props.isAll}>
-          <>
+        <S.ContentsWrap>
+          <S.ContentsBox isAll={props.isAll}>
             {!isLike
               ? categoryList?.map(el => (
                   <CardBox
@@ -178,8 +177,8 @@ export default function ProductList(props: IPropsList) {
                     isLike={true}
                   />
                 ))}
-          </>
-        </S.ContentsBox>
+          </S.ContentsBox>
+        </S.ContentsWrap>
       </InfiniteScroll>
     </S.Container>
   );

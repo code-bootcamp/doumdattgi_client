@@ -56,8 +56,10 @@ export const Error = styled.span`
   position: absolute;
   display: block;
   font-size: 14px;
+  line-height: 16px;
   color: #e31c1c;
   top: calc(100% + 8px);
+  word-break: keep-all;
 `;
 
 export const SubmitBtn = styled.div`
