@@ -29,12 +29,12 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 36px;
+  font-size: 2.25rem;
   margin-bottom: 50px;
 `;
 
 export const SubTitle = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   display: block;
 `;
 
@@ -44,7 +44,7 @@ export const SignupBox = styled.div`
 `;
 
 export const IndexTitle = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   display: block;
   margin-bottom: 10px;
@@ -53,7 +53,7 @@ export const IndexTitle = styled.span`
 export const Error = styled.span`
   position: absolute;
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #e31c1c;
   top: calc(100% + 8px);
 `;
@@ -63,7 +63,7 @@ export const SubmitBtn = styled.div`
 `;
 
 export const Email = styled.span`
-  font-size: 30px;
+  font-size: 1.88rem;
   font-weight: 600;
   margin-right: 5px;
   display: block;
@@ -85,12 +85,12 @@ export const Footer = styled.div`
 `;
 export const JoinText = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 
 export const JoinBtn = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   border-bottom: 1px solid #111;
   margin-left: 14px;

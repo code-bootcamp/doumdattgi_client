@@ -55,14 +55,6 @@ export default function Request(props: any): JSX.Element {
     setMinAmount(minimumWage);
   }, [product]);
 
-  // ============== 포인트 부족 ===============
-  // useEffect(() => {
-  //   if (data !== undefined && userPoint < minimumWage) {
-  //     alert("포인트가 부족하여 충전 페이지로 이동합니다.");
-  //     router.push("/mypage/point");
-  //   }
-  // }, []);
-
   // =============== 의뢰서 작성 ===============
   const { register, handleSubmit, formState, setValue, trigger } =
     useForm<IFormData>({
@@ -167,7 +159,6 @@ export default function Request(props: any): JSX.Element {
             <ButtonHeight50px
               title="신청하기"
               isActive={formState.isValid}
-              // disabled={isSubmitting}
             />
           </S.BtnBox>
         </S.Container>

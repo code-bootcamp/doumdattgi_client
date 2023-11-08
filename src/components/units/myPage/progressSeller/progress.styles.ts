@@ -25,8 +25,8 @@ export const Container = styled.div`
   }
 `;
 
-export const PageTitle = styled.h1`
-  font-size: 30px;
+export const PageTitle = styled.p`
+  font-size: 1.5rem;
 `;
 
 export const TabBox = styled.ul`
@@ -52,7 +52,7 @@ export const TabBox = styled.ul`
 
 export const PageTab = styled.li`
   position: relative;
-  font-size: 18px;
+  font-size: 1.13rem;
   padding: 0 20px;
   height: 40px;
   display: flex;
@@ -145,16 +145,16 @@ export const ListStatusRefuse = styled.div`
 `;
 
 export const ListTitle = styled.div`
-  font-size: 24px;
+  font-size: 1.5rem;
 `;
 
 export const ListTitleRefuse = styled.div`
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #666666;
 `;
 
 export const ListDate = styled.div`
-  font-size: 18px;
+  font-size: 1.13rem;
   color: #999999;
 `;
 
@@ -180,7 +180,7 @@ export const UserIcon = styled.img`
 `;
 
 export const UserName = styled.div`
-  font-size: 18px;
+  font-size: 1.13rem;
   color: #333333;
 `;
 

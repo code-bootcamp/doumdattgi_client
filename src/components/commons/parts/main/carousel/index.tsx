@@ -8,7 +8,7 @@ const StyledSlider = styled(SliderComponent)`
   .slick-list {
     height: 360px;
 
-    ${mq[7]}{
+    ${mq[7]} {
       height: auto;
     }
   }
@@ -81,6 +81,10 @@ const StyledSlider = styled(SliderComponent)`
     }
   }
   ${mq[5]} {
+    .slick-arrow {
+      width: 60px;
+      height: 60px;
+    }
     .slick-prev:before,
     .slick-next:before {
       width: 60px;

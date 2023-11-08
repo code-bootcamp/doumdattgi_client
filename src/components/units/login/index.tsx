@@ -22,7 +22,7 @@ export default function Login(): JSX.Element {
 
   const { register, handleSubmit, formState } = useForm<IFormData>({
     resolver: yupResolver(schemaLogin),
-    mode: "onChange"
+    mode: "onSubmit"
   });
 
   return (

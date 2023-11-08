@@ -24,7 +24,7 @@ const Wrapper2 = styled.div`
 `;
 const Text = styled.span`
   color: #929aa0;
-  font-size: 0.88em;
+  font-size: 0.88rem;
   font-weight: 600;
   display: block;
   white-space: nowrap;
@@ -32,7 +32,7 @@ const Text = styled.span`
 // for subcategory overflow
 const Text2 = styled.span`
   color: #929aa0;
-  font-size: 0.88em;
+  font-size: 0.88rem;
   font-weight: 600;
   display: block;
   overflow: hidden;

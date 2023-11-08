@@ -16,7 +16,7 @@ export const Input = styled.input`
   border-radius: 6px;
   border: 1px solid #dbdbdb;
   padding-left: 10px;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 
 export default function InputHeight38px(props: IInputProps): JSX.Element {

@@ -4,6 +4,7 @@ import { fallback } from "../../../../../commons/libraries/fallback";
 import Tag from "../../../../commons/tag/category";
 import { IProduct } from "../../../../../commons/types/generated/types";
 import { useMoveToPage } from "../../../../commons/hooks/custom/useMoveToPage";
+import StatusTag from "../../../../commons/tag/status";
 
 interface IMyProductProps {
   data: IProduct[] | undefined;
@@ -40,6 +41,7 @@ export default function ProfileMyProduct(props: IMyProductProps): JSX.Element {
                 </S.ListImageBox>
               )}
               <S.RightDetailBox isSell={el?.product_sellOrBuy}>
+                {!el?.product_sellOrBuy && <StatusTag status={true} />}
                 <S.ListTitle
                   onClick={
                     el?.product_sellOrBuy

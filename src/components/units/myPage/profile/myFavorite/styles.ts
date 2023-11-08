@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const SubTitle = styled.div`
   width: 100px;
   height: 30px;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   border: 1px solid #929aa0;
   border-radius: 6px;
@@ -77,7 +77,7 @@ export const ListCategory = styled.div`
 
 export const ListTitle = styled.div`
   width: 440px;
-  font-size: 18px;
+  font-size: 1.13rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -85,7 +85,7 @@ export const ListTitle = styled.div`
 `;
 
 export const ListDetail = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   text-align: center;
   line-height: 26px;

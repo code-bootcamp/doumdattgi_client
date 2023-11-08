@@ -20,7 +20,7 @@ export default function ButtonHeight50px(props: IButtonProps): JSX.Element {
     background-color: ${(props: IButtonProps) =>
       props.isActive ? "#88b04b" : "#eee"};
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
   `;
 

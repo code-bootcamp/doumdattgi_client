@@ -45,13 +45,13 @@ export const DateBox = styled.div`
 export const Date = styled.span`
   display: block;
   color: #9797a0;
-  font-size: 14px;
+  font-size: 0.88rem;
   &:last-of-type {
     margin-left: 4px;
   }
 `;
 export const Title = styled.h1`
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: 600;
   margin-top: 10px;
 `;
@@ -78,31 +78,31 @@ export const RequireTitleBox = styled.div`
   display: flex;
 `;
 export const Icon = styled(FontAwesomeIcon)`
-  font-size: 18px;
+  font-size: 1.13rem;
 `;
 export const RequireTitle = styled.span`
   display: block;
-  font-size: 18px;
+  font-size: 1.13rem;
   font-weight: 600;
   margin-left: 6px;
 `;
 export const RequireContents = styled.span`
   display: block;
   color: #73737a;
-  font-size: 18px;
+  font-size: 1.13rem;
   margin-left: 80px;
 `;
 export const DetailContentsWrap = styled.div`
   padding: 40px 0;
 `;
 export const DetailTitle = styled.span`
-  font-size: 18px;
+  font-size: 1.13rem;
   line-height: 18px;
   font-weight: 600;
 `;
 export const DetailContents = styled.p`
   width: 100%;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   word-break: break-word;
   margin-top: 20px;
@@ -114,7 +114,7 @@ export const DetailMapWrap = styled.div`
   padding-bottom: 40px;
 `;
 export const MapAddress = styled.p`
-  font-size: 14px;
+  font-size: 0.88rem;
   margin-top: 16px;
   color: #666;
 `;
@@ -170,7 +170,7 @@ export const UnderLineBtn = styled.button`
   border: none;
   border-bottom: 1px solid #ef4444;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.88rem;
   cursor: pointer;
 `;
 export const ListBox = styled.div`
@@ -209,7 +209,7 @@ export const ListUserName = styled.p`
 export const ListCreatedAt = styled.span`
   display: block;
   color: #717171;
-  font-size: 14px;
+  font-size: 0.88rem;
   margin-left: 8px;
 `;
 export const ListContent = styled.p`
@@ -238,7 +238,7 @@ export const UserIcon = styled.img`
 `;
 export const UserName = styled.span`
   display: block;
-  font-size: 18px;
+  font-size: 1.13rem;
   font-weight: 600;
   margin-top: 24px;
 `;

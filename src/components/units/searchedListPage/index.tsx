@@ -38,13 +38,20 @@ export default function SearchedPage() {
 
   //카테고리 순서 지정 (최신순 or 과거순)
   const categoryList = !isRecent
-    ? data?.fetchSearchProduct.slice().reverse() || []
-    : data?.fetchSearchProduct || [];
+    ? data?.fetchSearchProduct
+        .filter(el => el.product_product_sellOrBuy === true)
+        .slice()
+        .reverse() || []
+    : data?.fetchSearchProduct.filter(
+        el => el.product_product_sellOrBuy === true
+      ) || [];
 
   // 카테고리 순서 지정 (인기순)
-  const popularList = [...(data?.fetchSearchProduct ?? [])].sort(
-    (a, b) => b.pick_count - a.pick_count
-  );
+  const popularList = [
+    ...(data?.fetchSearchProduct.filter(
+      el => el.product_product_sellOrBuy === true
+    ) ?? [])
+  ].sort((a, b) => b.pick_count - a.pick_count);
 
   const onLoadMore = () => {
     if (data === undefined) return;

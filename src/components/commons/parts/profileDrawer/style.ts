@@ -13,8 +13,9 @@ export const Close = styled.div`
   right: 16px;
 `;
 export const CloseIcon = styled(FontAwesomeIcon)`
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #333;
+  cursor: pointer;
 `;
 export const WrapperLeft = styled.div`
   width: 100%;
@@ -36,13 +37,13 @@ export const UserIcon = styled.img`
 `;
 
 export const UserName = styled.div`
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-top: 40px;
 `;
 
 export const UserIntroduce = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   color: #888888;
   line-height: 20px;
   margin-top: 24px;
@@ -50,7 +51,7 @@ export const UserIntroduce = styled.div`
 
 export const ProfileEdit = styled.span`
   display: inline-block;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   margin-top: 30px;
@@ -61,7 +62,7 @@ export const DivideLine = styled.div`
   border-bottom: 1px solid #dddfe3;
 `;
 export const ContentWrap = styled.div`
-  padding-bottom: 60px;
+  padding-bottom: 40px;
   &.first {
     padding-top: 30px;
   }
@@ -72,13 +73,13 @@ export const SubTitle = styled.span`
   background-color: #f6f7f9;
   border: 1px solid #929aa0;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   color: #929aa0;
 `;
 export const PortfolioLink = styled.span`
   display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
   margin-top: 30px;
   border-bottom: 1px solid #000;
   line-height: 20px;
@@ -94,7 +95,7 @@ export const SlotBox = styled.div`
 `;
 
 export const Slot = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: #888;
   background-color: #fff;
@@ -111,7 +112,7 @@ export const Slot = styled.div`
 `;
 
 export const SlotDisable = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: #888;
   background-color: #eaeaea;
@@ -134,7 +135,7 @@ export const StatisticsBox = styled.div`
 `;
 
 export const StatisticsNum = styled.div`
-  font-size: 20px;
+  font-size: 1.25rem;
   height: 70px;
   line-height: 70px;
   text-align: center;
@@ -150,45 +151,4 @@ export const StatisticsTitle = styled.div`
   color: #666666;
   margin-top: 33px;
   text-align: center;
-`;
-
-export const NavIcon = styled.div`
-  display: none;
-  cursor: pointer;
-  position: absolute;
-  left: 24px;
-  top: 134px;
-
-  ${mq[1]} {
-    display: block;
-    height: 22px;
-    width: 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  ${mq[2]} {
-    left: 16px;
-  }
-`;
-export const line = styled.div<{
-  isOpen: boolean;
-}>`
-  display: block;
-  height: 3px;
-  width: 100%;
-  border-radius: 10px;
-  background: #444;
-  transition: transform 0.2s ease-in-out;
-  &.line1 {
-    transform-origin: 0% 0%;
-    transform: ${props => (props.isOpen ? "rotate(45deg)" : "rotate(0)")};
-  }
-  &.line2 {
-    transform: ${props => (props.isOpen ? "scaleY(0)" : "scaleY(1)")};
-  }
-  &.line3 {
-    transform-origin: 0% 100%;
-    transform: ${props => (props.isOpen ? "rotate(-45deg)" : "rotate(0)")};
-  }
 `;

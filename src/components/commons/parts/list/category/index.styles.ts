@@ -3,7 +3,7 @@ import { mq } from "../../../../../commons/libraries/breakPoints";
 
 export const Wrapper = styled.aside`
   width: 200px;
-  font-size: 22px;
+  font-size: 1.38rem;
 
   ${mq[0]} {
     width: 190px;
@@ -20,7 +20,7 @@ export const Wrapper = styled.aside`
 `;
 
 export const Title = styled.h2`
-  font-size: 22px;
+  font-size: 1.38rem;
   line-height: 22px;
   font-weight: 500;
   padding-bottom: 20px;
@@ -53,7 +53,7 @@ export const SubCategory = styled.li`
 `;
 export const SubCategoryItem = styled.a`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   padding: 10px 6px;
   border-radius: 6px;
@@ -71,7 +71,7 @@ export const NavWrapper = styled.div`
   }
 `;
 export const NavTitle = styled.h2`
-  font-size: 22px;
+  font-size: 1.38rem;
   line-height: 22px;
   font-weight: 500;
   padding-bottom: 20px;
@@ -115,4 +115,4 @@ export const NavList = styled.li<{
 export const NavItem = styled.a`
   display: block;
   line-height: 50px;
-`
+`;

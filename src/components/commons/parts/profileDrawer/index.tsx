@@ -1,45 +1,32 @@
-import type { DrawerProps } from "antd";
-import { Drawer, Space } from "antd";
-import { useState } from "react";
+import { Drawer } from "antd";
 import * as S from "./style";
 import { fallback } from "../../../../commons/libraries/fallback";
 import { useMyProduct } from "../../hooks/custom/useMyProduct";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-export default function ProfileDrawer() {
+interface ProfileDrawerProps {
+  open: boolean
+  onClose: () => void
+  
+}
+
+export default function ProfileDrawer(props: ProfileDrawerProps) {
   const { login, imageSrc, userTitle, onClickMoveToPage, isAble } =
     useMyProduct();
 
-  const [open, setOpen] = useState(false);
-
-  const showDrawer = () => {
-    setOpen(true);
-  };
-
-  const onClose = () => {
-    setOpen(false);
-  };
-
   return (
     <>
-      <Space>
-        <S.NavIcon onClick={showDrawer}>
-          <S.line className="line1" isOpen={open} />
-          <S.line className="line2" isOpen={open} />
-          <S.line className="line3" isOpen={open} />
-        </S.NavIcon>
-      </Space>
       <Drawer
         placement="left"
         closable={false}
-        onClose={onClose}
-        open={open}
+        onClose={props.onClose}
+        open={props.open}
         contentWrapperStyle={{
           width: "360px"
         }}
       >
         <S.WrapperLeft>
-          <S.Close onClick={onClose}>
+          <S.Close onClick={props.onClose}>
             <S.CloseIcon icon={faXmark} className="x" />
           </S.Close>
           <S.UserBox>

@@ -6,7 +6,7 @@ export const Page = styled.div`
 `;
 
 export const Title = styled.p`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
 `;
 export const RefundText = styled.p`
