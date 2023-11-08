@@ -6,7 +6,7 @@ interface IRefundProps {
 
 export const ChargeDone = styled.div`
   padding: 6px 8px;
-  font-size: 14px;
+  font-size: 0.88rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,7 +27,7 @@ export const Box = styled.div`
 
 export const RefundDone = styled.div`
   padding: 6px 8px;
-  font-size: 14px;
+  font-size: 0.88rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -41,7 +41,7 @@ export const RefundDone = styled.div`
 
 export const ChargedRefund = styled.div`
   padding: 6px 8px;
-  font-size: 14px;
+  font-size: 0.88rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -50,7 +50,7 @@ export const ChargedRefund = styled.div`
 
 export const RefundBtn = styled.button`
   padding: 6px 8px;
-  font-size: 14px;
+  font-size: 0.88rem;
   border-radius: 6px;
   border: none;
   background-color: ${(props: IRefundProps) =>
@@ -61,7 +61,7 @@ export const RefundBtn = styled.button`
 
 export const SoldBtn = styled.button`
   padding: 6px 8px;
-  font-size: 14px;
+  font-size: 0.88rem;
   border-radius: 6px;
   border: none;
   background-color: skyblue;
@@ -71,7 +71,7 @@ export const SoldBtn = styled.button`
 
 export const Request_BuyBtn = styled.button`
   padding: 6px 8px;
-  font-size: 14px;
+  font-size: 0.88rem;
   border-radius: 6px;
   border: none;
   background-color: #ac58fa;

@@ -69,7 +69,7 @@ export default function PaymentPresenter(): JSX.Element {
   };
 
   const TrnaslatePointSelect: { [key: string]: string } = {
-    "전체": "",
+    전체: "",
     "충전 내역": "PAYMENT",
     "입금 내역": "SELL",
     "의뢰 요청": "REQUEST",
@@ -147,9 +147,6 @@ export default function PaymentPresenter(): JSX.Element {
             ))}
           </S.SelectBar>
         </S.Container>
-        {/* <S.SelectWrap> */}
-
-        {/* </S.SelectWrap> */}
         <S.Container>
           <S.HoldingBox>
             <S.HoldTitle>보유포인트</S.HoldTitle>

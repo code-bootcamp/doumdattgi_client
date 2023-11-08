@@ -111,10 +111,6 @@ export default function SeekCreate(props: {
                       register={register("product_title")}
                       defaultValue={data?.fetchDetailProduct?.product_title}
                     />
-                    {/* <S.Input
-                          {...register("product_title")}
-                          defaultValue={data?.fetchDetailProduct?.product_title}
-                        /> */}
                     <S.Error>{formState.errors.product_title?.message}</S.Error>
                   </S.InputBox>
                 </S.InputWrap>
@@ -152,13 +148,11 @@ export default function SeekCreate(props: {
                         onChangeSubCategory={onChangeSubCategory}
                       />
                     )}
+                    <S.Error>
+                      {formState.errors.product_category?.message ??
+                        formState.errors.product_sub_category?.message}
+                    </S.Error>
                   </S.InputBox>
-                  <S.Error>
-                    {formState.errors.product_category?.message}
-                  </S.Error>
-                  <S.Error className="subCategory">
-                    {formState.errors.product_sub_category?.message}
-                  </S.Error>
                 </S.InputWrap>
               </S.Body_Top>
               <S.PriceBox>
@@ -288,59 +282,6 @@ export default function SeekCreate(props: {
                     </S.Error>
                   </S.EditorBox>
                 </S.BoardContent>
-                {/* <S.AvailableTime>
-                  <S.Theme>
-                    연락 가능 시간
-                    <S.Required>*</S.Required>
-                  </S.Theme>
-                  <S.SetTimeBox>
-                    {props.isEdit && data && (
-                      <>
-                        <WorkDay
-                          workDay={workDay}
-                          setWorkDay={setWorkDay}
-                          data={data?.fetchDetailProduct?.product_workDay}
-                        />
-                        <TimePick
-                          startTime={startTime}
-                          setStartTime={setStartTime}
-                          endTime={endTime}
-                          setEndTime={setEndTime}
-                          data={data?.fetchDetailProduct}
-                        />
-                      </>
-                    )}
-                    {!props.isEdit && (
-                      <>
-                        <WorkDay
-                          workDay={workDay}
-                          setWorkDay={setWorkDay}
-                          data={data?.fetchDetailProduct?.product_workDay}
-                        />
-                        <TimePick
-                          startTime={startTime}
-                          setStartTime={setStartTime}
-                          endTime={endTime}
-                          setEndTime={setEndTime}
-                          data={data?.fetchDetailProduct}
-                        />
-                      </>
-                    )}
-                  </S.SetTimeBox>
-                </S.AvailableTime> */}
-                {/* <S.AttachedImg>
-                  <S.Theme>
-                    이미지 첨부
-                    <S.Required>*</S.Required>
-                  </S.Theme>
-                  <S.Image>
-                    <ImageUpload
-                      fileList={fileList}
-                      setFileList={setFileList}
-                      data={data?.fetchDetailProduct?.images}
-                    />
-                  </S.Image>
-                </S.AttachedImg> */}
                 <S.BoardAddress>
                   <S.Theme className="map">
                     희망 지역 (선택)

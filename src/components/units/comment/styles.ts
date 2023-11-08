@@ -90,8 +90,9 @@ export const Date = styled.span<{
   me: string | undefined;
   comment: string;
 }>`
-  font-size: 14px;
-  margin: ${props => (props.me === props.comment ? "0 8px 0 0" : "10px 0 0 50px")};
+  font-size: 0.88rem;
+  margin: ${props =>
+    props.me === props.comment ? "0 8px 0 0" : "10px 0 0 50px"};
   color: #888;
 `;
 
@@ -123,7 +124,7 @@ export const Arrow = styled.div`
   width: 70px;
   height: 150px;
   border-radius: 0px 15px 15px 0px;
-  font-size: 40px;
+  font-size: 2.5rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -146,10 +147,10 @@ export const Relode = styled.div`
 `;
 
 export const RotateIcon = styled(FontAwesomeIcon)`
-  font-size: 18px;
+  font-size: 1.13rem;
   color: #333;
 
   &.x {
-    font-size: 20px;
+    font-size: 1.25em;
   }
 `;

@@ -30,7 +30,7 @@ export const CategoryBox = styled.div`
 `;
 
 export const LengthText = styled.span`
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   display: block;
 `;
@@ -91,7 +91,7 @@ export const BodyBox = styled.div`
 `;
 
 export const BodyCategory = styled.div`
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #333333;
 `;
 
@@ -102,7 +102,7 @@ export const Flag = styled.img`
 `;
 
 export const BodyTitle = styled.div`
-  font-size: 14px;
+  font-size: 0.88rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -110,7 +110,7 @@ export const BodyTitle = styled.div`
 `;
 
 export const WorkHour = styled.div`
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   text-align: center;
   background-color: #f6f7f9;
@@ -128,7 +128,7 @@ export const UserIcon = styled.img`
 
 export const UserName = styled.div`
   width: 40px;
-  font-size: 14px;
+  font-size: 0.88rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -149,13 +149,13 @@ export const MileageTitleBox = styled.div`
   }
 `;
 export const MileageTitle = styled.h3`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
 `;
 export const MileageSubTitle = styled.span`
   display: block;
   margin-left: 8px;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 500;
   color: #888;
 

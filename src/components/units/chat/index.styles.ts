@@ -18,7 +18,7 @@ export const MessageList = styled.div`
 `;
 
 export const ListTitle = styled.span`
-  font-size: 20px;
+  font-size: 1.25rem;
   display: inline-block;
   margin-bottom: 16px;
 `;
@@ -56,16 +56,16 @@ export const NameAndDate = styled.div`
 `;
 
 export const NickName = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 
 export const Date = styled.span`
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #a1a1a1;
 `;
 
 export const Content = styled.div`
-  font-size: 12px;
+  font-size: 0.75em;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -101,7 +101,7 @@ export const MsgImg = styled.img`
 
 export const MsgInfo = styled.span`
   margin-left: 16px;
-  font-size: 16px;
+  font-size: 1rem;
 `;
 
 export const MsgMiddle = styled.div``;
@@ -165,7 +165,7 @@ export const RecipientImg = styled.img`
 `;
 
 export const RecipientName = styled.span`
-  font-size: 18px;
+  font-size: 1.13rem;
 `;
 
 export const ApplyBtn = styled.button`
@@ -182,6 +182,6 @@ export const CancelChatBtn = styled.button`
   height: 50px;
   background: none;
   color: #ef4444;
-  font-size: 18px;
+  font-size: 1.13rem;
   border: none;
 `;

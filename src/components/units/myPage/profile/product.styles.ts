@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const SubTitle = styled.div`
   width: 100px;
   height: 30px;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   border: 1px solid #929aa0;
   border-radius: 6px;
@@ -158,19 +158,19 @@ export const ListCategory = styled.div`
 `;
 
 export const ListTitle = styled.div`
-  font-size: 18px;
+  font-size: 1.13rem;
   word-break: keep-all;
   line-height: 22px;
-  margin-bottom: 16px;
+  margin: 16px 0;
   cursor: pointer;
 
   ${mq[3]} {
-    font-size: 16px;
+    font-size: 1rem;
   }
 `;
 
 export const ListDetail = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   text-align: center;
   line-height: 26px;

@@ -47,7 +47,7 @@ export const Section = styled.section`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.25em;
+  font-size: 1.25rem;
   font-weight: 600;
 `;
 

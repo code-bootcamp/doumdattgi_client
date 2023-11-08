@@ -58,10 +58,10 @@ export const CategoryBox = styled.div`
 `;
 export const Category = styled.span`
   display: block;
-  font-size: 0.88em;
+  font-size: 0.88rem;
 `;
 export const Icon = styled(FontAwesomeIcon)`
-  font-size: 1.25em;
+  font-size: 1.25rem;
   color: #bec3c7;
   cursor: pointer;
 
@@ -82,7 +82,7 @@ export const TitleBox = styled.div`
 `;
 export const Title = styled.h2`
   display: -webkit-box;
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 18px;
   overflow: hidden;
@@ -111,6 +111,6 @@ export const UserBox = styled.div`
 export const UserName = styled.span`
   display: block;
   font-weight: 600;
-  font-size: 0.88em;
+  font-size: 0.88rem;
   margin-left: 6px;
 `;

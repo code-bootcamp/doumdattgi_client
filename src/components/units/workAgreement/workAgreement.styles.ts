@@ -32,7 +32,7 @@ export const ChevronIcon = styled(FontAwesomeIcon)`
   margin: 0 8px;
 `;
 export const Title = styled.h1`
-  font-size: 30px;
+  font-size: 1.88rem;
   font-weight: 600;
   margin-top: 12px;
 `;
@@ -69,7 +69,7 @@ export const ProgressIcon = styled.div`
 `;
 export const ProgressCheck = styled(FontAwesomeIcon)`
   color: #fff;
-  font-size: 20px;
+  font-size: 1.25rem;
 `;
 export const ProgressTitle = styled.span`
   font-weight: 600;
@@ -77,7 +77,7 @@ export const ProgressTitle = styled.span`
   margin-top: 16px;
 `;
 export const ProgressDate = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #888;
   display: block;
   margin-top: 10px;
@@ -112,19 +112,19 @@ export const ServiceWrap = styled.div`
     flex-direction: column;
     align-items: flex-start;
   }
-  ${mq[4]}{
+  ${mq[4]} {
     padding: 0;
   }
 `;
 export const ServiceTitle = styled.h2`
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
   word-break: keep-all;
   line-height: 28px;
 `;
 export const TitleHighlight = styled.span`
   font-weight: 600;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #88b04b;
   margin-right: 8px;
 `;
@@ -137,7 +137,7 @@ export const ServiceBox = styled.div`
 export const AcceptBtn = styled.button`
   color: #fff;
   background: #88b04b;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
   padding: 15px 24px;
   border-radius: 6px;
@@ -150,7 +150,7 @@ export const AcceptBtn = styled.button`
   }
 `;
 export const StatusIcon = styled(FontAwesomeIcon)`
-  font-size: 30px;
+  font-size: 1.88rem;
   &.check {
     color: #389e0d;
   }
@@ -162,7 +162,7 @@ export const StatusIcon = styled(FontAwesomeIcon)`
   }
 `;
 export const StatusText = styled.p`
-  font-size: 30px;
+  font-size: 1.88rem;
   font-weight: 600;
   margin-left: 8px;
 `;
@@ -204,7 +204,7 @@ export const SectionUserBox = styled.div`
 `;
 export const SectionUserName = styled.span`
   display: block;
-  font-size: 18px;
+  font-size: 1.13rem;
   font-weight: 600;
 `;
 export const SectionUserEmail = styled.span`
@@ -231,7 +231,7 @@ export const SectionWrapWhite = styled.div`
   margin-bottom: 40px;
 `;
 export const SectionContent = styled.p`
-  font-size: 30px;
+  font-size: 1.88rem;
   font-weight: 600;
   margin-top: 20px;
   color: #333;
@@ -246,7 +246,7 @@ export const NoticeWrap = styled.div`
   margin-top: 24px;
 `;
 export const NoticeText = styled.p`
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #333;
   &:last-of-type {
     margin-top: 16px;
@@ -255,7 +255,7 @@ export const NoticeText = styled.p`
 export const FinishBtn = styled.button`
   color: #fff;
   background: #88b04b;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
   padding: 15px 0;
   border-radius: 6px;
@@ -284,13 +284,13 @@ export const TradeBox = styled.div`
   ${mq[4]} {
     padding: 24px;
     &:last-of-type {
-    margin-left: 12px;
-  }
+      margin-left: 12px;
+    }
   }
 `;
 export const TradeTitle = styled.span`
   display: block;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
 `;
 export const TradeUserIcon = styled.img`
@@ -305,7 +305,7 @@ export const TradeUserIcon = styled.img`
   }
 `;
 export const TradeUserName = styled.p`
-  font-size: 18px;
+  font-size: 1.13rem;
   font-weight: 600;
   margin-top: 20px;
 `;

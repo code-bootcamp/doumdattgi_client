@@ -29,12 +29,12 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 36px;
+  font-size: 2.25rem;
 `;
 
 export const SubTitle = styled.div`
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 0.88rem;
+  line-height: 1.13rem;
   margin-top: 30px;
   word-break: keep-all;
 `;
@@ -45,7 +45,7 @@ export const SignupBox = styled.div`
 `;
 
 export const IndexTitle = styled.div`
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   display: block;
   margin-bottom: 10px;
@@ -58,7 +58,7 @@ export const SubmitBtn = styled.div`
 export const Error = styled.span`
   position: absolute;
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #e31c1c;
   top: calc(100% + 8px);
 `;
@@ -70,12 +70,12 @@ export const Footer = styled.div`
 `;
 export const JoinText = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 
 export const JoinBtn = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   border-bottom: 1px solid #111;
   margin-left: 14px;
@@ -85,7 +85,7 @@ export const JoinBtn = styled.span`
 export const Login = styled.a`
   color: black;
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 
 export const AuthWrapper = styled.div`

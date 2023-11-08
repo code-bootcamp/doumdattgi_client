@@ -40,7 +40,7 @@ export const SelectToggle = styled.div`
 
 export const Employee = styled.div`
   width: 140px;
-  font-size: 24px;
+  font-size: 1.5rem;
   text-align: center;
   line-height: 1.7;
   border-radius: 6px 0px 0px 6px;
@@ -54,7 +54,7 @@ export const Employee = styled.div`
 
 export const Employer = styled.div`
   width: calc(100% - 140px);
-  font-size: 24px;
+  font-size: 1.5rem;
   text-align: center;
   line-height: 1.7;
   border-radius: 0px 6px 6px 0px;
@@ -74,7 +74,7 @@ export const SubTitle = styled.h2`
   margin-bottom: 14px;
 `;
 export const Title = styled.h1`
-  font-size: 30px;
+  font-size: 1.88rem;
   line-height: 36px;
 `;
 export const Body = styled.div``;
@@ -84,7 +84,7 @@ export const Body_Top = styled.div`
   border-top: 2px solid #88b04b;
   border-bottom: 1px solid #e5e7eb;
 
-  ${mq[3]}{
+  ${mq[3]} {
     margin-top: 16px;
   }
 `;
@@ -108,6 +108,8 @@ export const InputWrap = styled.div`
   }
 `;
 export const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
   width: calc(100% - 240px);
   &.short {
     width: 220px;
@@ -125,7 +127,7 @@ export const Theme = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 24px;
+  font-size: 1.5rem;
 
   ${mq[2]} {
     &.map {
@@ -137,7 +139,7 @@ export const Theme = styled.span`
 
 export const Required = styled.span`
   margin-left: 5px;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #ffc56d;
 `;
 
@@ -147,7 +149,7 @@ export const Input = styled.input`
   border-radius: 6px;
   border: 1px solid #dbdbdb;
   padding-left: 10px;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 export const PriceBox = styled.div`
   border-bottom: 1px solid #e5e7eb;
@@ -202,7 +204,7 @@ export const MapBox = styled.div`
 `;
 export const MapDetail = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   margin-left: 20px;
   color: #999;
   line-height: 18px;
@@ -255,7 +257,7 @@ export const SearchBtn = styled.button`
   background-color: #111;
   border-radius: 6px;
   border: none;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #ffffff;
   padding: 0 20px;
   margin-left: 10px;
@@ -279,13 +281,10 @@ export const BtnBox = styled.div`
 `;
 
 export const Error = styled.span`
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 240px;
   display: block;
-  color: red;
-  font-size: 16px;
-
+  color: #e31c1c;
+  font-size: 0.88rem;
+  margin: 10px 0 0 6px;
   &.radio {
     left: 30px;
   }

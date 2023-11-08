@@ -43,12 +43,12 @@ export const LogoIcon = styled.img`
   }
 `;
 export const LogoTitle = styled.h1`
-  font-size: 30px;
+  font-size: 1.88rem;
   line-height: 30px;
   font-weight: 600;
   margin-left: 5px;
 
   ${mq[3]} {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 `;

@@ -152,6 +152,8 @@ export const useUser = () => {
         void router.push("/");
       }
       void router.push(`${link}`);
+
+      void router.push(`/`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

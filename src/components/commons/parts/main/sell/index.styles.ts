@@ -15,7 +15,7 @@ export const CategoryBox = styled.div`
 `;
 
 export const Category = styled.span`
-  font-size: 0.88em;
+  font-size: 0.88rem;
   display: block;
   font-weight: 500;
 `;
@@ -24,7 +24,7 @@ export const TitleBox = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.13em;
+  font-size: 1.13rem;
   font-weight: 600;
   line-height: 1.38em;
   overflow: hidden;
@@ -36,7 +36,7 @@ export const Title = styled.h2`
 `;
 
 export const Icon = styled(FontAwesomeIcon)`
-  font-size: 1.25em;
+  font-size: 1.25rem;
   color: #bec3c7;
 `;
 
@@ -60,7 +60,7 @@ export const UserInfo = styled.div`
 `;
 
 export const NickName = styled.div`
-  font-size: 0.88em;
+  font-size: 0.88rem;
   font-weight: 600;
   margin-left: 6px;
 `;

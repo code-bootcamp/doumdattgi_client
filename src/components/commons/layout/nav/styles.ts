@@ -58,7 +58,7 @@ export const NavList = styled.li`
 `;
 export const NavItem = styled.span`
   display: block;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   line-height: 1.25em;
   cursor: pointer;
   ${mq[2]} {

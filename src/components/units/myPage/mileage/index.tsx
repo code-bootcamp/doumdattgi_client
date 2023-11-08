@@ -12,18 +12,18 @@ export default function Mileage(): JSX.Element {
   const [isStatus, setIsStatue] = useState(false);
   const router = useRouter();
 
-  const { data } = useQueryFetchLoginUser();
+  const { data, refetch } = useQueryFetchLoginUser();
 
   const onClickList = (select: string) => {
     setIsList(select);
-    // refetch();
+    refetch();
     localStorage.setItem("selectedTab", select.toString());
     setIsStatue(true);
   };
 
   useEffect(() => {
     setIsList("use");
-    // refetch();
+    refetch();
   }, []);
 
   const renderPage = () => {

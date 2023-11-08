@@ -36,11 +36,11 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   font-weight: 600;
-  font-size: 1.25em;
+  font-size: 1.25rem;
 `;
 export const Copy = styled.span`
   display: block;
-  font-size: 1.13em;
+  font-size: 1.13rem;
   margin-top: 20px;
 `;
 export const Text = styled.span`

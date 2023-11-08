@@ -31,7 +31,6 @@ export default function TimePick(props: ITimePicker) {
         showSecond={false}
         size="large"
         style={{ marginLeft: "10px" }}
-        popupStyle={{ width: "200px" }}
         defaultValue={
           props?.data && [
             dayjs(`${props?.data?.product_startTime}:00`, "HH:mm"),

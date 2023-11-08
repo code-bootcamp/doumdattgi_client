@@ -12,7 +12,7 @@ export const Button = styled.button`
   height: 38px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 
 export default function ButtonHeight40px(props: IButtonProps): JSX.Element {
@@ -25,7 +25,6 @@ export default function ButtonHeight40px(props: IButtonProps): JSX.Element {
         border: props.isActive ? "none" : "1px solid #888888"
       }}
       type={props.type}
-      // disabled={props.isActive}
     >
       {props.title}
     </Button>

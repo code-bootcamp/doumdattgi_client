@@ -17,11 +17,11 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 1140px;
-`
+`;
 
 export const WrapperLeft = styled.div`
   width: 220px;
-  font-size: 22px;
+  font-size: 1.38rem;
   margin-right: 50px;
   border: 2px solid blue;
 `;
@@ -39,7 +39,7 @@ export const Ad = styled.div`
 `;
 
 export const LeftList = styled.div`
-  font-size: 14px;
+  font-size: 0.88rem;
   margin-bottom: 24px;
 `;
 
@@ -105,7 +105,7 @@ export const BodyBox = styled.div`
 `;
 
 export const BodyCategory = styled.div`
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #333333;
 `;
 
@@ -116,7 +116,7 @@ export const Flag = styled.img`
 `;
 
 export const BodyTitle = styled.div`
-  font-size: 14px;
+  font-size: 0.88rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -124,7 +124,7 @@ export const BodyTitle = styled.div`
 `;
 
 export const WorkHour = styled.div`
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   text-align: center;
   background-color: #f6f7f9;
@@ -142,7 +142,7 @@ export const UserIcon = styled.img`
 
 export const UserName = styled.div`
   width: 40px;
-  font-size: 14px;
+  font-size: 0.88rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

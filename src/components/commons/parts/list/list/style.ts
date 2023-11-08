@@ -31,7 +31,7 @@ export const CategoryBox = styled.div`
 `;
 
 export const LengthText = styled.span`
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   display: block;
 `;
@@ -54,10 +54,10 @@ export const LengthBox = styled.div`
 export const ContentsWrap = styled.section`
   min-height: 400px;
 
-  ${mq[3]}{
+  ${mq[3]} {
     min-height: 200px;
   }
-`
+`;
 export const ContentsBox = styled.div<{
   isAll: boolean;
 }>`
@@ -99,7 +99,7 @@ export const BodyBox = styled.div`
 `;
 
 export const BodyCategory = styled.div`
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #333333;
 `;
 
@@ -110,7 +110,7 @@ export const Flag = styled.img`
 `;
 
 export const BodyTitle = styled.div`
-  font-size: 14px;
+  font-size: 0.88rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -118,7 +118,7 @@ export const BodyTitle = styled.div`
 `;
 
 export const WorkHour = styled.div`
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   text-align: center;
   background-color: #f6f7f9;
@@ -136,7 +136,7 @@ export const UserIcon = styled.img`
 
 export const UserName = styled.div`
   width: 40px;
-  font-size: 14px;
+  font-size: 0.88rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

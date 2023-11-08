@@ -42,13 +42,13 @@ export const Contents = styled.div`
 `;
 export const Title = styled.p`
   color: #111;
-  font-size: 18px;
+  font-size: 1.13rem;
   font-weight: 600;
   word-break: keep-all;
 `;
 export const LinkWrap = styled.div`
   display: flex;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #111;
   margin-left: 16px;
 
@@ -64,7 +64,7 @@ export const Link = styled.a`
   margin-left: 10px;
   border-bottom: 2px solid #fff;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 export const CloseWrap = styled.div`
   display: flex;
@@ -72,13 +72,13 @@ export const CloseWrap = styled.div`
 `;
 export const CloseText = styled.p`
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #111;
   word-break: keep-all;
 `;
 export const CloseIcon = styled(FontAwesomeIcon)`
   padding: 8px;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #111;
   cursor: pointer;
   margin-left: 10px;
