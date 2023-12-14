@@ -21,6 +21,9 @@ export default function MainPresenter() {
   const { data: Newbie, refetch: refetch3 } = useQueryFetchNewbieProduct();
   const { data: Sellers, refetch: refetch4 } = useQueryFetchSellProduct();
   const { data: loginInfo } = useQueryFetchLoginUser();
+  Products?.fetchAllProducts.filter(
+    el => el.product_product_sellOrBuy === true
+  );
 
   useEffect(() => {
     if (router.asPath === "/") {
@@ -72,9 +75,11 @@ export default function MainPresenter() {
           <S.Section>
             <S.Title>최신 게시글</S.Title>
             <S.CardboxWrap>
-              {Products?.fetchAllProducts.map(el => (
-                <CardBox key={el.product_product_id} data={el} />
-              ))}
+              {Products?.fetchAllProducts
+                .filter(el => el.product_product_sellOrBuy === true)
+                .map(el => (
+                  <CardBox key={el.product_product_id} data={el} />
+                ))}
             </S.CardboxWrap>
           </S.Section>
           <S.Section>
@@ -92,7 +97,11 @@ export default function MainPresenter() {
             <S.Title>🌱 신규 주니어의 첫 게시글</S.Title>
             <S.CardboxWrap className="newbie">
               {Newbie?.fetchNewbieProduct.map(el => (
-                <CardBox key={el.product_product_id} data={el} isNewbie={true}/>
+                <CardBox
+                  key={el.product_product_id}
+                  data={el}
+                  isNewbie={true}
+                />
               ))}
             </S.CardboxWrap>
           </S.Section>
