@@ -37,7 +37,7 @@ export const Container = styled.div`
 `;
 
 export const MainTitle = styled.div`
-  font-size: 30px;
+  font-size: 1.88rem;
 `;
 
 export const TabBox = styled.ul`
@@ -49,7 +49,7 @@ export const TabBox = styled.ul`
 
 export const Tab = styled.li`
   position: relative;
-  font-size: 18px;
+  font-size: 1.13rem;
   padding: 0 20px;
   height: 40px;
   display: flex;
@@ -68,29 +68,28 @@ export const Tab = styled.li`
 `;
 
 export const CurrentMileage = styled.div`
-  height: 180px;
   background-color: #f2f2f4;
   border-radius: 6px;
   margin-bottom: 50px;
-  padding: 50px 30px;
+  padding: 24px;
 `;
 export const MileageText = styled.p`
-  font-size: 20px;
+  font-size: 1.25rem;
 `;
 export const MileagePoint = styled.p`
-  font-size: 36px;
+  font-size: 2.25rem;
   margin-top: 14px;
   font-weight: 600;
 `;
 
 // mileage use page
 export const SubTitle = styled.div`
-  font-size: 18px;
+  font-size: 1.13rem;
   margin-bottom: 16px;
 `;
 
 export const Contents = styled.p`
-  font-size: 14px;
+  font-size: 0.88rem;
   line-height: 18px;
   color: #777777;
   margin-bottom: 5px;
@@ -143,10 +142,10 @@ export const CouponDetailWrapper = styled.div`
 `;
 
 export const CouponDay = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 export const CouponPrice = styled.p`
-  font-size: 16px;
+  font-size: 1rem;
 `;
 
 export const BoardList = styled.div`
@@ -157,7 +156,7 @@ export const BoardList = styled.div`
   padding: 0px 20px;
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 1.13rem;
   background-color: white;
   cursor: pointer;
 `;
@@ -178,7 +177,7 @@ export const PurchaseBtn = styled.button<{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 1.13rem;
   border-radius: 6px;
   border: none;
   cursor: ${props =>
@@ -217,16 +216,16 @@ export const Header = styled.div`
 `;
 
 export const HeaderTitle = styled.p`
-  font-size: 16px;
+  font-size: 1rem;
 `;
 
 export const HeaderDate = styled.span`
-  font-size: 16px;
+  font-size: 1rem;
   color: #d7d7d7;
 `;
 
 export const BodyPoint = styled.p`
-  font-size: 30px;
+  font-size: 1.88rem;
   line-height: 30px;
   font-weight: 500;
 `;
@@ -255,7 +254,7 @@ export const Wrapper2 = styled.div`
 export const SubTitle2 = styled.div`
   width: 100px;
   height: 30px;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   border: 1px solid #929aa0;
   border-radius: 6px;
@@ -338,7 +337,7 @@ export const MileageDay = styled.div`
 `;
 
 export const Day = styled.span`
-  font-size: 24px;
+  font-size: 1.5rem;
   padding: 3px 6px;
   color: #fff;
   background-color: #88b04b;
@@ -405,19 +404,19 @@ export const ListCategory = styled.div`
 `;
 
 export const ListTitle = styled.div`
-  font-size: 18px;
+  font-size: 1.13rem;
   word-break: keep-all;
   line-height: 22px;
   margin-bottom: 16px;
   cursor: pointer;
 
   ${mq[3]} {
-    font-size: 16px;
+    font-size: 1rem;
   }
 `;
 
 export const ListDetail = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #929aa0;
   text-align: center;
   line-height: 26px;

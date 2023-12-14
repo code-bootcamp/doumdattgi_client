@@ -36,7 +36,7 @@ export const SubTitle = styled.h2`
   margin-bottom: 14px;
 `;
 export const Title = styled.h1`
-  font-size: 30px;
+  font-size: 1.88rem;
   line-height: 40px;
 `;
 export const CreateLink = styled.div`
@@ -86,7 +86,7 @@ export const CategoryWrap = styled.div`
 `;
 export const Category = styled.span`
   display: block;
-  font-size: 18px;
+  font-size: 1.13rem;
   font-weight: 600;
 `;
 export const CategoryBox = styled.div`
@@ -140,7 +140,7 @@ export const LengthText = styled.span`
 export const ContentsBox = styled(InfiniteScroll)``;
 
 export const ListTitle = styled.p`
-  font-size: 18px;
+  font-size: 1.13rem;
   font-weight: 600;
   margin-top: 12px;
   cursor: pointer;
@@ -174,7 +174,7 @@ export const createdAt = styled.div`
   margin-left: 8px;
 `;
 export const Icon = styled(FontAwesomeIcon)`
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 export const DetailTitle = styled.span`
   display: block;
@@ -190,7 +190,7 @@ export const Tag = styled.div`
 `;
 export const Date = styled.span`
   display: block;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #9797a0;
   &:last-child {
     margin-left: 4px;

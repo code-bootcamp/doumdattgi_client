@@ -8,6 +8,17 @@ import { useUser } from "../useUser";
 import { useMoveToPage } from "../useMoveToPage";
 
 export const useMyProduct = () => {
+  // 프로필 서랍
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
   const { data: login } = useQueryFetchLoginUser();
   const { data: slot } = useQueryFetchUserSlot();
   const {
@@ -28,19 +39,20 @@ export const useMyProduct = () => {
 
   const [isPick, setIsPick] = useState(false);
   const [isSeek, setIsSeek] = useState(false);
+  const [tab, setTab] = useState(0);
 
   const { imageSrc, userTitle } = useUser();
   const { onClickMoveToPage } = useMoveToPage();
 
   useEffect(() => {
     sellRefetch({
-      page: 1,
+      page: 1
     });
     seekRefetch({
-      page: 1,
+      page: 1
     });
     pickRefetch({
-      page: 1,
+      page: 1
     });
   }, []);
 
@@ -93,7 +105,7 @@ export const useMyProduct = () => {
           return { fetchPickUserProduct: [...prev.fetchPickUserProduct] };
         }
         return {
-            fetchPickUserProduct: [
+          fetchPickUserProduct: [
             ...prev.fetchPickUserProduct,
             ...fetchMoreResult.fetchPickUserProduct
           ]
@@ -102,9 +114,10 @@ export const useMyProduct = () => {
     });
   };
 
-  const onClickTabs = (isPick: boolean, isSeek: boolean) => () => {
-    setIsPick(isPick)
-    setIsSeek(isSeek)
+  const onClickTabs = (isPick: boolean, isSeek: boolean, idx: number) => () => {
+    setIsPick(isPick);
+    setIsSeek(isSeek);
+    setTab(idx)
   };
 
   // 슬롯
@@ -123,8 +136,13 @@ export const useMyProduct = () => {
     myPick,
     isPick,
     isSeek,
+    tab,
     sellOnLoadMore,
     seekOnLoadMore,
     pickOnLoadMore,
+
+    open,
+    showDrawer,
+    onClose
   };
 };

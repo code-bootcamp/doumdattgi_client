@@ -56,13 +56,13 @@ export const UserIcon = styled.img`
 `;
 
 export const UserName = styled.div`
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-top: 40px;
 `;
 
 export const UserIntroduce = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   color: #888888;
   line-height: 20px;
   margin-top: 24px;
@@ -70,7 +70,7 @@ export const UserIntroduce = styled.div`
 
 export const ProfileEdit = styled.span`
   display: inline-block;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   margin-top: 30px;
@@ -81,7 +81,7 @@ export const DivideLine = styled.div`
   border-bottom: 1px solid #dddfe3;
 `;
 export const ContentWrap = styled.div`
-  padding-bottom: 60px;
+  padding-bottom: 40px;
   &.first {
     padding-top: 30px;
   }
@@ -92,13 +92,13 @@ export const SubTitle = styled.span`
   background-color: #f6f7f9;
   border: 1px solid #929aa0;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   color: #929aa0;
 `;
 export const PortfolioLink = styled.span`
   display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
   margin-top: 30px;
   border-bottom: 1px solid #000;
   cursor: pointer;
@@ -114,7 +114,7 @@ export const SlotBox = styled.div`
 `;
 
 export const Slot = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: #888;
   background-color: #fff;
@@ -131,7 +131,7 @@ export const Slot = styled.div`
 `;
 
 export const SlotDisable = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: #888;
   background-color: #eaeaea;
@@ -154,7 +154,7 @@ export const StatisticsBox = styled.div`
 `;
 
 export const StatisticsNum = styled.div`
-  font-size: 20px;
+  font-size: 1.25rem;
   height: 70px;
   line-height: 70px;
   text-align: center;
@@ -173,18 +173,22 @@ export const StatisticsTitle = styled.div`
 `;
 
 // 오른쪽
-export const MobileTitleBox = styled.div`
+export const MobileTitleWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
 `;
 
+export const MobileTitleBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const ProfileTitle = styled.h1`
   display: none;
-  font-size: 30px;
-  line-height: 40px;
-  padding-left: 40px;
+  font-size: 1.88rem;
+  margin-left: 16px;
 
   ${mq[1]} {
     display: block;
@@ -241,7 +245,7 @@ export const CreateLink = styled.div`
 export const CreateText = styled.span`
   display: inline-block;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 0.88rem;
   line-height: 16px;
 `;
 export const CreateIcon = styled.img`
@@ -256,7 +260,7 @@ export const ListBtn = styled.button`
   background-color: #f6f7f9;
   border: 1px solid #929aa0;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   color: #929aa0;
   cursor: pointer;
@@ -265,6 +269,46 @@ export const ListBtn = styled.button`
     margin-left: 0;
   }
   &.selected {
-    background-color: #111;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #111;
+  }
+`;
+
+export const NavIcon = styled.div`
+  display: none;
+  cursor: pointer;
+
+  ${mq[1]} {
+    display: block;
+    height: 22px;
+    width: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  ${mq[2]} {
+    left: 16px;
+  }
+`;
+export const line = styled.div<{
+  isOpen: boolean;
+}>`
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 10px;
+  background: #444;
+  transition: transform 0.2s ease-in-out;
+  &.line1 {
+    transform-origin: 0% 0%;
+    transform: ${props => (props.isOpen ? "rotate(45deg)" : "rotate(0)")};
+  }
+  &.line2 {
+    transform: ${props => (props.isOpen ? "scaleY(0)" : "scaleY(1)")};
+  }
+  &.line3 {
+    transform-origin: 0% 100%;
+    transform: ${props => (props.isOpen ? "rotate(-45deg)" : "rotate(0)")};
   }
 `;

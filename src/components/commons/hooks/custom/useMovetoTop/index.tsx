@@ -14,7 +14,7 @@ export const Top = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 0.94rem;
   border-radius: 50%;
   background-color: #fff;
   box-shadow: 0 0 0 1px #dadcdf, 0 4px 8px 0 rgba(0, 0, 0, 0.15);
@@ -54,7 +54,7 @@ export default function TopButton(): JSX.Element {
     <>
       {showButton && (
         <Top onClick={scrollToTop}>
-          <FontAwesomeIcon icon={faAnglesUp} style={{color: "#7e8186"}}/>
+          <FontAwesomeIcon icon={faAnglesUp} style={{ color: "#7e8186" }} />
         </Top>
       )}
     </>

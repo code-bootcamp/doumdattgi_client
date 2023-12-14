@@ -92,12 +92,12 @@ export const LogoIcon = styled.img`
   }
 `;
 export const LogoTitle = styled.h1`
-  font-size: 30px;
+  font-size: 1.88rem;
   line-height: 30px;
   font-weight: 600;
   margin-left: 5px;
   ${mq[3]} {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 `;
 export const HeaderBox = styled.div`
@@ -141,14 +141,14 @@ export const SearchIcon = styled(FontAwesomeIcon)`
   left: 12px;
 `;
 export const SearchIcon768 = styled(FontAwesomeIcon)`
-  font-size: 20px;
+  font-size: 1.25em;
 `;
 export const SearchInput = styled.input`
   width: 100%;
   border: none;
   background-color: #eee;
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 1rem;
+  line-height: 1rem;
   padding: 12px;
   padding-left: 40px;
   border-radius: 6px;

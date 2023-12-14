@@ -21,13 +21,13 @@ export const MileageTitleBox = styled.div`
   }
 `;
 export const MileageTitle = styled.h3`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
 `;
 export const MileageSubTitle = styled.span`
   display: block;
   margin-left: 8px;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 500;
   color: #888;
 

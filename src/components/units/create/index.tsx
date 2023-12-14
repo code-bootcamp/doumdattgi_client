@@ -145,13 +145,11 @@ export default function CreateProduct(props: IProps) {
                         onChangeSubCategory={onChangeSubCategory}
                       />
                     )}
+                    <S.Error>
+                      {formState.errors.product_category?.message ??
+                        formState.errors.product_sub_category?.message}
+                    </S.Error>
                   </S.InputBox>
-                  <S.Error>
-                    {formState.errors.product_category?.message}
-                  </S.Error>
-                  <S.Error className="subCategory">
-                    {formState.errors.product_sub_category?.message}
-                  </S.Error>
                 </S.InputWrap>
                 <S.InputWrap>
                   <S.ThemeBox>
@@ -167,8 +165,10 @@ export default function CreateProduct(props: IProps) {
                         data?.fetchDetailProduct?.product_summary ?? ""
                       }
                     />
+                    <S.Error>
+                      {formState.errors.product_summary?.message}
+                    </S.Error>
                   </S.InputBox>
-                  <S.Error>{formState.errors.product_summary?.message}</S.Error>
                 </S.InputWrap>
               </S.Body_Top>
               <S.PriceBox>

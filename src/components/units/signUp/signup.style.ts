@@ -14,23 +14,21 @@ export const Wrapper = styled.div`
   }
 `;
 export const Container = styled.div`
-  width: 520px;
+  width: 400px;
   border: none;
-  padding: 80px;
+  padding: 60px;
   border-radius: 20px;
   background-color: #fff;
   border: 1px solid #efefef;
 
-  ${mq[3]} {
-    width: 100%;
-    padding: 80px 60px;
+  ${mq[4]} {
+    padding: 50px 60px;
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 36px;
+  font-size: 2.25rem;
   margin-bottom: 30px;
-  font-weight: 600;
 `;
 
 export const SignupWrap = styled.div`
@@ -46,7 +44,7 @@ export const SignupBox = styled.div`
 `;
 
 export const SubTitle = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   display: block;
   margin-bottom: 10px;
@@ -57,7 +55,7 @@ export const AuthBtn = styled.button<{
 }>`
   width: 100%;
   height: 42px;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   color: ${props => (props.isActive ? "#fff" : "#bec3c7")};
   background-color: ${props => (props.isActive ? "#88b04b" : "#f6f7f9")};
@@ -71,13 +69,13 @@ export const SubTitleDetail = styled.div`
   color: #818a91;
   word-break: keep-all;
   line-height: 18px;
-  font-size: 14px;
+  font-size: 0.88rem;
   margin-bottom: 16px;
 `;
 
 export const Footer = styled.div`
   width: 100%;
-  font-size: 14px;
+  font-size: 0.88rem;
   text-align: center;
   margin-top: 60px;
 `;
@@ -87,14 +85,14 @@ export const Login = styled.a`
   border-bottom: 1px solid #111;
   margin-left: 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
 `;
 
 export const Error = styled.span`
   position: absolute;
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #e31c1c;
   top: calc(100% + 8px);
 `;

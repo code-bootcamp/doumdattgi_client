@@ -41,7 +41,7 @@ export const AvatarEdit = styled.button`
   width: 130px;
   border: none;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 8px 0;
   background-color: #111;
   color: #fff;
@@ -53,7 +53,7 @@ export const AvatarRemove = styled.button`
   width: 130px;
   border: none;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 8px 0;
   font-weight: 600;
   background: none;
@@ -75,8 +75,7 @@ export const ProfileWrap = styled.div`
 `;
 export const ProfileBox = styled.div``;
 export const ProfileNickname = styled.h2`
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 2.25rem;
   font-weight: 600;
 `;
 export const ProfileIntroduce = styled.p`
@@ -105,7 +104,7 @@ export const Text = styled.textarea`
   border: 1px solid #dbdbdb;
   padding: 16px;
   margin: 10px 0;
-  font-size: 16px;
+  font-size: 1rem;
 `;
 export const Form = styled.form`
   display: flex;

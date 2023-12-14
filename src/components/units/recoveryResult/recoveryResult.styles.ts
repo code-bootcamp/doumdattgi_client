@@ -16,28 +16,25 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 520px;
+  width: 400px;
   border: none;
-  padding: 80px;
+  padding: 60px;
   border-radius: 20px;
   background-color: #fff;
-  /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); */
   border: 1px solid #efefef;
 
-  ${mq[3]} {
-    width: 100%;
-    padding: 80px 60px;
+  ${mq[4]} {
+    padding: 50px 60px;
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 36px;
+  font-size: 2.25rem;
   margin-bottom: 50px;
-  font-weight: 600;
 `;
 
 export const SubTitle = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   display: block;
 `;
 
@@ -47,7 +44,7 @@ export const SignupBox = styled.div`
 `;
 
 export const IndexTitle = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   display: block;
   margin-bottom: 10px;
@@ -56,7 +53,7 @@ export const IndexTitle = styled.span`
 export const Error = styled.span`
   position: absolute;
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   color: #e31c1c;
   top: calc(100% + 8px);
 `;
@@ -66,7 +63,7 @@ export const SubmitBtn = styled.div`
 `;
 
 export const Email = styled.span`
-  font-size: 30px;
+  font-size: 1.88rem;
   font-weight: 600;
   margin-right: 5px;
   display: block;
@@ -88,12 +85,12 @@ export const Footer = styled.div`
 `;
 export const JoinText = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 
 export const JoinBtn = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   border-bottom: 1px solid #111;
   margin-left: 14px;

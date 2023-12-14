@@ -10,34 +10,33 @@ export const Wrapper = styled.div`
   align-items: center;
 
   ${mq[3]} {
-    padding: 50px 16px;
+    padding: 0 16px;
   }
   ${mq2} {
     height: fit-content;
     align-items: baseline;
-    padding: 80px 0;
+    padding: 16px;
   }
 `;
 
 export const Container = styled.div`
+  width: 400px;
   margin: 0 auto;
-  width: 520px;
   height: fit-content;
-  padding: 80px;
+  padding: 60px;
   border-radius: 20px;
   background-color: #fff;
   border: 1px solid #efefef;
 
-  ${mq[3]} {
+  ${mq[4]} {
     width: 100%;
-    padding: 80px 60px;
+    padding: 50px 60px;
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 36px;
+  font-size: 2.25rem;
   margin-bottom: 40px;
-  font-weight: 600;
 `;
 
 export const SignupBox = styled.div`
@@ -46,16 +45,16 @@ export const SignupBox = styled.div`
 `;
 
 export const IndexTitle = styled.span`
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   display: block;
   margin-bottom: 10px;
 `;
 
 export const Error = styled.span`
-  position: absolute;
+  margin: 10px 0 0 6px;
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   line-height: 16px;
   color: #e31c1c;
   top: calc(100% + 8px);
@@ -64,10 +63,6 @@ export const Error = styled.span`
 
 export const SubmitBtn = styled.div`
   margin-top: 30px;
-
-  ${mq[3]}{
-    margin-top: 50px;
-  }
 `;
 
 export const FindingWrap = styled.div`
@@ -82,7 +77,7 @@ export const FindingBox = styled.div`
 
 export const Finding = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
 `;
 
@@ -95,7 +90,7 @@ export const SocialLoginWrap = styled.div`
 
 export const SocialLoginTitle = styled.span`
   display: block;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
 `;
 export const SocialLoginBox = styled.div`
@@ -125,20 +120,22 @@ export const SocialLoginButton = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 `;
-export const JoinText = styled.span`
-  display: block;
-  font-size: 14px;
+export const JoinText = styled.p`
+  font-size: 0.88rem;
   line-height: 18px;
   word-break: keep-all;
 `;
 
 export const JoinBtn = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   border-bottom: 1px solid #111;
+  padding-bottom: 2px;
   margin-left: 14px;
   cursor: pointer;
+  word-break: keep-all;
 `;

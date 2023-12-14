@@ -42,7 +42,8 @@
  
 ![](https://velog.velcdn.com/images/cometes/post/08813667-eeca-4211-b7bb-902008c5f581/image.jpeg)
 ![](https://velog.velcdn.com/images/cometes/post/0cdbf860-d03f-4a1c-a50d-e27fce2edfd2/image.png)
-![](https://velog.velcdn.com/images/cometes/post/a3dbd815-6790-434b-b2e6-a29110e9b446/image.png)
+![](https://velog.velcdn.com/images/cometes/post/c27b4638-ea49-4e32-a089-36b805f6f8b9/image.png)
+
 
 ### Git 링크
  <table>
@@ -109,6 +110,10 @@
 
 ---
 # ❗️기술 키워드
+### 반응형 웹
+![](https://velog.velcdn.com/images/cometes/post/84b04551-96b8-4e74-bd1f-c218a68291ee/image.png)
+- 반응형 웹을 적용하여 모든 사이즈의 디바이스 기기에 대응하며 도메인 구분 없는 동일한 URL을 사용 가능합니다. 또한 새로운 내용이나 콘텐츠가 추가되어도 PC용, 모바일용의 구분이 없어 유지보수가 비교적 간편합니다.
+
 ### 컴포넌트 재사용
 ![](https://velog.velcdn.com/images/cometes/post/d4483e04-a825-4651-991a-7b152670c3aa/image.png)
 - React의 장점이라고 할 수 있는 재사용성을 높이기 위하여 각 파츠들을 분리하여 hooks로 컴포넌트화 하였으며 디자인 요소 또한 컴포넌트화 하여 전체적인 톤앤매너의 통일감을 주었습니다.

@@ -14,7 +14,7 @@ export const Body = styled.div`
 
 export const Title = styled.span`
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.25rem;
   padding-bottom: 30px;
 `;
 
@@ -39,7 +39,7 @@ export const ChargeBtn = styled.button`
   width: 100%;
   height: 40px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   background-color: ${(props: IProps) =>
     Number(props.amount) !== 0 && props.isSelect !== ""
       ? "#88b04b"

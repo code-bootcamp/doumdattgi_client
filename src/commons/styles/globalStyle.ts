@@ -12,11 +12,8 @@ export const globalStyle = css`
     font-weight: 400;
     letter-spacing: -0.03em;
 
-    ${mq[1]} {
-      font-size: 15px;
-    }
     ${mq[2]} {
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 
@@ -32,24 +29,23 @@ export const globalStyle = css`
   }
 
   /* TimePicker */
-  .setTimeBtn .ant-space {
-    width: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  /* TimePicker */
-  :where(.css-dev-only-do-not-override-15rg2km).ant-picker-dropdown
+  &:where(.css-dev-only-do-not-override-15rg2km).ant-picker-dropdown
     .ant-picker-time-panel-column {
     width: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  :where(.css-dev-only-do-not-override-15rg2km).ant-btn.ant-btn-sm {
+
+  &:where(.css-dev-only-do-not-override-15rg2km).ant-btn.ant-btn-sm {
     padding: 0 26px;
     height: 26px;
+  } 
+
+  &:where(.css-dev-only-do-not-override-15rg2km).ant-picker-dropdown .ant-picker-time-panel-column >li.ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner {
+    padding: 0;
+    width: 80px;
+    text-align: center;
   }
 
   /* 헤더 드롭다운 */
@@ -57,7 +53,7 @@ export const globalStyle = css`
     width: 120px;
   }
   /* 마일리지 드롭다운 */
-   .mileage .ant-dropdown-menu {
+  .mileage .ant-dropdown-menu {
     max-height: 300px;
     overflow: auto;
   }

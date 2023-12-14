@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 const Wating = styled.span`
   display: inline-block;
-  font-size: 14px;
+  font-size: 0.88rem;
   padding: 5px 8px;
   border-radius: 50px;
   border: 1px solid #0958d9;
@@ -11,12 +11,12 @@ const Wating = styled.span`
 `;
 const End = styled.span`
   display: inline-block;
-  font-size: 14px;
+  font-size: 0.88rem;
   padding: 5px 8px;
   border-radius: 50px;
-  border: 1px solid #CF1322;
-  background: #FFF1F0;
-  color: #CF1322;
+  border: 1px solid #cf1322;
+  background: #fff1f0;
+  color: #cf1322;
 `;
 
 interface IProps {

@@ -8,7 +8,7 @@ export const TransactionInfo = styled.div`
   border: 1px solid #d7d7d7;
   border-radius: 6px;
   margin: 16px 0px;
-  padding: 20px 30px;
+  padding: 20px;
 
   ${mq[1]} {
     width: 100%;
@@ -33,13 +33,11 @@ export const PayInfo = styled.div`
 `;
 
 export const Company = styled.span`
-  font-size: 16px;
-  font-family: "Arita-dotum4.0";
+  font-size: 1rem;
 `;
 
 export const Date = styled.span`
-  font-family: "Arita-dotum4.0";
-  font-size: 16px;
+  font-size: 1rem;
   color: #d7d7d7;
 
   ${mq[3]} {
@@ -64,12 +62,12 @@ export const RefundBox = styled.div`
 
 export const Point = styled.span`
   display: block;
-  font-size: 30px;
+  font-size: 1.88rem;
 `;
 
 export const Amount = styled.span`
   display: block;
-  font-size: 30px;
+  font-size: 1.88rem;
 `;
 export const Box = styled.div`
   width: 150px;

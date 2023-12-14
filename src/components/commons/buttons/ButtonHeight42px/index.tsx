@@ -13,7 +13,7 @@ export const Button = styled.button`
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 
 export default function ButtonHeight42px(props: IButtonProps): JSX.Element {

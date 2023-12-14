@@ -20,8 +20,33 @@ export default function Profile(): JSX.Element {
     mySeekProduct,
     myPick,
     isPick,
-    isSeek
+    isSeek,
+    tab,
+    open,
+    showDrawer,
+    onClose
   } = useMyProduct();
+
+  const tabList = [
+    {
+      idx: 0,
+      content: "내 서비스 목록",
+      isSeek: false,
+      isPick: false
+    },
+    {
+      idx: 1,
+      content: "내 구인글 목록",
+      isSeek: true,
+      isPick: false
+    },
+    {
+      idx: 2,
+      content: "내 북마크 목록",
+      isSeek: false,
+      isPick: true
+    }
+  ];
 
   return (
     <>
@@ -33,7 +58,7 @@ export default function Profile(): JSX.Element {
         url={"https://doumdattgi.com"}
       />
       <S.ProfileDrawerBox>
-        <ProfileDrawer />
+        <ProfileDrawer open={open} onClose={onClose} />
       </S.ProfileDrawerBox>
       <S.Wrapper>
         <S.Container>
@@ -106,8 +131,15 @@ export default function Profile(): JSX.Element {
             </S.ContentWrap>
           </S.WrapperLeft>
           <S.WrapperRight>
-            <S.MobileTitleBox>
-              <S.ProfileTitle>내 프로필</S.ProfileTitle>
+            <S.MobileTitleWrap>
+              <S.MobileTitleBox>
+                <S.NavIcon onClick={showDrawer}>
+                  <S.line className="line1" isOpen={open} />
+                  <S.line className="line2" isOpen={open} />
+                  <S.line className="line3" isOpen={open} />
+                </S.NavIcon>
+                <S.ProfileTitle>내 프로필</S.ProfileTitle>
+              </S.MobileTitleBox>
               <S.CreateLink
                 className="mobile"
                 onClick={onClickMoveToPage(isSeek ? "/seek/create" : "/create")}
@@ -117,18 +149,17 @@ export default function Profile(): JSX.Element {
                   {isSeek ? "새 구인글 올리기" : "새 서비스 만들기"}
                 </S.CreateText>
               </S.CreateLink>
-            </S.MobileTitleBox>
+            </S.MobileTitleWrap>
             <S.RightTitleBox>
               <div>
-                <S.ListBtn onClick={onClickTabs(false, false)}>
-                  내 서비스 목록
-                </S.ListBtn>
-                <S.ListBtn onClick={onClickTabs(false, true)}>
-                  내 구인글 목록
-                </S.ListBtn>
-                <S.ListBtn onClick={onClickTabs(true, false)}>
-                  찜한 글 목록
-                </S.ListBtn>
+                {tabList.map(el => (
+                  <S.ListBtn
+                    onClick={onClickTabs(el.isPick, el.isSeek, el.idx)}
+                    className={el.idx === tab ? "selected" : ""}
+                  >
+                    {el.content}
+                  </S.ListBtn>
+                ))}
               </div>
               <S.CreateLink
                 onClick={onClickMoveToPage(isSeek ? "/seek/create" : "/create")}

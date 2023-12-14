@@ -64,7 +64,7 @@ export const DetailBox = styled.div`
 `;
 export const Category = styled.span`
   display: block;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 16px;
   font-weight: 600;
 `;
@@ -75,11 +75,10 @@ export const TitleWrap = styled.div`
   margin-top: 20px;
 `;
 export const Title = styled.h2`
-  font-size: 30px;
+  font-size: 1.88rem;
   line-height: 36px;
   font-weight: 700;
   word-break: keep-all;
-  /* width: 370px; */
 `;
 
 export const IconBox = styled.div`
@@ -87,7 +86,7 @@ export const IconBox = styled.div`
 `;
 
 export const Icon = styled(FontAwesomeIcon)`
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #bec3c7;
   margin-left: 30px;
   cursor: pointer;
@@ -102,8 +101,8 @@ export const TagWrap = styled.div`
   margin-top: 30px;
 `;
 export const Tag = styled.span`
-  font-size: 14px;
-  line-height: 14px;
+  font-size: 0.88rem;
+  line-height: 0.88rem;
   color: #929aa0;
   font-weight: 600;
   padding: 4px 10px;
@@ -116,13 +115,13 @@ export const Tag = styled.span`
   }
 `;
 export const Price = styled.p`
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-top: 24px;
   letter-spacing: 0;
 `;
 export const Remarks = styled.p`
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 20px;
   color: #333;
   margin-top: 30px;
@@ -145,7 +144,7 @@ export const LineBtn = styled.button`
   background: #fff;
   color: #88b04b;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
 `;
 export const SlotBox = styled.div`
@@ -190,16 +189,18 @@ export const DetailContentsWrap = styled.section`
 
   ${mq[1]} {
     width: 100%;
+    margin-bottom: 50px;
+    min-height: 100px;
   }
 `;
 export const DetailTitle = styled.h3`
-  font-size: 18px;
+  font-size: 1.13rem;
   line-height: 18px;
   font-weight: 600;
 `;
 export const DetailContents = styled.p`
   width: 100%;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   word-break: break-word;
   margin-top: 30px;
@@ -227,7 +228,7 @@ export const UserName = styled.span`
   font-weight: 700;
   padding: 26px 30px;
   background-color: #f0f1f6;
-  font-size: 18px;
+  font-size: 1.13rem;
   line-height: 18px;
 `;
 export const UserAvatar = styled.img`
@@ -260,12 +261,12 @@ export const UserTimeBox = styled.div`
 `;
 export const UserTimeCategory = styled.span`
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1.13rem;
   line-height: 18px;
   display: block;
 `;
 export const UserTime = styled.span`
-  font-size: 18px;
+  font-size: 1.13rem;
   line-height: 18px;
   font-weight: 400;
   margin-left: 14px;
@@ -286,7 +287,7 @@ export const UserWorkRateBox = styled.div`
 `;
 export const UserWorkRate = styled.span`
   display: block;
-  font-size: 18px;
+  font-size: 1.13rem;
   line-height: 18px;
   font-weight: 600;
   padding-bottom: 12px;
@@ -298,7 +299,7 @@ export const VerticalLine = styled.div`
 `;
 export const UserWorkText = styled.span`
   display: block;
-  font-size: 14px;
+  font-size: 0.88rem;
   line-height: 14px;
   color: #9495a1;
 `;
@@ -325,23 +326,23 @@ export const PortfolioLink = styled.span`
   border-bottom: 1px solid #111;
   margin: 20px 0 0 26px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
 export const UserIntroduceTitle = styled.span`
-  font-size: 18px;
+  font-size: 1.13rem;
   line-height: 18px;
   font-weight: 600;
   display: block;
   margin-top: 40px;
 `;
 export const UserIntroduce = styled.p`
-  font-size: 14px;
+  font-size: 0.88rem;
   line-height: 20px;
   margin-top: 14px;
   color: #333;
 `;
 export const Subtitle = styled.div`
-  font-size: 20px;
+  font-size: 1.25em;
   line-height: 20px;
   margin-top: 50px;
 `;
@@ -385,7 +386,7 @@ export const EnableBtn = styled.div`
   color: #929aa0;
   background-color: #f6f7f9;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   display: flex;
   align-items: center;

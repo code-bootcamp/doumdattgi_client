@@ -113,7 +113,6 @@ export default function Header(): JSX.Element {
               <S.LogoTitle>도움닫기</S.LogoTitle>
             </S.Logo>
           </S.logoWrap>
-          
           <S.HeaderBox>
             <form onSubmit={handleSubmit(searchKeyword)}>
               <S.SearchWrap isOpen={isOpen2}>
@@ -139,9 +138,6 @@ export default function Header(): JSX.Element {
             )}
             {data && (
               <S.UserBox>
-                {/* <S.ShuffleBtn>
-                  <S.ShuffleIcon src="/chat-bubble.png" />
-                </S.ShuffleBtn> */}
                 <S.ShuffleBtn onClick={clickRandomBoard}>
                   <S.ShuffleIcon src="/shuffle.png" />
                 </S.ShuffleBtn>

@@ -27,7 +27,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 30px;
+  font-size: 1.88rem;
 `;
 export const SelectWrap = styled.div`
   display: flex;
@@ -67,7 +67,7 @@ export const SelectBar = styled.ul`
 export const selectOption = styled.li`
   position: relative;
   text-align: center;
-  font-size: 18px;
+  font-size: 1.13rem;
   padding: 0 20px;
   height: 40px;
   display: flex;
@@ -77,7 +77,7 @@ export const selectOption = styled.li`
 
   ${mq[2]} {
     padding: 0 16px;
-    font-size: 16px;
+    font-size: 1rem;
   }
   ${mq[3]} {
     padding: 0 12px;
@@ -103,11 +103,11 @@ export const HoldingBox = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f2f2f4;
-  padding: 30px;
+  padding: 24px;
 `;
 
 export const HoldTitle = styled.span`
-  font-size: 20px;
+  font-size: 1.25rem;
   display: block;
 `;
 
@@ -117,21 +117,16 @@ export const CurrentHold = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 22px;
-
-  ${mq[3]} {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 `;
 
 export const HoldPoint = styled.span`
   font-family: "Arita-dotum4.0";
-  font-size: 36px;
+  font-size: 2.25rem;
   display: block;
 `;
 
 export const ChargeBtn = styled.button`
-  font-size: 18px;
+  font-size: 1.13rem;
   background-color: #111111;
   border-radius: 6px;
   padding: 15px 30px;
@@ -141,13 +136,12 @@ export const ChargeBtn = styled.button`
 
   ${mq[3]} {
     padding: 15px 20px;
-    margin-top: 10px;
   }
 `;
 
 export const Nothing = styled.div`
   margin-top: 25%;
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   color: #aaaaaa;
 `;
